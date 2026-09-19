@@ -1,0 +1,65 @@
+# Decap CMS configuration for naomischaefer.com
+#
+# ── Before this works, you must fill in the two placeholders below AND finish
+#    the OAuth proxy setup described in SETUP_INSTRUCTIONS.md. Until then this
+#    page will load but the "Login with GitHub" button will fail.
+
+backend:
+  name: github
+  repo: schaefernaomi/Naomi-Schaefer-Portfolio   # e.g. naomischaefer/portfolio
+  branch: main                                 # change if your default branch is named differently
+  base_url: https://naomi-cms-oauth-proxy.vercel.app # the proxy you deploy in Step 2 of the instructions
+  auth_endpoint: api/auth
+
+# With this on, hitting "Save" does NOT publish instantly — it opens a draft you can
+# review (and a "Publish" button appears once you do) instead of touching main right
+# away. Given you'd rather not worry about something going live by accident, this is
+# on by default; delete the line if you'd rather have Save = live immediately.
+publish_mode: editorial_workflow
+
+# New art you upload through this page gets committed into this folder automatically.
+# It does not touch the images already organized under assets/campaigns, assets/collectibles, etc.
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+# Everything in this file is a straight editing UI for data/portfolio.json —
+# it does not restructure your data or your site at all.
+collections:
+  - name: "portfolio"
+    label: "Portfolio"
+    files:
+      - name: "projects"
+        label: "All Projects"
+        file: "data/portfolio.json"
+        format: "json"
+        fields:
+          - label: "Projects"
+            name: "projects"
+            widget: "list"
+            summary: "{{fields.title}} — {{fields.category}} / {{fields.collection}}"
+            fields:
+              - { label: "ID (unique, url-safe slug)", name: "id", widget: "string", hint: "e.g. jesse-compher-dazzlers — lowercase, dashes, no spaces" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Category", name: "category", widget: "select", options: ["poster", "card", "archive"] }
+              - { label: "Collection", name: "collection", widget: "string", hint: "e.g. PWHL, AEW, Archive" }
+              - { label: "Client", name: "client", widget: "string", required: false }
+              - { label: "Year", name: "year", widget: "string", required: false }
+              - { label: "Dimensions", name: "dimensions", widget: "string", required: false }
+              - { label: "Description", name: "description", widget: "text", required: false }
+              - { label: "Card Number", name: "cardNumber", widget: "string", required: false, hint: "Collectible cards only" }
+              - { label: "Medium", name: "medium", widget: "string", required: false, hint: "Archive pieces only, e.g. 3D Illustration" }
+              - { label: "Sport", name: "sport", widget: "string", required: false }
+              - { label: "Tags", name: "tags", widget: "list", required: false }
+              - { label: "Featured", name: "featured", widget: "boolean", default: false }
+              - { label: "Order", name: "order", widget: "number", default: 1, value_type: "int" }
+              - { label: "Display Treatment", name: "displayTreatment", widget: "select", options: ["standard", "framed"], required: false }
+              - { label: "Card Stock", name: "cardStock", widget: "string", required: false }
+              - { label: "Frame Color", name: "frameColor", widget: "string", required: false, hint: "Only used when Display Treatment is framed, e.g. black" }
+              - label: "Images"
+                name: "images"
+                widget: "list"
+                summary: "{{fields.role}}"
+                fields:
+                  - { label: "Image", name: "src", widget: "image" }
+                  - { label: "Role", name: "role", widget: "select", options: ["main", "front", "back", "supporting"] }
+                  - { label: "Alt text", name: "alt", widget: "string", hint: "Describe the image for accessibility/SEO" }
