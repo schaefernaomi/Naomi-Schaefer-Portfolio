@@ -81,37 +81,37 @@
       "displayTreatment": "standard",
       "images": [
         {
-          "src": "assets/archive/digital and 3d/3d Room design/01 3d room full.jpg",
+          "src": "assets/archive/digital and 3d/01 3d room full.jpg",
           "role": "main",
           "alt": "3D isometric room illustration, full view"
         },
         {
-          "src": "assets/archive/digital and 3d/3d Room design/02 3d room clay model.jpg",
+          "src": "assets/archive/digital and 3d/02 3d room clay model.jpg",
           "role": "supporting",
           "alt": "3D room clay model pass"
         },
         {
-          "src": "assets/archive/digital and 3d/3d Room design/02 -1 3d room materials.jpg",
+          "src": "assets/archive/digital and 3d/02 -1 3d room materials.jpg",
           "role": "supporting",
           "alt": "3D room material studies"
         },
         {
-          "src": "assets/archive/digital and 3d/3d Room design/03 3d room close up.png",
+          "src": "assets/archive/digital and 3d/03 3d room close up.png",
           "role": "supporting",
           "alt": "3D room close-up detail"
         },
         {
-          "src": "assets/archive/digital and 3d/3d Room design/04 3d room side left.png",
+          "src": "assets/archive/digital and 3d/04 3d room side left.png",
           "role": "supporting",
           "alt": "3D room, side left view"
         },
         {
-          "src": "assets/archive/digital and 3d/3d Room design/05 3d room side right.png",
+          "src": "assets/archive/digital and 3d/05 3d room side right.png",
           "role": "supporting",
           "alt": "3D room, side right view"
         }
       ],
-      "video": "assets/archive/digital and 3d/3d Room design/Nae_s Final room recording.mp4",
+      "video": "assets/archive/digital and 3d/Nae_s Final room recording.mp4",
       "archiveGroup": "digital-3d"
     },
     {
