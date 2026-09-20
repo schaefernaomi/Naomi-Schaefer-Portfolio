@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# This file only tells well-behaved search engines which pages to crawl.
+# It is not a security or privacy control — every file in this repository
+# is still publicly accessible to anyone who requests it directly.
+
+Sitemap: https://YOUR-DOMAIN-HERE.com/sitemap.xml

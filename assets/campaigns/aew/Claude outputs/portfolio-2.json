@@ -1,0 +1,2149 @@
+{
+  "projects": [
+    {
+      "id": "pwhl-spotlight-pink-rooney",
+      "title": "Maddie Rooney — Spotlight Pink",
+      "category": "card",
+      "collection": "PWHL",
+      "client": "Upper Deck",
+      "year": "2025-26",
+      "dimensions": "",
+      "description": "",
+      "cardNumber": "S-24",
+      "tags": [
+        "hockey",
+        "PWHL"
+      ],
+      "featured": true,
+      "order": 1,
+      "images": [
+        {
+          "src": "assets/collectibles/pwhl/2025-pwhl-spotlight-pink-rooney-front.jpg",
+          "role": "front",
+          "alt": "2025-26 Upper Deck PWHL Spotlight Pink, Maddie Rooney, front"
+        },
+        {
+          "src": "assets/collectibles/pwhl/2025-pwhl-spotlight-pink-rooney-back.jpg",
+          "role": "back",
+          "alt": "2025-26 Upper Deck PWHL Spotlight Pink, Maddie Rooney, back"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Hockey"
+    },
+    {
+      "id": "jesse-compher-dazzlers-pink-mtq1r0p2",
+      "title": "Jesse Compher — Dazzlers Pink",
+      "category": "card",
+      "collection": "PWHL",
+      "client": "Upper Deck",
+      "year": "2025-26",
+      "dimensions": "",
+      "description": "Drafted to Toronto in 2023, Compher's growing offense has gone hand-in-hand with the club's great play since. A valued piece, the Sceptres signed her to an extension ahead of the 2025-26 season.",
+      "cardNumber": "DZ-2",
+      "cardStock": "C2S",
+      "displayTreatment": "foil",
+      "tags": [
+        "hockey",
+        "PWHL",
+        "foil"
+      ],
+      "featured": false,
+      "order": 2,
+      "images": [
+        {
+          "src": "assets/collectibles/pwhl/jesse-compher-dazzlers-pink-front.jpg",
+          "role": "front",
+          "alt": "Jesse Compher — Dazzlers Pink (front)"
+        },
+        {
+          "src": "assets/collectibles/pwhl/jesse-compher-dazzlers-pink-back.jpg",
+          "role": "back",
+          "alt": "Jesse Compher — Dazzlers Pink (back)"
+        }
+      ],
+      "sport": "Hockey"
+    },
+    {
+      "id": "3d-room-design-689292",
+      "title": "3D Room Design",
+      "category": "archive",
+      "collection": "Archive",
+      "medium": "3D Illustration",
+      "client": "",
+      "year": "",
+      "dimensions": "",
+      "description": "An isometric 3D render of a personal workspace, built as an illustration/3D exercise.",
+      "tags": [],
+      "featured": false,
+      "order": 1,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/archive/3d Room design/01 3d room full.jpg",
+          "role": "main",
+          "alt": "3D isometric room illustration, full view"
+        },
+        {
+          "src": "assets/archive/3d Room design/02 3d room clay model.jpg",
+          "role": "supporting",
+          "alt": "3D room clay model pass"
+        },
+        {
+          "src": "assets/archive/3d Room design/02 -1 3d room materials.jpg",
+          "role": "supporting",
+          "alt": "3D room material studies"
+        },
+        {
+          "src": "assets/archive/3d Room design/03 3d room close up.png",
+          "role": "supporting",
+          "alt": "3D room close-up detail"
+        },
+        {
+          "src": "assets/archive/3d Room design/04 3d room side left.png",
+          "role": "supporting",
+          "alt": "3D room, side left view"
+        },
+        {
+          "src": "assets/archive/3d Room design/05 3d room side right.png",
+          "role": "supporting",
+          "alt": "3D room, side right view"
+        }
+      ],
+      "video": "assets/archive/3d Room design/Nae_s Final room recording.mp4",
+      "archiveGroup": "digital-3d"
+    },
+    {
+      "id": "bolar-isometric-infographic-web-illustrations-689293",
+      "title": "Bolar — Isometric Infographic Web Illustrations",
+      "category": "archive",
+      "collection": "Archive",
+      "medium": "UX / Infographic Illustration",
+      "client": "",
+      "year": "",
+      "dimensions": "",
+      "description": "Isometric infographic illustrations designed to revamp Bolar's website, replacing dense text with visual explanations.",
+      "tags": [],
+      "featured": false,
+      "order": 2,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/archive/bolar infographic/Bolar website_portfolio mockup-01.png",
+          "role": "main",
+          "alt": "Bolar isometric infographic web illustrations, cover slide"
+        },
+        {
+          "src": "assets/archive/bolar infographic/Bolar website_portfolio mockup-02.png",
+          "role": "supporting",
+          "alt": "Bolar infographic mockup"
+        },
+        {
+          "src": "assets/archive/bolar infographic/Bolar website_portfolio mockup-03.png",
+          "role": "supporting",
+          "alt": "Bolar infographic mockup"
+        },
+        {
+          "src": "assets/archive/bolar infographic/Bolar website_portfolio mockup-05.png",
+          "role": "supporting",
+          "alt": "Bolar infographic mockup"
+        },
+        {
+          "src": "assets/archive/bolar infographic/Bolar website_portfolio mockup-06.png",
+          "role": "supporting",
+          "alt": "Bolar infographic mockup"
+        }
+      ],
+      "archiveGroup": "branding"
+    },
+    {
+      "id": "knowledgecity-e-learning-storyboard-animations-689293",
+      "title": "KnowledgeCity — E-Learning Storyboard Animations",
+      "category": "archive",
+      "collection": "Archive",
+      "medium": "Storyboard / Motion",
+      "client": "",
+      "year": "",
+      "dimensions": "",
+      "description": "Storyboard illustrations and motion animation for KnowledgeCity e-learning courses, including BUS1712 and BUS1718.",
+      "tags": [],
+      "featured": false,
+      "order": 3,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/archive/knowledgeCity E-learning Storyboards/KC SB mockups-01.png",
+          "role": "main",
+          "alt": "KnowledgeCity storyboard mockups"
+        },
+        {
+          "src": "assets/archive/knowledgeCity E-learning Storyboards/KC Elearning Storyboard.png",
+          "role": "supporting",
+          "alt": "KnowledgeCity e-learning storyboard"
+        },
+        {
+          "src": "assets/archive/knowledgeCity E-learning Storyboards/KC Elearning Storyboards.png",
+          "role": "supporting",
+          "alt": "KnowledgeCity e-learning storyboards"
+        }
+      ],
+      "videos": [
+        "assets/archive/knowledgeCity E-learning Storyboards/BUS1712 Storyboard animation.mp4",
+        "assets/archive/knowledgeCity E-learning Storyboards/BUS1718 Storyboard animation.mp4",
+        "assets/archive/knowledgeCity E-learning Storyboards/BUS1718 Storyboard animation 02.mp4"
+      ],
+      "archiveGroup": "academic-elearning"
+    },
+    {
+      "id": "steps-magazine-doodle-design-689293",
+      "title": "Steps Magazine Doodle Design",
+      "category": "archive",
+      "collection": "Archive",
+      "medium": "Illustration / Print",
+      "client": "",
+      "year": "",
+      "dimensions": "",
+      "description": "A doodle illustration created for Cal State San Marcos' Steps Magazine, published university-wide.",
+      "tags": [],
+      "featured": false,
+      "order": 4,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/archive/steps maganzine doodle design/5c5e2af5-4e2e-48f2-87d8-14e282408661_rw_1920.jpg",
+          "role": "main",
+          "alt": "Steps Magazine doodle design, full spread"
+        }
+      ],
+      "archiveGroup": "academic-elearning"
+    },
+    {
+      "id": "csusm-map-illustration",
+      "title": "Map Illustration",
+      "category": "archive",
+      "collection": "Archive",
+      "medium": "Illustration / Print",
+      "client": "CSUSM",
+      "year": "2019",
+      "dimensions": "",
+      "description": "Isometric campus map illustration for CSUSM, used in the Super STEM Saturday event program brochure.",
+      "tags": [],
+      "featured": false,
+      "order": 1,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/archive/csusm-university/map-illustration.jpg",
+          "role": "main",
+          "alt": "CSUSM campus map illustration"
+        },
+        {
+          "src": "assets/archive/csusm-university/map-illustration-mockup.jpg",
+          "role": "supporting",
+          "alt": "CSUSM campus map, folded brochure mockup"
+        }
+      ],
+      "archiveGroup": "academic-elearning"
+    },
+    {
+      "id": "csusm-commencement-brochure",
+      "title": "Commencement Brochure",
+      "category": "archive",
+      "collection": "Archive",
+      "medium": "Print Design",
+      "client": "CSUSM",
+      "year": "2020–2021",
+      "dimensions": "",
+      "description": "Commencement program brochures for California State University San Marcos, including the Alumni Association and Class Champions spreads.",
+      "tags": [],
+      "featured": false,
+      "order": 2,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/archive/csusm-university/commencement-brochure-2020-cover.jpg",
+          "role": "main",
+          "alt": "CSUSM 2020 commencement brochure cover"
+        },
+        {
+          "src": "assets/archive/csusm-university/commencement-brochure-2021-spread.jpg",
+          "role": "supporting",
+          "alt": "CSUSM 2021 commencement brochure, Alumni Association and Class Champions spread"
+        }
+      ],
+      "archiveGroup": "academic-elearning"
+    },
+    {
+      "id": "csusm-event-cutout-design",
+      "title": "Event Cutout Design",
+      "category": "archive",
+      "collection": "Archive",
+      "medium": "Illustration / Event Design",
+      "client": "CSUSM",
+      "year": "",
+      "dimensions": "",
+      "description": "A Grease-themed photo cutout designed for Cal State San Marcos' annual gala, the university's largest fundraising event of the year.",
+      "tags": [],
+      "featured": false,
+      "order": 3,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/archive/csusm-university/event-cutout-design-gala.jpg",
+          "role": "main",
+          "alt": "CSUSM gala Grease-themed event cutout design"
+        }
+      ],
+      "archiveGroup": "academic-elearning"
+    },
+    {
+      "id": "csusm-arts-lectures-brochure",
+      "title": "Arts & Lectures Brochure",
+      "category": "archive",
+      "collection": "Archive",
+      "medium": "Print Design",
+      "client": "CSUSM",
+      "year": "2019",
+      "dimensions": "",
+      "description": "Brochure design for CSUSM's Arts & Lectures series, a curriculum-linked program of lectures, performances, and screenings.",
+      "tags": [],
+      "featured": false,
+      "order": 4,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/archive/csusm-university/arts-lectures-brochure.jpg",
+          "role": "main",
+          "alt": "CSUSM Arts & Lectures brochure, Fall 2019"
+        }
+      ],
+      "archiveGroup": "academic-elearning"
+    },
+    {
+      "id": "csusm-grad-pin",
+      "title": "CSUSM Grad Pin",
+      "category": "archive",
+      "collection": "Archive",
+      "medium": "Product Design",
+      "client": "CSUSM",
+      "year": "",
+      "dimensions": "1.25in / 0.75in",
+      "description": "Graduation and alumni pins for California State University San Marcos, given out as part of the graduation gown zipper.",
+      "tags": [],
+      "featured": false,
+      "order": 5,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/archive/csusm-university/csusm-grad-pin.jpg",
+          "role": "main",
+          "alt": "CSUSM graduation and alumni pin design"
+        }
+      ],
+      "archiveGroup": "academic-elearning"
+    },
+    {
+      "id": "csusm-crash-cougar-mascot",
+      "title": "Crash the Cougar Mascot",
+      "category": "archive",
+      "collection": "Archive",
+      "medium": "Character Design",
+      "client": "CSUSM",
+      "year": "2020",
+      "dimensions": "",
+      "description": "A flat, printable version of Crash the Cougar, CSUSM's mascot, designed for students and faculty to print and pose with during the COVID-19 stay-at-home order.",
+      "tags": [],
+      "featured": false,
+      "order": 6,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/archive/csusm-university/crash-cougar-mascot.jpg",
+          "role": "main",
+          "alt": "Crash the Cougar flat mascot design for CSUSM"
+        }
+      ],
+      "archiveGroup": "academic-elearning"
+    },
+    {
+      "id": "illustration-anatomy-heart",
+      "title": "Anatomy in Color",
+      "category": "archive",
+      "collection": "Archive",
+      "medium": "Digital Illustration",
+      "client": "",
+      "year": "2019",
+      "dimensions": "",
+      "description": "A personal illustration study, marbled color ribbons flowing through an anatomical heart.",
+      "tags": [],
+      "featured": false,
+      "order": 6,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/archive/illustrations/anatomy-heart.jpg",
+          "role": "main",
+          "alt": "Anatomy in Color, personal illustration study"
+        }
+      ],
+      "archiveGroup": "illustrations-animation"
+    },
+    {
+      "id": "illustration-mountain-drive",
+      "title": "Mountain Drive",
+      "category": "archive",
+      "collection": "Archive",
+      "medium": "Digital Illustration",
+      "client": "",
+      "year": "2020",
+      "dimensions": "",
+      "description": "A personal illustration study, a VW bus on a mountain road at dusk.",
+      "tags": [],
+      "featured": false,
+      "order": 7,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/archive/illustrations/mountain-drive-van.jpg",
+          "role": "main",
+          "alt": "Mountain Drive, personal illustration study"
+        }
+      ],
+      "archiveGroup": "illustrations-animation"
+    },
+    {
+      "id": "illustration-the-touch",
+      "title": "The Touch",
+      "category": "archive",
+      "collection": "Archive",
+      "medium": "Digital Illustration / Procreate",
+      "client": "",
+      "year": "",
+      "dimensions": "",
+      "description": "A personal illustration study, reaching hands and a falling figure among butterflies.",
+      "tags": [],
+      "featured": false,
+      "order": 8,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/archive/illustrations/the-touch-ipad-mockup.png",
+          "role": "main",
+          "alt": "The Touch, personal illustration study, iPad mockup"
+        }
+      ],
+      "archiveGroup": "illustrations-animation"
+    },
+    {
+      "id": "illustration-desert-caravan",
+      "title": "Desert Caravan",
+      "category": "archive",
+      "collection": "Archive",
+      "medium": "Digital Illustration",
+      "client": "",
+      "year": "",
+      "dimensions": "",
+      "description": "A personal illustration study, a figure and camel crossing desert dunes at sunset.",
+      "tags": [],
+      "featured": false,
+      "order": 9,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/archive/illustrations/desert-caravan.jpg",
+          "role": "main",
+          "alt": "Desert Caravan, personal illustration study"
+        }
+      ],
+      "archiveGroup": "illustrations-animation"
+    },
+    {
+      "id": "illustration-vending-machine",
+      "title": "Vending Machine",
+      "category": "archive",
+      "collection": "Archive",
+      "medium": "Digital Illustration / Animation",
+      "client": "",
+      "year": "",
+      "dimensions": "",
+      "description": "A personal illustration study, a detailed close-up of a vending machine.",
+      "tags": [],
+      "featured": false,
+      "order": 10,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/archive/illustrations/vending-machine.gif",
+          "role": "main",
+          "alt": "Vending Machine, personal illustration study"
+        }
+      ],
+      "archiveGroup": "illustrations-animation"
+    },
+    {
+      "id": "illustration-two-skies",
+      "title": "Two Skies",
+      "category": "archive",
+      "collection": "Archive",
+      "medium": "Digital Illustration",
+      "client": "",
+      "year": "",
+      "dimensions": "",
+      "description": "A personal illustration study, Taipei 101 split between day and night.",
+      "tags": [],
+      "featured": false,
+      "order": 11,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/archive/illustrations/two-skies-taipei-101.jpg",
+          "role": "main",
+          "alt": "Two Skies, personal illustration study, Taipei 101"
+        }
+      ],
+      "archiveGroup": "illustrations-animation"
+    },
+    {
+      "id": "illustration-butterfly-study",
+      "title": "Butterfly Study",
+      "category": "archive",
+      "collection": "Archive",
+      "medium": "Digital Illustration",
+      "client": "",
+      "year": "",
+      "dimensions": "",
+      "description": "A personal illustration study of a butterfly.",
+      "tags": [],
+      "featured": false,
+      "order": 12,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/archive/illustrations/butterfly-study.jpg",
+          "role": "main",
+          "alt": "Butterfly Study, personal illustration study"
+        }
+      ],
+      "archiveGroup": "illustrations-animation"
+    },
+    {
+      "id": "illustration-banana-still-life",
+      "title": "Still Life: Banana",
+      "category": "archive",
+      "collection": "Archive",
+      "medium": "Digital Illustration / Animation",
+      "client": "",
+      "year": "",
+      "dimensions": "",
+      "description": "A personal illustration study, a still life of a banana.",
+      "tags": [],
+      "featured": false,
+      "order": 13,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/archive/illustrations/banana-still-life.gif",
+          "role": "main",
+          "alt": "Still Life: Banana, personal illustration study"
+        }
+      ],
+      "archiveGroup": "illustrations-animation"
+    },
+    {
+      "id": "illustration-living-room",
+      "title": "Living Room",
+      "category": "archive",
+      "collection": "Archive",
+      "medium": "Digital Illustration",
+      "client": "",
+      "year": "",
+      "dimensions": "",
+      "description": "A personal illustration study of a warmly lit living room.",
+      "tags": [],
+      "featured": false,
+      "order": 14,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/archive/illustrations/living-room.jpg",
+          "role": "main",
+          "alt": "Living Room, personal illustration study"
+        }
+      ],
+      "archiveGroup": "illustrations-animation"
+    },
+    {
+      "id": "illustration-sailboat",
+      "title": "Sailboat",
+      "category": "archive",
+      "collection": "Archive",
+      "medium": "Digital Illustration",
+      "client": "",
+      "year": "",
+      "dimensions": "",
+      "description": "A personal illustration study of a sailboat on open water.",
+      "tags": [],
+      "featured": false,
+      "order": 15,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/archive/illustrations/sailboat.jpg",
+          "role": "main",
+          "alt": "Sailboat, personal illustration study"
+        }
+      ],
+      "archiveGroup": "illustrations-animation"
+    },
+    {
+      "id": "illustration-mystery-machine",
+      "title": "The Mystery Machine",
+      "category": "archive",
+      "collection": "Archive",
+      "medium": "Digital Illustration",
+      "client": "",
+      "year": "",
+      "dimensions": "",
+      "description": "Fan art of Scooby-Doo's Mystery Machine.",
+      "tags": [],
+      "featured": false,
+      "order": 16,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/archive/illustrations/mystery-machine.jpg",
+          "role": "main",
+          "alt": "The Mystery Machine, personal illustration study"
+        }
+      ],
+      "archiveGroup": "illustrations-animation"
+    },
+    {
+      "id": "natalie-spooner-ud-portraits-23401200",
+      "title": "Natalie Spooner — UD Portraits",
+      "category": "card",
+      "collection": "PWHL",
+      "sport": "Hockey",
+      "client": "Upper Deck",
+      "year": "2024-25",
+      "dimensions": "",
+      "description": "",
+      "cardNumber": "UDP-17",
+      "cardStock": "",
+      "tags": [
+        "hockey",
+        "PWHL"
+      ],
+      "featured": false,
+      "order": 3,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/collectibles/pwhl/natalie-spooner-ud-portraits-front.jpg",
+          "role": "front",
+          "alt": "Natalie Spooner — UD Portraits, front"
+        },
+        {
+          "src": "assets/collectibles/pwhl/natalie-spooner-ud-portraits-back.jpg",
+          "role": "back",
+          "alt": "Natalie Spooner — UD Portraits, back"
+        }
+      ]
+    },
+    {
+      "id": "denisa-k-ov-dazzlers-purple-23401201",
+      "title": "Denisa Křížová — Dazzlers Purple",
+      "category": "card",
+      "collection": "PWHL",
+      "sport": "Hockey",
+      "client": "Upper Deck",
+      "year": "2025-26",
+      "dimensions": "",
+      "description": "",
+      "cardNumber": "DZ-11",
+      "cardStock": "",
+      "tags": [
+        "hockey",
+        "PWHL"
+      ],
+      "featured": false,
+      "order": 4,
+      "displayTreatment": "foil",
+      "images": [
+        {
+          "src": "assets/collectibles/pwhl/denisa-krizova-dazzlers-purple-front.jpg",
+          "role": "front",
+          "alt": "Denisa Křížová — Dazzlers Purple, front"
+        },
+        {
+          "src": "assets/collectibles/pwhl/denisa-krizova-dazzlers-purple-back.jpg",
+          "role": "back",
+          "alt": "Denisa Křížová — Dazzlers Purple, back"
+        }
+      ]
+    },
+    {
+      "id": "elaine-chuli-spotlight-b-w-gold-spectrum-23401202",
+      "title": "Elaine Chuli — Spotlight B&W Gold Spectrum",
+      "category": "card",
+      "collection": "PWHL",
+      "sport": "Hockey",
+      "client": "Upper Deck",
+      "year": "2025-26",
+      "dimensions": "",
+      "description": "",
+      "cardNumber": "S-10",
+      "cardStock": "",
+      "tags": [
+        "hockey",
+        "PWHL"
+      ],
+      "featured": false,
+      "order": 5,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/collectibles/pwhl/elaine-chuli-spotlight-b-w-gold-spectrum-front.jpg",
+          "role": "front",
+          "alt": "Elaine Chuli — Spotlight B&W Gold Spectrum, front"
+        },
+        {
+          "src": "assets/collectibles/pwhl/elaine-chuli-spotlight-b-w-gold-spectrum-back.jpg",
+          "role": "back",
+          "alt": "Elaine Chuli — Spotlight B&W Gold Spectrum, back"
+        }
+      ]
+    },
+    {
+      "id": "kati-tabin-dazzlers-blue-23401203",
+      "title": "Kati Tabin — Dazzlers Blue",
+      "category": "card",
+      "collection": "PWHL",
+      "sport": "Hockey",
+      "client": "Upper Deck",
+      "year": "2025-26",
+      "dimensions": "",
+      "description": "",
+      "cardNumber": "DZ-15",
+      "cardStock": "",
+      "tags": [
+        "hockey",
+        "PWHL"
+      ],
+      "featured": false,
+      "order": 6,
+      "displayTreatment": "foil",
+      "images": [
+        {
+          "src": "assets/collectibles/pwhl/kati-tabin-dazzlers-blue-front.jpg",
+          "role": "front",
+          "alt": "Kati Tabin — Dazzlers Blue, front"
+        },
+        {
+          "src": "assets/collectibles/pwhl/kati-tabin-dazzlers-blue-back.jpg",
+          "role": "back",
+          "alt": "Kati Tabin — Dazzlers Blue, back"
+        }
+      ]
+    },
+    {
+      "id": "aerin-frankel-spotlight-pink-spectrum-23401204",
+      "title": "Aerin Frankel — Spotlight Pink Spectrum",
+      "category": "card",
+      "collection": "PWHL",
+      "sport": "Hockey",
+      "client": "Upper Deck",
+      "year": "2025-26",
+      "dimensions": "",
+      "description": "",
+      "cardNumber": "S-7",
+      "cardStock": "",
+      "tags": [
+        "hockey",
+        "PWHL"
+      ],
+      "featured": false,
+      "order": 7,
+      "displayTreatment": "foil",
+      "images": [
+        {
+          "src": "assets/collectibles/pwhl/aerin-frankel-spotlight-pink-spectrum-front.jpg",
+          "role": "front",
+          "alt": "Aerin Frankel — Spotlight Pink Spectrum, front"
+        },
+        {
+          "src": "assets/collectibles/pwhl/aerin-frankel-spotlight-pink-spectrum-back.jpg",
+          "role": "back",
+          "alt": "Aerin Frankel — Spotlight Pink Spectrum, back"
+        }
+      ]
+    },
+    {
+      "id": "katy-knoll-postseason-standouts-deluxe-23401205",
+      "title": "Katy Knoll — Postseason Standouts Deluxe",
+      "category": "card",
+      "collection": "PWHL",
+      "sport": "Hockey",
+      "client": "Upper Deck",
+      "year": "2025-26",
+      "dimensions": "",
+      "description": "",
+      "cardNumber": "85",
+      "cardStock": "",
+      "tags": [
+        "hockey",
+        "PWHL"
+      ],
+      "featured": false,
+      "order": 8,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/collectibles/pwhl/katy-knoll-postseason-standouts-deluxe-front.jpg",
+          "role": "front",
+          "alt": "Katy Knoll — Postseason Standouts Deluxe, front"
+        },
+        {
+          "src": "assets/collectibles/pwhl/katy-knoll-postseason-standouts-deluxe-back.jpg",
+          "role": "back",
+          "alt": "Katy Knoll — Postseason Standouts Deluxe, back"
+        }
+      ]
+    },
+    {
+      "id": "maddie-rooney-postseason-standouts-ud-exclusives-23401206",
+      "title": "Maddie Rooney — Postseason Standouts UD Exclusives",
+      "category": "card",
+      "collection": "PWHL",
+      "sport": "Hockey",
+      "client": "Upper Deck",
+      "year": "2025-26",
+      "dimensions": "",
+      "description": "",
+      "cardNumber": "87",
+      "cardStock": "",
+      "tags": [
+        "hockey",
+        "PWHL"
+      ],
+      "featured": false,
+      "order": 9,
+      "displayTreatment": "foil",
+      "images": [
+        {
+          "src": "assets/collectibles/pwhl/maddie-rooney-postseason-standouts-ud-exclusives-front.jpg",
+          "role": "front",
+          "alt": "Maddie Rooney — Postseason Standouts UD Exclusives, front"
+        },
+        {
+          "src": "assets/collectibles/pwhl/maddie-rooney-postseason-standouts-ud-exclusives-back.jpg",
+          "role": "back",
+          "alt": "Maddie Rooney — Postseason Standouts UD Exclusives, back"
+        }
+      ]
+    },
+    {
+      "id": "brianne-jenner-postseason-standouts-deluxe-23401207",
+      "title": "Brianne Jenner — Postseason Standouts Deluxe",
+      "category": "card",
+      "collection": "PWHL",
+      "sport": "Hockey",
+      "client": "Upper Deck",
+      "year": "2025-26",
+      "dimensions": "",
+      "description": "",
+      "cardNumber": "73",
+      "cardStock": "",
+      "tags": [
+        "hockey",
+        "PWHL"
+      ],
+      "featured": false,
+      "order": 10,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/collectibles/pwhl/brianne-jenner-postseason-standouts-deluxe-front.jpg",
+          "role": "front",
+          "alt": "Brianne Jenner — Postseason Standouts Deluxe, front"
+        },
+        {
+          "src": "assets/collectibles/pwhl/brianne-jenner-postseason-standouts-deluxe-back.jpg",
+          "role": "back",
+          "alt": "Brianne Jenner — Postseason Standouts Deluxe, back"
+        }
+      ]
+    },
+    {
+      "id": "emily-clark-spotlight-b-w-gold-spectrum-23401208",
+      "title": "Emily Clark — Spotlight B&W Gold Spectrum",
+      "category": "card",
+      "collection": "PWHL",
+      "sport": "Hockey",
+      "client": "Upper Deck",
+      "year": "2025-26",
+      "dimensions": "",
+      "description": "",
+      "cardNumber": "S-4",
+      "cardStock": "",
+      "tags": [
+        "hockey",
+        "PWHL"
+      ],
+      "featured": false,
+      "order": 11,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/collectibles/pwhl/emily-clark-spotlight-b-w-gold-spectrum-front.jpg",
+          "role": "front",
+          "alt": "Emily Clark — Spotlight B&W Gold Spectrum, front"
+        },
+        {
+          "src": "assets/collectibles/pwhl/emily-clark-spotlight-b-w-gold-spectrum-back.jpg",
+          "role": "back",
+          "alt": "Emily Clark — Spotlight B&W Gold Spectrum, back"
+        }
+      ]
+    },
+    {
+      "id": "nicole-hensley-dazzlers-blue-23401209",
+      "title": "Nicole Hensley — Dazzlers Blue",
+      "category": "card",
+      "collection": "PWHL",
+      "sport": "Hockey",
+      "client": "Upper Deck",
+      "year": "2025-26",
+      "dimensions": "",
+      "description": "",
+      "cardNumber": "DZ-4",
+      "cardStock": "",
+      "tags": [
+        "hockey",
+        "PWHL"
+      ],
+      "featured": false,
+      "order": 12,
+      "displayTreatment": "foil",
+      "images": [
+        {
+          "src": "assets/collectibles/pwhl/nicole-hensley-dazzlers-blue-front.jpg",
+          "role": "front",
+          "alt": "Nicole Hensley — Dazzlers Blue, front"
+        },
+        {
+          "src": "assets/collectibles/pwhl/nicole-hensley-dazzlers-blue-back.jpg",
+          "role": "back",
+          "alt": "Nicole Hensley — Dazzlers Blue, back"
+        }
+      ]
+    },
+    {
+      "id": "natalie-spooner-magnifique-23401210",
+      "title": "Natalie Spooner — Magnifique",
+      "category": "card",
+      "collection": "PWHL",
+      "sport": "Hockey",
+      "client": "Upper Deck",
+      "year": "2025-26",
+      "dimensions": "",
+      "description": "",
+      "cardNumber": "M-6",
+      "cardStock": "",
+      "tags": [
+        "hockey",
+        "PWHL"
+      ],
+      "featured": false,
+      "order": 13,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/collectibles/pwhl/natalie-spooner-magnifique-front.jpg",
+          "role": "front",
+          "alt": "Natalie Spooner — Magnifique, front"
+        },
+        {
+          "src": "assets/collectibles/pwhl/natalie-spooner-magnifique-back.jpg",
+          "role": "back",
+          "alt": "Natalie Spooner — Magnifique, back"
+        }
+      ]
+    },
+    {
+      "id": "ivan-demidov-art-deco-07753300",
+      "title": "Ivan Demidov — Art Deco",
+      "category": "card",
+      "collection": "Parkhurst",
+      "sport": "Hockey",
+      "client": "Upper Deck",
+      "year": "2025-26",
+      "dimensions": "",
+      "description": "",
+      "cardNumber": "AD-10",
+      "cardStock": "",
+      "tags": [
+        "hockey",
+        "Parkhurst"
+      ],
+      "featured": false,
+      "order": 1,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/collectibles/parkhurst/ivan-demidov-art-deco-front.jpg",
+          "role": "front",
+          "alt": "Ivan Demidov — Art Deco, front"
+        },
+        {
+          "src": "assets/collectibles/parkhurst/ivan-demidov-art-deco-back.jpg",
+          "role": "back",
+          "alt": "Ivan Demidov — Art Deco, back"
+        }
+      ]
+    },
+    {
+      "id": "ivan-demidov-prominent-prospects-07753301",
+      "title": "Ivan Demidov — Prominent Prospects",
+      "category": "card",
+      "collection": "Parkhurst",
+      "sport": "Hockey",
+      "client": "Upper Deck",
+      "year": "2025-26",
+      "dimensions": "",
+      "description": "",
+      "cardNumber": "PP-14",
+      "cardStock": "",
+      "tags": [
+        "hockey",
+        "Parkhurst"
+      ],
+      "featured": false,
+      "order": 2,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/collectibles/parkhurst/ivan-demidov-prominent-prospects-front.jpg",
+          "role": "front",
+          "alt": "Ivan Demidov — Prominent Prospects, front"
+        },
+        {
+          "src": "assets/collectibles/parkhurst/ivan-demidov-prominent-prospects-back.jpg",
+          "role": "back",
+          "alt": "Ivan Demidov — Prominent Prospects, back"
+        }
+      ],
+      "orientation": "landscape"
+    },
+    {
+      "id": "connor-mcdavid-franchise-facts-07753302",
+      "title": "Connor McDavid — Franchise Facts",
+      "category": "card",
+      "collection": "Parkhurst",
+      "sport": "Hockey",
+      "client": "Upper Deck",
+      "year": "2025-26",
+      "dimensions": "",
+      "description": "",
+      "cardNumber": "FF-11",
+      "cardStock": "",
+      "tags": [
+        "hockey",
+        "Parkhurst"
+      ],
+      "featured": false,
+      "order": 3,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/collectibles/parkhurst/connor-mcdavid-franchise-facts-front.jpg",
+          "role": "front",
+          "alt": "Connor McDavid — Franchise Facts, front"
+        },
+        {
+          "src": "assets/collectibles/parkhurst/connor-mcdavid-franchise-facts-back.jpg",
+          "role": "back",
+          "alt": "Connor McDavid — Franchise Facts, back"
+        }
+      ]
+    },
+    {
+      "id": "connor-mcdavid-take-it-outside-07753303",
+      "title": "Connor McDavid — Take It Outside!",
+      "category": "card",
+      "collection": "Parkhurst",
+      "sport": "Hockey",
+      "client": "Upper Deck",
+      "year": "2025-26",
+      "dimensions": "",
+      "description": "",
+      "cardNumber": "TO-13",
+      "cardStock": "",
+      "tags": [
+        "hockey",
+        "Parkhurst"
+      ],
+      "featured": false,
+      "order": 4,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/collectibles/parkhurst/connor-mcdavid-take-it-outside-front.jpg",
+          "role": "front",
+          "alt": "Connor McDavid — Take It Outside!, front"
+        },
+        {
+          "src": "assets/collectibles/parkhurst/connor-mcdavid-take-it-outside-back.jpg",
+          "role": "back",
+          "alt": "Connor McDavid — Take It Outside!, back"
+        }
+      ]
+    },
+    {
+      "id": "kazuchika-okada-the-show",
+      "title": "Kazuchika Okada — The Show",
+      "category": "poster",
+      "collection": "AEW",
+      "client": "AEW",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Signature piece for AEW's 'The Show' series, framed in a custom black frame to match the site's premium display treatment.",
+      "tags": [
+        "wrestling",
+        "print"
+      ],
+      "featured": false,
+      "order": 1,
+      "images": [
+        {
+          "src": "assets/campaigns/aew/kazuchika-okada-the-show.jpg",
+          "role": "main",
+          "alt": "Kazuchika Okada — The Show, AEW print"
+        }
+      ],
+      "displayTreatment": "framed",
+      "cardStock": "",
+      "sport": "Wrestling",
+      "frameColor": "black"
+    },
+    {
+      "id": "will-ospreay-the-show",
+      "title": "Will Ospreay — The Show",
+      "category": "poster",
+      "collection": "AEW",
+      "client": "AEW",
+      "year": "2026",
+      "dimensions": "46x20",
+      "description": "Signature piece for AEW's 'The Show' series, framed in a custom black frame to match the site's premium display treatment.",
+      "tags": [
+        "wrestling",
+        "print"
+      ],
+      "featured": false,
+      "order": 100,
+      "images": [
+        {
+          "src": "assets/campaigns/aew/will-ospreay-the-show-46x20.jpg",
+          "role": "main",
+          "alt": "Will Ospreay — The Show, AEW print, 46x20"
+        }
+      ],
+      "displayTreatment": "framed",
+      "cardStock": "",
+      "sport": "Wrestling",
+      "frameColor": "black"
+    },
+    {
+      "id": "collin-morikawa-team-usa",
+      "title": "Collin Morikawa — Team USA",
+      "category": "poster",
+      "collection": "Golf",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Collin Morikawa representing Team USA.",
+      "tags": [
+        "golf",
+        "print"
+      ],
+      "featured": false,
+      "order": 61,
+      "images": [
+        {
+          "src": "assets/campaigns/golf/collin-morikawa-team-usa.jpg",
+          "role": "main",
+          "alt": "Collin Morikawa — Team USA, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Golf"
+    },
+    {
+      "id": "wyndham-clark-the-champion",
+      "title": "Wyndham Clark — The Champion",
+      "category": "poster",
+      "collection": "Golf",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Wyndham Clark, The Champion — Los Angeles, CA, June 18, 2023.",
+      "tags": [
+        "golf",
+        "print"
+      ],
+      "featured": false,
+      "order": 62,
+      "images": [
+        {
+          "src": "assets/campaigns/golf/wyndham-clark-the-champion.jpg",
+          "role": "main",
+          "alt": "Wyndham Clark — The Champion, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Golf"
+    },
+    {
+      "id": "tiger-woods-jupiter-links",
+      "title": "Tiger Woods — Jupiter Links GC",
+      "category": "poster",
+      "collection": "Golf",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Tiger Woods, Jupiter Links GC — 2025 inaugural TGL season, match-used golf ball display.",
+      "tags": [
+        "golf",
+        "print"
+      ],
+      "featured": false,
+      "order": 60,
+      "images": [
+        {
+          "src": "assets/campaigns/golf/tiger-woods-jupiter-links.png",
+          "role": "main",
+          "alt": "Tiger Woods — Jupiter Links GC, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Golf"
+    },
+    {
+      "id": "gabby-douglas-3x-gold-medal",
+      "title": "Gabby Douglas — 3x Gold Medal Winner",
+      "category": "poster",
+      "collection": "Gymnastics",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Gabby Douglas, 3x Gold Medal Winner — 2012 Team, 2012 All Around, 2016 Team.",
+      "tags": [
+        "gymnastics",
+        "print"
+      ],
+      "featured": false,
+      "order": 20,
+      "images": [
+        {
+          "src": "assets/campaigns/gymnastics/gabby-douglas-3x-gold-medal.jpg",
+          "role": "main",
+          "alt": "Gabby Douglas — 3x Gold Medal Winner, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Gymnastics"
+    },
+    {
+      "id": "gabby-douglas-art-of-the-balance-beam",
+      "title": "Gabby Douglas — Art of the Balance Beam",
+      "category": "poster",
+      "collection": "Gymnastics",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Gabby Douglas, Art of the Balance Beam.",
+      "tags": [
+        "gymnastics",
+        "print"
+      ],
+      "featured": false,
+      "order": 21,
+      "images": [
+        {
+          "src": "assets/campaigns/gymnastics/gabby-douglas-art-of-the-balance-beam.jpg",
+          "role": "main",
+          "alt": "Gabby Douglas — Art of the Balance Beam, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Gymnastics"
+    },
+    {
+      "id": "gabby-douglas-the-show",
+      "title": "Gabby Douglas — The Show",
+      "category": "poster",
+      "collection": "Gymnastics",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Gabby Douglas, signature piece for the 'The Show' series.",
+      "tags": [
+        "gymnastics",
+        "print"
+      ],
+      "featured": false,
+      "order": 22,
+      "images": [
+        {
+          "src": "assets/campaigns/gymnastics/gabby-douglas-the-show.jpg",
+          "role": "main",
+          "alt": "Gabby Douglas — The Show, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "framed",
+      "cardStock": "",
+      "sport": "Gymnastics",
+      "frameColor": "black"
+    },
+    {
+      "id": "tyler-reddick-daytona-500-champion",
+      "title": "Tyler Reddick — Daytona 500 Champion",
+      "category": "poster",
+      "collection": "NASCAR",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Tyler Reddick, Daytona 500 Champion, Chumba Casino #45.",
+      "tags": [
+        "nascar",
+        "print"
+      ],
+      "featured": false,
+      "order": 31,
+      "images": [
+        {
+          "src": "assets/campaigns/nascar/tyler-reddick-daytona-500-champion.jpg",
+          "role": "main",
+          "alt": "Tyler Reddick — Daytona 500 Champion, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "NASCAR"
+    },
+    {
+      "id": "tyler-reddick-the-show",
+      "title": "Tyler Reddick — The Show",
+      "category": "poster",
+      "collection": "NASCAR",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Tyler Reddick, signature piece for the 'The Show' series — Daytona Beach, Atlanta, Austin.",
+      "tags": [
+        "nascar",
+        "print"
+      ],
+      "featured": false,
+      "order": 32,
+      "images": [
+        {
+          "src": "assets/campaigns/nascar/tyler-reddick-the-show.jpg",
+          "role": "main",
+          "alt": "Tyler Reddick — The Show, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "framed",
+      "cardStock": "",
+      "sport": "NASCAR",
+      "frameColor": "black"
+    },
+    {
+      "id": "corey-heim-anduril-250",
+      "title": "Corey Heim — Anduril 250",
+      "category": "poster",
+      "collection": "NASCAR",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Corey Heim, Anduril 250 — San Diego, CA.",
+      "tags": [
+        "nascar",
+        "print"
+      ],
+      "featured": false,
+      "order": 33,
+      "images": [
+        {
+          "src": "assets/campaigns/nascar/corey-heim-anduril-250.jpg",
+          "role": "main",
+          "alt": "Corey Heim — Anduril 250, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "NASCAR"
+    },
+    {
+      "id": "bubba-wallace-the-show",
+      "title": "Bubba Wallace — The Show",
+      "category": "poster",
+      "collection": "NASCAR",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Bubba Wallace, signature piece for the 'The Show' series, Chumba Casino #23.",
+      "tags": [
+        "nascar",
+        "print"
+      ],
+      "featured": false,
+      "order": 30,
+      "images": [
+        {
+          "src": "assets/campaigns/nascar/bubba-wallace-the-show.jpg",
+          "role": "main",
+          "alt": "Bubba Wallace — The Show, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "framed",
+      "cardStock": "",
+      "sport": "NASCAR",
+      "frameColor": "black"
+    },
+    {
+      "id": "taylor-heise-minnesota",
+      "title": "Taylor Heise — Minnesota",
+      "category": "poster",
+      "collection": "PWHL",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Taylor Heise, Minnesota PWHL, #27.",
+      "tags": [
+        "pwhl",
+        "print"
+      ],
+      "featured": false,
+      "order": 103,
+      "images": [
+        {
+          "src": "assets/campaigns/pwhl/taylor-heise-minnesota.jpg",
+          "role": "main",
+          "alt": "Taylor Heise — Minnesota, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "PWHL"
+    },
+    {
+      "id": "taylor-heise-2024-playoff-mvp",
+      "title": "Taylor Heise — 2024 Playoff MVP",
+      "category": "poster",
+      "collection": "PWHL",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Taylor Heise, 2024 Ilana Kloss PWHL Playoff MVP.",
+      "tags": [
+        "pwhl",
+        "print"
+      ],
+      "featured": false,
+      "order": 101,
+      "images": [
+        {
+          "src": "assets/campaigns/pwhl/taylor-heise-2024-playoff-mvp.jpg",
+          "role": "main",
+          "alt": "Taylor Heise — 2024 Playoff MVP, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "PWHL"
+    },
+    {
+      "id": "alex-morgan-trinity-rodman",
+      "title": "Alex Morgan & Trinity Rodman",
+      "category": "poster",
+      "collection": "Soccer",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Alex Morgan and Trinity Rodman, USWNT.",
+      "tags": [
+        "soccer",
+        "print"
+      ],
+      "featured": false,
+      "order": 102,
+      "images": [
+        {
+          "src": "assets/campaigns/soccer/alex-morgan-trinity-rodman.jpg",
+          "role": "main",
+          "alt": "Alex Morgan & Trinity Rodman, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Soccer"
+    },
+    {
+      "id": "alex-morgan-2x-champ",
+      "title": "Alex Morgan — 2x Champ",
+      "category": "poster",
+      "collection": "Soccer",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Alex Morgan, 2x Champ — 2015, 2019.",
+      "tags": [
+        "soccer",
+        "print"
+      ],
+      "featured": false,
+      "order": 104,
+      "images": [
+        {
+          "src": "assets/campaigns/soccer/alex-morgan-2x-champ.jpg",
+          "role": "main",
+          "alt": "Alex Morgan — 2x Champ, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Soccer"
+    },
+    {
+      "id": "trinity-rodman-gold",
+      "title": "Trinity Rodman — Gold",
+      "category": "poster",
+      "collection": "Soccer",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Trinity Rodman, 2024 Gold — Paris.",
+      "tags": [
+        "soccer",
+        "print"
+      ],
+      "featured": false,
+      "order": 105,
+      "images": [
+        {
+          "src": "assets/campaigns/soccer/trinity-rodman-gold.jpg",
+          "role": "main",
+          "alt": "Trinity Rodman — Gold, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Soccer"
+    },
+    {
+      "id": "andre-agassi",
+      "title": "Agassi",
+      "category": "poster",
+      "collection": "Tennis",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Andre Agassi, limited edition 01/50.",
+      "tags": [
+        "tennis",
+        "print"
+      ],
+      "featured": false,
+      "order": 10,
+      "images": [
+        {
+          "src": "assets/campaigns/tennis/andre-agassi.jpg",
+          "role": "main",
+          "alt": "Agassi, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Tennis"
+    },
+    {
+      "id": "chris-evert-3x-wimbledon-champion",
+      "title": "Chris Evert — 3x Wimbledon Champion",
+      "category": "poster",
+      "collection": "Tennis",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Chris Evert, 3x Wimbledon Champion — 1974, 1976, 1981.",
+      "tags": [
+        "tennis",
+        "print"
+      ],
+      "featured": false,
+      "order": 17,
+      "images": [
+        {
+          "src": "assets/campaigns/tennis/chris-evert-3x-wimbledon-champion.jpg",
+          "role": "main",
+          "alt": "Chris Evert — 3x Wimbledon Champion, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Tennis"
+    },
+    {
+      "id": "iga-swiatek",
+      "title": "Iga Świątek",
+      "category": "poster",
+      "collection": "Tennis",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Iga Świątek.",
+      "tags": [
+        "tennis",
+        "print"
+      ],
+      "featured": false,
+      "order": 15,
+      "images": [
+        {
+          "src": "assets/campaigns/tennis/iga-swiatek.jpg",
+          "role": "main",
+          "alt": "Iga Świątek, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Tennis"
+    },
+    {
+      "id": "steffi-graf-6x-roland-garros-champion",
+      "title": "Steffi Graf — 6x Roland Garros Champion",
+      "category": "poster",
+      "collection": "Tennis",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Steffi Graf, 6x Roland Garros Champion.",
+      "tags": [
+        "tennis",
+        "print"
+      ],
+      "featured": false,
+      "order": 14,
+      "images": [
+        {
+          "src": "assets/campaigns/tennis/steffi-graf-6x-roland-garros-champion.jpg",
+          "role": "main",
+          "alt": "Steffi Graf — 6x Roland Garros Champion, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Tennis"
+    },
+    {
+      "id": "sampras-vs-agassi",
+      "title": "Sampras vs. Agassi",
+      "category": "poster",
+      "collection": "Tennis",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Pete Sampras and Andre Agassi, limited edition 01/75.",
+      "tags": [
+        "tennis",
+        "print"
+      ],
+      "featured": false,
+      "order": 11,
+      "images": [
+        {
+          "src": "assets/campaigns/tennis/sampras-vs-agassi.jpg",
+          "role": "main",
+          "alt": "Sampras vs. Agassi, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Tennis"
+    },
+    {
+      "id": "andy-roddick",
+      "title": "Andy Roddick",
+      "category": "poster",
+      "collection": "Tennis",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Andy Roddick.",
+      "tags": [
+        "tennis",
+        "print"
+      ],
+      "featured": false,
+      "order": 18,
+      "images": [
+        {
+          "src": "assets/campaigns/tennis/andy-roddick.jpg",
+          "role": "main",
+          "alt": "Andy Roddick, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Tennis"
+    },
+    {
+      "id": "sampras-agassi-early-years",
+      "title": "Sampras & Agassi — Early Years",
+      "category": "poster",
+      "collection": "Tennis",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Pete Sampras and Andre Agassi, early years, limited edition.",
+      "tags": [
+        "tennis",
+        "print"
+      ],
+      "featured": false,
+      "order": 12,
+      "images": [
+        {
+          "src": "assets/campaigns/tennis/sampras-agassi-early-years.jpg",
+          "role": "main",
+          "alt": "Sampras & Agassi — Early Years, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Tennis"
+    },
+    {
+      "id": "agassi-profile",
+      "title": "Agassi — Profile",
+      "category": "poster",
+      "collection": "Tennis",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Andre Agassi, profile study.",
+      "tags": [
+        "tennis",
+        "print"
+      ],
+      "featured": false,
+      "order": 13,
+      "images": [
+        {
+          "src": "assets/campaigns/tennis/agassi-profile.jpg",
+          "role": "main",
+          "alt": "Agassi — Profile, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Tennis"
+    },
+    {
+      "id": "iga-swiatek-game-set-match",
+      "title": "Iga Świątek — Game, Set, Match",
+      "category": "poster",
+      "collection": "Tennis",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Iga Świątek, Game Set Match — Wimbledon, London, UK, July 2025.",
+      "tags": [
+        "tennis",
+        "print"
+      ],
+      "featured": false,
+      "order": 16,
+      "images": [
+        {
+          "src": "assets/campaigns/tennis/iga-swiatek-game-set-match.jpg",
+          "role": "main",
+          "alt": "Iga Świątek — Game, Set, Match, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Tennis"
+    },
+    {
+      "id": "charlie-coyle-local-talent",
+      "title": "Charlie Coyle — Local Talent",
+      "category": "poster",
+      "collection": "NHL",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "16x20",
+      "description": "Charlie Coyle, Boston Bruins #13 — Local Talent.",
+      "tags": [
+        "hockey",
+        "print"
+      ],
+      "featured": false,
+      "order": 43,
+      "images": [
+        {
+          "src": "assets/campaigns/nhl/charlie-coyle-local-talent-16x20.jpg",
+          "role": "main",
+          "alt": "Charlie Coyle — Local Talent, Upper Deck Authenticated print, 16x20"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Hockey"
+    },
+    {
+      "id": "cole-eiserman-for-gold",
+      "title": "Cole Eiserman — Eiserman for Gold",
+      "category": "poster",
+      "collection": "NHL",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "8x10",
+      "description": "Cole Eiserman, Team USA #91 — Eiserman for Gold.",
+      "tags": [
+        "hockey",
+        "print"
+      ],
+      "featured": false,
+      "order": 50,
+      "images": [
+        {
+          "src": "assets/campaigns/nhl/cole-eiserman-for-gold-8x10.jpg",
+          "role": "main",
+          "alt": "Cole Eiserman — Eiserman for Gold, Upper Deck Authenticated print, 8x10"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Hockey"
+    },
+    {
+      "id": "cole-eiserman",
+      "title": "Cole Eiserman",
+      "category": "poster",
+      "collection": "NHL",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Cole Eiserman, multi-pose banner piece.",
+      "tags": [
+        "hockey",
+        "print"
+      ],
+      "featured": false,
+      "order": 51,
+      "images": [
+        {
+          "src": "assets/campaigns/nhl/cole-eiserman.jpg",
+          "role": "main",
+          "alt": "Cole Eiserman, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Hockey"
+    },
+    {
+      "id": "connor-mcdavid-international-icon",
+      "title": "Connor McDavid — International Icon",
+      "category": "poster",
+      "collection": "NHL",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "20x24",
+      "description": "Connor McDavid, Team Canada, International Icon — edition 1/25, 4 Nations.",
+      "tags": [
+        "hockey",
+        "print"
+      ],
+      "featured": false,
+      "order": 40,
+      "images": [
+        {
+          "src": "assets/campaigns/nhl/connor-mcdavid-international-icon-20x24.jpg",
+          "role": "main",
+          "alt": "Connor McDavid — International Icon, Upper Deck Authenticated print, 20x24"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Hockey"
+    },
+    {
+      "id": "ethan-belchetz-shining-in-windsor",
+      "title": "Ethan Belchetz — Shining in Windsor",
+      "category": "poster",
+      "collection": "NHL",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "11x14",
+      "description": "Ethan Belchetz, Windsor Spitfires #61 — Shining in Windsor.",
+      "tags": [
+        "hockey",
+        "print"
+      ],
+      "featured": false,
+      "order": 52,
+      "images": [
+        {
+          "src": "assets/campaigns/nhl/ethan-belchetz-shining-in-windsor-11x14.jpg",
+          "role": "main",
+          "alt": "Ethan Belchetz — Shining in Windsor, Upper Deck Authenticated print, 11x14"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Hockey"
+    },
+    {
+      "id": "hagens-eiserman-on-a-dime",
+      "title": "James Hagens & Cole Eiserman — On a Dime",
+      "category": "poster",
+      "collection": "NHL",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "James Hagens and Cole Eiserman, On a Dime — edition 1/150.",
+      "tags": [
+        "hockey",
+        "print"
+      ],
+      "featured": false,
+      "order": 48,
+      "images": [
+        {
+          "src": "assets/campaigns/nhl/hagens-eiserman-on-a-dime.jpg",
+          "role": "main",
+          "alt": "James Hagens & Cole Eiserman — On a Dime, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Hockey"
+    },
+    {
+      "id": "james-hagens-2025-draft-day",
+      "title": "James Hagens — 2025 Draft Day",
+      "category": "poster",
+      "collection": "NHL",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "16x20",
+      "description": "James Hagens, 2025 Draft Day — Boston.",
+      "tags": [
+        "hockey",
+        "print"
+      ],
+      "featured": false,
+      "order": 47,
+      "images": [
+        {
+          "src": "assets/campaigns/nhl/james-hagens-2025-draft-day-16x20.jpg",
+          "role": "main",
+          "alt": "James Hagens — 2025 Draft Day, Upper Deck Authenticated print, 16x20"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Hockey"
+    },
+    {
+      "id": "matthew-schaefer-nhl-debut",
+      "title": "Matthew Schaefer — NHL Debut",
+      "category": "poster",
+      "collection": "NHL",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "8x10",
+      "description": "Matthew Schaefer, NHL Debut, 10.9.25 — edition 25/25.",
+      "tags": [
+        "hockey",
+        "print"
+      ],
+      "featured": false,
+      "order": 46,
+      "images": [
+        {
+          "src": "assets/campaigns/nhl/matthew-schaefer-nhl-debut-8x10.jpg",
+          "role": "main",
+          "alt": "Matthew Schaefer — NHL Debut, Upper Deck Authenticated print, 8x10"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Hockey"
+    },
+    {
+      "id": "matthew-schaefer-record-setting-start",
+      "title": "Matthew Schaefer — Record Setting Start",
+      "category": "poster",
+      "collection": "NHL",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "16x20",
+      "description": "Matthew Schaefer, youngest to score an OT goal, 11.14.25 — edition 1/48.",
+      "tags": [
+        "hockey",
+        "print"
+      ],
+      "featured": false,
+      "order": 45,
+      "images": [
+        {
+          "src": "assets/campaigns/nhl/matthew-schaefer-record-setting-start-16x20.jpg",
+          "role": "main",
+          "alt": "Matthew Schaefer — Record Setting Start, Upper Deck Authenticated print, 16x20"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Hockey"
+    },
+    {
+      "id": "matthew-schaefer-1st-overall-pick",
+      "title": "Matthew Schaefer — 1st Overall Pick",
+      "category": "poster",
+      "collection": "NHL",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "16x20",
+      "description": "Matthew Schaefer, 2025 Draft Day, 1st Overall Pick — New York.",
+      "tags": [
+        "hockey",
+        "print"
+      ],
+      "featured": false,
+      "order": 44,
+      "images": [
+        {
+          "src": "assets/campaigns/nhl/matthew-schaefer-1st-overall-pick-16x20.jpg",
+          "role": "main",
+          "alt": "Matthew Schaefer — 1st Overall Pick, Upper Deck Authenticated print, 16x20"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Hockey"
+    },
+    {
+      "id": "michael-misa-1st-round-draft-pick",
+      "title": "Michael Misa — 1st Round Draft Pick",
+      "category": "poster",
+      "collection": "NHL",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "16x20",
+      "description": "Michael Misa, 2025 Draft Day, 1st Round Draft Pick — San Jose Sharks.",
+      "tags": [
+        "hockey",
+        "print"
+      ],
+      "featured": false,
+      "order": 49,
+      "images": [
+        {
+          "src": "assets/campaigns/nhl/michael-misa-1st-round-draft-pick-16x20.jpg",
+          "role": "main",
+          "alt": "Michael Misa — 1st Round Draft Pick, Upper Deck Authenticated print, 16x20"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Hockey"
+    },
+    {
+      "id": "sebastian-aho-hyva-hurrikaanit",
+      "title": "Sebastian Aho — Hyvä Hurrikaanit",
+      "category": "poster",
+      "collection": "NHL",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Sebastian Aho, Hyvä Hurrikaanit — edition 3/20.",
+      "tags": [
+        "hockey",
+        "print"
+      ],
+      "featured": false,
+      "order": 42,
+      "images": [
+        {
+          "src": "assets/campaigns/nhl/sebastian-aho-hyva-hurrikaanit.jpg",
+          "role": "main",
+          "alt": "Sebastian Aho — Hyvä Hurrikaanit, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Hockey"
+    },
+    {
+      "id": "sebastian-aho-glory-on-ice",
+      "title": "Sebastian Aho — Glory on Ice",
+      "category": "poster",
+      "collection": "NHL",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "20x24",
+      "description": "Sebastian Aho, Glory on Ice — Stanley Cup celebration.",
+      "tags": [
+        "hockey",
+        "print"
+      ],
+      "featured": false,
+      "order": 41,
+      "images": [
+        {
+          "src": "assets/campaigns/nhl/sebastian-aho-glory-on-ice-20x24.jpg",
+          "role": "main",
+          "alt": "Sebastian Aho — Glory on Ice, Upper Deck Authenticated print, 20x24"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Hockey"
+    },
+    {
+      "id": "commanding-presence",
+      "title": "Commanding Presence",
+      "category": "poster",
+      "collection": "NHL",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Commanding Presence — goaltender triptych.",
+      "tags": [
+        "hockey",
+        "print"
+      ],
+      "featured": false,
+      "order": 53,
+      "images": [
+        {
+          "src": "assets/campaigns/nhl/commanding-presence.jpg",
+          "role": "main",
+          "alt": "Commanding Presence, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Hockey"
+    }
+  ]
+}
