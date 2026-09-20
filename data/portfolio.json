@@ -81,38 +81,38 @@
       "displayTreatment": "standard",
       "images": [
         {
-          "src": "assets/archive/3d Room design/01 3d room full.jpg",
+          "src": "assets/archive/digital and 3d/3d Room design/01 3d room full.jpg",
           "role": "main",
           "alt": "3D isometric room illustration, full view"
         },
         {
-          "src": "assets/archive/3d Room design/02 3d room clay model.jpg",
+          "src": "assets/archive/digital and 3d/3d Room design/02 3d room clay model.jpg",
           "role": "supporting",
           "alt": "3D room clay model pass"
         },
         {
-          "src": "assets/archive/3d Room design/02 -1 3d room materials.jpg",
+          "src": "assets/archive/digital and 3d/3d Room design/02 -1 3d room materials.jpg",
           "role": "supporting",
           "alt": "3D room material studies"
         },
         {
-          "src": "assets/archive/3d Room design/03 3d room close up.png",
+          "src": "assets/archive/digital and 3d/3d Room design/03 3d room close up.png",
           "role": "supporting",
           "alt": "3D room close-up detail"
         },
         {
-          "src": "assets/archive/3d Room design/04 3d room side left.png",
+          "src": "assets/archive/digital and 3d/3d Room design/04 3d room side left.png",
           "role": "supporting",
           "alt": "3D room, side left view"
         },
         {
-          "src": "assets/archive/3d Room design/05 3d room side right.png",
+          "src": "assets/archive/digital and 3d/3d Room design/05 3d room side right.png",
           "role": "supporting",
           "alt": "3D room, side right view"
         }
       ],
-      "video": "assets/archive/3d Room design/Nae_s Final room recording.mp4",
-      "archiveGroup": "illustrations-animation"
+      "video": "assets/archive/digital and 3d/3d Room design/Nae_s Final room recording.mp4",
+      "archiveGroup": "digital-3d"
     },
     {
       "id": "bolar-isometric-infographic-web-illustrations-689293",
@@ -130,32 +130,32 @@
       "displayTreatment": "standard",
       "images": [
         {
-          "src": "assets/archive/bolar infographic/Bolar website_portfolio mockup-01.png",
+          "src": "assets/archive/branding/bolar infographic/Bolar website_portfolio mockup-01.png",
           "role": "main",
           "alt": "Bolar isometric infographic web illustrations, cover slide"
         },
         {
-          "src": "assets/archive/bolar infographic/Bolar website_portfolio mockup-02.png",
+          "src": "assets/archive/branding/bolar infographic/Bolar website_portfolio mockup-02.png",
           "role": "supporting",
           "alt": "Bolar infographic mockup"
         },
         {
-          "src": "assets/archive/bolar infographic/Bolar website_portfolio mockup-03.png",
+          "src": "assets/archive/branding/bolar infographic/Bolar website_portfolio mockup-03.png",
           "role": "supporting",
           "alt": "Bolar infographic mockup"
         },
         {
-          "src": "assets/archive/bolar infographic/Bolar website_portfolio mockup-05.png",
+          "src": "assets/archive/branding/bolar infographic/Bolar website_portfolio mockup-05.png",
           "role": "supporting",
           "alt": "Bolar infographic mockup"
         },
         {
-          "src": "assets/archive/bolar infographic/Bolar website_portfolio mockup-06.png",
+          "src": "assets/archive/branding/bolar infographic/Bolar website_portfolio mockup-06.png",
           "role": "supporting",
           "alt": "Bolar infographic mockup"
         }
       ],
-      "archiveGroup": "product-ux"
+      "archiveGroup": "branding"
     },
     {
       "id": "knowledgecity-e-learning-storyboard-animations-689293",
@@ -173,27 +173,27 @@
       "displayTreatment": "standard",
       "images": [
         {
-          "src": "assets/archive/knowledgeCity E-learning Storyboards/KC SB mockups-01.png",
+          "src": "assets/archive/academic and e-learning/knowledgeCity E-learning Storyboards/KC SB mockups-01.png",
           "role": "main",
           "alt": "KnowledgeCity storyboard mockups"
         },
         {
-          "src": "assets/archive/knowledgeCity E-learning Storyboards/KC Elearning Storyboard.png",
+          "src": "assets/archive/academic and e-learning/knowledgeCity E-learning Storyboards/KC Elearning Storyboard.png",
           "role": "supporting",
           "alt": "KnowledgeCity e-learning storyboard"
         },
         {
-          "src": "assets/archive/knowledgeCity E-learning Storyboards/KC Elearning Storyboards.png",
+          "src": "assets/archive/academic and e-learning/knowledgeCity E-learning Storyboards/KC Elearning Storyboards.png",
           "role": "supporting",
           "alt": "KnowledgeCity e-learning storyboards"
         }
       ],
       "videos": [
-        "assets/archive/knowledgeCity E-learning Storyboards/BUS1712 Storyboard animation.mp4",
-        "assets/archive/knowledgeCity E-learning Storyboards/BUS1718 Storyboard animation.mp4",
-        "assets/archive/knowledgeCity E-learning Storyboards/BUS1718 Storyboard animation 02.mp4"
+        "assets/archive/academic and e-learning/knowledgeCity E-learning Storyboards/BUS1712 Storyboard animation.mp4",
+        "assets/archive/academic and e-learning/knowledgeCity E-learning Storyboards/BUS1718 Storyboard animation.mp4",
+        "assets/archive/academic and e-learning/knowledgeCity E-learning Storyboards/BUS1718 Storyboard animation 02.mp4"
       ],
-      "archiveGroup": "educational-institutional"
+      "archiveGroup": "academic-elearning"
     },
     {
       "id": "steps-magazine-doodle-design-689293",
@@ -211,12 +211,12 @@
       "displayTreatment": "standard",
       "images": [
         {
-          "src": "assets/archive/steps maganzine doodle design/5c5e2af5-4e2e-48f2-87d8-14e282408661_rw_1920.jpg",
+          "src": "assets/archive/academic and e-learning/steps maganzine doodle design/5c5e2af5-4e2e-48f2-87d8-14e282408661_rw_1920.jpg",
           "role": "main",
           "alt": "Steps Magazine doodle design, full spread"
         }
       ],
-      "archiveGroup": "educational-institutional"
+      "archiveGroup": "academic-elearning"
     },
     {
       "id": "csusm-map-illustration",
@@ -234,17 +234,17 @@
       "displayTreatment": "standard",
       "images": [
         {
-          "src": "assets/archive/csusm-university/map-illustration.jpg",
+          "src": "assets/archive/academic and e-learning/csusm-university/map-illustration.jpg",
           "role": "main",
           "alt": "CSUSM campus map illustration"
         },
         {
-          "src": "assets/archive/csusm-university/map-illustration-mockup.jpg",
+          "src": "assets/archive/academic and e-learning/csusm-university/map-illustration-mockup.jpg",
           "role": "supporting",
           "alt": "CSUSM campus map, folded brochure mockup"
         }
       ],
-      "archiveGroup": "csusm-university"
+      "archiveGroup": "academic-elearning"
     },
     {
       "id": "csusm-commencement-brochure",
@@ -253,7 +253,7 @@
       "collection": "Archive",
       "medium": "Print Design",
       "client": "CSUSM",
-      "year": "2020–2021",
+      "year": "2020-2021",
       "dimensions": "",
       "description": "Commencement program brochures for California State University San Marcos, including the Alumni Association and Class Champions spreads.",
       "tags": [],
@@ -262,17 +262,17 @@
       "displayTreatment": "standard",
       "images": [
         {
-          "src": "assets/archive/csusm-university/commencement-brochure-2020-cover.jpg",
+          "src": "assets/archive/academic and e-learning/csusm-university/commencement-brochure-2020-cover.jpg",
           "role": "main",
           "alt": "CSUSM 2020 commencement brochure cover"
         },
         {
-          "src": "assets/archive/csusm-university/commencement-brochure-2021-spread.jpg",
+          "src": "assets/archive/academic and e-learning/csusm-university/commencement-brochure-2021-spread.jpg",
           "role": "supporting",
           "alt": "CSUSM 2021 commencement brochure, Alumni Association and Class Champions spread"
         }
       ],
-      "archiveGroup": "csusm-university"
+      "archiveGroup": "academic-elearning"
     },
     {
       "id": "csusm-event-cutout-design",
@@ -290,12 +290,12 @@
       "displayTreatment": "standard",
       "images": [
         {
-          "src": "assets/archive/csusm-university/event-cutout-design-gala.jpg",
+          "src": "assets/archive/academic and e-learning/csusm-university/event-cutout-design-gala.jpg",
           "role": "main",
           "alt": "CSUSM gala Grease-themed event cutout design"
         }
       ],
-      "archiveGroup": "csusm-university"
+      "archiveGroup": "academic-elearning"
     },
     {
       "id": "csusm-arts-lectures-brochure",
@@ -313,12 +313,12 @@
       "displayTreatment": "standard",
       "images": [
         {
-          "src": "assets/archive/csusm-university/arts-lectures-brochure.jpg",
+          "src": "assets/archive/academic and e-learning/csusm-university/arts-lectures-brochure.jpg",
           "role": "main",
           "alt": "CSUSM Arts & Lectures brochure, Fall 2019"
         }
       ],
-      "archiveGroup": "csusm-university"
+      "archiveGroup": "academic-elearning"
     },
     {
       "id": "csusm-grad-pin",
@@ -336,12 +336,12 @@
       "displayTreatment": "standard",
       "images": [
         {
-          "src": "assets/archive/csusm-university/csusm-grad-pin.jpg",
+          "src": "assets/archive/academic and e-learning/csusm-university/csusm-grad-pin.jpg",
           "role": "main",
           "alt": "CSUSM graduation and alumni pin design"
         }
       ],
-      "archiveGroup": "csusm-university"
+      "archiveGroup": "academic-elearning"
     },
     {
       "id": "csusm-crash-cougar-mascot",
@@ -359,12 +359,12 @@
       "displayTreatment": "standard",
       "images": [
         {
-          "src": "assets/archive/csusm-university/crash-cougar-mascot.jpg",
+          "src": "assets/archive/academic and e-learning/csusm-university/crash-cougar-mascot.jpg",
           "role": "main",
           "alt": "Crash the Cougar flat mascot design for CSUSM"
         }
       ],
-      "archiveGroup": "csusm-university"
+      "archiveGroup": "academic-elearning"
     },
     {
       "id": "illustration-anatomy-heart",
@@ -1141,7 +1141,7 @@
         "print"
       ],
       "featured": false,
-      "order": 2,
+      "order": 100,
       "images": [
         {
           "src": "assets/campaigns/aew/will-ospreay-the-show-46x20.jpg",
@@ -1168,7 +1168,7 @@
         "print"
       ],
       "featured": false,
-      "order": 2,
+      "order": 61,
       "images": [
         {
           "src": "assets/campaigns/golf/collin-morikawa-team-usa.jpg",
@@ -1194,7 +1194,7 @@
         "print"
       ],
       "featured": false,
-      "order": 3,
+      "order": 62,
       "images": [
         {
           "src": "assets/campaigns/golf/wyndham-clark-the-champion.jpg",
@@ -1220,10 +1220,10 @@
         "print"
       ],
       "featured": false,
-      "order": 1,
+      "order": 60,
       "images": [
         {
-          "src": "assets/campaigns/golf/tiger-woods-jupiter-links.jpg",
+          "src": "assets/campaigns/golf/tiger-woods-jupiter-links.png",
           "role": "main",
           "alt": "Tiger Woods — Jupiter Links GC, Upper Deck Authenticated print"
         }
@@ -1246,7 +1246,7 @@
         "print"
       ],
       "featured": false,
-      "order": 1,
+      "order": 20,
       "images": [
         {
           "src": "assets/campaigns/gymnastics/gabby-douglas-3x-gold-medal.jpg",
@@ -1272,7 +1272,7 @@
         "print"
       ],
       "featured": false,
-      "order": 2,
+      "order": 21,
       "images": [
         {
           "src": "assets/campaigns/gymnastics/gabby-douglas-art-of-the-balance-beam.jpg",
@@ -1298,7 +1298,7 @@
         "print"
       ],
       "featured": false,
-      "order": 3,
+      "order": 22,
       "images": [
         {
           "src": "assets/campaigns/gymnastics/gabby-douglas-the-show.jpg",
@@ -1325,7 +1325,7 @@
         "print"
       ],
       "featured": false,
-      "order": 2,
+      "order": 31,
       "images": [
         {
           "src": "assets/campaigns/nascar/tyler-reddick-daytona-500-champion.jpg",
@@ -1351,7 +1351,7 @@
         "print"
       ],
       "featured": false,
-      "order": 3,
+      "order": 32,
       "images": [
         {
           "src": "assets/campaigns/nascar/tyler-reddick-the-show.jpg",
@@ -1378,7 +1378,7 @@
         "print"
       ],
       "featured": false,
-      "order": 4,
+      "order": 33,
       "images": [
         {
           "src": "assets/campaigns/nascar/corey-heim-anduril-250.jpg",
@@ -1404,7 +1404,7 @@
         "print"
       ],
       "featured": false,
-      "order": 1,
+      "order": 30,
       "images": [
         {
           "src": "assets/campaigns/nascar/bubba-wallace-the-show.jpg",
@@ -1431,7 +1431,7 @@
         "print"
       ],
       "featured": false,
-      "order": 2,
+      "order": 103,
       "images": [
         {
           "src": "assets/campaigns/pwhl/taylor-heise-minnesota.jpg",
@@ -1457,7 +1457,7 @@
         "print"
       ],
       "featured": false,
-      "order": 1,
+      "order": 101,
       "images": [
         {
           "src": "assets/campaigns/pwhl/taylor-heise-2024-playoff-mvp.jpg",
@@ -1483,7 +1483,7 @@
         "print"
       ],
       "featured": false,
-      "order": 1,
+      "order": 102,
       "images": [
         {
           "src": "assets/campaigns/soccer/alex-morgan-trinity-rodman.jpg",
@@ -1509,7 +1509,7 @@
         "print"
       ],
       "featured": false,
-      "order": 2,
+      "order": 104,
       "images": [
         {
           "src": "assets/campaigns/soccer/alex-morgan-2x-champ.jpg",
@@ -1535,7 +1535,7 @@
         "print"
       ],
       "featured": false,
-      "order": 3,
+      "order": 105,
       "images": [
         {
           "src": "assets/campaigns/soccer/trinity-rodman-gold.jpg",
@@ -1561,7 +1561,7 @@
         "print"
       ],
       "featured": false,
-      "order": 1,
+      "order": 10,
       "images": [
         {
           "src": "assets/campaigns/tennis/andre-agassi.jpg",
@@ -1587,7 +1587,7 @@
         "print"
       ],
       "featured": false,
-      "order": 8,
+      "order": 17,
       "images": [
         {
           "src": "assets/campaigns/tennis/chris-evert-3x-wimbledon-champion.jpg",
@@ -1613,7 +1613,7 @@
         "print"
       ],
       "featured": false,
-      "order": 5,
+      "order": 15,
       "images": [
         {
           "src": "assets/campaigns/tennis/iga-swiatek.jpg",
@@ -1639,7 +1639,7 @@
         "print"
       ],
       "featured": false,
-      "order": 7,
+      "order": 14,
       "images": [
         {
           "src": "assets/campaigns/tennis/steffi-graf-6x-roland-garros-champion.jpg",
@@ -1665,7 +1665,7 @@
         "print"
       ],
       "featured": false,
-      "order": 2,
+      "order": 11,
       "images": [
         {
           "src": "assets/campaigns/tennis/sampras-vs-agassi.jpg",
@@ -1691,7 +1691,7 @@
         "print"
       ],
       "featured": false,
-      "order": 9,
+      "order": 18,
       "images": [
         {
           "src": "assets/campaigns/tennis/andy-roddick.jpg",
@@ -1717,7 +1717,7 @@
         "print"
       ],
       "featured": false,
-      "order": 3,
+      "order": 12,
       "images": [
         {
           "src": "assets/campaigns/tennis/sampras-agassi-early-years.jpg",
@@ -1743,7 +1743,7 @@
         "print"
       ],
       "featured": false,
-      "order": 4,
+      "order": 13,
       "images": [
         {
           "src": "assets/campaigns/tennis/agassi-profile.jpg",
@@ -1769,7 +1769,7 @@
         "print"
       ],
       "featured": false,
-      "order": 6,
+      "order": 16,
       "images": [
         {
           "src": "assets/campaigns/tennis/iga-swiatek-game-set-match.jpg",
@@ -1795,7 +1795,7 @@
         "print"
       ],
       "featured": false,
-      "order": 4,
+      "order": 43,
       "images": [
         {
           "src": "assets/campaigns/nhl/charlie-coyle-local-talent-16x20.jpg",
@@ -1821,7 +1821,7 @@
         "print"
       ],
       "featured": false,
-      "order": 11,
+      "order": 50,
       "images": [
         {
           "src": "assets/campaigns/nhl/cole-eiserman-for-gold-8x10.jpg",
@@ -1847,7 +1847,7 @@
         "print"
       ],
       "featured": false,
-      "order": 12,
+      "order": 51,
       "images": [
         {
           "src": "assets/campaigns/nhl/cole-eiserman.jpg",
@@ -1873,7 +1873,7 @@
         "print"
       ],
       "featured": false,
-      "order": 1,
+      "order": 40,
       "images": [
         {
           "src": "assets/campaigns/nhl/connor-mcdavid-international-icon-20x24.jpg",
@@ -1899,7 +1899,7 @@
         "print"
       ],
       "featured": false,
-      "order": 13,
+      "order": 52,
       "images": [
         {
           "src": "assets/campaigns/nhl/ethan-belchetz-shining-in-windsor-11x14.jpg",
@@ -1925,7 +1925,7 @@
         "print"
       ],
       "featured": false,
-      "order": 9,
+      "order": 48,
       "images": [
         {
           "src": "assets/campaigns/nhl/hagens-eiserman-on-a-dime.jpg",
@@ -1951,7 +1951,7 @@
         "print"
       ],
       "featured": false,
-      "order": 8,
+      "order": 47,
       "images": [
         {
           "src": "assets/campaigns/nhl/james-hagens-2025-draft-day-16x20.jpg",
@@ -1977,7 +1977,7 @@
         "print"
       ],
       "featured": false,
-      "order": 7,
+      "order": 46,
       "images": [
         {
           "src": "assets/campaigns/nhl/matthew-schaefer-nhl-debut-8x10.jpg",
@@ -2003,7 +2003,7 @@
         "print"
       ],
       "featured": false,
-      "order": 6,
+      "order": 45,
       "images": [
         {
           "src": "assets/campaigns/nhl/matthew-schaefer-record-setting-start-16x20.jpg",
@@ -2029,7 +2029,7 @@
         "print"
       ],
       "featured": false,
-      "order": 5,
+      "order": 44,
       "images": [
         {
           "src": "assets/campaigns/nhl/matthew-schaefer-1st-overall-pick-16x20.jpg",
@@ -2055,7 +2055,7 @@
         "print"
       ],
       "featured": false,
-      "order": 10,
+      "order": 49,
       "images": [
         {
           "src": "assets/campaigns/nhl/michael-misa-1st-round-draft-pick-16x20.jpg",
@@ -2081,7 +2081,7 @@
         "print"
       ],
       "featured": false,
-      "order": 3,
+      "order": 42,
       "images": [
         {
           "src": "assets/campaigns/nhl/sebastian-aho-hyva-hurrikaanit.jpg",
@@ -2107,7 +2107,7 @@
         "print"
       ],
       "featured": false,
-      "order": 2,
+      "order": 41,
       "images": [
         {
           "src": "assets/campaigns/nhl/sebastian-aho-glory-on-ice-20x24.jpg",
@@ -2133,7 +2133,7 @@
         "print"
       ],
       "featured": false,
-      "order": 14,
+      "order": 53,
       "images": [
         {
           "src": "assets/campaigns/nhl/commanding-presence.jpg",
@@ -2144,6 +2144,176 @@
       "displayTreatment": "standard",
       "cardStock": "",
       "sport": "Hockey"
+    },
+    {
+      "id": "connor-bedard-breaking-the-ice-53331940",
+      "category": "card",
+      "title": "Connor Bedard — Breaking the Ice",
+      "cardNumber": "BI-26",
+      "client": "Upper Deck",
+      "collection": "Ice",
+      "description": "",
+      "dimensions": "",
+      "displayTreatment": "standard",
+      "featured": false,
+      "images": [
+        {
+          "role": "front",
+          "src": "assets/collectibles/ice/connor-bedard-breaking-the-ice-front.jpg",
+          "alt": "Connor Bedard — Breaking the Ice, front"
+        },
+        {
+          "role": "back",
+          "src": "assets/collectibles/ice/connor-bedard-breaking-the-ice-back.jpg",
+          "alt": "Connor Bedard — Breaking the Ice, back"
+        }
+      ],
+      "order": 1,
+      "orientation": "landscape",
+      "sport": "Hockey",
+      "tags": [
+        "hockey",
+        "Ice"
+      ],
+      "year": "2024-25",
+      "cardStock": ""
+    },
+    {
+      "id": "matthew-knies-signature-swatches-32611965",
+      "category": "card",
+      "title": "Matthew Knies — Signature Swatches",
+      "cardNumber": "SS-MK",
+      "client": "Upper Deck",
+      "collection": "Ice",
+      "description": "",
+      "dimensions": "",
+      "displayTreatment": "standard",
+      "featured": false,
+      "images": [
+        {
+          "role": "front",
+          "src": "assets/collectibles/ice/matthew-knies-signature-swatches-front.jpg",
+          "alt": "Matthew Knies — Signature Swatches, front"
+        },
+        {
+          "role": "back",
+          "src": "assets/collectibles/ice/matthew-knies-signature-swatches-back.jpg",
+          "alt": "Matthew Knies — Signature Swatches, back"
+        }
+      ],
+      "order": 2,
+      "orientation": "landscape",
+      "sport": "Hockey",
+      "tags": [
+        "hockey",
+        "Ice"
+      ],
+      "year": "2025-26",
+      "cardStock": ""
+    },
+    {
+      "id": "matthew-schaefer-premieres-99074006",
+      "category": "card",
+      "title": "Matthew Schaefer — Premieres",
+      "cardNumber": "IPJ-MS",
+      "client": "Upper Deck",
+      "collection": "Ice",
+      "description": "",
+      "dimensions": "",
+      "displayTreatment": "standard",
+      "featured": false,
+      "images": [
+        {
+          "role": "front",
+          "src": "assets/collectibles/ice/matthew-schaefer-premieres-front.jpg",
+          "alt": "Matthew Schaefer — Premieres, front"
+        },
+        {
+          "role": "back",
+          "src": "assets/collectibles/ice/matthew-schaefer-premieres-back.jpg",
+          "alt": "Matthew Schaefer — Premieres, back"
+        }
+      ],
+      "order": 3,
+      "orientation": "landscape",
+      "sport": "Hockey",
+      "tags": [
+        "hockey",
+        "Ice"
+      ],
+      "year": "2025-26",
+      "cardStock": ""
+    },
+    {
+      "id": "ivan-demidov-tickle-the-twine-39057281",
+      "category": "card",
+      "title": "Ivan Demidov — Tickle the Twine",
+      "cardNumber": "TT-2",
+      "client": "Upper Deck",
+      "collection": "Ice",
+      "description": "",
+      "dimensions": "",
+      "displayTreatment": "standard",
+      "featured": false,
+      "images": [
+        {
+          "role": "front",
+          "src": "assets/collectibles/ice/ivan-demidov-tickle-the-twine-front.jpg",
+          "alt": "Ivan Demidov — Tickle the Twine, front"
+        },
+        {
+          "role": "back",
+          "src": "assets/collectibles/ice/ivan-demidov-tickle-the-twine-back.jpg",
+          "alt": "Ivan Demidov — Tickle the Twine, back"
+        }
+      ],
+      "order": 4,
+      "orientation": "landscape",
+      "sport": "Hockey",
+      "tags": [
+        "hockey",
+        "Ice"
+      ],
+      "year": "2025-26",
+      "cardStock": ""
+    },
+    {
+      "id": "cephalo-wellness-brand-identity-368510",
+      "category": "archive",
+      "archiveGroup": "branding",
+      "client": "",
+      "collection": "Archive",
+      "description": "Brand identity concept for Cephalo Wellness, including logo design, color palette, business card mockup, and website design direction.",
+      "dimensions": "",
+      "displayTreatment": "standard",
+      "featured": false,
+      "images": [
+        {
+          "alt": "Cephalo Wellness logo lockup",
+          "role": "main",
+          "src": "assets/archive/branding/cephalo wellness company logo/cephalo-logo-lockup.jpg"
+        },
+        {
+          "alt": "Cephalo Wellness business card mockup",
+          "role": "supporting",
+          "src": "assets/archive/branding/cephalo wellness company logo/cephalo-business-card-mockup.jpg"
+        },
+        {
+          "alt": "Cephalo Wellness color palette",
+          "role": "supporting",
+          "src": "assets/archive/branding/cephalo wellness company logo/cephalo-color-palette.jpg"
+        },
+        {
+          "alt": "Cephalo Wellness website design mockup, animated scroll-through",
+          "role": "supporting",
+          "src": "assets/archive/branding/cephalo wellness company logo/cephalo-brand-reel.gif"
+        }
+      ],
+      "medium": "Brand Identity / Logo Design",
+      "order": 3,
+      "tags": [],
+      "title": "Cephalo Wellness — Brand Identity",
+      "year": ""
     }
   ]
 }
