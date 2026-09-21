@@ -1,0 +1,1798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naomi Schaefer — Design Portfolio</title>
+<meta name="description" content="Naomi Schaefer is a graphic designer working across visual design, motion, and collectibles — including work for sports, entertainment, digital media, and collectible products.">
+<link rel="canonical" href="https://naomischaefer.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Naomi Schaefer — Design Portfolio">
+<meta property="og:description" content="Graphic design, motion, and collectibles portfolio — sports, entertainment, digital media, and collectible products.">
+<meta property="og:url" content="https://naomischaefer.com/">
+<!-- No social preview image exists yet. Add one (ideally 1200x630px) and then add an og:image tag pointing to it. -->
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0b0b0c; --ink-soft:#3a3a3c; --paper:#f7f6f4; --grey:#707070;
+    --line-dark:rgba(0,0,0,.14); --line-light:rgba(255,255,255,.16);
+    --red:#d8463a;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  /* Buttons (poster/card arrows, back-to-top, tabs, etc.) were showing the browser's
+     default focus outline — a heavy blue box — after every click, not just keyboard
+     navigation. :focus-visible keeps a clean ring for keyboard/screen-reader users
+     while removing the click-triggered box that was showing up over the artwork. */
+  button:focus{ outline:none; }
+  button:focus-visible{ outline:2px solid var(--ink); outline-offset:2px; border-radius:2px; }
+  /* Same treatment for the custom keyboard-operable tiles/cards below (archive category
+     tiles, "view all" grid thumbnails, the flip-card slab) — they're divs with tabindex,
+     not real buttons, so they need their own focus-visible rule. */
+  .archive-card:focus{ outline:none; }
+  .archive-card:focus-visible, .grid-tile:focus-visible, .slab:focus-visible{
+    outline:2px solid var(--ink); outline-offset:3px; }
+  .grid-tile:focus{ outline:none; }
+  .slab:focus{ outline:none; }
+  html{scroll-behavior:smooth;}
+  html.is-loading, html.is-loading body{ overflow:hidden; height:100%; }
+  body{background:var(--paper); color:var(--ink); font-family:'Inter',sans-serif; overflow-x:hidden; -webkit-font-smoothing:antialiased;}
+  ::selection{background:var(--ink); color:var(--paper);}
+
+  /* Custom cursor — a small red dot that follows the pointer with a slight lag, and grows
+     over clickable things. Only on devices with a real mouse (hover:hover + fine pointer) —
+     touch devices keep their normal behavior entirely, untouched. Form fields keep the
+     native cursor too, so typing still shows a real caret. */
+  @media (hover: hover) and (pointer: fine){
+    body.cursor-ready{ cursor:none; }
+    body.cursor-ready input, body.cursor-ready textarea{ cursor:auto; }
+  }
+  .back-to-top{ position:fixed; right:20px; bottom:20px; z-index:90; width:42px; height:42px;
+    border-radius:50%; border:1px solid var(--line-dark); background:var(--paper); color:var(--ink);
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    opacity:0; transform:translateY(8px); pointer-events:none;
+    transition:opacity .3s ease, transform .3s ease, background .3s ease, color .3s ease; }
+  .back-to-top.visible{ opacity:.9; transform:translateY(0); pointer-events:auto; }
+  .back-to-top svg{ width:16px; height:16px; }
+  @media (hover:hover){ .back-to-top:hover{ opacity:1; background:var(--ink); color:var(--paper); border-color:var(--ink); } }
+  @media (prefers-reduced-motion: reduce){ .back-to-top{ transition:opacity .2s ease; } }
+
+  .cursor-dot{ position:fixed; top:0; left:0; width:9px; height:9px; border-radius:50%;
+    background:var(--red); pointer-events:none; z-index:9999; opacity:0;
+    transform:translate(-50%,-50%); transition:width .2s var(--ease), height .2s var(--ease), opacity .3s ease; }
+  .cursor-dot.visible{ opacity:1; }
+  .cursor-dot.hovering{ width:16px; height:16px; }
+  @media (prefers-reduced-motion: reduce){ .cursor-dot{ transition:opacity .3s ease; } }
+  .serif{font-family:'Fraunces',serif;}
+  .mono{font-family:'IBM Plex Mono',monospace; letter-spacing:.04em; text-transform:uppercase;}
+  a{color:inherit; text-decoration:none;}
+
+  /* ---------- PRELOADER ---------- */
+  .preloader{
+    position:fixed; inset:0; z-index:1000; background:var(--ink); color:var(--paper);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    transition:opacity .8s var(--ease), transform .9s var(--ease); opacity:1;
+  }
+  .preloader.done{ opacity:0; transform:translateY(-4%); pointer-events:none; }
+  .preloader-pct{ font-family:'Fraunces',serif; font-size:clamp(48px,10vw,110px); font-weight:400; letter-spacing:-.02em; }
+  .preloader-label{ font-size:10px; color:#8a8a8d; margin-top:14px; }
+  .preloader-bar{ width:min(320px,60vw); height:1px; background:rgba(255,255,255,.15); margin-top:28px; overflow:hidden; }
+  .preloader-bar span{ display:block; height:100%; width:0%; background:var(--paper); transition:width .1s linear; }
+
+  /* honest artwork slot — grain, not gradient. Real <img>/<video> replaces the fallback text. */
+  .art-slot{
+    position:relative; width:100%; height:100%; background:#dcdad5;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+    display:flex; align-items:center; justify-content:center; overflow:hidden;
+  }
+  .art-slot img, .art-slot video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .art-slot.fit-contain img{ object-fit:contain; }
+  .art-slot .slot-note{ font-size:10px; color:#9a9890; text-align:center; padding:0 16px; max-width:220px; line-height:1.6; }
+
+  /* ---------- NAV — quiet, almost invisible ---------- */
+  .nav{ position:fixed; top:0; left:0; right:0; z-index:100; display:flex; justify-content:space-between; align-items:center;
+    padding:22px 5vw; background:rgba(247,246,244,.82); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(0,0,0,.06); color:var(--ink); }
+  .nav-mark{ display:flex; align-items:baseline; gap:10px; opacity:.9; }
+  .nav-mark .zh{ font-family:'Ma Shan Zheng', cursive; font-size:22px; line-height:1; }
+  .nav-mark .en{ font-family:'Fraunces',serif; font-style:italic; font-size:14px; letter-spacing:.02em; opacity:.8; }
+  .nav-links{display:flex; gap:32px; font-size:13px; font-weight:500; opacity:.92;}
+  .nav-links span{position:relative; padding-bottom:2px; display:inline-block; cursor:pointer;
+    transition:opacity .3s ease, transform .25s var(--ease);}
+  @media (hover:hover){ .nav-links span:hover{ transform:scale(1.06); opacity:.6; } }
+  .nav-links span::after{content:''; position:absolute; left:0; bottom:-2px; width:100%; height:1px; background:currentColor;
+    transform:scaleX(0); transform-origin:right; transition:transform .4s var(--ease);}
+  @media (hover:hover){ .nav-links span:hover::after{transform:scaleX(1); transform-origin:left;} }
+
+  /* "Work" dropdown — quick jump to the three chapters below. Hover-only (it's driven by
+     :hover/:focus-within, gated behind hover:hover), so touch visitors just get the
+     original tap-to-scroll behavior on "Work" itself, unchanged. The ::after bridge fills
+     the visual gap between the "Work" label and the panel so the pointer never leaves
+     .nav-item's hover area while crossing it. */
+  .nav-item{ position:relative; display:inline-flex; align-items:center; }
+  .nav-item.has-dropdown::after{ content:''; position:absolute; top:100%; left:50%;
+    transform:translateX(-50%); width:150px; height:18px; }
+  .nav-dropdown{ position:absolute; top:calc(100% + 14px); left:50%;
+    transform:translateX(-50%) translateY(-6px); display:flex; flex-direction:column; gap:2px;
+    min-width:160px; padding:12px 20px; background:var(--paper); border:1px solid var(--line-dark);
+    border-radius:10px; box-shadow:0 14px 34px rgba(0,0,0,.12);
+    opacity:0; visibility:hidden; pointer-events:none;
+    transition:opacity .28s var(--ease), transform .28s var(--ease), visibility .28s; z-index:10; }
+  .nav-dropdown span{ text-align:center; white-space:nowrap; padding:6px 0; }
+  @media (hover:hover){
+    .nav-item.has-dropdown:hover .nav-dropdown, .nav-item.has-dropdown:focus-within .nav-dropdown{
+      opacity:1; visibility:visible; pointer-events:auto; transform:translateX(-50%) translateY(0); }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{ position:relative; height:100vh; height:100dvh; min-height:680px; display:flex; flex-direction:column; justify-content:flex-start;
+    align-items:center; text-align:center; overflow:hidden; background:var(--paper); padding-top:22vh; box-sizing:border-box; }
+  /* On a narrow, tall phone screen, a full-height hero with everything pinned under
+     22vh of top padding leaves a huge dead gap between the subtitle and the scroll hint —
+     it reads as a long stretch of nothing the moment you start scrolling. Centering the
+     content vertically instead spreads that same whitespace evenly above and below it. */
+  @media (max-width:640px){
+    .hero{ justify-content:center; padding-top:0; padding-bottom:8vh; }
+  }
+  .hero-name{ position:relative; z-index:2; cursor:default; }
+  .hero-name .line{ display:block; font-family:'Fraunces',serif; font-weight:500; font-size:clamp(64px,15vw,190px);
+    line-height:.92; letter-spacing:-.01em; position:relative; color:var(--ink); }
+  .reg-mark{ position:absolute; width:14px; height:14px; opacity:0; transition:opacity .3s ease; }
+  .hero-name:hover .reg-mark{opacity:.4;}
+  .reg-mark::before, .reg-mark::after{ content:''; position:absolute; background:var(--ink); }
+  .reg-mark::before{ width:100%; height:1px; top:50%; }
+  .reg-mark::after{ width:1px; height:100%; left:50%; }
+  .rm-tl{top:-18px; left:-18px;} .rm-tr{top:-18px; right:-18px;} .rm-bl{bottom:-18px; left:-18px;} .rm-br{bottom:-18px; right:-18px;}
+
+  /* ONE signature hero interaction: a holographic finish sits latent beneath the typography.
+     Moving the cursor reveals it through the letterforms via a mouse-tracked radial mask —
+     like tilting a foil-stamped card to catch light. At rest, a slow drift keeps it alive.
+     Two identical text layers: a quiet ink base, and a holo layer clipped to the same glyphs
+     and masked to a soft radius around the cursor. */
+  .hero-name{ position:relative; isolation:isolate; }
+  .hero-name .stack{ position:relative; }
+  .hero-name .line{ display:block; }
+  .hero-name .line-holo{
+    position:absolute; inset:0; pointer-events:none;
+    background-image:linear-gradient(115deg,#f3c9ff 0%,#c9e0ff 20%,#c9fff0 40%,#fff3c9 60%,#ffc9d9 80%,#f3c9ff 100%);
+    background-size:400% 400%; -webkit-background-clip:text; background-clip:text; color:transparent;
+    -webkit-mask-image:radial-gradient(circle 240px at var(--mx,50%) var(--my,-30%), #000 0%, transparent 70%);
+    mask-image:radial-gradient(circle 240px at var(--mx,50%) var(--my,-30%), #000 0%, transparent 70%);
+    animation:holoDrift 16s ease-in-out infinite;
+  }
+  @keyframes holoDrift{ 0%,100%{background-position:0% 50%;} 50%{background-position:100% 50%;} }
+  /* Touch has no cursor, but it does have a finger — a touchmove listener (further down,
+     alongside the mousemove one) keeps --mx/--my updated the same way while swiping across
+     the name, so the mask still tracks and this stays the cursor-driven radial reveal
+     rather than falling back to a flat, always-on shimmer. */
+
+  .hero-name-row{ display:flex; align-items:center; justify-content:center; gap:clamp(6px,1.6vw,18px); }
+  .hero-cn-side{ font-family:'Ma Shan Zheng', cursive; font-size:clamp(24px,5.5vw,72px); line-height:1;
+    color:var(--ink); position:relative; top:0.08em; isolation:isolate; }
+  .hero-cn-side .cn-base{ position:relative; }
+  /* A paint-like reveal rather than the hero name's soft holographic glow: mostly solid
+     black, with red appearing only right under the cursor. Tracked to this glyph's own
+     box (--cnx/--cny), not the shared hero-wide --mx/--my — the character is much smaller
+     than the full name, so sharing that coordinate space made the reveal land in odd,
+     seemingly-random spots. The mask holds solid through most of its radius then cuts off
+     quickly, instead of fading gradually, so red and black meet as a clean edge rather than
+     blending into a muddy brown. Defaults sit off-glyph so nothing shows before the first
+     hover. */
+  .hero-cn-side .cn-holo{
+    position:absolute; inset:0; pointer-events:none; color:var(--red);
+    -webkit-mask-image:radial-gradient(circle 34px at var(--cnx,-999px) var(--cny,-999px), #000 0%, #000 60%, transparent 72%);
+    mask-image:radial-gradient(circle 34px at var(--cnx,-999px) var(--cny,-999px), #000 0%, #000 60%, transparent 72%);
+  }
+  @media (hover:none){
+    .hero-cn-side .cn-holo{ -webkit-mask-image:none; mask-image:none; opacity:0; }
+  }
+  .hero-sub{ position:relative; z-index:2; margin-top:26px; max-width:460px; font-size:17px; font-weight:500;
+    letter-spacing:.01em; line-height:1.6;
+    color:var(--ink); opacity:0; transform:translateY(14px); transition:all 1s var(--ease) .15s; }
+  .hero-sub-dot{ color:var(--red); font-weight:600; padding:0 2px; }
+  .hero.loaded .hero-sub{opacity:1; transform:translateY(0);}
+  .hero-name{ opacity:0; transform:translateY(24px); transition:all 1.1s var(--ease); }
+  .hero.loaded .hero-name{ opacity:1; transform:translateY(0); }
+  .hero-hint{ position:absolute; bottom:36px; left:50%; transform:translateX(-50%); font-size:10px; color:var(--grey);
+    display:flex; align-items:center; gap:8px; transition:opacity .3s ease; }
+  .hero-hint .dot{width:5px; height:5px; border-radius:50%; background:var(--ink); animation:pulse 1.8s ease infinite;}
+  @keyframes pulse{0%,100%{opacity:.25;} 50%{opacity:1;}}
+
+  /* Peek — a sliver of the next (dark) section shows at the bottom of the hero, hinting
+     there's a video below before the person has scrolled at all. */
+  .hero-peek{ position:absolute; bottom:-1px; left:50%; transform:translateX(-50%); z-index:3;
+    width:60px; height:26px; background:var(--ink); border-radius:14px 14px 0 0;
+    display:flex; align-items:flex-start; justify-content:center; padding-top:6px;
+    animation:peekBounce 2.6s ease-in-out infinite; transition:opacity .3s ease;
+  }
+  .hero-peek .chev{ width:7px; height:7px; border-right:1px solid var(--paper); border-bottom:1px solid var(--paper);
+    transform:rotate(45deg); opacity:.55; }
+  @keyframes peekBounce{ 0%,100%{ transform:translateX(-50%) translateY(0); } 50%{ transform:translateX(-50%) translateY(4px); } }
+
+  /* ---------- CHAPTER ---------- */
+  .chapter{ position:relative; padding:11vh 5vw; scroll-margin-top:80px; }
+  #hero{ scroll-margin-top:0; }
+  @media (max-width:640px){
+    .chapter{ padding:8vh 6vw; }
+  }
+  .chapter.dark{ background:var(--ink); color:var(--paper); }
+  .chapter.dark .art-slot{ background:#1c1c1e; }
+  .chapter.dark .art-slot .slot-note{ color:#6b6b6e; }
+  .chapter-head{ margin-bottom:6vh; text-align:center;
+    opacity:0; transform:translateY(24px); transition:all .9s var(--ease); }
+  .chapter-head.is-visible{opacity:1; transform:translateY(0);}
+  .chapter-num{ font-size:11px; color:var(--grey); }
+  .chapter-title{ font-family:'Fraunces',serif; font-weight:500; font-size:clamp(40px,7vw,92px); line-height:1.05; }
+  .chapter-desc{ margin:14px auto 0; max-width:480px; font-size:13px; color:var(--grey); line-height:1.6; }
+  .chapter-desc.nowrap-desktop{ white-space:nowrap; max-width:none; }
+
+  /* Bottom-of-section fine print — a licensing/attribution line plus a couple of small
+     mono disclaimer lines underneath, same quiet voice as .contact-sub/.foot elsewhere. */
+  .chapter-footnote{ text-align:center; margin:7vh auto 0; max-width:560px; }
+  .footnote-lead{ font-size:13px; color:var(--grey); line-height:1.6; white-space:nowrap; }
+  .footnote-fine{ font-size:11px; color:var(--grey); opacity:.85; line-height:1.8; margin-top:8px; }
+  .chapter.dark .footnote-lead, .chapter.dark .footnote-fine{ color:rgba(255,255,255,.55); }
+
+  /* Reusable version of the hero's holo hover — same two-layer trick (a plain base
+     layer plus a gradient layer clipped to the same glyphs and masked to the cursor),
+     just applied to a single-line title instead of the hero's stacked lines. Used on
+     the Collectibles/Campaigns/About/Additional Work chapter titles and the contact
+     headline, for consistency with the hero. Generalized off .holo-title (rather than
+     scoped to .chapter-title) so any heading can opt in. The mask fades across three
+     stops instead of two — with the saturated dark-mode gradient especially, a single
+     0%→70% falloff read as a hard edge rather than a soft glow. */
+  /* .ct-holo has to stay inset:0 and pixel-perfect over .ct-base — it's the containing
+     block for its own text, so nudging top/bottom shifts the glyphs it lays out and
+     ghosts against the unshifted base layer. The real fix for the mask cutting off
+     descenders (Fraunces has noticeably deep ones, on letters like p/g/j) is upstream:
+     give .holo-title itself some bleed room via padding, so the box .ct-holo's inset:0
+     matches is taller than the text's own line box on both ends — this only adds space
+     at the very top/bottom of the whole block (not between wrapped lines, unlike bumping
+     line-height would), so it doesn't affect line spacing on the two-line contact title. */
+  .holo-title{ position:relative; isolation:isolate; cursor:default; padding-block:.16em; }
+  .holo-title .ct-base{ position:relative; }
+  /* ct-holo's own box (inset:0) is now taller than ct-base's — that's the whole point, it's
+     where the mask gets its bleed room — but ct-holo lays out its own text starting at ITS
+     box's top edge, so a taller box would push that text down/up and ghost against ct-base.
+     Giving it the SAME padding as .holo-title (with box-sizing:border-box, so the padding is
+     absorbed inside the inset:0 footprint rather than growing it) re-centers its content box
+     back onto exactly where ct-base's content box sits, so the text still lines up pixel for
+     pixel — only the invisible mask-reference box around it is bigger. */
+  .holo-title .ct-holo{
+    position:absolute; inset:0; box-sizing:border-box; padding-block:.16em; pointer-events:none;
+    background-image:linear-gradient(115deg,#f3c9ff 0%,#c9e0ff 20%,#c9fff0 40%,#fff3c9 60%,#ffc9d9 80%,#f3c9ff 100%);
+    background-size:400% 400%; -webkit-background-clip:text; background-clip:text; color:transparent;
+    -webkit-mask-image:radial-gradient(circle 240px at var(--mx,50%) var(--my,-30%), #000 0%, rgba(0,0,0,.55) 45%, transparent 85%);
+    mask-image:radial-gradient(circle 240px at var(--mx,50%) var(--my,-30%), #000 0%, rgba(0,0,0,.55) 45%, transparent 85%);
+    animation:holoDrift 16s ease-in-out infinite;
+  }
+  .chapter.dark .holo-title .ct-holo, .contact .holo-title .ct-holo{
+    background-image:linear-gradient(115deg,#ff6fd8 0%,#6fa8ff 20%,#5cf2c9 40%,#ffe45c 60%,#ff8a5c 80%,#ff6fd8 100%);
+  }
+  /* Swiping a finger across the title updates --mx/--my exactly like the mousemove
+     handler does (see the JS below), so the cursor-tracked mask works on touch too —
+     no separate always-on fallback needed here. */
+
+  /* Collectibles — an interactive vault. Pick a collection, one slabbed card takes center
+     stage, browse the set with arrows. Tilt and sheen are subtle — archive, not arcade. */
+  /* Tabs as solid, modern pill buttons rather than quiet underlined text — the old
+     text-only style (plus a faint shimmer) read as too quiet to notice as clickable.
+     A picked collection fills solid red so it's unmistakable which one is active, and
+     unpicked ones are an outlined pill that fills in on hover — an obvious affordance
+     to click through, on both the light Collectibles section and the dark Campaigns one. */
+  .vault-tabs{ display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-bottom:5vh; }
+  .vault-tab{ position:relative; font-size:12px; letter-spacing:.07em; text-transform:uppercase; font-family:'IBM Plex Mono',monospace;
+    font-weight:500; color:var(--ink-soft); cursor:pointer; padding:10px 22px; border-radius:999px;
+    border:1px solid var(--line-dark); background:none; display:inline-block;
+    transition:all .3s var(--ease); }
+  @media (hover:hover){ .vault-tab:hover{ color:var(--ink); border-color:var(--ink); transform:translateY(-2px); } }
+  .vault-tab.active{ color:#fff; background:var(--red); border-color:var(--red);
+    box-shadow:0 10px 22px -10px rgba(216,70,58,.65); }
+  .vault-tab.active:hover{ transform:translateY(-2px); border-color:var(--red); }
+
+  /* Arrows sit immediately next to the card/poster as regular flex siblings — not far out
+     at the edges of the whole section — so they read as attached to the piece you're
+     browsing. What keeps them from hopping left/right as you click through (the original
+     complaint) is that the *card/poster's own slot* is a fixed width regardless of what's
+     inside it: .vault-frame is set to a fixed width per collection (see the vault JS —
+     wide only for a collection that actually has landscape cards in it), and .gallery-frame
+     is already a fixed box on its own. The artwork centers within that fixed slot; the slot
+     itself, and the arrows beside it, never move. */
+  .vault-stage, .gallery-stage{ display:flex; align-items:center; justify-content:center; gap:22px; }
+  .vault-arrow{ width:42px; height:42px; border:1px solid var(--line-dark); border-radius:50%; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; cursor:pointer; background:none;
+    transition:background .3s ease, color .3s ease, border-color .3s ease, transform .25s var(--ease); color:var(--ink); }
+  @media (hover:hover){ .vault-arrow:hover{ transform:scale(1.06); background:var(--ink); color:var(--paper); border-color:var(--ink); } }
+  .vault-arrow:focus-visible{ border-radius:50%; outline-offset:3px; }
+  .vault-arrow svg{ width:14px; height:14px; }
+  .dark .vault-arrow{ color:var(--paper); border-color:var(--line-light); }
+  @media (hover:hover){ .dark .vault-arrow:hover{ background:var(--paper); color:var(--ink); border-color:var(--paper); } }
+  .dark .vault-tab{ color:rgba(255,255,255,.65); border-color:var(--line-light); }
+  @media (hover:hover){ .dark .vault-tab:hover{ color:#fff; border-color:#fff; } }
+  .dark .vault-tab.active{ color:#fff; background:var(--red); border-color:var(--red); }
+  #galleryTabs{ justify-content:center; }
+
+  .vault-frame{ width:300px; max-width:70vw; flex-shrink:0; display:flex; align-items:center; justify-content:center;
+    transition:width .35s var(--ease); }
+  .vault-frame.is-landscape{ width:440px; max-width:85vw; }
+
+  /* A sliver of the next card peeks out from behind the current one — real artwork in its
+     own mini case, not a generic shadow — as a quiet "there's more here" cue toward the
+     arrow. Placed before .slab-inner in the markup so it sits behind naturally, no z-index
+     tricks needed. Defaults to hidden (opacity 0, see .slab-peek below with no ".hidden"
+     override needed) so there's nothing to see before JS has actually populated its image
+     and decided whether this collection even has a next card — otherwise an empty peek (or
+     one still carrying a stale image from a moment ago) could flash before the front card's
+     own case settles in. renderCard() is what reveals it, once real content is in place. */
+  .slab-peek{ position:absolute; inset:0; transform:translate(16px,10px) scale(.96);
+    border-radius:13px; overflow:hidden; opacity:0; box-shadow:0 20px 40px -18px rgba(0,0,0,.35);
+    background:linear-gradient(160deg,#fbfbfa 0%,#e9e8e4 45%,#d6d5d0 100%);
+    border:1px solid rgba(0,0,0,.1); padding:9px 9px 12px; box-sizing:border-box;
+    display:flex; flex-direction:column; transition:opacity .3s ease; }
+  .dark .slab-peek, .vault-arena .slab-peek{
+    background:linear-gradient(160deg,#2c2c2e 0%,#161618 55%,#0c0c0d 100%); border-color:rgba(255,255,255,.1); }
+  /* Same label-spacer height as the real card (below) so the art window underneath crops
+     to the exact same proportions — without this the peek's art window was a different
+     shape than the front's, which read as a zoomed-in crop rather than a smaller copy of
+     the same card. The label itself isn't duplicated here: this corner is always covered
+     by the front card sitting on top of it, so nothing would show anyway. */
+  .slab-peek .slab-label-spacer{ height:76px; }
+  .slab-peek-art{ position:relative; flex:1; border-radius:6px; overflow:hidden; background:#000; }
+  .slab-peek img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .slab-peek.is-visible{ opacity:.6; }
+
+  .slab{ position:relative; width:300px; max-width:70vw; aspect-ratio:2.6/3.7; -webkit-perspective:1400px; perspective:1400px;
+    transition:width .35s var(--ease), aspect-ratio .35s var(--ease), transform .35s var(--ease); }
+  /* Whole-card enlarge on hover — scales the entire card (frame, shadow, everything) as one
+     unit, not just the artwork inside a fixed box. Lives on the outer .slab so it composes
+     cleanly with .slab-inner's separate tilt/flip transform rather than fighting it. */
+  .slab:hover{ transform:scale(1.045); }
+  @media (hover: none){ .slab:hover{ transform:none; } } /* no hover on touch — nothing to trigger this on */
+  /* A soft contact shadow on the surface beneath the card — separate from .slab-face's own
+     drop shadow — is what actually reads as "elevated, real object" rather than "flat image
+     with a shadow filter". Grows and softens further on hover, as if the card lifted higher. */
+  .slab::after{ content:''; position:absolute; left:6%; right:6%; bottom:-5%; height:14%;
+    background:radial-gradient(ellipse at center, rgba(0,0,0,.4) 0%, rgba(0,0,0,.15) 55%, transparent 75%);
+    filter:blur(10px); z-index:-1; transition:transform .4s var(--ease), opacity .4s ease; opacity:.85; }
+  .slab:hover::after{ transform:translateY(10px) scale(1.06); opacity:1; }
+  .dark .slab::after, .vault-arena .slab::after{ background:radial-gradient(ellipse at center, rgba(0,0,0,.6) 0%, rgba(0,0,0,.25) 55%, transparent 75%); }
+  /* Most trading cards are portrait, but some real insert sets (like Prominent Prospects)
+     are genuinely printed horizontal. Per-card `orientation:"landscape"` in the data swaps
+     the container's width; the JS then measures each card's real front-image dimensions and
+     sets an exact inline aspect-ratio on .slab (see applyCardAspect), so the case always
+     matches the actual artwork instead of guessing one ratio for every landscape card —
+     that guess is what left empty gutters beside cards whose real proportions differed. */
+  .slab.orientation-landscape{ width:440px; max-width:85vw; }
+  .slab-inner{ position:relative; width:100%; height:100%; -webkit-transform-style:preserve-3d; transform-style:preserve-3d;
+    transition:transform .5s var(--ease); cursor:pointer; will-change:transform; }
+  .slab.flipped .slab-inner{ -webkit-transform:rotateY(180deg); transform:rotateY(180deg); }
+  /* While the cursor is actively moving over the card (see .is-tracking, toggled in JS on
+     mousemove), the tilt updates dozens of times a second — running those through the
+     .5s flip transition above made each tiny tilt change restart the transition mid-flight,
+     fighting the previous one and reading as a shudder/jitter, worst of all right when
+     flipping while still moving the cursor. Dropping the transition entirely while tracking
+     makes tilt updates apply instantly (no animation to interrupt); the .5s transition still
+     applies normally for a stationary click-to-flip and for the mouseleave settle-back. */
+  .slab.is-tracking .slab-inner, .slab.is-tracking .slab-label{ transition:none; }
+  /* Slab face is now a real graded-card holder, not a flat bordered card: a thick brushed-
+     plastic case (the gradient + padding below) with a raised certification-style label
+     plaque, and the artwork itself sitting in a recessed, glass-look inset window — the
+     visual language of the reference slab mockups, translated into this site's own
+     minimal/mono-serif vocabulary rather than copying their graphics literally. */
+  .slab-face{ position:absolute; inset:0; border-radius:13px; -webkit-backface-visibility:hidden; backface-visibility:hidden; overflow:hidden;
+    background:linear-gradient(160deg,#fbfbfa 0%,#e9e8e4 45%,#d6d5d0 100%);
+    border:1px solid rgba(0,0,0,.1); padding:9px 9px 12px; box-sizing:border-box;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,.8) inset,
+      0 -1px 0 rgba(0,0,0,.1) inset,
+      0 2px 5px rgba(0,0,0,.12),
+      0 30px 45px -18px rgba(0,0,0,.4),
+      0 60px 90px -30px rgba(0,0,0,.4);
+    display:flex; flex-direction:column; }
+  /* corner rivets — a small, quiet nod to a real case's hardware, not a sticker */
+  .slab-face::before{ content:''; position:absolute; inset:5px; border-radius:9px;
+    box-shadow:0 0 0 1px rgba(0,0,0,.06); pointer-events:none; }
+  /* Grid, not flex, so the middle watermark stays truly centered regardless of how wide
+     the collection name or card number on either side happen to be — flex space-between
+     would only center it when both sides were equal width. Sits on the outer .slab (a
+     sibling of .slab-inner, not inside either face), positioned to line up with the case
+     padding, so it stays put and upright no matter which side is flipped up. */
+  .slab-label{ position:absolute; top:9px; left:9px; right:9px; z-index:3;
+    display:grid; grid-template-columns:1fr auto 1fr; align-items:center;
+    padding:9px 10px; background:#fff; border-radius:5px; border:1px solid rgba(0,0,0,.08);
+    box-shadow:0 1px 2px rgba(0,0,0,.06), 0 6px 14px -6px rgba(0,0,0,.25); font-family:'IBM Plex Mono',monospace; font-size:8.5px;
+    letter-spacing:.05em; text-transform:uppercase; color:var(--grey); pointer-events:none;
+    transition:transform .5s var(--ease); will-change:transform;
+    -webkit-backface-visibility:hidden; backface-visibility:hidden; }
+  .slab-label b{ color:var(--ink); font-weight:600; justify-self:end; }
+  .slab-label .slab-wm{ justify-self:center; height:44px; width:auto; display:block; opacity:.92; }
+  /* An opacity fade (previous approach) runs on its own clock, independent of the card's
+     rotation — next to the card's smooth .5s 3D turn, the label popping/fading out on a
+     different timer read as laggy and disconnected. Giving the label the SAME rotateY flip
+     as .slab-inner, on the same transition, makes it turn edge-on in lockstep with the card;
+     backface-visibility:hidden then makes it vanish the instant it crosses 90° — exactly
+     the moment the card itself would hide it — so the back reads as blank case for free,
+     with no separate fade to keep in sync. */
+  .slab.flipped .slab-label{ -webkit-transform:rotateY(180deg); transform:rotateY(180deg); }
+  /* Reserves the same vertical space inside each face that the label used to occupy —
+     the label itself now floats above as a fixed overlay (see .slab-label), so this is
+     just an empty spacer keeping the art window from creeping up under it. */
+  .slab-label-spacer{ flex-shrink:0; height:76px; }
+  .slab-art{ position:relative; flex:1; border-radius:6px; overflow:hidden; background:#000;
+    box-shadow:inset 0 0 0 1px rgba(0,0,0,.18), inset 0 3px 10px rgba(0,0,0,.3); }
+  .slab-sheen{ position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity .3s ease;
+    background:linear-gradient(115deg, transparent 32%, rgba(255,255,255,.4) 48%, transparent 64%);
+    background-size:220% 100%; mix-blend-mode:overlay; z-index:2; }
+  .slab:hover .slab-sheen{ opacity:1; }
+
+  @media (prefers-reduced-motion: reduce){
+    .slab-inner{ transition:none; }
+    .slab::after{ transition:none; }
+    .slab-label{ transition:none; }
+  }
+
+  .slab-face.back{ -webkit-transform:rotateY(180deg); transform:rotateY(180deg);
+    background:linear-gradient(160deg,#2c2c2e 0%,#161618 55%,#0c0c0d 100%); border-color:rgba(255,255,255,.1); }
+
+  .vault-counter{ text-align:center; margin-top:4vh; font-family:'IBM Plex Mono',monospace; font-size:10px;
+    letter-spacing:.06em; color:var(--grey); }
+  /* The flip hint as a small pill badge with a red pulse dot, instead of a barely-there
+     line of grey text — reads as an active affordance rather than fine print. */
+  .vault-hint{ display:flex; align-items:center; gap:8px; width:fit-content; margin:16px auto 0;
+    padding:7px 16px 7px 13px; border-radius:999px;
+    font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.07em; text-transform:uppercase;
+    color:rgba(255,255,255,.8); }
+  .vault-hint::before{ content:''; width:6px; height:6px; border-radius:50%; background:var(--red);
+    flex-shrink:0; animation:pulse 1.8s ease infinite; }
+
+  /* "View all" — a quiet secondary mode, not a permanent toggle switch, but styled as a
+     real pill button (not bare text) so it reads as clickable, with a red fill on hover to
+     match the tabs above. The grid it reveals respects filtering (same collection already
+     selected) and never crops artwork (object-fit: contain throughout, same rule as the
+     single-piece views). */
+  .view-all-link{ display:flex; align-items:center; gap:8px; width:fit-content; margin:5vh auto 0;
+    background:none; border:1px solid rgba(255,255,255,.25); border-radius:999px; cursor:pointer;
+    font-size:11.5px; font-weight:500; letter-spacing:.07em; text-transform:uppercase; font-family:'IBM Plex Mono',monospace;
+    color:rgba(255,255,255,.88); padding:11px 22px; transition:all .3s var(--ease); }
+  @media (hover:hover){ .view-all-link:hover{ color:#fff; background:var(--red); border-color:var(--red); transform:translateY(-2px);
+    box-shadow:0 12px 26px -10px rgba(216,70,58,.6); } }
+  .grid-panel{ display:none; }
+  /* auto-fill always creates as many column tracks as fit the row, even empty ones — with
+     only a handful of tiles (e.g. the last few in a set), those leftover empty tracks still
+     claim their share of space, shoving the actual tiles over to the left instead of
+     centering them. auto-fit collapses tracks with nothing in them to 0 width, so a
+     half-empty row's tiles share the row evenly instead of hugging the left edge. */
+  .grid-panel.open{ display:grid; grid-template-columns:repeat(auto-fit, minmax(130px,1fr)); gap:12px;
+    justify-content:center; margin-top:5vh; animation:gridFadeIn .5s var(--ease); }
+  @keyframes gridFadeIn{ from{ opacity:0; transform:translateY(12px); } to{ opacity:1; transform:translateY(0); } }
+  .grid-tile{ position:relative; border-radius:4px; overflow:hidden; cursor:pointer; background:transparent; }
+  .grid-tile img{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; transition:transform .5s ease; }
+  @media (hover:hover){ .grid-tile:hover img{ transform:scale(1.05); } }
+  .grid-tile .cap{ position:absolute; inset:0; display:flex; align-items:flex-end; padding:9px;
+    background:linear-gradient(to top, rgba(0,0,0,.7), transparent 55%); opacity:0; transition:opacity .3s ease; }
+  @media (hover:hover){ .grid-tile:hover .cap{ opacity:1; } }
+  .grid-tile .cap span{ color:#fff; font-size:10px; font-family:'IBM Plex Mono',monospace; letter-spacing:.03em; }
+  @media (prefers-reduced-motion: reduce){ .grid-panel.open{ animation:none; } .grid-tile img{ transition:none; } }
+
+  /* Arena — designed (CSS-only) by default. If a collection has a real photo background
+     assigned (see ARENA_BACKGROUNDS in the vault JS), .has-photo-bg swaps in the actual
+     image with a readability gradient over it, and turns off the synthetic sheen texture
+     since the real photo already carries its own atmosphere. */
+  .vault-arena{ position:relative; border-radius:16px; padding:9vh 4vw 7vh; overflow:hidden; }
+  .vault-arena::before{ content:''; position:absolute; inset:0; z-index:0; border-radius:inherit;
+    background:
+      radial-gradient(ellipse 55% 45% at 50% 0%, rgba(255,255,255,.14), transparent 60%),
+      radial-gradient(ellipse 70% 55% at 15% 100%, rgba(110,160,255,.16), transparent 70%),
+      radial-gradient(ellipse 70% 55% at 85% 100%, rgba(255,110,180,.14), transparent 70%),
+      linear-gradient(180deg, #0a0a0c 0%, #101114 55%, #17181c 100%); }
+  .vault-arena.has-photo-bg::before{
+    background-image:
+      linear-gradient(180deg, rgba(10,10,12,.32) 0%, rgba(10,10,12,.1) 42%, rgba(10,10,12,.4) 100%),
+      var(--arena-bg);
+    background-size:cover, cover; background-position:center, center; }
+  .vault-arena.has-photo-bg::after{ display:none; }
+  .vault-arena::after{ content:''; position:absolute; left:0; right:0; bottom:0; height:38%; z-index:0;
+    border-radius:inherit; opacity:.5;
+    background:repeating-linear-gradient(96deg, rgba(255,255,255,.045) 0 2px, transparent 2px 26px);
+    -webkit-mask-image:linear-gradient(to top, #000, transparent); mask-image:linear-gradient(to top, #000, transparent); }
+  .vault-arena > *{ position:relative; z-index:1; }
+  .vault-arena .vault-counter{ color:rgba(255,255,255,.55); }
+  .vault-arena .vault-arrow{ color:#fff; border-color:rgba(255,255,255,.28); }
+  @media (hover:hover){ .vault-arena .vault-arrow:hover{ background:#fff; color:#111; border-color:#fff; } }
+
+  @media (max-width:860px){
+    .vault-stage{ gap:12px; }
+    .vault-arrow{ width:34px; height:34px; }
+    .slab{ width:220px; }
+    /* A fixed 300px landscape card plus both arrows and gaps no longer fit on narrow phones
+       (the arrows were getting pushed half off-screen) — cap it so it shrinks with the
+       viewport instead of overflowing. */
+    .slab.orientation-landscape{ width:min(300px, calc(100vw - 150px)); }
+    .vault-frame{ width:220px; }
+    .vault-frame.is-landscape{ width:min(300px, calc(100vw - 150px)); }
+    .vault-arena{ padding:7vh 3vw 5vh; border-radius:10px; }
+  }
+
+  /* Campaigns — same archive-browsing language as Collectibles, adapted for posters.
+     One poster at a time, arrows to move through the set, a slow zoom on hover for detail.
+     The frame is sized by max-width/max-height with the poster keeping its own aspect-ratio,
+     so it scales down proportionally at any viewport instead of stretching. */
+  .gallery-body{ width:640px; max-width:92vw; flex-shrink:0; }
+  /* Caption + counter used to live inside .gallery-body (a flex child of .gallery-stage,
+     alongside the arrows), so the arrows — vertically centered on that whole flex item —
+     ended up centered on frame+caption+counter together, sitting visibly below the
+     actual poster's middle. Pulling them out into their own block below .gallery-stage
+     means .gallery-body is just the frame, so the arrows center on the poster itself. */
+  .gallery-info{ width:640px; max-width:92vw; margin:0 auto; }
+  /* On narrow phones, 92vw for the poster alone leaves no room for the two arrows sitting
+     beside it in the same row, so they were getting pushed off-screen. */
+  @media (max-width:640px){
+    .gallery-body{ max-width:min(92vw, calc(100vw - 150px)); }
+  }
+  .gallery-frame{ position:relative; width:100%; height:74vh; max-height:760px;
+    display:flex; align-items:center; justify-content:center; }
+  .poster-art{ position:relative; height:100%; max-width:100%; display:flex; align-items:center; justify-content:center;
+    transition:transform .6s var(--ease); }
+  /* A missing poster image gets removed outright (see imgTag's onerror) rather than left as
+     a broken-icon box — but that leaves .poster-art with nothing inside to size itself off
+     of, and it would otherwise collapse to nothing. This is that floor: a plain, evenly
+     sized placeholder instead of a sliver of empty space in the gallery. */
+  .poster-art:empty{ width:min(420px,70vw); min-height:220px; background:#1c1c1e; border-radius:6px; }
+  /* Real poster: the <img> itself sets the box size from its own intrinsic ratio — no
+     forced aspect-ratio, so any poster dimensions (portrait, landscape, square) scale down
+     proportionally with zero letterboxing or cropping. max-height/max-width (not a forced
+     height) means the image's own rendered BOX matches its visible pixels exactly — a wide
+     banner piece stays a short box, so its drop-shadow doesn't cast a tall dark rectangle
+     above/below where the box used to be forced full-height regardless of shape. */
+  .poster-art img{ max-height:100%; max-width:100%; height:auto; width:auto; object-fit:contain; display:block;
+    border-radius:2px; box-shadow:0 40px 80px -20px rgba(0,0,0,.45); }
+  /* Placeholder-only fallback, used when a project has no image yet */
+  .poster-art .art-slot.placeholder-fallback{ height:100%; width:auto; aspect-ratio:3/4;
+    border-radius:2px; overflow:hidden; box-shadow:0 40px 80px -20px rgba(0,0,0,.45); }
+  /* The old flat hover-scale here was replaced by a mouse-tracked 3D tilt (see the
+     hand-rolled tilt script below) — that JS now owns .poster-art's transform under
+     the same (hover:hover) condition, so this rule was removed rather than fighting it. */
+
+  /* A poster-scale echo of the card's .slab-sheen — same diagonal light-catch idea, kept
+     noticeably weaker (lower peak opacity) since a poster should read as calmer than a
+     slabbed card. Lives as its own layer on .gallery-frame (a sibling of #galleryArt, not
+     inside it) so it survives every poster swap instead of being wiped by the JS re-render. */
+  .poster-sheen{ position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity .4s ease;
+    background:linear-gradient(115deg, transparent 35%, rgba(255,255,255,.2) 50%, transparent 65%);
+    background-size:220% 100%; mix-blend-mode:overlay; z-index:3; }
+  @media (hover:hover){ .gallery-frame:hover .poster-sheen{ opacity:1; } }
+
+  /* displayTreatment: "framed" — a physical mat + frame around the untouched artwork,
+     for premium/collectible pieces. Standard posters never get this; only projects
+     explicitly tagged "framed" do. No fake wall photo — just frame, mat, glass, shadow.
+     Everything below shrink-wraps to the artwork's own rendered size (a slim, consistent
+     ~2in-equivalent border) instead of stretching to fill the fixed-height stage — a wide
+     banner-shaped piece gets a wide, short frame, not a tall one with empty mat above/below. */
+  .poster-art.is-framed{ height:100%; }
+  /* Frame/mat border used to be a fixed 16px/20px regardless of viewport — on a phone,
+     where the poster itself scales way down to fit a short mobile .gallery-frame, that
+     fixed border stopped reading as a slim ~2in-equivalent mat and started looking like a
+     thick, disproportionate case swallowing the art. Both now scale down with the viewport
+     (clamp floors them so they never vanish entirely). --frame-pad also drives .poster-glass
+     below, so the glass overlay's inset always matches the frame's actual padding. */
+  .poster-frame{ position:relative; display:inline-flex; max-width:100%; max-height:100%; box-sizing:border-box;
+    --frame-pad:clamp(7px,2.2vw,16px); padding:var(--frame-pad);
+    background:linear-gradient(150deg,#3a332c,#18150f 60%,#241f18); border-radius:3px;
+    box-shadow:0 50px 100px -24px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.05); }
+  .poster-mat{ display:inline-flex; align-items:center; justify-content:center; background:#eeece6;
+    padding:clamp(9px,3vw,20px);
+    box-sizing:border-box; max-width:100%; max-height:100%;
+    box-shadow:inset 0 0 14px rgba(0,0,0,.18); border-radius:1px; }
+  /* Same floor as .poster-art:empty above, but for the framed treatment — without it, a
+     missing image left the mat (which otherwise hugs the image's own size) and the frame
+     around it collapsed down to a sliver instead of a normal-looking, if empty, frame. */
+  .poster-mat:empty{ width:min(320px,60vw); min-height:200px; }
+  .poster-mat img{ max-height:100%; max-width:100%; height:auto; width:auto; object-fit:contain; display:block;
+    box-shadow:0 2px 10px rgba(0,0,0,.35); border-radius:0; }
+  .poster-glass{ position:absolute; inset:var(--frame-pad,16px); pointer-events:none; border-radius:1px;
+    background:linear-gradient(125deg, rgba(255,255,255,.16) 0%, transparent 28%, transparent 72%, rgba(255,255,255,.05) 100%);
+    opacity:.7; transition:opacity .5s ease; mix-blend-mode:screen; }
+
+  /* frameColor: "black" — a true black frame variant (vs. the warm wood-tone default
+     above), used for pieces that call for a sleeker, gallery-black presentation.
+     Same mat/glass/shadow structure, sized to each piece's own aspect ratio. */
+  .poster-frame.frame-black{ background:linear-gradient(150deg,#232323,#050505 60%,#161616);
+    box-shadow:0 50px 100px -24px rgba(0,0,0,.65), inset 0 0 0 1px rgba(255,255,255,.06); }
+  @media (hover:hover){ .gallery-frame:hover .poster-glass{ opacity:1; } }
+  @media (prefers-reduced-motion: reduce){ .poster-glass{ transition:none; } }
+  .poster-caption{ text-align:center; margin-top:4vh; }
+  .poster-caption .t{ font-family:'Fraunces',serif; font-size:19px; }
+  .poster-caption .m{ font-size:10px; color:var(--grey); margin-top:6px; }
+  .gallery-counter{ text-align:center; margin-top:2.5vh; font-family:'IBM Plex Mono',monospace; font-size:10px;
+    letter-spacing:.06em; color:var(--grey); }
+  @media (max-width:860px){
+    .gallery-stage{ gap:12px; }
+    .gallery-frame{ height:58vh; }
+    .poster-caption{ margin-top:2.5vh; }
+    .gallery-counter{ margin-top:1.5vh; }
+    .view-all-link{ margin-top:3vh; }
+  }
+
+  /* Archive — 3 category cards laid out side by side, each carrying its own title/count
+     (no separate scroll-tracked label; that was redundant with the card's own overlay).
+     Each card sits in a ".archive-card-float" wrapper that idles with a slow, gentle,
+     staggered bob — "there's more here" without a scroll-driven cue — while the card
+     itself handles the scroll-reveal and hover-enlarge. Two separate elements so the
+     continuous keyframe animation (on the wrapper) never fights the hover transition
+     (on the card) for the same `transform` property. */
+  .archive-cards{ display:flex; flex-direction:row; gap:2.5vw; }
+  .archive-card-float{ flex:1; min-width:0; animation:archiveFloat 6.5s ease-in-out infinite; }
+  .archive-card-float:nth-child(2){ animation-delay:-1.6s; }
+  .archive-card-float:nth-child(3){ animation-delay:-3.2s; }
+  .archive-card-float:nth-child(4){ animation-delay:-4.8s; }
+  @keyframes archiveFloat{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-10px); } }
+  .archive-card{ position:relative; width:100%; border-radius:14px; overflow:hidden; cursor:pointer;
+    aspect-ratio:16/10; background:#151517; opacity:0; transform:translateY(24px) scale(1);
+    transition:opacity .8s var(--ease), transform .45s var(--ease), box-shadow .45s ease, filter .45s ease; }
+  .archive-card.is-visible{ opacity:1; transform:translateY(0) scale(1); }
+  /* Hover: just darken the preview slightly and lift it — the bottom title/count
+     overlay (already always visible) is the only label, no separate hover cue. */
+  .archive-card:hover{ transform:translateY(0) scale(1.055); box-shadow:0 30px 60px -20px rgba(0,0,0,.45); filter:brightness(.7); z-index:2; }
+  @media (hover:none){ .archive-card:hover{ transform:translateY(0) scale(1); box-shadow:none; filter:none; } }
+  .archive-card img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:top; }
+  /* Some source thumbnails (a text-heavy slide, a busy screenshot) don't leave a clean
+     patch for the overlay title to sit on — a gradient alone isn't reliably dark enough at
+     every point behind it. A blurred solid chip behind just the text guarantees legibility
+     no matter what's in the image, without having to art-direct every thumbnail by hand. */
+  .archive-card .overlay{ position:absolute; inset:0; display:flex; flex-direction:column; align-items:center;
+    justify-content:flex-end; text-align:center;
+    padding:22px; background:linear-gradient(to top, rgba(0,0,0,.78) 0%, rgba(0,0,0,.15) 62%, transparent 100%); pointer-events:none; }
+  .archive-card .overlay .label-chip{ display:inline-block; max-width:100%; padding:10px 14px; border-radius:8px;
+    background:rgba(0,0,0,.4); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+  .archive-card .overlay .t{ color:#fff; font-family:'Fraunces',serif; font-size:clamp(18px,2vw,26px); }
+  .archive-card .overlay .m{ color:rgba(255,255,255,.65); font-size:10px; font-family:'IBM Plex Mono',monospace;
+    text-transform:uppercase; letter-spacing:.04em; margin-top:6px; }
+  @media (prefers-reduced-motion:reduce){ .archive-card-float{ animation:none; } }
+  @media (max-width:860px){ .archive-cards{ flex-direction:column; gap:20px; } }
+
+  /* Case study — replaces the old arrow-through-one-at-a-time lightbox. Clicking a
+     category card opens every piece in that group as one continuous page: a slim header
+     that stays put (title + close), then each piece's own title/medium/description
+     followed by its images (and video, if any) stacked full-width — scroll down to move
+     through the whole set, closer to a real case study than a slideshow. */
+  .case-study{ position:fixed; inset:0; z-index:200; background:var(--paper); display:none; flex-direction:column; }
+  .case-study.open{ display:flex; }
+  .cs-header{ position:sticky; top:0; z-index:2; flex-shrink:0; display:flex; align-items:center; justify-content:space-between;
+    padding:18px 5vw; background:rgba(247,246,244,.92); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line-dark); }
+  .cs-header-title{ font-family:'Fraunces',serif; font-size:20px; color:var(--ink); }
+  .cs-header-count{ font-size:10px; color:var(--grey); margin-top:3px; font-family:'IBM Plex Mono',monospace;
+    text-transform:uppercase; letter-spacing:.04em; }
+  .cs-close{ width:38px; height:38px; border-radius:50%; border:1px solid var(--line-dark); background:none;
+    cursor:pointer; font-size:20px; line-height:1; color:var(--ink); display:flex; align-items:center; justify-content:center;
+    flex-shrink:0; transition:all .3s ease; }
+  @media (hover:hover){ .cs-close:hover{ background:var(--ink); color:var(--paper); border-color:var(--ink); } }
+  .cs-body{ flex:1; overflow-y:auto; -webkit-overflow-scrolling:touch; }
+  .cs-piece{ max-width:900px; margin:0 auto; padding:8vh 5vw 0; }
+  .cs-piece:last-child{ padding-bottom:8vh; }
+  .cs-piece-title{ font-family:'Fraunces',serif; font-size:clamp(24px,3.4vw,36px); color:var(--ink); }
+  .cs-piece-medium{ font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--red);
+    font-family:'IBM Plex Mono',monospace; margin-top:9px; }
+  .cs-piece-desc{ font-size:14px; color:var(--ink-soft); line-height:1.7; margin-top:14px; max-width:640px; }
+  .cs-piece-media{ margin-top:5vh; display:flex; flex-direction:column; gap:2vh; }
+  .cs-piece-media img, .cs-piece-media video{ width:100%; height:auto; display:block; border-radius:4px; }
+  @media (max-width:700px){ .cs-piece{ padding:6vh 6vw 0; } }
+  body.no-scroll{ overflow:hidden; }
+
+  /* Brands */
+  /* Brands — an infinite marquee, not a static row, since this will grow to "a good
+     amount" of logos. The HTML only lists the logos once — JS clones that set once more
+     for a seamless loop, so adding/removing a logo later only ever means editing one list. */
+  .marquee-wrap{ position:relative; overflow:hidden; padding:8vh 0;
+    border-top:1px solid var(--line-dark); border-bottom:1px solid var(--line-dark); }
+  .marquee-wrap.paused .marquee-track{ animation-play-state:paused; }
+  .marquee-track{ display:flex; align-items:center; gap:56px; width:max-content;
+    animation:marqueeScroll 32s linear infinite; }
+  .marquee-fade{ position:absolute; top:0; bottom:0; width:14vw; max-width:180px; z-index:2; pointer-events:none; }
+  .marquee-fade.left{ left:0; background:linear-gradient(to right, var(--paper), transparent); }
+  .marquee-fade.right{ right:0; background:linear-gradient(to left, var(--paper), transparent); }
+  @keyframes marqueeScroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce){ .marquee-track{ animation:none; } }
+
+  .brand-item{ display:flex; flex-direction:column; align-items:center; gap:10px; flex-shrink:0; }
+  .logo-mark{ width:76px; height:76px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace;
+    font-size:11px; letter-spacing:.02em; color:var(--ink-soft); background:var(--paper); transition:transform .3s var(--ease); }
+  @media (hover:hover){ .brand-item:hover .logo-mark{ transform:scale(1.08); } }
+  .logo-mark img{ width:100%; height:100%; object-fit:contain; border-radius:50%; }
+
+  /* About */
+  .about{ display:grid; grid-template-columns:.8fr 1.5fr; gap:6vw; }
+  .about-portrait{ aspect-ratio:4/5; border-radius:4px; overflow:hidden; margin-bottom:24px; }
+  .about-label{ font-size:11px; color:var(--grey); }
+  .about-text{ font-family:'Fraunces',serif; font-size:clamp(15px,2.1vw,26px); line-height:1.6; font-weight:400;
+    opacity:0; transform:translateY(20px); transition:all .9s var(--ease); }
+  .about-text.is-visible{ opacity:1; transform:translateY(0); }
+  .about-text em{ font-style:italic; color:var(--grey); }
+
+  /* Contact — a closing statement first, form second */
+  .contact{ background:var(--ink); color:var(--paper); padding:14vh 5vw 10vh; text-align:center; scroll-margin-top:80px; }
+  .contact-title{ font-family:'Fraunces',serif; font-size:clamp(36px,6.6vw,88px); line-height:1.1; max-width:820px; margin:0 auto 3vh; color:#fff; }
+  .contact-sub{ font-size:13px; color:var(--grey); max-width:none; white-space:nowrap; margin:0 auto 10vh; line-height:1.6; }
+  .contact-grid{ display:grid; grid-template-columns:1fr; max-width:520px; margin:0 auto; gap:0; text-align:left; }
+  .field{ margin-bottom:30px; }
+  .field label{ display:block; font-size:11px; color:var(--grey); margin-bottom:10px; }
+  .field input, .field textarea{ width:100%; background:transparent; border:none; border-bottom:1px solid var(--line-light);
+    color:var(--paper); font-family:'Inter',sans-serif; font-size:16px; padding:8px 0; outline:none; transition:border-color .3s; }
+  .field input:focus, .field textarea:focus{ border-color:var(--paper); }
+  .field textarea{ resize:none; height:70px; }
+  .submit-btn{ margin-top:6px; background:none; border:1px solid var(--line-light); color:var(--paper);
+    padding:14px 30px; font-size:12px; letter-spacing:.06em; text-transform:uppercase; cursor:pointer; transition:background .3s, color .3s, transform .25s var(--ease); }
+  @media (hover:hover){ .submit-btn:hover{ background:var(--paper); color:var(--ink); transform:scale(1.04); } }
+  .submit-btn:disabled{ opacity:.6; cursor:default; }
+  @media (hover:hover){ .submit-btn:disabled:hover{ background:none; color:var(--paper); transform:none; } }
+  .form-status{ margin-top:14px; font-size:12px; color:var(--grey); min-height:1.5em; }
+  .contact-side{ font-size:13px; color:var(--grey); line-height:1.8; margin-top:6vh; }
+  .contact-side a{ color:var(--paper); border-bottom:1px solid var(--line-light); }
+  .foot{ margin-top:14vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    font-size:11px; color:var(--grey); flex-wrap:wrap; gap:10px; text-align:center; }
+
+  @media (max-width:860px){
+    .about, .contact-grid{ grid-template-columns:1fr; }
+    .about-portrait{ max-width:180px; margin-left:auto; margin-right:auto; }
+    .about{ text-align:center; justify-items:center; }
+    .chapter-desc{ max-width:400px; }
+    .chapter-desc.nowrap-desktop{ white-space:normal; max-width:400px; }
+    .footnote-lead{ white-space:normal; }
+    .contact-sub{ white-space:normal; max-width:320px; }
+    .chapter-head{ margin-bottom:4vh; }
+    .chapter{ padding:8vh 5vw; }
+    .nav-links{ gap:16px; font-size:9.5px; }
+    .nav-mark .en{ font-size:12px; }
+    /* Section titles scroll under the fixed nav between chapters — on phones the
+       nav's semi-transparent background let big serif headings bleed through and
+       collide with the logo/links, so make it read as solid here. */
+    .nav{ background:rgba(247,246,244,.97); }
+    .contact-sub{ margin-bottom:5vh; }
+    .contact{ padding-top:10vh; }
+  }
+  @media (max-width:400px){
+    .nav-mark .en{ display:none; } /* at the tightest widths, keep the marks + nav links, drop the English name */
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor-dot" id="cursorDot"></div>
+
+<!-- Back-to-top: mainly for anyone deep in an expanded "View all" grid (Collectibles or
+     Campaigns — the poster grid alone runs to 40 tiles) so they aren't stuck scrolling back
+     up by hand. This has to live here, before the <script> block below — it previously sat
+     right before </body>, AFTER the script that wires it up, so document.getElementById
+     always returned null and the click/scroll listeners silently never attached. It existed
+     in the page the whole time; it just never turned on. -->
+<button id="backToTop" class="back-to-top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<div class="preloader" id="preloader">
+  <div class="preloader-pct mono" id="preloaderPct">0%</div>
+  <div class="preloader-label mono">Preparing the work</div>
+  <div class="preloader-bar"><span id="preloaderBar"></span></div>
+</div>
+
+<nav class="nav">
+  <div class="nav-mark"><span class="zh">薛雯</span><span class="en">Naomi Schaefer</span></div>
+  <div class="nav-links mono">
+    <div class="nav-item has-dropdown">
+      <span data-scroll-to="work">Work</span>
+      <div class="nav-dropdown">
+        <span data-scroll-to="work">Collections</span>
+        <span data-scroll-to="campaigns">Campaigns</span>
+        <span data-scroll-to="archive">Additional Work</span>
+      </div>
+    </div>
+    <span data-scroll-to="about">About</span>
+    <span data-scroll-to="contact">Contact</span>
+  </div>
+</nav>
+
+<section class="hero" id="hero">
+  <div class="hero-name" id="heroName" aria-label="Naomi Schaefer">
+    <div class="hero-name-row">
+      <span class="hero-cn-side"><span class="cn-base">薛</span><span class="cn-holo" aria-hidden="true">薛</span></span>
+      <div class="stack">
+        <span class="line">NAOMI</span>
+        <span class="line line-holo" aria-hidden="true">NAOMI</span>
+      </div>
+      <span class="hero-cn-side"><span class="cn-base">雯</span><span class="cn-holo" aria-hidden="true">雯</span></span>
+    </div>
+    <div class="stack">
+      <span class="line">SCHAEFER</span>
+      <span class="line line-holo" aria-hidden="true">SCHAEFER</span>
+    </div>
+    <div class="reg-mark rm-tl"></div><div class="reg-mark rm-tr"></div><div class="reg-mark rm-bl"></div><div class="reg-mark rm-br"></div>
+  </div>
+  <p class="hero-sub">Graphic Designer <span class="hero-sub-dot">·</span> Motion <span class="hero-sub-dot">·</span> Collectibles</p>
+  <div class="hero-hint mono"><span class="dot"></span> Scroll</div>
+  <div class="hero-peek"><span class="chev"></span></div>
+</section>
+
+<section class="chapter" id="work">
+  <div class="chapter-head">
+    <div><div class="chapter-num mono">Chapter 01</div><h2 class="chapter-title holo-title"><span class="ct-base">Collectibles</span><span class="ct-holo" aria-hidden="true">Collectibles</span></h2></div>
+    <p class="chapter-desc nowrap-desktop">Choose a collection, then browse it one slabbed card at a time.</p>
+  </div>
+
+  <div class="vault-tabs" id="vaultTabs" role="tablist"></div>
+
+  <div class="vault-arena" id="vaultArena">
+    <div class="vault-stage">
+      <button class="vault-arrow" id="vaultPrev" aria-label="Previous card">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <div class="vault-frame" id="vaultFrame">
+        <div class="slab" id="slab" tabindex="0" role="button" aria-label="Flip card">
+          <div class="slab-peek" id="slabPeek"><div class="slab-label-spacer"></div><div class="slab-peek-art"><img id="slabPeekImg" alt=""></div></div>
+          <div class="slab-inner" id="slabInner">
+            <div class="slab-face front">
+              <div class="slab-label-spacer"></div>
+              <div class="slab-art"><div class="art-slot" id="slabArtF"><p class="slot-note mono">Card front — upload artwork</p></div><div class="slab-sheen"></div></div>
+            </div>
+            <div class="slab-face back">
+              <div class="slab-label-spacer"></div>
+              <div class="slab-art"><div class="art-slot" id="slabArtB"><p class="slot-note mono">Card back — upload artwork</p></div><div class="slab-sheen"></div></div>
+            </div>
+          </div>
+          <!-- The grading-plaque label (collection, logo, card number) lives on the case
+               itself, not on either face — the same info shows whichever side is up, so it
+               sits outside the flipping .slab-inner and simply never rotates. -->
+          <div class="slab-label"><span id="slabCollection">—</span><img class="slab-wm" src="assets/logos/ns-watermark.png" alt="Naomi Schaefer"><b id="slabNum">—</b></div>
+        </div>
+      </div>
+
+      <button class="vault-arrow" id="vaultNext" aria-label="Next card">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    <div class="vault-counter mono" id="vaultCounter">01 / 01</div>
+    <div class="vault-hint mono">Click card to flip</div>
+    <button class="view-all-link mono" id="vaultViewAllBtn">View all →</button>
+    <div class="grid-panel" id="vaultGrid"></div>
+  </div>
+
+  <div class="chapter-footnote">
+    <p class="footnote-lead">Professional trading card designs by Naomi Schaefer for Upper Deck, featuring officially licensed properties.</p>
+    <p class="footnote-fine mono">Stay tuned! More projects to come pending official release.</p>
+    <p class="footnote-fine mono">Available via Upper Deck, hobby shops, and select retailers.</p>
+  </div>
+</section>
+
+<div class="marquee-wrap" id="brandStrip">
+  <div class="marquee-track" id="brandTrack">
+    <div class="brand-item"><div class="logo-mark"><img src="assets/logos/upperdeck-logo.png" alt="Upper Deck" loading="lazy"></div></div>
+    <div class="brand-item"><div class="logo-mark"><img src="assets/logos/uda-logo.png" alt="Upper Deck Authenticated" loading="lazy"></div></div>
+    <div class="brand-item"><div class="logo-mark"><img src="assets/logos/nhl-logo.png" alt="NHL" loading="lazy"></div></div>
+    <div class="brand-item"><div class="logo-mark"><img src="assets/logos/nba-logo.png" alt="NBA" loading="lazy"></div></div>
+    <div class="brand-item"><div class="logo-mark"><img src="assets/logos/pwhl-logo.png" alt="PWHL" loading="lazy"></div></div>
+    <div class="brand-item"><div class="logo-mark"><img src="assets/logos/ahl-logo.png" alt="AHL" loading="lazy"></div></div>
+    <div class="brand-item"><div class="logo-mark"><img src="assets/logos/chl-logo.png" alt="CHL" loading="lazy"></div></div>
+    <div class="brand-item"><div class="logo-mark"><img src="assets/logos/nascar-logo.png" alt="NASCAR" loading="lazy"></div></div>
+    <div class="brand-item"><div class="logo-mark"><img src="assets/logos/23xi-logo.png" alt="23XI Racing" loading="lazy"></div></div>
+    <div class="brand-item"><div class="logo-mark"><img src="assets/logos/aew-logo.png" alt="AEW" loading="lazy"></div></div>
+    <div class="brand-item"><div class="logo-mark"><img src="assets/logos/tgl-logo.png" alt="TGL" loading="lazy"></div></div>
+    <div class="brand-item"><div class="logo-mark"><img src="assets/logos/tgr-logo.png" alt="TGR" loading="lazy"></div></div>
+    <div class="brand-item"><div class="logo-mark"><img src="assets/logos/usa-hockey-logo.png" alt="USA Hockey" loading="lazy"></div></div>
+  </div>
+  <div class="marquee-fade left"></div>
+  <div class="marquee-fade right"></div>
+</div>
+
+<section class="chapter dark" id="campaigns">
+  <div class="chapter-head">
+    <div><div class="chapter-num mono">Chapter 02</div><h2 class="chapter-title holo-title"><span class="ct-base">Campaigns</span><span class="ct-holo" aria-hidden="true">Campaigns</span></h2></div>
+    <p class="chapter-desc">Hard-signed collectible poster designs by Naomi Schaefer, created for Upper Deck and officially licensed properties, featuring athlete-authenticated signatures.</p>
+  </div>
+
+  <div class="vault-tabs" id="galleryTabs" role="tablist"></div>
+
+  <div class="gallery-stage">
+    <button class="vault-arrow" id="galleryPrev" aria-label="Previous poster">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+
+    <div class="gallery-body">
+      <div class="gallery-frame" id="galleryFrame">
+        <div class="poster-art" id="galleryArt"><div class="art-slot"><p class="slot-note mono">Poster artwork — Upper Deck All-Star Weekend key art</p></div></div>
+        <div class="poster-sheen"></div>
+      </div>
+    </div>
+
+    <button class="vault-arrow" id="galleryNext" aria-label="Next poster">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+  <div class="gallery-info">
+    <div class="poster-caption"><div class="t" id="galleryTitle">Upper Deck All-Star Weekend</div><div class="m mono" id="galleryMeta">Campaign — Key Art &amp; Promotional Poster</div></div>
+    <div class="gallery-counter mono" id="galleryCounter">01 / 01</div>
+  </div>
+  <div style="text-align:center;">
+    <button class="view-all-link mono" id="galleryViewAllBtn">View all →</button>
+  </div>
+  <div class="grid-panel" id="galleryGrid"></div>
+
+  <div class="chapter-footnote">
+    <p class="footnote-fine mono">Stay tuned! More projects to come pending official release.</p>
+    <p class="footnote-fine mono">Released products featuring these designs are available through Upper Deck!</p>
+  </div>
+</section>
+
+<section class="chapter" id="archive">
+  <div class="chapter-head">
+    <div><div class="chapter-num mono">Chapter 03</div><h2 class="chapter-title holo-title"><span class="ct-base">Additional Work</span><span class="ct-holo" aria-hidden="true">Additional Work</span></h2></div>
+    <p class="chapter-desc">Work created across different clients, industries, and mediums, exploring visual design, motion, branding, digital content, and creative storytelling.</p>
+  </div>
+  <div class="archive-cards" id="archiveCards"></div>
+</section>
+
+<div class="case-study" id="caseStudy">
+  <div class="cs-header">
+    <div>
+      <div class="cs-header-title" id="csTitle">—</div>
+      <div class="cs-header-count" id="csCount">—</div>
+    </div>
+    <button class="cs-close" id="csClose" aria-label="Close">&times;</button>
+  </div>
+  <div class="cs-body" id="csBody"></div>
+</div>
+
+<section class="chapter" id="about">
+  <div class="chapter-head">
+    <div><div class="chapter-num mono">Chapter 04</div><h2 class="chapter-title holo-title"><span class="ct-base">About</span><span class="ct-holo" aria-hidden="true">About</span></h2></div>
+  </div>
+  <div class="about">
+    <div>
+      <div class="about-portrait"><div class="art-slot"><img src="assets/about/naomi-portrait-placeholder.jpg" alt="Naomi Schaefer"></div></div>
+    </div>
+    <p class="about-text">I'm Naomi Schaefer, a graphic designer working across visual design, motion, and collectibles. I create work for sports, entertainment, and digital media, with a focus on strong visuals, thoughtful details, and experiences people want to keep.<br><br>Born and raised in Taiwan and based in Southern California, I bring a cross-cultural perspective to everything I make.<br><br><em>Design that people don't just see, they remember.</em></p>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <h2 class="contact-title serif holo-title"><span class="ct-base">Let's build something...</span><span class="ct-holo" aria-hidden="true">Let's build something...</span></h2>
+  <p class="contact-sub mono">Open to freelance, full-time, and collaboration</p>
+  <div class="contact-grid">
+    <!-- Posts to Formspree so messages actually reach your inbox instead of vanishing —
+         see the matching JS block below. -->
+    <form id="contactForm" action="https://formspree.io/f/mjykygql" method="POST">
+      <div class="field"><label class="mono">Name</label><input type="text" name="name" required></div>
+      <div class="field"><label class="mono">Email</label><input type="email" name="email" required></div>
+      <div class="field"><label class="mono">Message</label><textarea name="message" required></textarea></div>
+      <button class="submit-btn mono" type="submit">Send</button>
+      <p class="form-status mono" id="contactFormStatus" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+  <div class="foot mono"><span>© 2026 Naomi Schaefer. naomischaefer.com. All rights reserved. Licensed images remain the property of their respective owners. Portfolio work may not be reproduced or used without permission.</span><span><a href="privacy-policy.html" style="color:inherit; text-decoration:underline; text-underline-offset:2px;">Privacy Policy</a></span></div>
+</section>
+
+<script>
+  // Basic deterrent against casual image/video saving — right-click and drag disabled on
+  // <img> and <video> elements only (text selection, right-click elsewhere on the page,
+  // etc. still work normally). This is a mild speed bump, not real protection — a
+  // screenshot defeats it — see the note in chat.
+  document.addEventListener('contextmenu', (e) => { if (e.target.tagName === 'IMG' || e.target.tagName === 'VIDEO') e.preventDefault(); });
+  document.addEventListener('dragstart', (e) => { if (e.target.tagName === 'IMG' || e.target.tagName === 'VIDEO') e.preventDefault(); });
+
+  // ---------- Contact form: real submission via Formspree, not just a fake "Sent" ----------
+  // Submits with fetch instead of a normal form POST so the page never navigates away —
+  // same "Sent" feel as before, but now tied to whether the message actually went through.
+  // If the Formspree endpoint ever errors out, that failure is caught below and turned
+  // into a plain-language fallback pointing at the direct email link, rather than
+  // silently pretending to send.
+  (function(){
+    const form = document.getElementById('contactForm');
+    if (!form) return;
+    const btn = form.querySelector('.submit-btn');
+    const status = document.getElementById('contactFormStatus');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      if (status) status.textContent = '';
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (!res.ok) throw new Error('Form endpoint returned an error');
+        btn.textContent = 'Sent';
+        form.reset();
+        if (status) status.textContent = "Thanks — I'll get back to you soon.";
+      } catch (err) {
+        btn.disabled = false;
+        btn.textContent = 'Send';
+        if (status) status.textContent = 'Something went wrong — please try again in a moment.';
+      }
+    });
+  })();
+
+  // ---------- Custom cursor dot — desktop-with-mouse only ----------
+  (function(){
+    const hasRealMouse = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (!hasRealMouse) return; // touch devices keep entirely normal behavior
+
+    const dot = document.getElementById('cursorDot');
+    document.body.classList.add('cursor-ready');
+    let shown = false;
+
+    // Follows the pointer 1:1, no smoothing lag — a delayed dot reads as sluggish,
+    // and the dot is small/fast-moving enough that instant tracking still feels alive.
+    document.addEventListener('mousemove', (e) => {
+      dot.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+      if (!shown) { shown = true; dot.classList.add('visible'); }
+    });
+    document.addEventListener('mouseleave', () => dot.classList.remove('visible'));
+    document.addEventListener('mouseenter', () => dot.classList.add('visible'));
+
+    const HOVER_SELECTOR = 'a, button, input, textarea, select, [role="button"], .slab, .archive-card, .grid-tile, .poster-art, .logo-mark, .vault-tab, .nav-links span';
+    document.addEventListener('mouseover', (e) => {
+      dot.classList.toggle('hovering', !!e.target.closest(HOVER_SELECTOR));
+    });
+  })();
+
+  // Single shared fetch of the content file — both the Collectibles vault and the
+  // Campaigns gallery read from this. Add/edit projects via admin/index.html, or by hand-editing
+  // data/portfolio.json directly — never by editing this script.
+  // NOTE: fetch() of a local JSON file is blocked by browsers when opening index.html
+  // directly as a file:// URL. Run a tiny local server to preview (from this folder):
+  //   python3 -m http.server        then open http://localhost:8000
+  // This works automatically once hosted on GitHub Pages or any real web host.
+  let _portfolioDataPromise = null;
+  function fetchPortfolioData(){
+    if (!_portfolioDataPromise) {
+      _portfolioDataPromise = fetch('data/portfolio.json')
+        .then(r => r.json())
+        .then(d => d.projects || [])
+        .catch(err => { console.error('Could not load data/portfolio.json —', err); return []; });
+    }
+    return _portfolioDataPromise;
+  }
+
+  // A missing/misnamed source file used to show the browser's default broken-image icon —
+  // a small blue-bordered square that looks especially odd inside a hover effect, and for
+  // the framed poster treatment (which sizes its case to hug the image) collapsed the whole
+  // frame down to almost nothing. onerror here removes the broken <img> and marks its
+  // container as .media-missing instead, so a real gap in the data reads as a quiet, evenly
+  // sized placeholder — same idea as an .art-slot with nothing loaded yet — rather than a
+  // jarring icon or a collapsed layout. This never hides the ACTUAL problem: check the
+  // browser console (each failed request still logs there), it just keeps one bad file from
+  // making the whole page look broken to a visitor.
+  function imgTag(src, alt, extraAttrs){
+    if (!src) return '';
+    const safeAlt = String(alt || '').replace(/"/g, '&quot;');
+    return `<img src="${src}" alt="${safeAlt}" loading="lazy"${extraAttrs ? ' ' + extraAttrs : ''} onerror="this.closest('.art-slot,.archive-card,.grid-tile,.poster-mat,.slab-peek-art')?.classList.add('media-missing'); this.remove();">`;
+  }
+
+  // Shared "View all" grid renderer — used by both the Collectibles vault and the
+  // Campaigns gallery so there's one implementation, not two competing ones.
+  // items: [{ title, img, alt }]. onSelect(index) is called when a tile is clicked.
+  // object-fit is always 'contain', never 'cover' — this never crops artwork, same rule
+  // as every other view on the site.
+  function renderGridPanel(panelEl, items, aspectRatio, onSelect){
+    panelEl.innerHTML = items.map((it, i) => `
+      <div class="grid-tile" data-idx="${i}" style="aspect-ratio:${aspectRatio};" tabindex="0" role="button" aria-label="${String(it.title || '').replace(/"/g, '&quot;')}">
+        ${imgTag(it.img, it.alt || it.title)}
+        <div class="cap"><span>${it.title}</span></div>
+      </div>`).join('');
+    panelEl.querySelectorAll('.grid-tile').forEach(tile => {
+      tile.addEventListener('click', () => onSelect(parseInt(tile.dataset.idx, 10)));
+      tile.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); onSelect(parseInt(tile.dataset.idx, 10)); }
+      });
+    });
+  }
+
+  // Wires a "View all" link + grid panel to a data source that can change (collection
+  // filter, card navigation, etc.) — call refresh() whenever the underlying set changes
+  // while the grid might be open, so it never shows stale content.
+  function wireViewAll(btnEl, panelEl, getItems, aspectRatio, onSelect){
+    let open = false;
+    function refresh(){ if (open) renderGridPanel(panelEl, getItems(), aspectRatio, (i) => { onSelect(i); close(); }); }
+    function close(){ open = false; panelEl.classList.remove('open'); btnEl.textContent = 'View all →'; }
+    btnEl.addEventListener('click', () => {
+      open = !open;
+      panelEl.classList.toggle('open', open);
+      btnEl.textContent = open ? 'Hide grid ←' : 'View all →';
+      if (open) refresh();
+    });
+    return { refresh, close };
+  }
+
+  document.documentElement.classList.add('is-loading');
+
+  // Cinematic preloader — simulated progress, ties into real asset loading if desired later.
+  (function(){
+    const pct = document.getElementById('preloaderPct');
+    const bar = document.getElementById('preloaderBar');
+    const pre = document.getElementById('preloader');
+    let p = 0;
+    const tick = () => {
+      p += Math.random() * 9 + 3;
+      if (p >= 100) p = 100;
+      pct.textContent = Math.floor(p) + '%';
+      bar.style.width = p + '%';
+      if (p < 100) { requestAnimationFrame(() => setTimeout(tick, 60)); }
+      else {
+        setTimeout(() => {
+          pre.classList.add('done');
+          document.documentElement.classList.remove('is-loading');
+          document.getElementById('hero').classList.add('loaded');
+        }, 200);
+      }
+    };
+    window.addEventListener('load', () => setTimeout(tick, 150));
+    // safety fallback in case load event is delayed
+    setTimeout(() => { if (p < 100) tick(); }, 1800);
+  })();
+
+  // Single hero interaction: the holo layer's mask follows the cursor across the whole name.
+  // Touch gets the same treatment via touchstart/touchmove — swiping a finger across the
+  // letters moves the mask exactly like dragging a mouse would. Not passive-locked to
+  // scroll prevention (no preventDefault), so a swipe that's really just scrolling the
+  // page still scrolls normally; it just also happens to update the mask along the way.
+  (function(){
+    const heroName = document.getElementById('heroName');
+    const update = (clientX, clientY) => {
+      const r = heroName.getBoundingClientRect();
+      heroName.style.setProperty('--mx', ((clientX - r.left) / r.width * 100) + '%');
+      heroName.style.setProperty('--my', ((clientY - r.top) / r.height * 100) + '%');
+    };
+    heroName.addEventListener('mousemove', (e) => update(e.clientX, e.clientY));
+    heroName.addEventListener('touchstart', (e) => { if (e.touches[0]) update(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
+    heroName.addEventListener('touchmove', (e) => { if (e.touches[0]) update(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
+  })();
+
+  // The 薛/雯 marks get their own paint-reveal, tracked to each glyph's own small box
+  // (in real pixels, not percent) rather than the hero name's much larger coordinate
+  // space — otherwise the red spot doesn't line up with the cursor.
+  (function(){
+    document.querySelectorAll('.hero-cn-side').forEach((el) => {
+      el.addEventListener('mousemove', (e) => {
+        const r = el.getBoundingClientRect();
+        el.style.setProperty('--cnx', (e.clientX - r.left) + 'px');
+        el.style.setProperty('--cny', (e.clientY - r.top) + 'px');
+      });
+      // Without this, the last hover position "sticks" — the character would stay
+      // partly red after the cursor moves away instead of settling back to black.
+      el.addEventListener('mouseleave', () => {
+        el.style.setProperty('--cnx', '-999px');
+        el.style.setProperty('--cny', '-999px');
+      });
+    });
+  })();
+
+  // Same holo-mask interaction, generalized to the chapter titles (Collectibles,
+  // Campaigns, About) so the hover feel is consistent across the site. Same touch
+  // support as the hero name — see the comment there.
+  (function(){
+    document.querySelectorAll('.holo-title').forEach((el) => {
+      const update = (clientX, clientY) => {
+        const r = el.getBoundingClientRect();
+        el.style.setProperty('--mx', ((clientX - r.left) / r.width * 100) + '%');
+        el.style.setProperty('--my', ((clientY - r.top) / r.height * 100) + '%');
+      };
+      el.addEventListener('mousemove', (e) => update(e.clientX, e.clientY));
+      el.addEventListener('touchstart', (e) => { if (e.touches[0]) update(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
+      el.addEventListener('touchmove', (e) => { if (e.touches[0]) update(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
+    });
+  })();
+
+  // Hand-rolled tilt for the Campaigns poster — same idea as libraries like vanilla-tilt.js
+  // (cursor position maps to a subtle rotateX/rotateY), written as a few lines here instead
+  // of pulling in an extra dependency, so it stays consistent with the rest of the site's
+  // plain-JS approach and doesn't add any weight. Skipped on touch (no cursor to track) and
+  // when the visitor has reduced motion set. Deliberately not applied to the collectible
+  // cards, which already have their own click-to-flip 3D transform and their own simple
+  // hover scale (.slab:hover) — a continuous tilt layered on top would fight that
+  // interaction; this same function is a natural fit for the planned EVO collection later,
+  // though, since those cards are hover-tilt only.
+  // The first version of this set a new CSS transition on every single mousemove, which
+  // restarts mid-interpolation on each event and reads as laggy/rubber-banding — the fix is
+  // to set the transition once (on enter / leave only) and let requestAnimationFrame batch
+  // the actual transform writes to the browser's paint cadence, so the tilt tracks the
+  // cursor 1:1 and only eases on the way back to rest.
+  (function(){
+    const canTilt = matchMedia('(hover:hover)').matches && !matchMedia('(prefers-reduced-motion:reduce)').matches;
+    if (!canTilt) return;
+    const MAX_TILT = 8; // degrees at the very edge of the frame
+    document.querySelectorAll('.gallery-frame').forEach((frame) => {
+      const art = frame.querySelector('.poster-art');
+      if (!art) return;
+      let rafId = null, rx = 0, ry = 0;
+      const paint = () => {
+        rafId = null;
+        art.style.transform = `perspective(1200px) rotateX(${rx}deg) rotateY(${ry}deg) scale3d(1.035,1.035,1.035)`;
+      };
+      frame.addEventListener('mouseenter', () => {
+        art.style.transition = 'transform .08s ease-out';
+      });
+      frame.addEventListener('mousemove', (e) => {
+        const r = frame.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width;
+        const py = (e.clientY - r.top) / r.height;
+        rx = (0.5 - py) * MAX_TILT * 2;
+        ry = (px - 0.5) * MAX_TILT * 2;
+        if (!rafId) rafId = requestAnimationFrame(paint);
+      });
+      frame.addEventListener('mouseleave', () => {
+        if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+        art.style.transition = 'transform .6s var(--ease)';
+        art.style.transform = '';
+      });
+    });
+  })();
+
+  // ---------- COLLECTIBLES VAULT ----------
+  // Content now lives in data/portfolio.json — this just adapts it into the shape
+  // the vault UI already expects. Add cards via admin/index.html, not by editing this file.
+  fetchPortfolioData().then((projects) => {
+    const cardProjects = projects.filter(p => p.category === 'card')
+      .sort((a, b) => (a.order || 0) - (b.order || 0));
+
+    // group by "collection" field (e.g. PWHL, NHL Draft) into vault tabs
+    const byCollection = {};
+    cardProjects.forEach(p => {
+      const key = p.collection || 'Cards';
+      if (!byCollection[key]) byCollection[key] = [];
+      const front = p.images.find(i => i.role === 'front') || p.images[0];
+      const back = p.images.find(i => i.role === 'back');
+      byCollection[key].push({
+        num: p.cardNumber || '',
+        title: p.title || key,
+        treatment: p.displayTreatment || 'standard',
+        orientation: p.orientation || 'portrait',
+        frontSrc: front ? front.src : '',
+        front: front ? imgTag(front.src, front.alt || p.title) : '',
+        back: back ? imgTag(back.src, back.alt || p.title) : '<p class="slot-note mono">No back image yet</p>',
+      });
+    });
+    // Within each collection, keep all portrait cards together first and push any
+    // landscape ones (e.g. Prominent Prospects-style inserts) to the end. Browsing
+    // next/prev with .sort() being stable, this only ever changes shape once, at the very
+    // tail of the set, instead of the .slab container resizing mid-browse every time a
+    // landscape card turns up between two portrait ones.
+    Object.values(byCollection).forEach(cards => {
+      cards.sort((a, b) => (a.orientation === 'landscape' ? 1 : 0) - (b.orientation === 'landscape' ? 1 : 0));
+    });
+    const collections = Object.keys(byCollection).map(name => ({ name, cards: byCollection[name] }));
+
+    if (collections.length === 0) return; // nothing to show yet
+
+    // Real photo backgrounds per collection — add one line here as you get art for more
+    // collections. Anything not listed just keeps the default designed (CSS-only) look.
+    const ARENA_BACKGROUNDS = {
+      'PWHL': 'assets/collectibles/pwhl/arena-bg.jpg',
+      'Ice': 'assets/collectibles/ice/arena-bg.jpg',
+    };
+    const arenaEl = document.getElementById('vaultArena');
+    function applyArenaBackground(collectionName){
+      const bg = ARENA_BACKGROUNDS[collectionName];
+      if (bg) {
+        arenaEl.style.setProperty('--arena-bg', `url('${bg}')`);
+        arenaEl.classList.add('has-photo-bg');
+      } else {
+        arenaEl.classList.remove('has-photo-bg');
+      }
+    }
+
+    let ci = 0, ki = 0; // collection index, card index
+
+    const tabsEl = document.getElementById('vaultTabs');
+    const vaultFrame = document.getElementById('vaultFrame');
+    const slab = document.getElementById('slab');
+    const slabInner = document.getElementById('slabInner');
+    const counter = document.getElementById('vaultCounter');
+    const prevBtn = document.getElementById('vaultPrev'), nextBtn = document.getElementById('vaultNext');
+    const coll = document.getElementById('slabCollection'), num = document.getElementById('slabNum');
+    const artF = document.getElementById('slabArtF'), artB = document.getElementById('slabArtB');
+
+    function renderTabs(){
+      tabsEl.innerHTML = '';
+      tabsEl.style.display = collections.length > 1 ? '' : 'none';
+      collections.forEach((c, i) => {
+        const b = document.createElement('button');
+        b.className = 'vault-tab' + (i === ci ? ' active' : '');
+        b.textContent = c.name;
+        b.addEventListener('click', () => { ci = i; ki = 0; slab.classList.remove('flipped'); renderTabs(); renderCard(); gridView.refresh(); });
+        tabsEl.appendChild(b);
+      });
+    }
+
+    // The CSS default aspect-ratio per orientation is only a fallback for the instant
+    // before an image loads. Once the front artwork's real dimensions are known, the slab
+    // is resized to match exactly — this is what actually eliminates the empty gutters a
+    // single guessed ratio left beside any card whose real proportions were different.
+    function applyCardAspect(imgEl){
+      if (!imgEl) { slab.style.aspectRatio = ''; return; }
+      const setRatio = () => {
+        if (imgEl.naturalWidth && imgEl.naturalHeight) {
+          // The visible art window is smaller than the whole slab (the label bar and the
+          // case padding around it eat into both axes), so matching the *slab's* aspect
+          // ratio to the image left the window's own aspect ratio still off the image's —
+          // that's what showed as empty gutters beside wide landscape cards. Instead, measure
+          // the fixed chrome (label + padding) around the art window and size the slab so the
+          // *window* ends up at the image's exact ratio.
+          const faceEl = slab.querySelector('.slab-face.front');
+          const artEl = faceEl ? faceEl.querySelector('.slab-art') : null;
+          const W = slab.getBoundingClientRect().width;
+          if (faceEl && artEl && W) {
+            const faceRect = faceEl.getBoundingClientRect();
+            const artRect = artEl.getBoundingClientRect();
+            const hOverhead = Math.max(0, faceRect.width - artRect.width);
+            const vOverhead = Math.max(0, faceRect.height - artRect.height);
+            const artW = Math.max(1, W - hOverhead);
+            const artH = artW * (imgEl.naturalHeight / imgEl.naturalWidth);
+            const slabH = artH + vOverhead;
+            slab.style.aspectRatio = W + ' / ' + slabH;
+          } else {
+            slab.style.aspectRatio = imgEl.naturalWidth + ' / ' + imgEl.naturalHeight;
+          }
+        }
+      };
+      if (imgEl.complete) setRatio();
+      else imgEl.addEventListener('load', setRatio, { once: true });
+    }
+
+    function renderCard(){
+      const c = collections[ci], card = c.cards[ki];
+      applyArenaBackground(c.name);
+      coll.textContent = c.name; num.textContent = card.num;
+      artF.innerHTML = card.front; artF.classList.add('fit-contain');
+      artB.innerHTML = card.back; artB.classList.add('fit-contain');
+      slab.classList.toggle('orientation-landscape', card.orientation === 'landscape');
+      // The frame's width is keyed to the whole collection, not the single card on screen —
+      // so it stays fixed while paging through a collection (even a mixed-orientation one)
+      // and only ever changes when you switch to a different collection.
+      vaultFrame.classList.toggle('is-landscape', c.cards.some(cd => cd.orientation === 'landscape'));
+      applyCardAspect(artF.querySelector('img'));
+      counter.textContent = String(ki + 1).padStart(2, '0') + ' / ' + String(c.cards.length).padStart(2, '0');
+      const multi = c.cards.length > 1;
+      prevBtn.style.visibility = multi ? 'visible' : 'hidden';
+      nextBtn.style.visibility = multi ? 'visible' : 'hidden';
+      // Only reveals the peek once its actual image has loaded, instead of unhiding it the
+      // instant we decide there IS a next card — otherwise a blank or still-loading sliver
+      // (or briefly the previous card's leftover image) could flash there before it's ready.
+      const peek = document.getElementById('slabPeek');
+      const peekImg = document.getElementById('slabPeekImg');
+      if (multi) {
+        const nextSrc = c.cards[(ki + 1) % c.cards.length].frontSrc;
+        if (peekImg.getAttribute('src') === nextSrc) {
+          peek.classList.add('is-visible');
+        } else {
+          peek.classList.remove('is-visible');
+          peekImg.onload = () => peek.classList.add('is-visible');
+          peekImg.src = nextSrc;
+        }
+      } else {
+        peek.classList.remove('is-visible');
+      }
+    }
+
+    prevBtn.addEventListener('click', () => {
+      const n = collections[ci].cards.length;
+      ki = (ki - 1 + n) % n; slab.classList.remove('flipped'); renderCard(); gridView.refresh();
+    });
+    nextBtn.addEventListener('click', () => {
+      const n = collections[ci].cards.length;
+      ki = (ki + 1) % n; slab.classList.remove('flipped'); renderCard(); gridView.refresh();
+    });
+
+    // subtle tilt toward cursor — runs on whichever face is currently showing, front or
+    // back, so flipping the card doesn't lose the effect. The CSS class rule handles the
+    // base flip rotation; while tracking, an inline transform folds the same 180deg flip
+    // back in (inline overrides the class rule, so it must include it). Clicking to flip
+    // re-applies this transform immediately too, using the last-known tilt — relying only
+    // on the next mousemove to pick up the new flip state left the card looking stuck
+    // mid-flip (or jumping late) whenever you clicked without also moving the cursor.
+    // Skipped entirely on touch (no cursor) and reduced-motion (no dynamic movement) —
+    // both get the static CSS fallback defined in the stylesheet instead.
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const hasHover = window.matchMedia('(hover: hover)').matches;
+    const tiltEnabled = !prefersReducedMotion && hasHover;
+    let lastRx = 0, lastRy = 0;
+    const slabLabel = slab.querySelector('.slab-label');
+
+    // The label plaque sits outside .slab-inner now (so it isn't part of either printed
+    // face), but it gets the exact same rotateY flip offset as the card — same tilt, same
+    // flip, same transition — so it turns in lockstep with it. backface-visibility:hidden
+    // (in the stylesheet) is what actually makes it vanish once it's turned edge-on, right
+    // when the card itself would hide it, rather than fading out on its own separate timer.
+    function applyFlipTransform(){
+      if (!tiltEnabled) return; // CSS class rule alone handles the flip here
+      const flipOffset = slab.classList.contains('flipped') ? 180 : 0;
+      slabInner.style.transform = 'rotateX(' + lastRx + 'deg) rotateY(' + (lastRy + flipOffset) + 'deg)';
+      if (slabLabel) slabLabel.style.transform = 'rotateX(' + lastRx + 'deg) rotateY(' + (lastRy + flipOffset) + 'deg)';
+    }
+
+    slab.addEventListener('click', () => {
+      slab.classList.toggle('flipped');
+      applyFlipTransform();
+    });
+    slab.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        slab.classList.toggle('flipped');
+        applyFlipTransform();
+      }
+    });
+
+    if (tiltEnabled) {
+      slab.addEventListener('mousemove', (e) => {
+        slab.classList.add('is-tracking');
+        const r = slab.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+        lastRx = (0.5 - py) * 10; lastRy = (px - 0.5) * 10;
+        applyFlipTransform();
+        slab.querySelectorAll('.slab-sheen').forEach(s => {
+          s.style.backgroundPosition = (px * 160) + '% ' + (py * 100) + '%';
+        });
+      });
+      slab.addEventListener('mouseleave', () => {
+        // "settle" — ease back to neutral rather than snapping; clearing the inline
+        // transform lets the CSS flip rule (front/back) take back over cleanly.
+        slab.classList.remove('is-tracking');
+        lastRx = 0; lastRy = 0;
+        slabInner.style.transform = '';
+        if (slabLabel) slabLabel.style.transform = '';
+      });
+    }
+
+    // "View all" grid — shows every card in the currently active collection; clicking a
+    // tile jumps the single-piece browser to that card (front/back, foil, tilt all still work).
+    const gridView = wireViewAll(
+      document.getElementById('vaultViewAllBtn'),
+      document.getElementById('vaultGrid'),
+      () => collections[ci].cards.map(c => ({ title: c.title, img: c.frontSrc })),
+      '2.6/3.7',
+      (idx) => { ki = idx; slab.classList.remove('flipped'); renderCard(); }
+    );
+
+    renderTabs();
+    renderCard();
+  });
+
+  const revealTargets = document.querySelectorAll('.chapter-head, .archive-card, .about-text');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(en => { if (en.isIntersecting) en.target.classList.add('is-visible'); });
+  }, { threshold: 0.2 });
+  revealTargets.forEach(t => io.observe(t));
+
+  // ---------- Hero scroll cue — fade the "Scroll" hint and the dark peek pill out
+  // quickly once the person actually starts scrolling, instead of leaving them
+  // sitting there past the point they're useful. ----------
+  (function(){
+    const heroHint = document.querySelector('.hero-hint');
+    const heroPeek = document.querySelector('.hero-peek');
+    if (!heroHint && !heroPeek) return;
+    function onScroll(){
+      const fade = Math.max(0, 1 - (window.scrollY / 120));
+      if (heroHint) heroHint.style.opacity = fade;
+      if (heroPeek) heroPeek.style.opacity = fade;
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+
+  // ---------- Brand marquee — clone the track once for a seamless infinite loop,
+  // pause while the cursor is over it (people naturally want to actually read a logo). ----------
+  (function(){
+    const wrap = document.getElementById('brandStrip');
+    const track = document.getElementById('brandTrack');
+    if (!wrap || !track) return;
+    track.innerHTML += track.innerHTML; // duplicate once -> CSS anim runs 0% to -50% seamlessly
+    wrap.addEventListener('mouseenter', () => wrap.classList.add('paused'));
+    wrap.addEventListener('mouseleave', () => wrap.classList.remove('paused'));
+  })();
+
+  // ---------- CAMPAIGNS GALLERY ----------
+  // Content now lives in data/portfolio.json — add posters via admin/index.html, not here.
+  // Collections (NHL/PWHL/Tennis/etc.) are derived from whatever's actually in the data —
+  // adding a new collection to a project's `collection` field is enough; no code change needed.
+  fetchPortfolioData().then((projects) => {
+    const allPosters = projects.filter(p => p.category === 'poster')
+      .sort((a, b) => (a.order || 0) - (b.order || 0))
+      .map(p => {
+        const img = p.images && p.images[0];
+        const metaParts = [p.client, p.dimensions].filter(Boolean);
+        return {
+          title: p.title,
+          meta: metaParts.join(' — '),
+          collection: p.collection || '',
+          treatment: p.displayTreatment || 'standard',
+          frameColor: p.frameColor || '',
+          imgSrc: img ? img.src : '',
+          img: img ? imgTag(img.src, img.alt || p.title) : null,
+        };
+      });
+
+    if (allPosters.length === 0) return; // nothing to show yet
+
+    const collections = ['ALL', ...new Set(allPosters.map(p => p.collection).filter(Boolean))];
+    let activeCollection = 'ALL';
+    let posters = allPosters;
+    let pi = 0;
+
+    const tabsEl = document.getElementById('galleryTabs');
+    const artEl = document.getElementById('galleryArt');
+    const titleEl = document.getElementById('galleryTitle');
+    const metaEl = document.getElementById('galleryMeta');
+    const counterEl = document.getElementById('galleryCounter');
+    const prevBtn = document.getElementById('galleryPrev'), nextBtn = document.getElementById('galleryNext');
+    const frameEl = document.getElementById('galleryFrame');
+    const sheenEl = frameEl.querySelector('.poster-sheen');
+
+    // .poster-sheen used to just be inset:0 on the whole .gallery-frame — a big fixed
+    // stage box sized for the tallest/widest poster. Any piece smaller than that stage
+    // (which is most of them, framed pieces especially) leaves empty space around the
+    // actual artwork, and the sheen's hover glow was filling that empty space too —
+    // showing up as a stray glowing box off to whichever side had the leftover room,
+    // instead of tracking the poster itself. This measures the real artwork/frame on
+    // every render and resize, and repositions the sheen to match it exactly.
+    function syncPosterSheen(){
+      if (!sheenEl) return;
+      const contentEl = artEl.querySelector('.poster-frame') || artEl.querySelector('img') || artEl.querySelector('.art-slot');
+      if (!contentEl){ sheenEl.style.opacity = '0'; return; }
+      const frameRect = frameEl.getBoundingClientRect();
+      const contentRect = contentEl.getBoundingClientRect();
+      if (!contentRect.width || !contentRect.height) return;
+      sheenEl.style.left = (contentRect.left - frameRect.left) + 'px';
+      sheenEl.style.top = (contentRect.top - frameRect.top) + 'px';
+      sheenEl.style.width = contentRect.width + 'px';
+      sheenEl.style.height = contentRect.height + 'px';
+      sheenEl.style.right = 'auto';
+      sheenEl.style.bottom = 'auto';
+    }
+    let sheenResizePending = false;
+    window.addEventListener('resize', () => {
+      if (sheenResizePending) return;
+      sheenResizePending = true;
+      requestAnimationFrame(() => { sheenResizePending = false; syncPosterSheen(); });
+    }, { passive: true });
+
+    function renderTabs(){
+      tabsEl.innerHTML = '';
+      tabsEl.style.display = collections.length > 2 ? '' : 'none'; // ALL + only one real collection = no point showing tabs
+      collections.forEach(name => {
+        const b = document.createElement('button');
+        b.className = 'vault-tab' + (name === activeCollection ? ' active' : '');
+        b.textContent = name;
+        b.addEventListener('click', () => {
+          activeCollection = name;
+          posters = name === 'ALL' ? allPosters : allPosters.filter(p => p.collection === name);
+          pi = 0;
+          renderTabs();
+          render();
+          gridView.refresh();
+        });
+        tabsEl.appendChild(b);
+      });
+    }
+
+    function render(){
+      const p = posters[pi];
+      const isFramed = p.treatment === 'framed';
+      const frameClass = 'poster-frame' + (p.frameColor === 'black' ? ' frame-black' : '');
+      const inner = p.img || '<div class="art-slot placeholder-fallback"><p class="slot-note mono">' + (p.note || 'Poster artwork') + '</p></div>';
+      // "framed" wraps the untouched artwork in a physical mat+frame; standard stays flat.
+      // frameColor "black" swaps in a sleeker black-frame variant; anything else (or unset)
+      // keeps the default warm wood-tone frame.
+      artEl.innerHTML = isFramed ? '<div class="' + frameClass + '"><div class="poster-mat">' + inner + '</div><div class="poster-glass"></div></div>' : inner;
+      artEl.classList.toggle('is-framed', isFramed);
+      titleEl.textContent = p.title;
+      metaEl.innerHTML = p.meta;
+      const multi = posters.length > 1;
+      counterEl.style.display = multi ? '' : 'none';
+      counterEl.textContent = String(pi + 1).padStart(2, '0') + ' / ' + String(posters.length).padStart(2, '0');
+      prevBtn.style.visibility = multi ? 'visible' : 'hidden';
+      nextBtn.style.visibility = multi ? 'visible' : 'hidden';
+      const newImg = artEl.querySelector('img');
+      if (newImg && !newImg.complete) {
+        // 'load' covers the normal case; 'error' covers a broken image (imgTag's onerror
+        // removes it and falls back to the frame/mat or the placeholder slot) — either way,
+        // re-measure once the real, final content box is in the DOM.
+        newImg.addEventListener('load', syncPosterSheen, { once: true });
+        newImg.addEventListener('error', syncPosterSheen, { once: true });
+      }
+      requestAnimationFrame(syncPosterSheen);
+    }
+    prevBtn.addEventListener('click', () => { pi = (pi - 1 + posters.length) % posters.length; render(); gridView.refresh(); });
+    nextBtn.addEventListener('click', () => { pi = (pi + 1) % posters.length; render(); gridView.refresh(); });
+
+    // "View all" grid — shows every poster in the currently active collection filter;
+    // clicking a tile jumps the single-piece browser to that poster (framed/standard intact).
+    const gridView = wireViewAll(
+      document.getElementById('galleryViewAllBtn'),
+      document.getElementById('galleryGrid'),
+      () => posters.map(p => ({ title: p.title, img: p.imgSrc })),
+      '3/4',
+      (idx) => { pi = idx; render(); }
+    );
+
+    renderTabs();
+    render();
+  });
+
+  // ---------- Top nav links — plain spans with pure JS scroll, same as the rail.
+  // (These were real <a href="#..."> tags before, which some viewing environments —
+  // including Claude's own file-preview panel — intercept and wrap in an "external link"
+  // confirmation, even for same-page anchors. Removing the href attribute entirely avoids
+  // that at the source, rather than fighting it with preventDefault.) ----------
+  (function(){
+    document.querySelectorAll('.nav-links [data-scroll-to]').forEach(el => {
+      el.addEventListener('click', () => {
+        const target = document.getElementById(el.dataset.scrollTo);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  })();
+
+  // ---------- ARCHIVE ----------
+  // Content lives in data/portfolio.json (category: "archive") — grouped into 3 categories
+  // via each project's `archiveGroup` field. Add/edit via admin/index.html or by hand-editing the
+  // JSON. Clicking a category card opens the case-study view, which flattens every piece
+  // in that group into one continuous scrollable page (see renderCaseStudy below).
+  fetchPortfolioData().then((projects) => {
+    const items = projects.filter(p => p.category === 'archive')
+      .sort((a, b) => (a.order || 0) - (b.order || 0));
+    if (items.length === 0) return;
+
+    const GROUP_LABELS = {
+      'academic-elearning': { name: 'University Work', hero: null },
+      'branding': { name: 'Branding', hero: null },
+      'digital-3d': { name: '3D', hero: null },
+      'illustrations-animation': { name: 'Illustrations', hero: null },
+    };
+    const groups = {};
+    items.forEach(p => {
+      const g = p.archiveGroup || 'other';
+      (groups[g] = groups[g] || []).push(p);
+    });
+    const groupKeys = Object.keys(GROUP_LABELS).filter(k => groups[k] && groups[k].length);
+
+    const cardsEl = document.getElementById('archiveCards');
+
+    groupKeys.forEach(key => {
+      const groupItems = groups[key];
+      const hero = groupItems[0].images[0];
+      const float = document.createElement('div');
+      float.className = 'archive-card-float';
+      const card = document.createElement('div');
+      card.className = 'archive-card';
+      card.dataset.group = key;
+      card.tabIndex = 0;
+      card.setAttribute('role', 'button');
+      card.setAttribute('aria-label', `${GROUP_LABELS[key].name} — ${groupItems.length} piece${groupItems.length > 1 ? 's' : ''}`);
+      card.innerHTML = `
+        ${imgTag(hero.src, hero.alt || GROUP_LABELS[key].name)}
+        <div class="overlay">
+          <div class="label-chip">
+            <div class="t">${GROUP_LABELS[key].name}</div>
+            <div class="m">${groupItems.length} piece${groupItems.length > 1 ? 's' : ''}</div>
+          </div>
+        </div>`;
+      card.addEventListener('click', () => openCaseStudy(key));
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openCaseStudy(key); }
+      });
+      float.appendChild(card);
+      cardsEl.appendChild(float);
+      io.observe(card);
+    });
+
+    // ---- case study: flattens every piece in the clicked group into one scrollable page ----
+    const cs = document.getElementById('caseStudy');
+    const csBody = document.getElementById('csBody');
+    const csTitle = document.getElementById('csTitle');
+    const csCount = document.getElementById('csCount');
+
+    function renderCaseStudy(groupItems){
+      csBody.innerHTML = groupItems.map(p => {
+        const videoList = p.videos || (p.video ? [p.video] : []);
+        const mediaHtml = [
+          ...(p.images || []).map(i => imgTag(i.src, i.alt || p.title)),
+          ...videoList.map(v => `<video src="${v}" controls playsinline preload="metadata"></video>`),
+        ].join('');
+        return `
+          <article class="cs-piece">
+            <div class="cs-piece-title serif">${p.title}</div>
+            ${p.medium ? `<div class="cs-piece-medium">${p.medium}</div>` : ''}
+            ${p.description ? `<p class="cs-piece-desc">${p.description}</p>` : ''}
+            <div class="cs-piece-media">${mediaHtml}</div>
+          </article>`;
+      }).join('');
+    }
+
+    function openCaseStudy(groupKey){
+      const groupItems = groups[groupKey];
+      csTitle.textContent = GROUP_LABELS[groupKey].name;
+      csCount.textContent = groupItems.length + ' piece' + (groupItems.length > 1 ? 's' : '');
+      renderCaseStudy(groupItems);
+      cs.classList.add('open');
+      document.body.classList.add('no-scroll');
+      csBody.scrollTop = 0;
+    }
+    function closeCaseStudy(){
+      cs.classList.remove('open');
+      document.body.classList.remove('no-scroll');
+      csBody.querySelectorAll('video').forEach(v => v.pause()); // stop any playing video
+    }
+    document.getElementById('csClose').addEventListener('click', closeCaseStudy);
+    document.addEventListener('keydown', (e) => {
+      if (!cs.classList.contains('open')) return;
+      if (e.key === 'Escape') closeCaseStudy();
+    });
+  });
+
+  // Back-to-top: mainly for anyone deep in an expanded "View all" grid (which only grows
+  // over time) so they aren't stuck scrolling back up by hand to keep browsing.
+  (function(){
+    const btn = document.getElementById('backToTop');
+    if (!btn) return;
+    const show = () => btn.classList.toggle('visible', window.scrollY > window.innerHeight * 0.8);
+    window.addEventListener('scroll', show, { passive: true });
+    show();
+    btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  })();
+
+  // Widow prevention: join the last two words of body-copy blocks with a non-breaking
+  // space so a paragraph/line never ends with a single word stranded on its own line.
+  // Works at any container width (it doesn't depend on where the text happens to wrap),
+  // and stays correct as content is (re)rendered — poster captions swap per-slide, the
+  // case study and "view all" grid build their text after load, etc. — via a
+  // MutationObserver rather than needing every render call site hooked by hand.
+  (function(){
+    const WIDOW_SELECTOR = [
+      '.chapter-desc', '.contact-sub', '.foot span', '.poster-caption .t', '.poster-caption .m',
+      '.cs-piece-desc', '.cs-piece-title', '.cs-piece-medium', '.label-chip .t', '.label-chip .m',
+      '.grid-tile .cap span', '#csCount', '.slab-caption', '.hero-tagline',
+      '.footnote-lead', '.footnote-fine', '.hero-sub'
+    ].join(', ');
+
+    function fixWidow(el){
+      const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+      let lastNode = null, n;
+      while ((n = walker.nextNode())) { if (n.nodeValue.replace(/[\s ]/g, '').length) lastNode = n; }
+      if (!lastNode) return;
+      const text = lastNode.nodeValue;
+      const trail = text.match(/[\s ]*$/)[0];
+      const core = text.slice(0, text.length - trail.length);
+      // Re-derive from a normalized (nbsp-back-to-space) copy each time, so repeated
+      // calls (the observer can fire often) stay idempotent instead of progressively
+      // eating earlier spaces.
+      const words = core.replace(/ /g, ' ').split(' ').filter(Boolean);
+      if (words.length < 2) return;
+      const fixed = words.slice(0, -2).concat(words.slice(-2).join(' ')).join(' ') + trail;
+      if (fixed !== text) lastNode.nodeValue = fixed;
+    }
+
+    function fixAll(){ document.querySelectorAll(WIDOW_SELECTOR).forEach(fixWidow); }
+
+    let queued = false;
+    const observer = new MutationObserver(() => {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(() => { queued = false; fixAll(); });
+    });
+    observer.observe(document.body, { childList: true, subtree: true, characterData: true });
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', fixAll);
+    } else {
+      fixAll();
+    }
+  })();
+</script>
+</body>
+</html>
