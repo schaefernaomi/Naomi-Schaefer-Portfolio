@@ -2314,6 +2314,136 @@
       "tags": [],
       "title": "Cephalo Wellness — Brand Identity",
       "year": ""
+    },
+    {
+      "id": "michael-jordan-chaos-court",
+      "title": "Michael Jordan — Chaos Court",
+      "category": "poster",
+      "collection": "NBA",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "10x8",
+      "description": "Michael Jordan, Space Jam 30th Anniversary exclusive — Chaos Court, limited to 1 of 1000.",
+      "tags": [
+        "basketball",
+        "print"
+      ],
+      "featured": false,
+      "order": 0,
+      "images": [
+        {
+          "src": "assets/campaigns/nba/michael-jordan-chaos-court-10x8.jpg",
+          "role": "main",
+          "alt": "Michael Jordan — Chaos Court, Upper Deck Authenticated print, 10x8"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Basketball"
+    },
+    {
+      "id": "david-robinson-the-ultimate-prize",
+      "title": "David Robinson — The Ultimate Prize",
+      "category": "poster",
+      "collection": "NBA",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "20x24",
+      "description": "David Robinson, San Antonio Spurs #50 — The Ultimate Prize.",
+      "tags": [
+        "basketball",
+        "print"
+      ],
+      "featured": false,
+      "order": 70,
+      "images": [
+        {
+          "src": "assets/campaigns/nba/david-robinson-the-ultimate-prize-20x24.jpg",
+          "role": "main",
+          "alt": "David Robinson — The Ultimate Prize, Upper Deck Authenticated print, 20x24"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Basketball"
+    },
+    {
+      "id": "jalen-johnson-dual-threat",
+      "title": "Jalen Johnson — Dual Threat",
+      "category": "poster",
+      "collection": "NBA",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "16x20",
+      "description": "Jalen Johnson, Atlanta Hawks #1 — Dual Threat.",
+      "tags": [
+        "basketball",
+        "print"
+      ],
+      "featured": false,
+      "order": 71,
+      "images": [
+        {
+          "src": "assets/campaigns/nba/jalen-johnson-dual-threat-16x20.jpg",
+          "role": "main",
+          "alt": "Jalen Johnson — Dual Threat, Upper Deck Authenticated print, 16x20"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Basketball"
+    },
+    {
+      "id": "juwan-howard-white-hot",
+      "title": "Juwan Howard — White Hot",
+      "category": "poster",
+      "collection": "NBA",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "20x24",
+      "description": "Juwan Howard, Miami Heat #5 — White Hot, 2012 NBA Champion.",
+      "tags": [
+        "basketball",
+        "print"
+      ],
+      "featured": false,
+      "order": 72,
+      "images": [
+        {
+          "src": "assets/campaigns/nba/juwan-howard-white-hot-20x24.jpg",
+          "role": "main",
+          "alt": "Juwan Howard — White Hot, Upper Deck Authenticated print, 20x24"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Basketball"
+    },
+    {
+      "id": "easton-cowan-nhl-debut",
+      "title": "Easton Cowan — NHL Debut",
+      "category": "poster",
+      "collection": "NHL",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "11x14",
+      "description": "Easton Cowan, Toronto Maple Leafs #53 — NHL Debut, 10/13/2025.",
+      "tags": [
+        "hockey",
+        "print"
+      ],
+      "featured": false,
+      "order": 53,
+      "images": [
+        {
+          "src": "assets/campaigns/nhl/easton-cowan-nhl-debut-11x14.jpg",
+          "role": "main",
+          "alt": "Easton Cowan — NHL Debut, Upper Deck Authenticated print, 11x14"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Hockey"
     }
   ]
 }
