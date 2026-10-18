@@ -322,12 +322,15 @@
   .dark .vault-tab{ color:rgba(255,255,255,.65); border-color:var(--line-light); }
   @media (hover:hover){ .dark .vault-tab:hover{ color:#fff; border-color:#fff; } }
   .dark .vault-tab.active{ color:#fff; background:var(--red); border-color:var(--red); }
-  #galleryTabs{ justify-content:center; gap:8px; margin-bottom:3.5vh; }
+  /* Sticky just under the nav, so the tabs (ALL, NBA, ...) are always reachable and can never
+     end up hidden behind the fixed nav bar while you scroll through the posters. */
+  #galleryTabs{ justify-content:center; gap:8px; margin-bottom:5vh; position:sticky; top:68px; z-index:20;
+    padding:10px 12px; background:rgba(10,10,12,.78); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); border-radius:999px; width:fit-content; max-width:100%; margin-left:auto; margin-right:auto; }
   #galleryTabs .vault-tab{ padding:6px 14px; font-size:11px; letter-spacing:.06em; }
   @media (max-width:700px){
     /* one slim swipeable row instead of a stack of fat pills eating the screen */
     #galleryTabs{ flex-wrap:nowrap; justify-content:flex-start; overflow-x:auto; -webkit-overflow-scrolling:touch;
-      scrollbar-width:none; padding:2px 5vw 8px; margin:0 -5vw 2.5vh; }
+      scrollbar-width:none; padding:8px 5vw; margin:0 -5vw 2.5vh; width:auto; max-width:none; border-radius:0; top:60px; }
     #galleryTabs::-webkit-scrollbar{ display:none; }
     #galleryTabs .vault-tab{ flex-shrink:0; }
   }
@@ -579,7 +582,7 @@
     width:var(--sw,300px); height:var(--sh,400px);
     transform:translate(-50%,-50%) translateX(var(--ox,0px)) translateZ(-170px) rotateY(var(--rot,0deg));
     transition:filter .3s ease; animation:slabBob 6s ease-in-out infinite; }
-  .poster-side.left{ --rot:26deg; animation-delay:-2s; } .poster-side.right{ --rot:-26deg; animation-delay:-4s; }
+  .poster-side.left{ --rot:18deg; animation-delay:-2s; } .poster-side.right{ --rot:-18deg; animation-delay:-4s; }
   .poster-side:hover{ filter:brightness(.95); }
   .poster-side .ps-img{ display:block; width:100%; height:100%; object-fit:contain; border-radius:2px;
     box-shadow:0 40px 70px -20px rgba(0,0,0,.8), 0 14px 26px -8px rgba(0,0,0,.6); }
@@ -1304,14 +1307,14 @@
   (function(){
     const canTilt = matchMedia('(hover:hover)').matches && !matchMedia('(prefers-reduced-motion:reduce)').matches;
     if (!canTilt) return;
-    const MAX_TILT = 8; // degrees at the very edge of the frame
+    const MAX_TILT = 3.5; // degrees at the very edge of the frame
     document.querySelectorAll('.gallery-frame').forEach((frame) => {
       const art = frame.querySelector('.poster-art');
       if (!art) return;
       let rafId = null, rx = 0, ry = 0;
       const paint = () => {
         rafId = null;
-        art.style.transform = `perspective(1200px) rotateX(${rx}deg) rotateY(${ry}deg) scale3d(1.035,1.035,1.035)`;
+        art.style.transform = `perspective(1200px) rotateX(${rx}deg) rotateY(${ry}deg) scale3d(1.02,1.02,1.02)`;
       };
       frame.addEventListener('mouseenter', () => {
         art.style.transition = 'transform .08s ease-out';
