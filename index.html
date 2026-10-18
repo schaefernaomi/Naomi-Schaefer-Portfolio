@@ -234,6 +234,9 @@
   .chapter-title{ font-family:'Fraunces',serif; font-weight:500; font-size:clamp(40px,7vw,92px); line-height:1.05; }
   .chapter-desc{ margin:14px auto 0; max-width:480px; font-size:13px; color:var(--grey); line-height:1.6; }
   .chapter-desc.nowrap-desktop{ white-space:nowrap; max-width:none; }
+  .chapter-desc.two-line{ max-width:none; }
+  .nobreak{ white-space:nowrap; }
+  @media (max-width:860px){ .chapter-desc.two-line{ max-width:400px; } .desk-br{ display:none; } }
 
   /* Bottom-of-section fine print — a licensing/attribution line plus a couple of small
      mono disclaimer lines underneath, same quiet voice as .contact-sub/.foot elsewhere. */
@@ -567,6 +570,38 @@
   @media (hover:hover){ #vaultStage .vault-arrow:hover{ background:#fff; color:#111; border-color:#fff; } }
   .vault-stage, #vaultStage{ touch-action:pan-y; }
 
+
+  /* ---- 3-up posters: centre piece + two turned-in neighbours, same language as the cards ---- */
+  .gallery-stage{ position:relative; overflow-x:clip; padding:2.5vh 0; }
+  .gallery-body{ position:relative; -webkit-perspective:1700px; perspective:1700px; }
+  .gallery-frame{ z-index:3; animation:slabBob 6s ease-in-out infinite; }
+  .poster-side{ position:absolute; left:50%; top:50%; z-index:1; cursor:pointer; filter:brightness(.72);
+    width:var(--sw,300px); height:var(--sh,400px);
+    transform:translate(-50%,-50%) translateX(var(--ox,0px)) translateZ(-170px) rotateY(var(--rot,0deg));
+    transition:filter .3s ease; animation:slabBob 6s ease-in-out infinite; }
+  .poster-side.left{ --rot:26deg; animation-delay:-2s; } .poster-side.right{ --rot:-26deg; animation-delay:-4s; }
+  .poster-side:hover{ filter:brightness(.95); }
+  .poster-side .ps-img{ display:block; width:100%; height:100%; object-fit:contain; border-radius:2px;
+    box-shadow:0 40px 70px -20px rgba(0,0,0,.8), 0 14px 26px -8px rgba(0,0,0,.6); }
+  .poster-side .ps-frame{ width:100%; height:100%; box-sizing:border-box; padding:calc(var(--fp,20px)*.45);
+    background:linear-gradient(150deg,#3a332c,#18150f 60%,#241f18); box-shadow:0 40px 70px -20px rgba(0,0,0,.85), 0 0 0 1px rgba(255,255,255,.06); }
+  .poster-side .ps-frame.frame-black{ background:linear-gradient(150deg,#232323,#050505 60%,#161616); }
+  .poster-side .ps-mat{ width:100%; height:100%; box-sizing:border-box; padding:calc(var(--fp,20px)*.55); background:#eeece6; box-shadow:inset 0 0 12px rgba(0,0,0,.2); }
+  .poster-side .ps-mat img{ width:100%; height:100%; object-fit:contain; display:block; box-shadow:0 2px 8px rgba(0,0,0,.35); }
+  @media (prefers-reduced-motion: reduce){ .gallery-frame, .poster-side{ animation:none; } }
+  @media (min-width:701px){
+    /* arrows sit at the stage edges on a fixed-height stage, so they never move between posters */
+    #galleryStage .vault-arrow{ position:absolute; top:50%; margin-top:-24px; z-index:6; width:48px; height:48px;
+      color:#fff; border:2px solid #fff; background:rgba(14,14,16,.55);
+      box-shadow:0 8px 22px rgba(0,0,0,.55), 0 2px 6px rgba(0,0,0,.4); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); }
+    #galleryStage #galleryPrev{ left:3%; } #galleryStage #galleryNext{ right:3%; }
+    #galleryStage .vault-arrow svg{ width:18px; height:18px; }
+    #galleryStage .vault-arrow path{ stroke-width:2.2; }
+  }
+  @media (min-width:701px) and (hover:hover){ #galleryStage .vault-arrow:hover{ background:#fff; color:#111; border-color:#fff; } }
+  @media (max-width:700px){ .poster-side{ --rot:0deg !important; } }
+  @media (min-width:701px) and (max-width:1100px){ .gallery-stage .gallery-body{ width:56vw; max-width:640px; } }
+
   /* Campaigns — same archive-browsing language as Collectibles, adapted for posters.
      One poster at a time, arrows to move through the set, a slow zoom on hover for detail.
      The frame is sized by max-width/max-height with the poster keeping its own aspect-ratio,
@@ -589,7 +624,6 @@
     .gallery-stage{ flex-wrap:wrap; justify-content:center; gap:14px 16px; }
     .gallery-body{ order:-1; flex-basis:100%; width:100%; max-width:100%; }
     .gallery-info{ max-width:94vw; }
-    .gallery-frame.is-wide{ height:auto; max-height:none; }
     .gallery-frame.is-wide .poster-art{ height:auto; width:100%; }
     .gallery-frame.is-wide .poster-art > img, .gallery-frame.is-wide .poster-mat img{ width:100%; max-height:none; }
     .gallery-frame.is-wide .poster-frame{ width:100%; }
@@ -956,12 +990,12 @@
 <section class="chapter dark" id="campaigns">
   <div class="chapter-head">
     <div><div class="chapter-num mono">Chapter 02</div><h2 class="chapter-title holo-title"><span class="ct-base">Campaigns</span><span class="ct-holo" aria-hidden="true">Campaigns</span></h2></div>
-    <p class="chapter-desc">Hard-signed collectible poster designs by Naomi Schaefer, created for Upper Deck and officially licensed properties, featuring athlete-authenticated signatures.</p>
+    <p class="chapter-desc two-line">Hard-signed collectible poster designs by Naomi Schaefer, created for Upper Deck<br class="desk-br"> and officially licensed properties, featuring <span class="nobreak">athlete&#8209;authenticated</span> signatures.</p>
   </div>
 
   <div class="vault-tabs" id="galleryTabs" role="tablist"></div>
 
-  <div class="gallery-stage">
+  <div class="gallery-stage" id="galleryStage">
     <button class="vault-arrow" id="galleryPrev" aria-label="Previous poster">
       <svg viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
@@ -1330,7 +1364,15 @@
     Object.values(byCollection).forEach(cards => {
       cards.sort((a, b) => (a.orientation === 'landscape' ? 1 : 0) - (b.orientation === 'landscape' ? 1 : 0));
     });
-    const collections = Object.keys(byCollection).map(name => ({ name, cards: byCollection[name] }));
+    // Tab order + display names. Anything not listed keeps its data name and goes after these.
+    const COLLECTION_ORDER = ['Ice', 'PWHL', 'Parkhurst'];
+    const COLLECTION_LABELS = { 'Ice': 'UD ICE' };
+    const labelOf = (n) => COLLECTION_LABELS[n] || n;
+    const collections = Object.keys(byCollection).map(name => ({ name, cards: byCollection[name] }))
+      .sort((a, b) => {
+        const ia = COLLECTION_ORDER.indexOf(a.name), ib = COLLECTION_ORDER.indexOf(b.name);
+        return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
+      });
 
     if (collections.length === 0) return; // nothing to show yet
 
@@ -1368,7 +1410,7 @@
       collections.forEach((c, i) => {
         const b = document.createElement('button');
         b.className = 'vault-tab' + (i === ci ? ' active' : '');
-        b.textContent = c.name;
+        b.textContent = labelOf(c.name);
         b.addEventListener('click', () => { ci = i; ki = 0; slab.classList.remove('flipped'); renderTabs(); renderCard(); gridView.refresh(); });
         tabsEl.appendChild(b);
       });
@@ -1412,7 +1454,7 @@
     function renderCard(){
       const c = collections[ci], card = c.cards[ki];
       applyArenaBackground(c.name);
-      coll.textContent = c.name; num.textContent = card.num;
+      coll.textContent = labelOf(c.name); num.textContent = card.num;
       artF.innerHTML = card.front; artF.classList.add('fit-contain');
       artB.innerHTML = card.back; artB.classList.add('fit-contain');
       slab.classList.toggle('orientation-landscape', card.orientation === 'landscape');
@@ -1439,7 +1481,7 @@
         el.style.display = show ? '' : 'none';
         if (!show) return;
         const card = c.cards[(ki + dir + n) % n];
-        el.querySelector('.sl-coll').textContent = c.name;
+        el.querySelector('.sl-coll').textContent = labelOf(c.name);
         el.querySelector('.sl-num').textContent = card.num;
         const slot = el.querySelector('.art-slot');
         slot.classList.remove('media-missing');
@@ -1699,13 +1741,72 @@
       if (act && tabsEl.scrollWidth > tabsEl.clientWidth) tabsEl.scrollLeft = act.offsetLeft - (tabsEl.clientWidth - act.offsetWidth) / 2;
     }
 
+
+    // ---- 3-up neighbours ----
+    const bodyEl = frameEl.parentElement;
+    const sideEls = ['left', 'right'].map(dir => {
+      const el = document.createElement('div');
+      el.className = 'poster-side ' + dir; el.setAttribute('role', 'button');
+      el.setAttribute('aria-label', dir === 'left' ? 'Previous poster' : 'Next poster');
+      bodyEl.appendChild(el); return el;
+    });
+    const phoneMQ = window.matchMedia('(max-width:700px)');
+    function renderSides(){
+      const n = posters.length;
+      sideEls.forEach((el, k) => {
+        const dir = k === 0 ? -1 : 1;
+        const show = n > 1 && !(n === 2 && dir === -1);
+        el.style.display = show ? '' : 'none';
+        if (!show) return;
+        const p = posters[(pi + dir + n) % n];
+        const img = (p.img || '').replace(' loading="lazy"', '').replace(/ onerror="[^"]*"/, '');
+        const framed = p.treatment === 'framed';
+        el.dataset.framed = framed ? '1' : '';
+        el.innerHTML = framed
+          ? '<div class="ps-frame' + (p.frameColor === 'black' ? ' frame-black' : '') + '"><div class="ps-mat">' + img + '</div></div>'
+          : (img ? img.replace('<img ', '<img class="ps-img" ') : '');
+        const im = el.querySelector('img');
+        if (im && !im.complete) im.addEventListener('load', layoutSides, { once: true });
+      });
+      layoutSides();
+    }
+    // Each neighbour is sized from its OWN artwork ratio, fitted inside a box a bit smaller
+    // than the centre piece's box — a wide "The Show" beside a tall portrait just works.
+    function layoutSides(){
+      const contentEl = artEl.querySelector('.poster-frame') || artEl.querySelector('img');
+      if (!contentEl || !contentEl.offsetWidth) return;
+      const cw = contentEl.offsetWidth;
+      const W = document.getElementById('galleryStage').clientWidth, phone = phoneMQ.matches;
+      const boxW = phone ? bodyEl.clientWidth * .9 : bodyEl.clientWidth * .74;
+      const boxH = frameEl.clientHeight * (phone ? .75 : .72);
+      sideEls.forEach((el, k) => {
+        if (el.style.display === 'none') return;
+        const im = el.querySelector('img');
+        const framed = el.dataset.framed === '1';
+        const fp = framed ? Math.max(10, Math.min(24, W * .018)) : 0;
+        el.style.setProperty('--fp', fp + 'px');
+        const r = (im && im.naturalWidth && im.naturalHeight) ? im.naturalWidth / im.naturalHeight : 0.8;
+        let iw = boxW - 2 * fp, ih = iw / r;
+        if (ih > boxH - 2 * fp) { ih = boxH - 2 * fp; iw = ih * r; }
+        const sw = iw + 2 * fp, sh = ih + 2 * fp;
+        el.style.setProperty('--sw', sw + 'px'); el.style.setProperty('--sh', sh + 'px');
+        const dir = k === 0 ? -1 : 1;
+        const off = phone ? (cw + sw) / 2 - 6 : Math.max(cw * .55, Math.min((cw + sw) / 2 * .88, W / 2 - sw * .43 - 64));
+        el.style.setProperty('--ox', (dir * off) + 'px');
+      });
+    }
+    if (window.ResizeObserver) new ResizeObserver(layoutSides).observe(frameEl);
+    window.addEventListener('resize', layoutSides);
+    sideEls[0].addEventListener('click', () => prevBtn.click());
+    sideEls[1].addEventListener('click', () => nextBtn.click());
+
     // wide banner pieces (e.g. 46x20 "The Show") get the full phone width instead of a thumbnail
     function markWide(){
       const im = artEl.querySelector('img');
       const apply = () => frameEl.classList.toggle('is-wide', !!(im && im.naturalWidth && im.naturalWidth / im.naturalHeight > 1.7));
       frameEl.classList.remove('is-wide');
       if (!im) return;
-      if (im.complete) apply(); else im.addEventListener('load', () => { apply(); syncPosterSheen(); }, { once:true });
+      if (im.complete) apply(); else im.addEventListener('load', () => { apply(); syncPosterSheen(); layoutSides(); }, { once:true });
     }
 
     function render(){
@@ -1734,7 +1835,8 @@
         newImg.addEventListener('error', syncPosterSheen, { once: true });
       }
       markWide();
-      requestAnimationFrame(syncPosterSheen);
+      renderSides();
+      requestAnimationFrame(() => { syncPosterSheen(); layoutSides(); });
     }
     let gTouchX = null;
     frameEl.addEventListener('touchstart', (e) => { gTouchX = e.touches[0].clientX; }, { passive:true });
