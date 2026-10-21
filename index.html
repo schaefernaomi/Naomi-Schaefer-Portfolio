@@ -141,12 +141,6 @@
   .hero-name{ position:relative; z-index:2; cursor:default; }
   .hero-name .line{ display:block; font-family:'Fraunces',serif; font-weight:500; font-size:clamp(64px,15vw,190px);
     line-height:.92; letter-spacing:-.01em; position:relative; color:var(--ink); }
-  .reg-mark{ position:absolute; width:14px; height:14px; opacity:0; transition:opacity .3s ease; }
-  .hero-name:hover .reg-mark{opacity:.4;}
-  .reg-mark::before, .reg-mark::after{ content:''; position:absolute; background:var(--ink); }
-  .reg-mark::before{ width:100%; height:1px; top:50%; }
-  .reg-mark::after{ width:1px; height:100%; left:50%; }
-  .rm-tl{top:-18px; left:-18px;} .rm-tr{top:-18px; right:-18px;} .rm-bl{bottom:-18px; left:-18px;} .rm-br{bottom:-18px; right:-18px;}
 
   /* ONE signature hero interaction: a holographic finish sits latent beneath the typography.
      Moving the cursor reveals it through the letterforms via a mouse-tracked radial mask —
@@ -166,38 +160,40 @@
   }
   @keyframes holoDrift{ 0%,100%{background-position:0% 50%;} 50%{background-position:100% 50%;} }
 
-  /* AMBIENT SHEEN — the autonomous holographic motion. A third, separate layer (the cursor
-     reveal above is untouched): the same glyphs filled with a foil gradient, masked by a soft
-     diagonal light band. Only the band's mask-position animates, so the letters never move,
-     the box is absolute inset:0 (zero layout impact) and pointer-events are off. The band
-     starts and ends fully off-glyph, so the loop is seamless, and it holds off-screen for
-     ~45% of the cycle so it reads as light catching foil rather than a constant wipe.
-     Peak opacity is capped at .85 over the black ink base, which keeps the lettering dark
-     enough to stay readable on the light page. The only values animated are mask-position
-     (no color flashing, no brightness spikes). */
+  /* AMBIENT SHEEN — liquid foil. A separate layer (the cursor reveal above is untouched): the
+     same glyphs filled with five soft-edged pools of colour that drift on their own looping
+     paths, merging and parting like oil on water, instead of one band sweeping across. Only
+     background-position animates, so the letters never move; the box is absolute inset:0
+     (no layout impact) and pointer-events are off. Pools are transparent between each other,
+     so the black ink shows through and the lettering stays crisp and readable. */
   .hero-name .line-sheen, .holo-title .ct-sheen{
+    --c1:#8f78d8; --c2:#6a93d6; --c3:#4ea796; --c4:#c99a45; --c5:#d9829c;
     position:absolute; inset:0; pointer-events:none; -webkit-user-select:none; user-select:none;
-    background-image:linear-gradient(100deg,#7b2ff7 0%,#1f6bff 25%,#008f7a 50%,#b06c00 72%,#e0306a 100%);
-    -webkit-background-clip:text; background-clip:text; color:transparent;
-    -webkit-mask-image:linear-gradient(105deg,transparent 41%,rgba(0,0,0,.85) 50%,transparent 59%);
-    mask-image:linear-gradient(105deg,transparent 41%,rgba(0,0,0,.85) 50%,transparent 59%);
-    -webkit-mask-size:300% 100%; mask-size:300% 100%;
-    -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat;
-    -webkit-mask-position:100% 0; mask-position:100% 0;
-    animation:holoSheen 14s cubic-bezier(.45,0,.55,1) 1.4s infinite;
+    background-image:
+      radial-gradient(ellipse 10% 17% at 50% 50%, var(--c1) 0%, var(--c1) 30%, transparent 100%),
+      radial-gradient(ellipse 9.5% 16% at 50% 50%, var(--c2) 0%, var(--c2) 30%, transparent 100%),
+      radial-gradient(ellipse 10.5% 17% at 50% 50%, var(--c3) 0%, var(--c3) 30%, transparent 100%),
+      radial-gradient(ellipse 9% 15% at 50% 50%, var(--c4) 0%, var(--c4) 30%, transparent 100%),
+      radial-gradient(ellipse 9.5% 17% at 50% 50%, var(--c5) 0%, var(--c5) 30%, transparent 100%);
+    background-size:220% 260%; background-repeat:no-repeat;
+    background-position:95% 45%, 20% 60%, 55% 90%, 5% 30%, 75% 10%;
+    -webkit-background-clip:text; background-clip:text; color:transparent; opacity:.62;
+    animation:holoLiquid 20s ease-in-out .4s infinite;
   }
-  .hero-name > .stack .line-sheen{ animation-delay:1.8s; }
-  @keyframes holoSheen{
-    0%{ -webkit-mask-position:100% 0; mask-position:100% 0; }
-    55%,100%{ -webkit-mask-position:0% 0; mask-position:0% 0; }
+  .hero-name > .stack .line-sheen{ animation-delay:-4s; }
+  @keyframes holoLiquid{
+    0%,100%{ background-position:95% 45%, 20% 60%, 55% 90%, 5% 30%, 75% 10%; }
+    25%{ background-position:60% 70%, 45% 35%, 85% 50%, 30% 70%, 40% 55%; }
+    50%{ background-position:25% 40%, 80% 55%, 60% 20%, 65% 85%, 10% 80%; }
+    75%{ background-position:55% 15%, 50% 80%, 30% 50%, 90% 25%, 60% 45%; }
   }
   /* Titles that are scrolled out of view pause (class toggled by an IntersectionObserver). */
   .is-offscreen .line-holo, .is-offscreen .line-sheen, .is-offscreen .ct-holo, .is-offscreen .ct-sheen{ animation-play-state:paused; }
-  /* Reduced motion: no continuous animation — the sheen parks at a fixed, balanced position
+  /* Reduced motion: no continuous animation — the pools stay parked at a fixed arrangement
      so the title keeps a still holographic finish. */
   @media (prefers-reduced-motion: reduce){
     .hero-name .line-holo, .holo-title .ct-holo{ animation:none; }
-    .hero-name .line-sheen, .holo-title .ct-sheen{ animation:none; -webkit-mask-position:55% 0; mask-position:55% 0; }
+    .hero-name .line-sheen, .holo-title .ct-sheen{ animation:none; background-position:60% 70%, 45% 35%, 85% 50%, 30% 70%, 40% 55%; }
     .hero-focus, .hero-statement{ transition:opacity .4s ease; transform:none; }
   }
 
@@ -269,34 +265,42 @@
   @keyframes peekBounce{ 0%,100%{ transform:translateX(-50%) translateY(0); } 50%{ transform:translateX(-50%) translateY(4px); } }
 
 
-  /* ---------- EXPERTISE ---------- */
-  .expertise{ position:relative; padding:8vh 5vw 3vh; background:var(--paper); scroll-margin-top:80px; }
-  .expertise-inner{ max-width:1180px; margin:0 auto; }
-  .expertise-head{ display:flex; align-items:center; gap:18px; margin-bottom:26px; }
-  .expertise-head h2{ font-size:11px; font-weight:500; color:var(--grey); margin:0; }
-  .expertise-head::after{ content:''; flex:1; height:1px; background:var(--line-dark); }
-  .ex-grid{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; }
-  .ex-card{ display:grid; grid-template-columns:1fr auto; align-content:start; column-gap:12px;
-    padding:24px 24px 28px; border:1px solid var(--line-dark); border-radius:12px; background:rgba(255,255,255,.45);
+  /* ---------- SPECIALTIES ---------- */
+  .specialties{ position:relative; padding:8vh 5vw 3vh; background:var(--paper); scroll-margin-top:80px; }
+  .specialties-inner{ max-width:1180px; margin:0 auto; }
+  .specialties-head{ display:flex; align-items:center; gap:18px; margin-bottom:34px; }
+  .specialties-head h2{ font-size:11px; font-weight:500; color:var(--grey); margin:0; }
+  .specialties-head::after{ content:''; flex:1; height:1px; background:var(--line-dark); }
+  .sp-grid{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); }
+  .sp-col{ padding:0 28px; border-left:1px solid var(--line-dark);
     opacity:0; transform:translateY(16px); transition:opacity .8s var(--ease), transform .8s var(--ease); }
-  .ex-card.is-visible{ opacity:1; transform:none; }
-  .ex-card:nth-child(2){ transition-delay:.06s; } .ex-card:nth-child(3){ transition-delay:.12s; } .ex-card:nth-child(4){ transition-delay:.18s; }
-  .ex-icon{ grid-column:1; grid-row:1; color:var(--ink); line-height:0; margin-bottom:22px; }
-  .ex-num{ grid-column:2; grid-row:1; font-size:10.5px; color:var(--grey); }
-  .ex-title{ grid-column:1 / -1; font-family:'Fraunces',serif; font-weight:500; font-size:20px; line-height:1.15; margin:0 0 10px; text-wrap:balance; }
-  .ex-desc{ grid-column:1 / -1; margin:0; font-size:14px; line-height:1.6; color:var(--ink-soft); }
-  @media (max-width:1180px){ .ex-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
-  @media (max-width:600px){
-    .expertise{ padding:6vh 6vw 2vh; }
-    .ex-grid{ grid-template-columns:1fr; gap:12px; }
-    .ex-card{ grid-template-columns:34px 1fr; column-gap:16px; padding:18px 18px 20px; }
-    .ex-icon{ grid-row:1 / span 3; margin:2px 0 0; }
-    .ex-icon svg{ width:30px; height:30px; }
-    .ex-num{ grid-column:2; grid-row:1; margin-bottom:4px; }
-    .ex-title{ grid-column:2; grid-row:2; font-size:20px; margin-bottom:6px; }
-    .ex-desc{ grid-column:2; grid-row:3; font-size:13.5px; }
+  .sp-col:first-child{ padding-left:0; border-left:0; } .sp-col:last-child{ padding-right:0; }
+  .sp-col.is-visible{ opacity:1; transform:none; }
+  .sp-col:nth-child(2){ transition-delay:.06s; } .sp-col:nth-child(3){ transition-delay:.12s; } .sp-col:nth-child(4){ transition-delay:.18s; }
+  .sp-top{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:26px; color:var(--ink); }
+  .sp-icon{ line-height:0; display:block; }
+  .sp-num{ font-size:10.5px; color:var(--grey); }
+  .sp-title{ font-family:'Fraunces',serif; font-weight:500; font-size:clamp(21px,2.1vw,26px); line-height:1.12; margin:0 0 10px; text-wrap:balance; }
+  .amp{ font-family:Georgia,'Times New Roman',serif; font-weight:400; }
+  .sp-desc{ margin:0; font-size:13.5px; line-height:1.6; color:var(--grey); max-width:24ch; }
+  @media (max-width:1180px){
+    .sp-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); row-gap:34px; }
+    .sp-col:nth-child(3){ padding-left:0; border-left:0; }
+    .sp-col:nth-child(2){ padding-right:0; }
   }
-  @media (prefers-reduced-motion: reduce){ .ex-card{ transform:none; transition:opacity .4s ease; } }
+  @media (max-width:560px){
+    .specialties{ padding:6vh 6vw 2vh; }
+    .sp-grid{ grid-template-columns:1fr; row-gap:0; }
+    .sp-col, .sp-col:nth-child(n){ border-left:0; padding:20px 0; border-top:1px solid var(--line-dark);
+      display:grid; grid-template-columns:64px 1fr; column-gap:16px; }
+    .sp-col:first-child{ border-top:0; padding-top:4px; }
+    .sp-top{ grid-row:1 / span 2; margin:0; display:block; }
+    .sp-top .sp-num{ display:none; }
+    .sp-icon svg{ width:52px; height:52px; }
+    .sp-title, .sp-desc{ grid-column:2; }
+    .sp-title{ margin-bottom:4px; font-size:21px; }
+  }
+  @media (prefers-reduced-motion: reduce){ .sp-col{ transform:none; transition:opacity .4s ease; } }
 
   /* ---------- CHAPTER ---------- */
   .chapter{ position:relative; padding:11vh 5vw; scroll-margin-top:80px; }
@@ -313,6 +317,10 @@
   .chapter-num{ font-size:11px; color:var(--grey); }
   .chapter-title{ font-family:'Fraunces',serif; font-weight:500; font-size:clamp(40px,7vw,92px); line-height:1.05; }
   .chapter-desc{ margin:14px auto 0; max-width:480px; font-size:13px; color:var(--grey); line-height:1.6; }
+  /* Subheading + supporting line under a chapter title (Collectibles / Campaigns). */
+  .chapter-sub{ font-family:'Fraunces',serif; font-weight:500; font-size:clamp(24px,3vw,32px); line-height:1.15; margin:22px 0 0; text-wrap:balance; }
+  .chapter-desc.sub-desc{ margin-top:10px; max-width:640px; font-size:14.5px; color:var(--ink-soft); }
+  .chapter.dark .chapter-desc.sub-desc{ color:rgba(255,255,255,.72); }
   .chapter-desc.nowrap-desktop{ white-space:nowrap; max-width:none; }
   .chapter-desc.two-line{ max-width:none; }
   .nobreak{ white-space:nowrap; }
@@ -320,10 +328,11 @@
 
   /* Bottom-of-section fine print — a licensing/attribution line plus a couple of small
      mono disclaimer lines underneath, same quiet voice as .contact-sub/.foot elsewhere. */
-  .chapter-footnote{ text-align:center; margin:7vh auto 0; max-width:560px; }
+  .chapter-footnote{ text-align:center; margin:7vh auto 0; max-width:680px; }
   .footnote-lead{ font-size:13px; color:var(--grey); line-height:1.6; white-space:nowrap; }
-  .footnote-fine{ font-size:11px; color:var(--grey); opacity:.85; line-height:1.8; margin-top:8px; }
-  .chapter.dark .footnote-lead, .chapter.dark .footnote-fine{ color:rgba(255,255,255,.55); }
+  .footnote-fine{ font-size:12.5px; font-weight:500; letter-spacing:.05em; color:var(--ink-soft); line-height:1.7; margin-top:9px; }
+  .chapter.dark .footnote-lead{ color:rgba(255,255,255,.55); }
+  .chapter.dark .footnote-fine{ color:rgba(255,255,255,.8); }
 
   /* Reusable version of the hero's holo hover — same two-layer trick (a plain base
      layer plus a gradient layer clipped to the same glyphs and masked to the cursor),
@@ -364,7 +373,7 @@
   .holo-title .ct-sheen{ box-sizing:border-box; padding-block:.16em; }
   @media (prefers-reduced-motion: reduce){ .holo-title .ct-holo{ animation:none; } }
   .chapter.dark .holo-title .ct-sheen, .contact .holo-title .ct-sheen{
-    background-image:linear-gradient(100deg,#ff6fd8 0%,#6fa8ff 25%,#5cf2c9 50%,#ffe45c 72%,#ff8a5c 100%);
+    --c1:#e58fd0; --c2:#8fb4ec; --c3:#7fdcc0; --c4:#e8cd78; --c5:#eba087;
   }
   /* Swiping a finger across the title updates --mx/--my exactly like the mousemove
      handler does (see the JS below), so the cursor-tracked mask works on touch too —
@@ -996,7 +1005,6 @@
       <span class="line line-holo" aria-hidden="true">SCHAEFER</span>
       <span class="line line-sheen" aria-hidden="true">SCHAEFER</span>
     </div>
-    <div class="reg-mark rm-tl"></div><div class="reg-mark rm-tr"></div><div class="reg-mark rm-bl"></div><div class="reg-mark rm-br"></div>
   </div>
   <p class="hero-sub"><span class="hero-sub-word"><span class="cn-base">Graphic Designer</span><span class="cn-holo" aria-hidden="true">Graphic Designer</span></span></p>
   <p class="hero-focus mono"><span>Sports &amp; Entertainment</span><i aria-hidden="true">·</i><span>Campaigns</span><i aria-hidden="true">·</i><span>Motion</span></p>
@@ -1005,33 +1013,29 @@
   <div class="hero-peek"><span class="chev"></span></div>
 </section>
 
-<section class="expertise" id="expertise" aria-labelledby="expertiseLabel">
-  <div class="expertise-inner">
-    <div class="expertise-head"><h2 class="mono" id="expertiseLabel">Expertise</h2></div>
-    <ul class="ex-grid" role="list">
-      <li class="ex-card">
-        <span class="ex-icon"><svg viewBox="0 0 32 32" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M11 6.5 8.2 7.4a2 2 0 0 0-1.3 2.5l4.1 14.2a2 2 0 0 0 2.5 1.3"/><rect x="13" y="5" width="13" height="20" rx="2"/><rect x="15.5" y="7.5" width="8" height="8.5" rx="1"/><path d="M15.5 19.5h8M15.5 22h4.5" stroke="var(--red)"/></svg></span>
-        <span class="ex-num mono">01</span>
-        <h3 class="ex-title">Collectibles &amp; Print</h3>
-        <p class="ex-desc">Trading cards, posters, print design, and physical product presentation.</p>
+<section class="specialties" id="specialties" aria-labelledby="specialtiesLabel">
+  <div class="specialties-inner">
+    <div class="specialties-head"><h2 class="mono" id="specialtiesLabel">Specialties</h2></div>
+    <ul class="sp-grid" role="list">
+      <li class="sp-col">
+        <div class="sp-top"><span class="sp-icon"><svg class="ico " viewBox="0 0 48 48" width="56" height="56" fill="none" aria-hidden="true" focusable="false"><g stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><rect x="15.5" y="9" width="17" height="26" rx="2" fill="#e6e3dd" transform="rotate(-17 24 41)"/><rect x="15.5" y="9" width="17" height="26" rx="2" fill="#e6e3dd" transform="rotate(17 24 41)"/><rect x="15.5" y="9" width="17" height="26" rx="2" fill="var(--paper)" transform="rotate(0 24 41)"/><rect x="18.5" y="12.2" width="11" height="10" rx="1" fill="#e6e3dd"/><path d="M18.5 27h11" stroke="var(--red)" stroke-width="1.6" stroke-linecap="round"/><path d="M18.5 30.2h6" stroke-linecap="round"/></g></svg></span><span class="sp-num mono">01</span></div>
+        <h3 class="sp-title">Collectibles <span class="amp">&amp;</span> Print</h3>
+        <p class="sp-desc">Trading cards, posters, and print.</p>
       </li>
-      <li class="ex-card">
-        <span class="ex-icon"><svg viewBox="0 0 32 32" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="6" y="4.5" width="20" height="23" rx="2"/><path d="M6 21l5.5-5 4 3.5 3.5-3 7 6.5"/><path d="M16 7.6v4.8M13.6 10h4.8" stroke="var(--red)"/></svg></span>
-        <span class="ex-num mono">02</span>
-        <h3 class="ex-title">Campaign &amp; Key Art</h3>
-        <p class="ex-desc">Promotional graphics, visual storytelling, and campaign assets.</p>
+      <li class="sp-col">
+        <div class="sp-top"><span class="sp-icon"><svg class="ico " viewBox="0 0 48 48" width="56" height="56" fill="none" aria-hidden="true" focusable="false"><g stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><rect x="8" y="4.5" width="32" height="39" rx="1.5" stroke-width="1.7"/><rect x="12" y="8.5" width="24" height="31" fill="var(--paper)"/><rect x="14.5" y="11" width="19" height="20" fill="#e6e3dd"/><path d="M14.5 31 21 22.5 25 27 29 21.5 33.5 31Z" fill="var(--paper)"/><circle cx="28" cy="16.5" r="2.6" fill="var(--red)" stroke="none"/><path d="M15 35.5q2-3.4 4 0t4 0 4 0 4 0" stroke="var(--red)" stroke-width="1.5"/></g></svg></span><span class="sp-num mono">02</span></div>
+        <h3 class="sp-title">Campaign <span class="amp">&amp;</span> Key Art</h3>
+        <p class="sp-desc">Promotional graphics and key art.</p>
       </li>
-      <li class="ex-card">
-        <span class="ex-icon"><svg viewBox="0 0 32 32" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4.5" y="12" width="23" height="14" rx="2"/><path d="M4.5 12 6 7.4l22 2.6-.5 2M10 8.2l3 3.6M17 9l3 3.2"/><path d="M14.2 16.2v6l5-3z" stroke="var(--red)"/></svg></span>
-        <span class="ex-num mono">03</span>
-        <h3 class="ex-title">Motion &amp; Video</h3>
-        <p class="ex-desc">Motion graphics, storyboards, video editing, and post-production.</p>
+      <li class="sp-col">
+        <div class="sp-top"><span class="sp-icon"><svg class="ico " viewBox="0 0 48 48" width="56" height="56" fill="none" aria-hidden="true" focusable="false"><g stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><path d="M3 12.5h42M3 35.5h42" stroke-dasharray="2 2.6"/><rect x="3" y="17" width="12" height="14" rx="1.5" fill="var(--paper)"/><rect x="18" y="17" width="12" height="14" rx="1.5" fill="var(--paper)"/><rect x="33" y="17" width="12" height="14" rx="1.5" fill="var(--paper)"/><circle cx="7.8" cy="26.5" r="2.6" fill="var(--red)" fill-opacity=".3" stroke="none"/><circle cx="24" cy="21.5" r="2.6" fill="var(--red)" fill-opacity=".65" stroke="none"/><circle cx="40.2" cy="26.5" r="2.6" fill="var(--red)" stroke="none"/></g></svg></span><span class="sp-num mono">03</span></div>
+        <h3 class="sp-title">Motion <span class="amp">&amp;</span> Video</h3>
+        <p class="sp-desc">Motion graphics, storyboards, and edits.</p>
       </li>
-      <li class="ex-card">
-        <span class="ex-icon"><svg viewBox="0 0 32 32" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 24C8 10 16 6 26 8"/><path d="M6 24v-3M26 8h-3" stroke-opacity=".45"/><rect x="4" y="22" width="4" height="4" rx=".6"/><rect x="24" y="6" width="4" height="4" rx=".6"/><circle cx="16.5" cy="13.5" r="2" stroke="var(--red)"/></svg></span>
-        <span class="ex-num mono">04</span>
-        <h3 class="ex-title">Branding &amp; Visual Design</h3>
-        <p class="ex-desc">Visual identity, typography, layout, and cohesive design systems.</p>
+      <li class="sp-col">
+        <div class="sp-top"><span class="sp-icon"><svg class="ico " viewBox="0 0 48 48" width="56" height="56" fill="none" aria-hidden="true" focusable="false"><g stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><circle cx="14.5" cy="14.5" r="8.5" fill="#e6e3dd"/><rect x="25" y="6" width="17" height="17" rx="1.5" fill="#e6e3dd"/><circle cx="33.5" cy="14.5" r="3.4" fill="var(--red)" stroke="none"/><path d="M6 42 23 42 14.5 25Z" fill="#e6e3dd"/><path d="M25 42V25A17 17 0 0 1 42 42Z" fill="#e6e3dd" stroke="var(--red)"/></g></svg></span><span class="sp-num mono">04</span></div>
+        <h3 class="sp-title">Branding <span class="amp">&amp;</span> Visual Design</h3>
+        <p class="sp-desc">Identity, typography, and layout.</p>
       </li>
     </ul>
   </div>
@@ -1040,7 +1044,8 @@
 <section class="chapter" id="work">
   <div class="chapter-head">
     <div><div class="chapter-num mono">Chapter 01</div><h2 class="chapter-title holo-title"><span class="ct-base">Collectibles</span><span class="ct-holo" aria-hidden="true">Collectibles</span><span class="ct-sheen" aria-hidden="true">Collectibles</span></h2></div>
-    <p class="chapter-desc nowrap-desktop">Choose a collection, then browse it one slabbed card at a time.</p>
+    <h3 class="chapter-sub">Trading Card Design</h3>
+    <p class="chapter-desc sub-desc">Professional trading card designs for officially licensed sports and entertainment properties.</p>
   </div>
 
   <div class="vault-tabs" id="vaultTabs" role="tablist"></div>
@@ -1085,7 +1090,6 @@
   </div>
 
   <div class="chapter-footnote">
-    <p class="footnote-lead">Professional trading card designs by Naomi Schaefer for Upper Deck, featuring officially licensed properties.</p>
     <p class="footnote-fine mono">Stay tuned! More projects to come pending official release.</p>
     <p class="footnote-fine mono">Available via Upper Deck, hobby shops, and select retailers.</p>
   </div>
@@ -1114,7 +1118,8 @@
 <section class="chapter dark" id="campaigns">
   <div class="chapter-head">
     <div><div class="chapter-num mono">Chapter 02</div><h2 class="chapter-title holo-title"><span class="ct-base">Campaigns</span><span class="ct-holo" aria-hidden="true">Campaigns</span><span class="ct-sheen" aria-hidden="true">Campaigns</span></h2></div>
-    <p class="chapter-desc two-line">Hard-signed collectible poster designs by Naomi Schaefer, created for Upper Deck<br class="desk-br"> and officially licensed properties, featuring <span class="nobreak">athlete&#8209;authenticated</span> signatures.</p>
+    <h3 class="chapter-sub">Hard-Signed Collectible Posters</h3>
+    <p class="chapter-desc sub-desc">Promotional artwork and collectible designs featuring athlete-authenticated signatures.</p>
   </div>
 
   <div class="vault-tabs" id="galleryTabs" role="tablist"></div>
@@ -1743,7 +1748,7 @@
     renderCard();
   });
 
-  const revealTargets = document.querySelectorAll('.chapter-head, .archive-card, .about-text, .ex-card');
+  const revealTargets = document.querySelectorAll('.chapter-head, .archive-card, .about-text, .sp-col');
   const io = new IntersectionObserver((entries) => {
     entries.forEach(en => { if (en.isIntersecting) en.target.classList.add('is-visible'); });
   }, { threshold: 0.2 });
@@ -2128,7 +2133,7 @@
       '.chapter-desc', '.contact-sub', '.foot span', '.poster-caption .t', '.poster-caption .m',
       '.cs-piece-desc', '.cs-piece-title', '.cs-piece-medium', '.label-chip .t', '.label-chip .m',
       '.grid-tile .cap span', '#csCount', '.slab-caption', '.hero-tagline',
-      '.footnote-lead', '.footnote-fine', '.hero-sub', '.ex-desc', '.hero-statement'
+      '.footnote-lead', '.footnote-fine', '.hero-sub', '.sp-desc', '.hero-statement'
     ].join(', ');
 
     function fixWidow(el){
