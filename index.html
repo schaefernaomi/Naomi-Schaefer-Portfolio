@@ -129,8 +129,8 @@
   }
 
   /* ---------- HERO ---------- */
-  .hero{ position:relative; height:100vh; height:100dvh; min-height:680px; display:flex; flex-direction:column; justify-content:flex-start;
-    align-items:center; text-align:center; overflow:hidden; background:var(--paper); padding-top:22vh; box-sizing:border-box; }
+  .hero{ position:relative; height:calc(100vh - 96px); height:calc(100dvh - 96px); min-height:600px; display:flex; flex-direction:column; justify-content:flex-start;
+    align-items:center; text-align:center; overflow:hidden; background:var(--paper); padding-top:19vh; box-sizing:border-box; }
   /* On a narrow, tall phone screen, a full-height hero with everything pinned under
      22vh of top padding leaves a huge dead gap between the subtitle and the scroll hint —
      it reads as a long stretch of nothing the moment you start scrolling. Centering the
@@ -265,8 +265,33 @@
   @keyframes peekBounce{ 0%,100%{ transform:translateX(-50%) translateY(0); } 50%{ transform:translateX(-50%) translateY(4px); } }
 
 
+
+  /* ---------- SECTION RAIL (right gutter) ----------
+     Lives in the outer 36px of the right edge, which content never enters (sections keep
+     >=5vw side padding; rail is hidden below 1000px wide and on touch). Pill backdrop keeps
+     dots legible over any background; labels open to the LEFT on hover/focus only. */
+  .rail{ position:fixed; right:8px; top:50%; transform:translateY(-50%); z-index:90; display:none;
+    flex-direction:column; align-items:center; gap:2px; padding:8px 4px; border-radius:999px;
+    background:rgba(247,246,244,.78); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+    border:1px solid rgba(0,0,0,.08); transition:background .3s, border-color .3s, opacity .3s; }
+  .rail.on-dark{ background:rgba(20,20,22,.6); border-color:rgba(255,255,255,.14); }
+  .rail a{ position:relative; display:block; width:24px; height:22px; cursor:pointer; }
+  .rail a::before{ content:''; position:absolute; left:50%; top:50%; width:7px; height:7px; border-radius:50%;
+    transform:translate(-50%,-50%); background:transparent; border:1.3px solid var(--ink-soft); transition:all .25s var(--ease); }
+  .rail.on-dark a::before{ border-color:rgba(255,255,255,.7); }
+  .rail a.active::before{ background:var(--red); border-color:var(--red); width:9px; height:9px; }
+  .rail a span{ position:absolute; right:calc(100% + 10px); top:50%; transform:translate(6px,-50%); white-space:nowrap;
+    font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase;
+    padding:6px 10px; border-radius:6px; background:var(--ink); color:#fff; opacity:0; pointer-events:none;
+    transition:opacity .2s, transform .2s; }
+  .rail a:hover span, .rail a:focus-visible span{ opacity:1; transform:translate(0,-50%); }
+  .rail a:focus-visible{ outline:2px solid var(--red); outline-offset:-2px; border-radius:999px; }
+  body.no-scroll .rail, html.is-loading .rail{ opacity:0; pointer-events:none; }
+  @media (min-width:1000px) and (hover:hover){ .rail{ display:flex; } }
+  @media (prefers-reduced-motion: reduce){ .rail a::before, .rail a span, .rail{ transition:none; } }
+
   /* ---------- SPECIALTIES ---------- */
-  .specialties{ position:relative; padding:8vh 5vw 3vh; background:var(--paper); scroll-margin-top:80px; }
+  .specialties{ position:relative; padding:4vh 5vw 3vh; background:var(--paper); scroll-margin-top:80px; }
   .specialties-inner{ max-width:1180px; margin:0 auto; }
   .specialties-head{ display:flex; align-items:center; gap:18px; margin-bottom:34px; }
   .specialties-head h2{ font-size:11px; font-weight:500; color:var(--grey); margin:0; }
@@ -303,15 +328,15 @@
   @media (prefers-reduced-motion: reduce){ .sp-col{ transform:none; transition:opacity .4s ease; } }
 
   /* ---------- CHAPTER ---------- */
-  .chapter{ position:relative; padding:11vh 5vw; scroll-margin-top:80px; }
+  .chapter{ position:relative; padding:9vh 5vw 7vh; scroll-margin-top:80px; }
   #hero{ scroll-margin-top:0; }
   @media (max-width:640px){
-    .chapter{ padding:8vh 6vw; }
+    .chapter{ padding:7vh 6vw 6vh; }
   }
   .chapter.dark{ background:var(--ink); color:var(--paper); }
   .chapter.dark .art-slot{ background:#1c1c1e; }
   .chapter.dark .art-slot .slot-note{ color:#6b6b6e; }
-  .chapter-head{ margin-bottom:6vh; text-align:center;
+  .chapter-head{ margin-bottom:4vh; text-align:center;
     opacity:0; transform:translateY(24px); transition:all .9s var(--ease); }
   .chapter-head.is-visible{opacity:1; transform:translateY(0);}
   .chapter-num{ font-size:11px; color:var(--grey); }
@@ -596,7 +621,27 @@
      assigned (see ARENA_BACKGROUNDS in the vault JS), .has-photo-bg swaps in the actual
      image with a readability gradient over it, and turns off the synthetic sheen texture
      since the real photo already carries its own atmosphere. */
-  .vault-arena{ position:relative; border-radius:16px; padding:9vh 4vw 7vh; overflow:hidden; }
+  .vault-arena{ position:relative; border-radius:16px; padding:0; overflow:hidden; }
+  /* Picker built into the stage: a top bar (collections left, count right) and a footer row. */
+  .vault-bar{ display:flex; align-items:center; justify-content:space-between; gap:16px 24px; flex-wrap:wrap;
+    padding:18px clamp(16px,3vw,36px); border-bottom:1px solid rgba(255,255,255,.1);
+    background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,.18)); }
+  .vault-bar .vault-tabs{ margin:0; justify-content:flex-start; gap:6px; padding:4px; border-radius:999px;
+    background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); }
+  .vault-bar .vault-tab{ padding:8px 18px; font-size:11.5px; border-color:transparent; color:rgba(255,255,255,.72); }
+  @media (hover:hover){ .vault-bar .vault-tab:hover{ color:#fff; border-color:rgba(255,255,255,.4); } }
+  .vault-bar .vault-tab.active{ color:#fff; background:var(--red); border-color:var(--red); box-shadow:none; }
+  .vault-bar .vault-counter{ margin:0; text-align:right; white-space:nowrap; font-size:11px; color:rgba(255,255,255,.7); }
+  .vault-arena .vault-stage{ padding:3vh 4vw 2vh; }
+  .vault-foot{ display:flex; align-items:center; justify-content:space-between; gap:12px 24px; flex-wrap:wrap;
+    padding:6px clamp(16px,3vw,36px) 20px; }
+  .vault-foot .vault-hint, .vault-foot .view-all-link{ margin:0; }
+  .vault-foot .view-all-link{ padding:9px 18px; }
+  @media (min-width:641px){
+    :root{ --card-w:clamp(210px, calc((100dvh - 400px) / 1.42), 340px); }
+    .vault-frame, .slab{ width:var(--card-w); }
+    .vault-frame.is-landscape, .slab.orientation-landscape{ width:min(440px, calc(var(--card-w) * 1.3)); }
+  }
   .vault-arena::before{ content:''; position:absolute; inset:0; z-index:0; border-radius:inherit;
     background:
       radial-gradient(ellipse 55% 45% at 50% 0%, rgba(255,255,255,.14), transparent 60%),
@@ -637,7 +682,10 @@
     .vault-frame.is-landscape{ width:min(300px, 78vw); }
     .slab-side.left, .slab-side.right{ --rot:0deg; filter:brightness(.7); }
     #vaultStage .vault-arrow{ display:none; }
-    .vault-arena{ padding:7vh 3vw 5vh; border-radius:10px; }
+    .vault-arena{ padding:0; border-radius:10px; }
+    .vault-bar{ padding:14px 14px; justify-content:center; }
+    .vault-arena .vault-stage{ padding:2vh 3vw 1vh; }
+    .vault-foot{ justify-content:center; padding:4px 14px 16px; }
   }
 
 
@@ -726,7 +774,7 @@
     .gallery-frame.is-wide .poster-frame{ width:100%; }
     .gallery-frame.is-wide .poster-mat{ width:100%; }
   }
-  .gallery-frame{ position:relative; width:100%; height:74vh; max-height:760px;
+  .gallery-frame{ position:relative; width:100%; height:max(300px, min(74vh, calc(100dvh - 380px))); max-height:760px;
     display:flex; align-items:center; justify-content:center; }
   .poster-art{ position:relative; height:100%; max-width:100%; display:flex; align-items:center; justify-content:center;
     transition:transform .6s var(--ease); }
@@ -989,6 +1037,16 @@
   </div>
 </nav>
 
+<nav class="rail" id="sectionRail" aria-label="Page sections">
+  <a data-rail="hero" tabindex="0" role="link" aria-label="Top"><span>Top</span></a>
+  <a data-rail="specialties" tabindex="0" role="link" aria-label="Specialties"><span>Specialties</span></a>
+  <a data-rail="work" tabindex="0" role="link" aria-label="Collectibles"><span>Collectibles</span></a>
+  <a data-rail="campaigns" tabindex="0" role="link" aria-label="Campaigns"><span>Campaigns</span></a>
+  <a data-rail="archive" tabindex="0" role="link" aria-label="Additional work"><span>Additional Work</span></a>
+  <a data-rail="about" tabindex="0" role="link" aria-label="About"><span>About</span></a>
+  <a data-rail="contact" tabindex="0" role="link" aria-label="Contact"><span>Contact</span></a>
+</nav>
+
 <section class="hero" id="hero">
   <div class="hero-name" id="heroName" aria-label="Naomi Schaefer">
     <div class="hero-name-row">
@@ -1048,9 +1106,11 @@
     <p class="chapter-desc sub-desc">Professional trading card designs for officially licensed sports and entertainment properties.</p>
   </div>
 
-  <div class="vault-tabs" id="vaultTabs" role="tablist"></div>
-
   <div class="vault-arena" id="vaultArena">
+    <div class="vault-bar">
+      <div class="vault-tabs" id="vaultTabs" role="tablist" aria-label="Card collections"></div>
+      <div class="vault-counter mono" id="vaultCounter" aria-live="polite">01 / 01</div>
+    </div>
     <div class="vault-stage" id="vaultStage">
       <button class="vault-arrow" id="vaultPrev" aria-label="Previous card">
         <svg viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1083,9 +1143,10 @@
       </button>
     </div>
 
-    <div class="vault-counter mono" id="vaultCounter">01 / 01</div>
-    <div class="vault-hint mono">Click card to flip</div>
-    <button class="view-all-link mono" id="vaultViewAllBtn">View all →</button>
+    <div class="vault-foot">
+      <div class="vault-hint mono">Click card to flip</div>
+      <button class="view-all-link mono" id="vaultViewAllBtn">View all →</button>
+    </div>
     <div class="grid-panel" id="vaultGrid"></div>
   </div>
 
@@ -1592,7 +1653,7 @@
       // and only ever changes when you switch to a different collection.
       vaultFrame.classList.toggle('is-landscape', c.cards.some(cd => cd.orientation === 'landscape'));
       applyCardAspect(artF.querySelector('img'));
-      counter.textContent = String(ki + 1).padStart(2, '0') + ' / ' + String(c.cards.length).padStart(2, '0');
+      counter.textContent = c.cards.length + (c.cards.length === 1 ? ' card' : ' cards') + ' · ' + String(ki + 1).padStart(2, '0') + ' / ' + String(c.cards.length).padStart(2, '0');
       const multi = c.cards.length > 1;
       prevBtn.style.visibility = multi ? 'visible' : 'hidden';
       nextBtn.style.visibility = multi ? 'visible' : 'hidden';
@@ -1777,6 +1838,34 @@
     }
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+  })();
+
+
+  // ---------- Section rail: active dot + light/dark backdrop follow the section at mid-screen ----------
+  (function(){
+    const rail = document.getElementById('sectionRail'); if (!rail) return;
+    const links = [...rail.querySelectorAll('a[data-rail]')];
+    const secs = links.map(a => document.getElementById(a.dataset.rail));
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function go(i){ const t = secs[i]; if (!t) return;
+      if (t.id === 'hero') window.scrollTo({ top:0, behavior: reduce ? 'auto' : 'smooth' });
+      else t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block:'start' }); }
+    links.forEach((a,i) => {
+      a.addEventListener('click', () => go(i));
+      a.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(i); } });
+    });
+    let tick = false;
+    function update(){
+      tick = false;
+      const mid = window.innerHeight * 0.4; let cur = 0;
+      secs.forEach((s,i) => { if (s && s.getBoundingClientRect().top <= mid) cur = i; });
+      links.forEach((a,i) => { a.classList.toggle('active', i === cur); if (i === cur) a.setAttribute('aria-current','true'); else a.removeAttribute('aria-current'); });
+      const s = secs[cur];
+      rail.classList.toggle('on-dark', !!s && (s.classList.contains('dark') || s.id === 'contact'));
+    }
+    window.addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(update); } }, { passive:true });
+    window.addEventListener('resize', update);
+    update();
   })();
 
   // ---------- Brand marquee — clone the track once for a seamless infinite loop,
