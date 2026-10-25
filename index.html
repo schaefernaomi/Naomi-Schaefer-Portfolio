@@ -387,7 +387,7 @@
      mono disclaimer lines underneath, same quiet voice as .contact-sub/.foot elsewhere. */
   .chapter-footnote{ text-align:center; margin:7vh auto 0; max-width:680px; }
   .footnote-lead{ font-size:13px; color:var(--grey); line-height:1.6; white-space:nowrap; }
-  .footnote-fine{ font-size:12px; font-weight:500; letter-spacing:.05em; color:var(--ink-soft); line-height:1.7; margin-top:9px; }
+  .footnote-fine{ font-family:inherit; font-size:var(--fs-body); font-weight:400; letter-spacing:0; text-transform:none; color:var(--ink-soft); line-height:1.7; margin-top:9px; }
   .chapter.dark .footnote-lead{ color:rgba(255,255,255,.55); }
   .chapter.dark .footnote-fine{ color:rgba(255,255,255,.8); }
 
@@ -668,6 +668,11 @@
   .grid-panel.open{ display:grid; grid-template-columns:repeat(auto-fit, minmax(130px,1fr)); gap:12px;
     justify-content:center; margin-top:5vh; animation:gridFadeIn .5s var(--ease); }
   @keyframes gridFadeIn{ from{ opacity:0; transform:translateY(12px); } to{ opacity:1; transform:translateY(0); } }
+  .grid-group{ grid-column:1 / -1; display:flex; align-items:baseline; gap:10px; margin-top:16px; padding-bottom:8px;
+    border-bottom:1px solid rgba(255,255,255,.14); font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em;
+    text-transform:uppercase; color:rgba(255,255,255,.85); }
+  .grid-group:first-child{ margin-top:0; }
+  .grid-group i{ font-style:normal; color:rgba(255,255,255,.45); }
   .grid-tile{ position:relative; border-radius:4px; overflow:hidden; cursor:pointer; background:transparent; }
   .grid-tile img{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; transition:transform .5s ease; }
   @media (hover:hover){ .grid-tile:hover img{ transform:scale(1.05); } }
@@ -693,10 +698,14 @@
   .vault-bar .vault-tab.active{ color:#fff; background:var(--red); border-color:var(--red); box-shadow:none; }
   .vault-bar .vault-counter{ margin:0; text-align:right; white-space:nowrap; font-size:11px; color:rgba(255,255,255,.7); }
   .vault-arena .vault-stage{ padding:3vh 4vw 2vh; }
-  .vault-foot{ display:flex; align-items:center; justify-content:space-between; gap:12px 24px; flex-wrap:wrap;
-    padding:6px clamp(16px,3vw,36px) 20px; }
+  /* Sits under the arena, on the page background (not inside the photo), so it's always readable. */
+  .vault-foot{ display:flex; align-items:center; justify-content:space-between; gap:10px 24px; flex-wrap:wrap;
+    padding:14px 4px 0; }
   .vault-foot .vault-hint, .vault-foot .view-all-link{ margin:0; }
-  .vault-foot .view-all-link{ padding:9px 18px; }
+  .vault-foot .vault-hint{ padding:0; color:var(--grey); font-size:10.5px; }
+  .vault-foot .view-all-link{ padding:6px 14px; font-size:10px; color:var(--ink); border-color:var(--line-dark); }
+  @media (hover:hover){ .vault-foot .view-all-link:hover{ color:#fff; border-color:var(--red); } }
+  #vaultGrid.open{ grid-template-columns:repeat(auto-fit, minmax(92px,118px)); gap:10px; padding:0 clamp(16px,3vw,36px) 24px; }
   @media (min-width:641px){
     :root{ --card-w:clamp(210px, calc((100dvh - 400px) / 1.42), 340px); }
     .vault-frame, .slab{ width:var(--card-w); }
@@ -745,7 +754,7 @@
     .vault-arena{ padding:0; border-radius:10px; }
     .vault-bar{ padding:14px 14px; justify-content:center; }
     .vault-arena .vault-stage{ padding:2vh 3vw 1vh; }
-    .vault-foot{ justify-content:center; padding:4px 14px 16px; }
+    .vault-foot{ justify-content:center; padding:12px 14px 0; }
   }
 
 
@@ -776,6 +785,7 @@
     box-shadow:0 8px 22px rgba(0,0,0,.55), 0 2px 6px rgba(0,0,0,.4);
     -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); }
   #vaultStage #vaultPrev{ left:0; } #vaultStage #vaultNext{ right:0; }
+  @media (min-width:701px){ #vaultStage #vaultPrev{ left:clamp(28px,4.5vw,72px); } #vaultStage #vaultNext{ right:clamp(28px,4.5vw,72px); } }
   #vaultStage .vault-arrow svg{ width:18px; height:18px; }
   #vaultStage .vault-arrow path{ stroke-width:2.2; }
   @media (hover:hover){ #vaultStage .vault-arrow:hover{ background:#fff; color:#111; border-color:#fff; } }
@@ -786,12 +796,17 @@
   .gallery-stage{ position:relative; overflow-x:clip; padding:2.5vh 0; }
   .gallery-body{ position:relative; -webkit-perspective:1700px; perspective:1700px; }
   .gallery-frame{ z-index:3; animation:slabBob 6s ease-in-out infinite; }
-  .poster-side{ position:absolute; left:50%; top:50%; z-index:1; cursor:pointer; filter:brightness(.72);
+  /* The frame is as wide as the whole stage, so it used to sit on top of the neighbouring posters and
+     swallow their clicks. Only the poster itself takes the pointer now; the empty space around it lets
+     clicks through to the neighbours (hover and tilt still work, since they bubble up from the poster). */
+  .gallery-frame{ pointer-events:none; }
+  .gallery-frame .poster-art > img, .gallery-frame .poster-frame, .gallery-frame .poster-art .art-slot{ pointer-events:auto; }
+  .poster-side{ position:absolute; left:50%; top:50%; z-index:1; cursor:pointer; filter:blur(1.5px) brightness(.55);
     width:var(--sw,300px); height:var(--sh,400px);
     transform:translate(-50%,-50%) translateX(var(--ox,0px)) translateZ(-170px) rotateY(var(--rot,0deg));
     transition:filter .3s ease; animation:slabBob 6s ease-in-out infinite; }
-  .poster-side.left{ --rot:18deg; animation-delay:-2s; } .poster-side.right{ --rot:-18deg; animation-delay:-4s; }
-  .poster-side:hover{ filter:brightness(.95); }
+  .poster-side.left{ --rot:26deg; animation-delay:-2s; } .poster-side.right{ --rot:-26deg; animation-delay:-4s; }
+  .poster-side:hover, .poster-side:focus-visible{ filter:blur(.6px) brightness(.9); outline:none; }
   .poster-side .ps-img{ display:block; width:100%; height:100%; object-fit:contain; border-radius:2px;
     box-shadow:0 40px 70px -20px rgba(0,0,0,.8), 0 14px 26px -8px rgba(0,0,0,.6); }
   .poster-side .ps-frame{ width:100%; height:100%; box-sizing:border-box; padding:calc(var(--fp,20px)*.45);
@@ -935,9 +950,10 @@
   .sc-arena{ padding:0 var(--gut) clamp(10px,3vh,36px); }
 
   /* cover grid */
-  .sc-covers{ display:grid; grid-template-columns:repeat(var(--cols,3), minmax(0,1fr)); gap:clamp(34px,4.4vw,60px) clamp(18px,2.4vw,34px); }
+  .sc-covers{ display:grid; grid-template-columns:repeat(var(--cols,3), minmax(0,1fr)); gap:clamp(26px,3vw,40px) clamp(16px,2vw,28px); }
+  #sc-motion .sc-covers{ max-width:1040px; margin-inline:auto; }
   .sc-cover{ display:flex; flex-direction:column; justify-content:flex-start; align-self:start; width:100%; text-align:left; background:none; border:0; padding:0; color:inherit; cursor:pointer; font:inherit; }
-  .sc-cover .face{ flex:none; width:100%; --tone:rgba(128,128,128,.14); position:relative; display:block; aspect-ratio:4/3; overflow:hidden; border-radius:3px; background:var(--tone); transition:background .5s var(--ease), box-shadow .6s var(--ease); }
+  .sc-cover .face{ flex:none; width:100%; --tone:rgba(128,128,128,.14); position:relative; display:block; aspect-ratio:16/10; overflow:hidden; border-radius:3px; background:var(--tone); transition:background .5s var(--ease), box-shadow .6s var(--ease); }
   .sc-cover .face img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform 1s var(--ease); }
   .sc-cover.contain .face img{ inset:9%; width:82%; height:82%; object-fit:contain; box-shadow:0 1px 2px rgba(0,0,0,.07), 0 18px 36px -14px rgba(0,0,0,.3); }
   .sc-cover .view{ position:absolute; right:12px; bottom:12px; font-size:11px; letter-spacing:.07em; text-transform:uppercase; padding:8px 13px; border-radius:99px;
@@ -1210,7 +1226,6 @@
   <p class="hero-sub"><span class="hero-sub-word"><span class="cn-base">Graphic Designer</span><span class="cn-holo" aria-hidden="true">Graphic Designer</span></span></p>
   <p class="hero-focus mono"><span>Sports &amp; Entertainment</span><i aria-hidden="true">·</i><span>Campaigns</span><i aria-hidden="true">·</i><span>Motion</span></p>
   <p class="hero-statement">Designing across collectibles, print, campaigns, and digital media.</p>
-  <div class="hero-hint mono"><span class="dot"></span> Scroll</div>
   <div class="hero-peek"><span class="chev"></span></div>
 </section>
 
@@ -1294,16 +1309,17 @@
       </button>
     </div>
 
-    <div class="vault-foot">
-      <div class="vault-hint mono">Click card to flip</div>
-      <button class="view-all-link mono" id="vaultViewAllBtn">View all →</button>
-    </div>
     <div class="grid-panel" id="vaultGrid"></div>
   </div>
 
+  <div class="vault-foot">
+    <div class="vault-hint mono">Click card to flip</div>
+    <button class="view-all-link mono" id="vaultViewAllBtn">View all →</button>
+  </div>
+
   <div class="chapter-footnote">
-    <p class="footnote-fine mono">Stay tuned! More projects to come pending official release.</p>
-    <p class="footnote-fine mono">Available via Upper Deck, hobby shops, and select retailers.</p>
+    <p class="footnote-fine">Stay tuned! More projects to come pending official release.</p>
+    <p class="footnote-fine">Available via Upper Deck, hobby shops, and select retailers.</p>
   </div>
 </section>
 
@@ -1362,15 +1378,14 @@
   <div class="grid-panel" id="galleryGrid"></div>
 
   <div class="chapter-footnote">
-    <p class="footnote-fine mono">Stay tuned! More projects to come pending official release.</p>
-    <p class="footnote-fine mono">Released products featuring these designs are available through Upper Deck!</p>
+    <p class="footnote-fine">Stay tuned! More projects to come pending official release.</p>
+    <p class="footnote-fine">Released products featuring these designs are available through Upper Deck!</p>
   </div>
 </section>
 
 <section class="chapter sc" id="branding">
   <div class="chapter-head">
     <div><h2 class="chapter-title holo-title"><span class="ct-base">Branding &amp; Illustration</span><span class="ct-holo" aria-hidden="true">Branding &amp; Illustration</span><span class="ct-sheen" aria-hidden="true">Branding &amp; Illustration</span></h2></div>
-    <h3 class="chapter-sub">Logos, Identity &amp; Illustration</h3>
     <p class="chapter-desc sub-desc">Brand identities, illustration, and editorial design, from logo systems to magazine spreads.</p>
   </div>
   <div class="sc-arena" id="sc-branding"></div>
@@ -1379,7 +1394,6 @@
 <section class="chapter sc dark" id="motion">
   <div class="chapter-head">
     <div><h2 class="chapter-title holo-title"><span class="ct-base">Motion &amp; 3D</span><span class="ct-holo" aria-hidden="true">Motion &amp; 3D</span><span class="ct-sheen" aria-hidden="true">Motion &amp; 3D</span></h2></div>
-    <h3 class="chapter-sub">Storyboards &amp; 3D Design</h3>
     <p class="chapter-desc sub-desc">Storyboard animation and 3D spatial design, from first frames to final render.</p>
   </div>
   <div class="sc-arena" id="sc-motion"></div>
@@ -1559,11 +1573,23 @@
   // object-fit is always 'contain', never 'cover' — this never crops artwork, same rule
   // as every other view on the site.
   function renderGridPanel(panelEl, items, aspectRatio, onSelect){
-    panelEl.innerHTML = items.map((it, i) => `
-      <div class="grid-tile" data-idx="${i}" style="aspect-ratio:${aspectRatio};" tabindex="0" role="button" aria-label="${String(it.title || '').replace(/"/g, '&quot;')}">
+    // Optional grouping: if items carry a `group` (e.g. the sport), a small heading is drawn
+    // each time it changes — only when there is more than one group to tell apart.
+    const multiGroup = new Set(items.map(it => it.group).filter(Boolean)).size > 1;
+    let lastGroup = null;
+    panelEl.innerHTML = items.map((it, i) => {
+      let head = '';
+      if (multiGroup && it.group && it.group !== lastGroup) {
+        const n = items.filter(x => x.group === it.group).length;
+        head = `<div class="grid-group"><span>${it.group}</span><i>${n}</i></div>`;
+        lastGroup = it.group;
+      }
+      return head + `
+      <div class="grid-tile" data-idx="${it.idx !== undefined ? it.idx : i}" style="aspect-ratio:${aspectRatio};" tabindex="0" role="button" aria-label="${String(it.title || '').replace(/"/g, '&quot;')}">
         ${imgTag(it.img, it.alt || it.title)}
         <div class="cap"><span>${it.title}</span></div>
-      </div>`).join('');
+      </div>`;
+    }).join('');
     panelEl.querySelectorAll('.grid-tile').forEach(tile => {
       tile.addEventListener('click', () => onSelect(parseInt(tile.dataset.idx, 10)));
       tile.addEventListener('keydown', (e) => {
@@ -2224,7 +2250,7 @@
     const bodyEl = frameEl.parentElement;
     const sideEls = ['left', 'right'].map(dir => {
       const el = document.createElement('div');
-      el.className = 'poster-side ' + dir; el.setAttribute('role', 'button');
+      el.className = 'poster-side ' + dir; el.setAttribute('role', 'button'); el.tabIndex = 0;
       el.setAttribute('aria-label', dir === 'left' ? 'Previous poster' : 'Next poster');
       bodyEl.appendChild(el); return el;
     });
@@ -2269,7 +2295,7 @@
         const sw = iw + 2 * fp, sh = ih + 2 * fp;
         el.style.setProperty('--sw', sw + 'px'); el.style.setProperty('--sh', sh + 'px');
         const dir = k === 0 ? -1 : 1;
-        const off = phone ? (cw + sw) / 2 - 6 : Math.max(cw * .55, Math.min((cw + sw) / 2 * .88, W / 2 - sw * .43 - 64));
+        const off = phone ? (cw + sw) / 2 - 6 : Math.max(cw * .6, Math.min((cw + sw) / 2 * 1.06, W / 2 - sw * .43 - 64));
         el.style.setProperty('--ox', (dir * off) + 'px');
       });
     }
@@ -2277,6 +2303,7 @@
     window.addEventListener('resize', layoutSides);
     sideEls[0].addEventListener('click', () => prevBtn.click());
     sideEls[1].addEventListener('click', () => nextBtn.click());
+    sideEls.forEach(el => el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); } }));
 
     // wide banner pieces (e.g. 46x20 "The Show") get the full phone width instead of a thumbnail
     function markWide(){
@@ -2331,7 +2358,12 @@
     const gridView = wireViewAll(
       document.getElementById('galleryViewAllBtn'),
       document.getElementById('galleryGrid'),
-      () => posters.map(p => ({ title: p.title, img: p.imgSrc })),
+      () => {
+        // grouped by sport, in the same order as the tabs; original order kept inside each sport
+        const order = collections.filter(c => c !== 'ALL');
+        return posters.map((p, idx) => ({ title: p.title, img: p.imgSrc, group: activeCollection === 'ALL' ? p.collection : '', idx }))
+          .sort((a, b) => (order.indexOf(a.group) - order.indexOf(b.group)) || (a.idx - b.idx));
+      },
       '3/4',
       (idx) => { pi = idx; render(); }
     );
