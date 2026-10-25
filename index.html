@@ -609,6 +609,34 @@
   .slab-face.back{ -webkit-transform:rotateY(180deg); transform:rotateY(180deg);
     background:linear-gradient(160deg,#2c2c2e 0%,#161618 55%,#0c0c0d 100%); border-color:rgba(255,255,255,.1); }
 
+  /* ---------- Photo-real acrylic slab (opt-in per card: a "slab" block in portfolio.json) ----------
+     The look is a pre-rendered transparent image per side (tools/render_slab.py) — bevelled glass
+     edges, reflections, scratches, soft shadow. The page only adds motion: the whole thing is a
+     thin 3D box (front image, back image, and four glass edge strips between them) so the flip
+     has real thickness. Cards without a "slab" block keep the CSS slab above, untouched. */
+  .sl-img{ position:absolute; inset:0; display:none; pointer-events:none; z-index:2; }
+  .slab.has-slab-img .sl-img{ display:block; }
+  .slab.has-slab-img .slab-inner, .slab.has-slab-img .slab-label{ visibility:hidden; }
+  .slab.has-slab-img::after{ display:none; }
+  .sl-tilt, .sl-flip{ position:absolute; inset:0; -webkit-transform-style:preserve-3d; transform-style:preserve-3d; }
+  .sl-tilt{ transition:transform .5s var(--ease); will-change:transform; }
+  .slab.is-tracking .sl-tilt{ transition:transform .12s linear; }
+  .sl-flip{ transition:transform .85s cubic-bezier(.22,.7,.2,1); }
+  .slab.flipped .sl-flip{ -webkit-transform:rotateY(180deg); transform:rotateY(180deg); }
+  .sl-face{ position:absolute; inset:0; -webkit-backface-visibility:hidden; backface-visibility:hidden; }
+  .sl-face.f{ transform:translateZ(calc(var(--T,18px) / 2)); }
+  .sl-face.b{ transform:rotateY(180deg) translateZ(calc(var(--T,18px) / 2)); }
+  .sl-face img{ display:block; width:100%; height:100%; user-select:none; -webkit-user-drag:none; }
+  .sl-glare{ position:absolute; inset:0; opacity:0; transition:opacity .3s ease; mix-blend-mode:screen;
+    -webkit-mask-size:100% 100%; mask-size:100% 100%; -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat;
+    background:radial-gradient(circle at var(--gx,30%) var(--gy,20%), rgba(255,255,255,.16), rgba(255,255,255,0) 52%); }
+  .sl-face.b .sl-glare{ background:radial-gradient(circle at var(--gxb,70%) var(--gy,20%), rgba(255,255,255,.16), rgba(255,255,255,0) 52%); }
+  .slab:hover .sl-glare{ opacity:1; }
+  .sl-edge{ position:absolute; }
+  .sl-edge.v{ background:linear-gradient(90deg,rgba(255,255,255,.62) 0,rgba(255,255,255,.10) 16%,rgba(255,255,255,.75) 21%,rgba(170,185,205,.12) 44%,rgba(255,255,255,.40) 50%,rgba(170,185,205,.12) 56%,rgba(255,255,255,.75) 79%,rgba(255,255,255,.10) 84%,rgba(255,255,255,.62) 100%); }
+  .sl-edge.h{ background:linear-gradient(180deg,rgba(255,255,255,.62) 0,rgba(255,255,255,.10) 16%,rgba(255,255,255,.75) 21%,rgba(170,185,205,.12) 44%,rgba(255,255,255,.40) 50%,rgba(170,185,205,.12) 56%,rgba(255,255,255,.75) 79%,rgba(255,255,255,.10) 84%,rgba(255,255,255,.62) 100%); }
+  @media (prefers-reduced-motion: reduce){ .sl-tilt, .sl-flip, .sl-glare{ transition:none; } }
+
   .vault-counter{ text-align:center; margin-top:4vh; font-family:'IBM Plex Mono',monospace; font-size:10px;
     letter-spacing:.06em; color:var(--grey); }
   /* The flip hint as a small pill badge with a red pulse dot, instead of a barely-there
@@ -731,6 +759,12 @@
     transition:filter .3s ease, opacity .3s ease; }
   .slab-side.left{ --rot:30deg; } .slab-side.right{ --rot:-30deg; }
   .slab-side:hover{ filter:brightness(.98); }
+  /* neighbours that have a photo-real slab: same image as the centre card, just darkened and softly blurred */
+  .ss-img{ display:none; position:absolute; inset:0; width:100%; height:100%; user-select:none; -webkit-user-drag:none; pointer-events:none; }
+  .slab-side.has-slab-img .ss-img{ display:block; }
+  .slab-side.has-slab-img .slab-face, .slab-side.has-slab-img .slab-label{ visibility:hidden; }
+  .slab-side.has-slab-img{ filter:blur(1.5px) brightness(.55); opacity:1; }
+  .slab-side.has-slab-img:hover{ filter:blur(.6px) brightness(.9); }
   .slab-side .slab-label{ pointer-events:none; }
   @keyframes slabBob{ 0%,100%{ translate:0 0; } 50%{ translate:0 -10px; } }
   .vault-frame .slab, .slab-side{ animation:slabBob 6s ease-in-out infinite; }
@@ -1232,8 +1266,8 @@
       </button>
 
       <div class="vault-frame" id="vaultFrame">
-        <div class="slab-side left" id="slabSideL" role="button" aria-label="Previous card"><div class="slab-face front"><div class="slab-label-spacer"></div><div class="slab-art"><div class="art-slot fit-contain"></div></div></div><div class="slab-label"><span class="sl-coll"></span><img class="slab-wm" src="assets/logos/ns-watermark.png" alt=""><b class="sl-num"></b></div></div>
-        <div class="slab-side right" id="slabSideR" role="button" aria-label="Next card"><div class="slab-face front"><div class="slab-label-spacer"></div><div class="slab-art"><div class="art-slot fit-contain"></div></div></div><div class="slab-label"><span class="sl-coll"></span><img class="slab-wm" src="assets/logos/ns-watermark.png" alt=""><b class="sl-num"></b></div></div>
+        <div class="slab-side left" id="slabSideL" role="button" aria-label="Previous card"><img class="ss-img" alt="" draggable="false"><div class="slab-face front"><div class="slab-label-spacer"></div><div class="slab-art"><div class="art-slot fit-contain"></div></div></div><div class="slab-label"><span class="sl-coll"></span><img class="slab-wm" src="assets/logos/ns-watermark.png" alt=""><b class="sl-num"></b></div></div>
+        <div class="slab-side right" id="slabSideR" role="button" aria-label="Next card"><img class="ss-img" alt="" draggable="false"><div class="slab-face front"><div class="slab-label-spacer"></div><div class="slab-art"><div class="art-slot fit-contain"></div></div></div><div class="slab-label"><span class="sl-coll"></span><img class="slab-wm" src="assets/logos/ns-watermark.png" alt=""><b class="sl-num"></b></div></div>
         <div class="slab" id="slab" tabindex="0" role="button" aria-label="Flip card">
           <!-- 3-up: the two neighbouring cards, rendered as their own cases, turned inward -->
           <div class="slab-inner" id="slabInner">
@@ -1250,6 +1284,8 @@
                itself, not on either face — the same info shows whichever side is up, so it
                sits outside the flipping .slab-inner and simply never rotates. -->
           <div class="slab-label"><span id="slabCollection">—</span><img class="slab-wm" src="assets/logos/ns-watermark.png" alt="Naomi Schaefer"><b id="slabNum">—</b></div>
+          <!-- photo-real slab images; filled in by renderCard() only for cards that have a "slab" block -->
+          <div class="sl-img" id="slImg" aria-hidden="true"></div>
         </div>
       </div>
 
@@ -1695,6 +1731,7 @@
         title: p.title || key,
         treatment: p.displayTreatment || 'standard',
         orientation: p.orientation || 'portrait',
+        slab: (p.slab && p.slab.front && p.slab.back && p.slab.width && p.slab.height) ? p.slab : null,
         frontSrc: front ? front.src : '',
         front: front ? imgTag(front.src, front.alt || p.title) : '',
         back: back ? imgTag(back.src, back.alt || p.title) : '<p class="slot-note mono">No back image yet</p>',
@@ -1768,6 +1805,7 @@
     function applyCardAspect(imgEl){
       if (!imgEl) { slab.style.aspectRatio = ''; return; }
       const setRatio = () => {
+        if (slab.classList.contains('has-slab-img')) return; // image-slab cards size themselves (see applySlabImages)
         if (imgEl.naturalWidth && imgEl.naturalHeight) {
           // The visible art window is smaller than the whole slab (the label bar and the
           // case padding around it eat into both axes), so matching the *slab's* aspect
@@ -1796,6 +1834,46 @@
       else imgEl.addEventListener('load', setRatio, { once: true });
     }
 
+    // ---- photo-real slab images (only for cards with a "slab" block in the data) ----
+    const slImg = document.getElementById('slImg');
+    const SLAB_PAD = { x: 70, t: 44 };   // transparent padding baked into each render (room for the shadow)
+    const SLAB_R = 58;                   // corner radius of the render, in render px
+    let slTilt = null;
+    function updateSlabThickness(){
+      if (slab.classList.contains('has-slab-img')) slab.style.setProperty('--T', (slab.offsetWidth * 0.05) + 'px');
+    }
+    let centreSl = null;
+    function applySlabImages(card){
+      const sl = card.slab; centreSl = sl || null;
+      if (!sl) {
+        slab.classList.remove('has-slab-img');
+        slab.style.width = ''; slab.style.maxWidth = ''; slab.style.flexShrink = ''; slImg.innerHTML = ''; slTilt = null;
+        return;
+      }
+      slab.classList.add('has-slab-img');
+      // The render has transparent padding (shadow room) around the slab body. Size the image so the
+      // BODY matches the frame width the CSS cards use, so image slabs sit at the same scale as the rest.
+      slab.style.width = (sl.width / (sl.width - 2 * SLAB_PAD.x) * 100) + '%';
+      slab.style.maxWidth = 'none'; slab.style.flexShrink = '0';
+      slab.style.aspectRatio = sl.width + ' / ' + sl.height;
+      const px = v => (v / sl.width * 100) + '%', py = v => (v / sl.height * 100) + '%';
+      const bodyW = sl.width - 2 * SLAB_PAD.x, bodyH = sl.height - 140;
+      const mask = u => `-webkit-mask-image:url('${u}');mask-image:url('${u}')`;
+      const alt = (card.title || '') + (card.num ? ' · ' + card.num : '');
+      slImg.innerHTML =
+        `<div class="sl-tilt" id="slTilt"><div class="sl-flip">` +
+          `<div class="sl-face f"><img src="${sl.front}" alt="${alt.replace(/"/g,'&quot;')}" draggable="false"><div class="sl-glare" style="${mask(sl.front)}"></div></div>` +
+          `<div class="sl-face b"><img src="${sl.back}" alt="" draggable="false"><div class="sl-glare" style="${mask(sl.back)}"></div></div>` +
+          // four glass edge strips give the slab real thickness while it turns
+          `<div class="sl-edge v" style="left:${px(SLAB_PAD.x)};top:${py(SLAB_PAD.t + SLAB_R)};height:${(bodyH - 2*SLAB_R) / sl.height * 100}%;width:var(--T);margin-left:calc(var(--T) / -2);transform:rotateY(90deg)"></div>` +
+          `<div class="sl-edge v" style="left:${px(SLAB_PAD.x + bodyW)};top:${py(SLAB_PAD.t + SLAB_R)};height:${(bodyH - 2*SLAB_R) / sl.height * 100}%;width:var(--T);margin-left:calc(var(--T) / -2);transform:rotateY(90deg)"></div>` +
+          `<div class="sl-edge h" style="top:${py(SLAB_PAD.t)};left:${px(SLAB_PAD.x + SLAB_R)};width:${(bodyW - 2*SLAB_R) / sl.width * 100}%;height:var(--T);margin-top:calc(var(--T) / -2);transform:rotateX(90deg)"></div>` +
+          `<div class="sl-edge h" style="top:${py(SLAB_PAD.t + bodyH)};left:${px(SLAB_PAD.x + SLAB_R)};width:${(bodyW - 2*SLAB_R) / sl.width * 100}%;height:var(--T);margin-top:calc(var(--T) / -2);transform:rotateX(90deg)"></div>` +
+        `</div></div>`;
+      slTilt = document.getElementById('slTilt');
+      updateSlabThickness();
+    }
+
     function renderCard(){
       const c = collections[ci], card = c.cards[ki];
       applyArenaBackground(c.name);
@@ -1807,7 +1885,8 @@
       // so it stays fixed while paging through a collection (even a mixed-orientation one)
       // and only ever changes when you switch to a different collection.
       vaultFrame.classList.toggle('is-landscape', c.cards.some(cd => cd.orientation === 'landscape'));
-      applyCardAspect(artF.querySelector('img'));
+      applySlabImages(card);
+      if (!card.slab) applyCardAspect(artF.querySelector('img'));
       counter.textContent = c.cards.length + (c.cards.length === 1 ? ' card' : ' cards') + ' · ' + String(ki + 1).padStart(2, '0') + ' / ' + String(c.cards.length).padStart(2, '0');
       const multi = c.cards.length > 1;
       prevBtn.style.visibility = multi ? 'visible' : 'hidden';
@@ -1826,6 +1905,9 @@
         el.style.display = show ? '' : 'none';
         if (!show) return;
         const card = c.cards[(ki + dir + n) % n];
+        el._sl = card.slab || null;
+        el.classList.toggle('has-slab-img', !!card.slab);
+        if (card.slab) el.querySelector('.ss-img').src = card.slab.front;
         el.querySelector('.sl-coll').textContent = labelOf(c.name);
         el.querySelector('.sl-num').textContent = card.num;
         const slot = el.querySelector('.art-slot');
@@ -1847,7 +1929,20 @@
       const arenaW = arenaEl.clientWidth, phone = phoneMQ.matches;
       [[sideL,-1],[sideR,1]].forEach(([el,dir]) => {
         if (el.style.display === 'none') return;
-        const img = el.querySelector('img');
+        if (el._sl) {
+          // same pixel density as the centre card, but never larger than the centre card's own box
+          const cs = (slab.classList.contains('has-slab-img') && centreSl) ? cw / centreSl.width : cw / (el._sl.width - 140);
+          let sw_ = el._sl.width * cs, sh_ = el._sl.height * cs;
+          const fit = Math.min(1, cw / sw_, ch / sh_); sw_ *= fit; sh_ *= fit;
+          el.style.setProperty('--sw', sw_ + 'px'); el.style.setProperty('--sh', sh_ + 'px');
+          const sc2 = .9;
+          let off2;
+          if (phone) off2 = (cw + sw_ * sc2) / 2 + 6;
+          else { off2 = (cw + sw_ * sc2) / 2; off2 = Math.max(cw * .62, Math.min(off2, arenaW / 2 - 14 - sw_ * sc2 * .43)); }
+          el.style.setProperty('--ox', (dir * off2) + 'px');
+          return;
+        }
+        const img = el.querySelector('.art-slot img');
         let w = aW, h = aH;
         if (img && img.naturalWidth && img.naturalHeight) {
           const k = Math.min(aW / img.naturalWidth, aH / img.naturalHeight);
@@ -1865,7 +1960,7 @@
         el.style.setProperty('--ox', (dir * off) + 'px');
       });
     }
-    if (window.ResizeObserver) new ResizeObserver(layoutSides).observe(slab);
+    if (window.ResizeObserver) new ResizeObserver(() => { layoutSides(); updateSlabThickness(); }).observe(slab);
     window.addEventListener('resize', layoutSides);
     sideL.addEventListener('click', () => prevBtn.click());
     sideR.addEventListener('click', () => nextBtn.click());
@@ -1911,6 +2006,11 @@
     // when the card itself would hide it, rather than fading out on its own separate timer.
     function applyFlipTransform(){
       if (!tiltEnabled) return; // CSS class rule alone handles the flip here
+      if (slTilt && slab.classList.contains('has-slab-img')) {
+        // image slab: tilt on its own wrapper; the flip itself is the CSS class on .sl-flip
+        slTilt.style.transform = 'rotateX(' + (lastRx * 0.9) + 'deg) rotateY(' + (lastRy * 1.2) + 'deg)';
+        return;
+      }
       const flipOffset = slab.classList.contains('flipped') ? 180 : 0;
       slabInner.style.transform = 'rotateX(' + lastRx + 'deg) rotateY(' + (lastRy + flipOffset) + 'deg)';
       if (slabLabel) slabLabel.style.transform = 'rotateX(' + lastRx + 'deg) rotateY(' + (lastRy + flipOffset) + 'deg)';
@@ -1936,6 +2036,7 @@
         const px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
         lastRx = (0.5 - py) * 10; lastRy = (px - 0.5) * 10;
         applyFlipTransform();
+        slImg.style.setProperty('--gx', (px * 100) + '%'); slImg.style.setProperty('--gxb', ((1 - px) * 100) + '%'); slImg.style.setProperty('--gy', (py * 100) + '%');
         slab.querySelectorAll('.slab-sheen').forEach(s => {
           s.style.backgroundPosition = (px * 160) + '% ' + (py * 100) + '%';
         });
@@ -1947,6 +2048,7 @@
         lastRx = 0; lastRy = 0;
         slabInner.style.transform = '';
         if (slabLabel) slabLabel.style.transform = '';
+        if (slTilt) slTilt.style.transform = '';
       });
     }
 
