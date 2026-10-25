@@ -2444,6 +2444,572 @@
       "displayTreatment": "standard",
       "cardStock": "",
       "sport": "Hockey"
+    },
+    {
+      "id": "showcase-bolar",
+      "chapter": "branding",
+      "order": 1,
+      "kicker": "Web illustration",
+      "title": "Bolar — Isometric Infographic Illustrations",
+      "description": "Isometric infographic illustrations created to revamp Bolar's website, replacing lengthy text with clear, visual explanations to boost engagement from Instagram and Facebook ad visitors.",
+      "cover": {
+        "src": "assets/showcase/branding/bolar-cover-crop.jpg",
+        "alt": "Bolar website on a desktop computer mockup",
+        "label": "Bolar — Website",
+        "ratio": 1.333,
+        "fit": "cover",
+        "pos": "50% 50%"
+      },
+      "blocks": [
+        {
+          "type": "stack",
+          "items": [
+            {
+              "src": "assets/showcase/branding/bolar-cover.jpg",
+              "label": "Bolar — Overview",
+              "alt": "Bolar isometric infographic web illustrations, overview slide",
+              "ratio": 1.378
+            },
+            {
+              "src": "assets/showcase/branding/bolar-palette.jpg",
+              "label": "Bolar — Color palette",
+              "alt": "Bolar color palette slide",
+              "ratio": 3.218
+            },
+            {
+              "src": "assets/showcase/branding/bolar-concept-sheet.jpg",
+              "label": "Bolar — General overview",
+              "alt": "Bolar infographic concept sheet",
+              "ratio": 0.639
+            },
+            {
+              "src": "assets/showcase/branding/bolar-score.jpg",
+              "label": "Bolar — Bolar Score",
+              "alt": "Bolar Score infographic slide with the five scoring factors",
+              "ratio": 0.5875872199779655
+            },
+            {
+              "src": "assets/showcase/branding/bolar-account-features.jpg",
+              "label": "Bolar — Account features",
+              "alt": "Bolar account features infographic: rewards, score insights and score reports",
+              "ratio": 0.968
+            },
+            {
+              "src": "assets/showcase/branding/bolar-computer-mockup.jpg",
+              "label": "Bolar — Website mockup",
+              "alt": "Bolar website shown on a desktop computer",
+              "ratio": 1.5
+            }
+          ]
+        }
+      ],
+      "category": "showcase",
+      "layout": "project"
+    },
+    {
+      "id": "showcase-cephalo",
+      "chapter": "branding",
+      "order": 2,
+      "kicker": "Brand identity concept",
+      "title": "Cephalo Wellness — Logo & Brand Identity",
+      "description": "A logo and brand identity for Cephalo Wellness, from sketches to the octopus emblem in five colorways, wordmark, color palette, business cards, merch and a website mockup.",
+      "cover": {
+        "src": "assets/showcase/cephalo/logo-gold-on-teal.jpg",
+        "fit": "cover",
+        "alt": "Cephalo Wellness logo"
+      },
+      "blocks": [
+        {
+          "type": "image",
+          "flat": true,
+          "item": {
+            "src": "assets/showcase/cephalo/logo-gold-on-teal.jpg",
+            "label": "Cephalo — Logo",
+            "alt": "Cephalo Wellness primary logo",
+            "ratio": 1.778
+          }
+        },
+        {
+          "type": "pair",
+          "flat": true,
+          "items": [
+            {
+              "src": "assets/showcase/cephalo/logo-sketches.jpg",
+              "label": "Cephalo — Sketch to final",
+              "alt": "Cephalo logo sketches on an iPad, developing into the final emblem",
+              "ratio": 1.3325991189427313
+            },
+            {
+              "src": "assets/showcase/cephalo/emblem-colorways.jpg",
+              "label": "Cephalo — Emblem colorways",
+              "alt": "Cephalo octopus emblem in five colorways",
+              "ratio": 1.3353204172876305
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "flat": true,
+          "items": [
+            {
+              "src": "assets/showcase/cephalo/logo-gold-on-terracotta.jpg",
+              "label": "Cephalo — Terracotta",
+              "alt": "Cephalo logo on terracotta",
+              "ratio": 1.778
+            },
+            {
+              "src": "assets/showcase/cephalo/logo-white-on-teal.jpg",
+              "label": "Cephalo — Reversed",
+              "alt": "Cephalo logo, white on teal",
+              "ratio": 1.778
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "flat": true,
+          "items": [
+            {
+              "src": "assets/showcase/cephalo/wordmark-colors.jpg",
+              "label": "Cephalo — Wordmark",
+              "alt": "Cephalo wordmark in brand colors with hex codes",
+              "ratio": 1.778
+            },
+            {
+              "src": "assets/showcase/cephalo/color-palette.jpg",
+              "label": "Cephalo — Palette",
+              "alt": "Cephalo color palette",
+              "ratio": 1.778
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "flat": true,
+          "item": {
+            "src": "assets/showcase/cephalo/website-mockup.gif",
+            "label": "Cephalo — Website",
+            "alt": "Cephalo website mockup, animated scroll",
+            "ratio": 1.5
+          }
+        },
+        {
+          "type": "image",
+          "flat": true,
+          "item": {
+            "src": "assets/showcase/cephalo/sweatshirt-mockup.jpg",
+            "label": "Cephalo — Merch",
+            "alt": "Cephalo emblem on navy sweatshirts",
+            "ratio": 2.2187981510015407
+          }
+        },
+        {
+          "type": "image",
+          "flat": true,
+          "item": {
+            "src": "assets/showcase/cephalo/business-card-mockup.jpg",
+            "label": "Cephalo — Business cards",
+            "alt": "Cephalo business card mockup",
+            "ratio": 1.5
+          }
+        }
+      ],
+      "category": "showcase",
+      "layout": "project"
+    },
+    {
+      "id": "showcase-steps",
+      "chapter": "branding",
+      "order": 3,
+      "kicker": "Editorial design",
+      "title": "Steps Magazine — Editorial Illustration",
+      "description": "Steps Magazine is published semiannually by University Advancement at California State University San Marcos. The purpose of the publication is to showcase CSUSM programs and initiatives, share student success stories, and highlight opportunities for alumni and friends to engage with and support the University and its strategic funding priorities.",
+      "cover": {
+        "src": "assets/showcase/editorial/steps-cover.jpg",
+        "alt": "Steps Magazine spread featuring the doodle illustration",
+        "label": "Steps Magazine",
+        "ratio": 1.3,
+        "fit": "cover"
+      },
+      "blocks": [
+        {
+          "type": "image",
+          "bg": "white",
+          "item": {
+            "src": "assets/showcase/editorial/steps-spread-1.jpg",
+            "label": "Steps Magazine — Opening spread",
+            "alt": "Steps Magazine opening spread, Hitting All the Right Notes, with the doodle illustration",
+            "ratio": 1.298
+          }
+        },
+        {
+          "type": "pair",
+          "bg": "white",
+          "items": [
+            {
+              "src": "assets/showcase/editorial/steps-spread-2.jpg",
+              "label": "Steps Magazine — Spread",
+              "alt": "Steps Magazine spread with a trumpet player and doodle illustrations",
+              "ratio": 1.298
+            },
+            {
+              "src": "assets/showcase/editorial/steps-spread-3.jpg",
+              "label": "Steps Magazine — Spread",
+              "alt": "Steps Magazine spread with a music professor and doodle illustrations",
+              "ratio": 1.298
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "flat": true,
+          "item": {
+            "src": "assets/showcase/editorial/steps-doodle-wide.jpg",
+            "label": "Steps Magazine — Doodle",
+            "alt": "Steps Magazine doodle illustration",
+            "ratio": 1.513
+          }
+        }
+      ],
+      "category": "showcase",
+      "layout": "project"
+    },
+    {
+      "id": "showcase-campus-map",
+      "chapter": "branding",
+      "order": 4,
+      "kicker": "Map illustration",
+      "title": "CSUSM — Campus Map",
+      "description": "An animated look at the CSUSM campus map illustration, from aerial view to finished map, and how it is used in the event brochure.",
+      "cover": {
+        "src": "assets/showcase/campus/campus-map-mockup.jpg",
+        "alt": "CSUSM campus map brochure mockup",
+        "label": "CSUSM — Campus map",
+        "ratio": 1.289,
+        "fit": "cover"
+      },
+      "blocks": [
+        {
+          "type": "image",
+          "item": {
+            "src": "assets/showcase/campus/campus-map.gif",
+            "label": "CSUSM — Campus map (animated)",
+            "alt": "CSUSM campus map illustration, animated from aerial photo to finished map",
+            "ratio": 2.035
+          },
+          "flat": true
+        },
+        {
+          "type": "pair",
+          "bg": "white",
+          "items": [
+            {
+              "src": "assets/showcase/campus/campus-map-mockup.jpg",
+              "label": "CSUSM — Map mockup",
+              "alt": "CSUSM campus map printed as a folded brochure",
+              "ratio": 1.29
+            },
+            {
+              "src": "assets/showcase/campus/campus-map-flat.jpg",
+              "label": "CSUSM — Campus map",
+              "alt": "CSUSM isometric campus map illustration",
+              "ratio": 2.045
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "items": [
+            {
+              "src": "assets/showcase/editorial/csusm-event-brochure.jpg",
+              "alt": "Super STEM Saturday event program brochure",
+              "label": "CSUSM — Event brochure",
+              "ratio": 1.96
+            },
+            {
+              "src": "assets/showcase/editorial/csusm-brochure-with-map.jpg",
+              "alt": "Event brochure showing the campus map",
+              "label": "CSUSM — Brochure with map",
+              "ratio": 1.976
+            }
+          ]
+        }
+      ],
+      "category": "showcase",
+      "layout": "project"
+    },
+    {
+      "id": "showcase-crash",
+      "chapter": "branding",
+      "order": 5,
+      "kicker": "Character design",
+      "title": "Crash the Cougar — Mascot Illustration",
+      "description": "Illustration of Crash the Cougar, the Cal State San Marcos mascot, developed over three versions from rough sketch to finished character. Also shown is Flat Crash, a printable cutout of the mascot made for students staying home during the COVID-19 stay-at-home order.",
+      "cover": {
+        "src": "assets/showcase/crash/crash-cover.jpg",
+        "alt": "Crash the Cougar mascot illustration",
+        "label": "Crash the Cougar",
+        "ratio": 1.333,
+        "fit": "cover"
+      },
+      "blocks": [
+        {
+          "type": "image",
+          "bg": "white",
+          "item": {
+            "src": "assets/showcase/crash/crash-versions.jpg",
+            "label": "Crash — Three versions",
+            "alt": "Crash the Cougar mascot: version 1 sketch, version 2 line art, version 3 finished color",
+            "ratio": 1.623
+          }
+        },
+        {
+          "type": "pair",
+          "bg": "white",
+          "items": [
+            {
+              "src": "assets/showcase/crash/flat-crash.jpg",
+              "label": "Crash — Flat Crash",
+              "alt": "Flat Crash printable cutout of the mascot with instructions",
+              "ratio": 0.858
+            },
+            {
+              "src": "assets/showcase/crash/crash-desk.jpg",
+              "label": "Crash — Flat Crash in use",
+              "alt": "Flat Crash cutout standing on a desk in front of a computer",
+              "ratio": 1.006
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "bg": "white",
+          "item": {
+            "src": "assets/showcase/crash/crash-mascot.jpg",
+            "label": "Crash — Final",
+            "alt": "Crash the Cougar final mascot illustration",
+            "ratio": 0.618
+          }
+        }
+      ],
+      "category": "showcase",
+      "layout": "project"
+    },
+    {
+      "id": "showcase-illustration",
+      "chapter": "branding",
+      "order": 6,
+      "kicker": "Personal work",
+      "title": "Illustration",
+      "description": "Personal illustration studies.",
+      "cover": {
+        "src": "assets/showcase/illustration/vending-machine-cover.jpg",
+        "fit": "cover",
+        "alt": "Vending machine illustration"
+      },
+      "blocks": [
+        {
+          "type": "grid",
+          "cols": 2,
+          "items": [
+            {
+              "src": "assets/showcase/illustration/vending-machine.gif",
+              "label": "Vending Machine",
+              "alt": "Animated illustration of a vending machine",
+              "ratio": 1
+            },
+            {
+              "src": "assets/showcase/illustration/banana.gif",
+              "label": "Banana",
+              "alt": "Animated illustration of a banana",
+              "ratio": 1
+            },
+            {
+              "src": "assets/showcase/illustration/desert-caravan.jpg",
+              "alt": "Desert Caravan",
+              "label": "Desert Caravan"
+            },
+            {
+              "src": "assets/showcase/illustration/two-skies.jpg",
+              "alt": "Two Skies",
+              "label": "Two Skies"
+            },
+            {
+              "src": "assets/showcase/illustration/living-room.jpg",
+              "alt": "Living Room",
+              "label": "Living Room"
+            },
+            {
+              "src": "assets/showcase/illustration/sailboat.jpg",
+              "alt": "Sailboat",
+              "label": "Sailboat"
+            }
+          ]
+        }
+      ],
+      "category": "showcase",
+      "layout": "project"
+    },
+    {
+      "id": "showcase-3d-room",
+      "chapter": "motion",
+      "order": 1,
+      "kicker": "3D design",
+      "title": "3D Room Design",
+      "description": "An isometric 3D render of a personal workspace, built as an illustration/3D exercise.",
+      "cover": {
+        "src": "assets/showcase/room/render.jpg",
+        "alt": "3D isometric room, final render",
+        "label": "Final render",
+        "ratio": 1.423,
+        "fit": "cover"
+      },
+      "blocks": [
+        {
+          "type": "video",
+          "item": {
+            "src": "assets/showcase/room/walkthrough.mp4",
+            "poster": "assets/showcase/room/walkthrough-poster.jpg",
+            "label": "Walkthrough",
+            "alt": "3D room walkthrough",
+            "ratio": 1.627
+          },
+          "w": "760px"
+        },
+        {
+          "type": "image",
+          "item": {
+            "src": "assets/showcase/room/materials.jpg",
+            "alt": "3D room material studies",
+            "label": "Materials"
+          },
+          "flat": true,
+          "w": "820px"
+        },
+        {
+          "type": "pair",
+          "items": [
+            {
+              "src": "assets/showcase/room/render.jpg",
+              "alt": "3D isometric room, final render",
+              "label": "Final render",
+              "ratio": 1.423
+            },
+            {
+              "src": "assets/showcase/room/close-up-desk.jpg",
+              "alt": "3D room desk close-up",
+              "label": "Desk close-up",
+              "ratio": 1.217
+            },
+            {
+              "src": "assets/showcase/room/close-up-easel.jpg",
+              "alt": "3D room easel and bed close-up",
+              "label": "Easel close-up",
+              "ratio": 1.117
+            }
+          ],
+          "flat": true
+        }
+      ],
+      "category": "showcase",
+      "layout": "project"
+    },
+    {
+      "id": "showcase-storyboards",
+      "chapter": "motion",
+      "order": 2,
+      "kicker": "Storyboard & animation",
+      "title": "KnowledgeCity — E-Learning Storyboard Animations",
+      "description": "Storyboard illustrations and motion animation for KnowledgeCity e-learning courses. The video is from BUS1718; the frames are from BUS1712.",
+      "cover": {
+        "src": "assets/showcase/storyboards/sheet-bus1712.jpg",
+        "alt": "BUS1712 storyboard sheet",
+        "label": "BUS1712 — Storyboard",
+        "fit": "cover",
+        "pos": "50% 30%"
+      },
+      "blocks": [
+        {
+          "type": "video",
+          "item": {
+            "src": "assets/showcase/storyboards/animation.mp4",
+            "poster": "assets/showcase/storyboards/animation-poster.jpg",
+            "label": "BUS1718 · Animated result",
+            "alt": "KnowledgeCity BUS1718 storyboard animation",
+            "ratio": 1.778
+          }
+        },
+        {
+          "type": "reel",
+          "h": "clamp(150px,22vh,220px)",
+          "items": [
+            {
+              "src": "assets/showcase/storyboards/frame-01.jpg",
+              "alt": "BUS1712 storyboard frame 1",
+              "label": "BUS1712 · Frame 01"
+            },
+            {
+              "src": "assets/showcase/storyboards/frame-02.jpg",
+              "alt": "BUS1712 storyboard frame 2",
+              "label": "BUS1712 · Frame 02"
+            },
+            {
+              "src": "assets/showcase/storyboards/frame-03.jpg",
+              "alt": "BUS1712 storyboard frame 3",
+              "label": "BUS1712 · Frame 03"
+            },
+            {
+              "src": "assets/showcase/storyboards/frame-04.jpg",
+              "alt": "BUS1712 storyboard frame 4",
+              "label": "BUS1712 · Frame 04"
+            },
+            {
+              "src": "assets/showcase/storyboards/frame-05.jpg",
+              "alt": "BUS1712 storyboard frame 5",
+              "label": "BUS1712 · Frame 05"
+            },
+            {
+              "src": "assets/showcase/storyboards/frame-06.jpg",
+              "alt": "BUS1712 storyboard frame 6",
+              "label": "BUS1712 · Frame 06"
+            },
+            {
+              "src": "assets/showcase/storyboards/frame-07.jpg",
+              "alt": "BUS1712 storyboard frame 7",
+              "label": "BUS1712 · Frame 07"
+            },
+            {
+              "src": "assets/showcase/storyboards/frame-08.jpg",
+              "alt": "BUS1712 storyboard frame 8",
+              "label": "BUS1712 · Frame 08"
+            },
+            {
+              "src": "assets/showcase/storyboards/frame-09.jpg",
+              "alt": "BUS1712 storyboard frame 9",
+              "label": "BUS1712 · Frame 09"
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "items": [
+            {
+              "src": "assets/showcase/storyboards/sheet-bus1712.jpg",
+              "alt": "BUS1712 storyboard sheet",
+              "label": "BUS1712 · Full sheet",
+              "ratio": 1.091
+            },
+            {
+              "src": "assets/showcase/storyboards/sheet-bus1718.jpg",
+              "alt": "BUS1718 storyboard sheet",
+              "label": "BUS1718 · Full sheet",
+              "ratio": 1.091
+            }
+          ]
+        }
+      ],
+      "category": "showcase",
+      "layout": "project"
     }
   ]
 }
