@@ -30,7 +30,13 @@
       ],
       "displayTreatment": "standard",
       "cardStock": "",
-      "sport": "Hockey"
+      "sport": "Hockey",
+      "slab": {
+        "front": "assets/collectibles/pwhl/slabs/rooney-spotlight-pink-front.webp",
+        "back": "assets/collectibles/pwhl/slabs/rooney-spotlight-pink-back.webp",
+        "width": 1140,
+        "height": 1726
+      }
     },
     {
       "id": "jesse-compher-dazzlers-pink-mtq1r0p2",
@@ -63,7 +69,13 @@
           "alt": "Jesse Compher — Dazzlers Pink (back)"
         }
       ],
-      "sport": "Hockey"
+      "sport": "Hockey",
+      "slab": {
+        "front": "assets/collectibles/pwhl/slabs/jesse-compher-dazzlers-pink-front.webp",
+        "back": "assets/collectibles/pwhl/slabs/jesse-compher-dazzlers-pink-back.webp",
+        "width": 1140,
+        "height": 1726
+      }
     },
     {
       "id": "3d-room-design-689292",
@@ -649,7 +661,13 @@
           "role": "back",
           "alt": "Natalie Spooner — UD Portraits, back"
         }
-      ]
+      ],
+      "slab": {
+        "front": "assets/collectibles/pwhl/slabs/natalie-spooner-ud-portraits-front.webp",
+        "back": "assets/collectibles/pwhl/slabs/natalie-spooner-ud-portraits-back.webp",
+        "width": 1140,
+        "height": 1713
+      }
     },
     {
       "id": "denisa-k-ov-dazzlers-purple-23401201",
@@ -681,7 +699,13 @@
           "role": "back",
           "alt": "Denisa Křížová — Dazzlers Purple, back"
         }
-      ]
+      ],
+      "slab": {
+        "front": "assets/collectibles/pwhl/slabs/denisa-krizova-dazzlers-purple-front.webp",
+        "back": "assets/collectibles/pwhl/slabs/denisa-krizova-dazzlers-purple-back.webp",
+        "width": 1140,
+        "height": 1687
+      }
     },
     {
       "id": "elaine-chuli-spotlight-b-w-gold-spectrum-23401202",
@@ -713,7 +737,13 @@
           "role": "back",
           "alt": "Elaine Chuli — Spotlight B&W Gold Spectrum, back"
         }
-      ]
+      ],
+      "slab": {
+        "front": "assets/collectibles/pwhl/slabs/elaine-chuli-spotlight-b-w-gold-spectrum-front.webp",
+        "back": "assets/collectibles/pwhl/slabs/elaine-chuli-spotlight-b-w-gold-spectrum-back.webp",
+        "width": 1140,
+        "height": 1695
+      }
     },
     {
       "id": "kati-tabin-dazzlers-blue-23401203",
@@ -745,7 +775,13 @@
           "role": "back",
           "alt": "Kati Tabin — Dazzlers Blue, back"
         }
-      ]
+      ],
+      "slab": {
+        "front": "assets/collectibles/pwhl/slabs/kati-tabin-dazzlers-blue-front.webp",
+        "back": "assets/collectibles/pwhl/slabs/kati-tabin-dazzlers-blue-back.webp",
+        "width": 1140,
+        "height": 1698
+      }
     },
     {
       "id": "aerin-frankel-spotlight-pink-spectrum-23401204",
@@ -777,7 +813,13 @@
           "role": "back",
           "alt": "Aerin Frankel — Spotlight Pink Spectrum, back"
         }
-      ]
+      ],
+      "slab": {
+        "front": "assets/collectibles/pwhl/slabs/aerin-frankel-spotlight-pink-spectrum-front.webp",
+        "back": "assets/collectibles/pwhl/slabs/aerin-frankel-spotlight-pink-spectrum-back.webp",
+        "width": 1140,
+        "height": 1695
+      }
     },
     {
       "id": "katy-knoll-postseason-standouts-deluxe-23401205",
@@ -809,7 +851,13 @@
           "role": "back",
           "alt": "Katy Knoll — Postseason Standouts Deluxe, back"
         }
-      ]
+      ],
+      "slab": {
+        "front": "assets/collectibles/pwhl/slabs/katy-knoll-postseason-standouts-deluxe-front.webp",
+        "back": "assets/collectibles/pwhl/slabs/katy-knoll-postseason-standouts-deluxe-back.webp",
+        "width": 1140,
+        "height": 1695
+      }
     },
     {
       "id": "maddie-rooney-postseason-standouts-ud-exclusives-23401206",
@@ -841,7 +889,13 @@
           "role": "back",
           "alt": "Maddie Rooney — Postseason Standouts UD Exclusives, back"
         }
-      ]
+      ],
+      "slab": {
+        "front": "assets/collectibles/pwhl/slabs/maddie-rooney-postseason-standouts-ud-exclusives-front.webp",
+        "back": "assets/collectibles/pwhl/slabs/maddie-rooney-postseason-standouts-ud-exclusives-back.webp",
+        "width": 1140,
+        "height": 1707
+      }
     },
     {
       "id": "brianne-jenner-postseason-standouts-deluxe-23401207",
@@ -873,7 +927,13 @@
           "role": "back",
           "alt": "Brianne Jenner — Postseason Standouts Deluxe, back"
         }
-      ]
+      ],
+      "slab": {
+        "front": "assets/collectibles/pwhl/slabs/brianne-jenner-postseason-standouts-deluxe-front.webp",
+        "back": "assets/collectibles/pwhl/slabs/brianne-jenner-postseason-standouts-deluxe-back.webp",
+        "width": 1140,
+        "height": 1698
+      }
     },
     {
       "id": "emily-clark-spotlight-b-w-gold-spectrum-23401208",
@@ -905,7 +965,13 @@
           "role": "back",
           "alt": "Emily Clark — Spotlight B&W Gold Spectrum, back"
         }
-      ]
+      ],
+      "slab": {
+        "front": "assets/collectibles/pwhl/slabs/emily-clark-spotlight-b-w-gold-spectrum-front.webp",
+        "back": "assets/collectibles/pwhl/slabs/emily-clark-spotlight-b-w-gold-spectrum-back.webp",
+        "width": 1140,
+        "height": 1705
+      }
     },
     {
       "id": "nicole-hensley-dazzlers-blue-23401209",
@@ -937,7 +1003,13 @@
           "role": "back",
           "alt": "Nicole Hensley — Dazzlers Blue, back"
         }
-      ]
+      ],
+      "slab": {
+        "front": "assets/collectibles/pwhl/slabs/nicole-hensley-dazzlers-blue-front.webp",
+        "back": "assets/collectibles/pwhl/slabs/nicole-hensley-dazzlers-blue-back.webp",
+        "width": 1140,
+        "height": 1705
+      }
     },
     {
       "id": "natalie-spooner-magnifique-23401210",
@@ -969,7 +1041,13 @@
           "role": "back",
           "alt": "Natalie Spooner — Magnifique, back"
         }
-      ]
+      ],
+      "slab": {
+        "front": "assets/collectibles/pwhl/slabs/natalie-spooner-magnifique-front.webp",
+        "back": "assets/collectibles/pwhl/slabs/natalie-spooner-magnifique-back.webp",
+        "width": 1140,
+        "height": 1679
+      }
     },
     {
       "id": "ivan-demidov-art-deco-07753300",
@@ -1001,7 +1079,13 @@
           "role": "back",
           "alt": "Ivan Demidov — Art Deco, back"
         }
-      ]
+      ],
+      "slab": {
+        "front": "assets/collectibles/parkhurst/slabs/ivan-demidov-art-deco-front.webp",
+        "back": "assets/collectibles/parkhurst/slabs/ivan-demidov-art-deco-back.webp",
+        "width": 1140,
+        "height": 1679
+      }
     },
     {
       "id": "ivan-demidov-prominent-prospects-07753301",
@@ -1034,7 +1118,13 @@
           "alt": "Ivan Demidov — Prominent Prospects, back"
         }
       ],
-      "orientation": "landscape"
+      "orientation": "landscape",
+      "slab": {
+        "front": "assets/collectibles/parkhurst/slabs/demidov-prominent-prospects-front.webp",
+        "back": "assets/collectibles/parkhurst/slabs/demidov-prominent-prospects-back.webp",
+        "width": 1380,
+        "height": 1380
+      }
     },
     {
       "id": "connor-mcdavid-franchise-facts-07753302",
@@ -1066,7 +1156,13 @@
           "role": "back",
           "alt": "Connor McDavid — Franchise Facts, back"
         }
-      ]
+      ],
+      "slab": {
+        "front": "assets/collectibles/parkhurst/slabs/connor-mcdavid-franchise-facts-front.webp",
+        "back": "assets/collectibles/parkhurst/slabs/connor-mcdavid-franchise-facts-back.webp",
+        "width": 1140,
+        "height": 1678
+      }
     },
     {
       "id": "connor-mcdavid-take-it-outside-07753303",
@@ -1098,7 +1194,13 @@
           "role": "back",
           "alt": "Connor McDavid — Take It Outside!, back"
         }
-      ]
+      ],
+      "slab": {
+        "front": "assets/collectibles/parkhurst/slabs/connor-mcdavid-take-it-outside-front.webp",
+        "back": "assets/collectibles/parkhurst/slabs/connor-mcdavid-take-it-outside-back.webp",
+        "width": 1140,
+        "height": 1678
+      }
     },
     {
       "id": "kazuchika-okada-the-show",
@@ -2176,7 +2278,13 @@
         "Ice"
       ],
       "year": "2024-25",
-      "cardStock": ""
+      "cardStock": "",
+      "slab": {
+        "front": "assets/collectibles/ice/slabs/connor-bedard-breaking-the-ice-front.webp",
+        "back": "assets/collectibles/ice/slabs/connor-bedard-breaking-the-ice-back.webp",
+        "width": 1380,
+        "height": 1383
+      }
     },
     {
       "id": "matthew-knies-signature-swatches-32611965",
@@ -2209,7 +2317,13 @@
         "Ice"
       ],
       "year": "2025-26",
-      "cardStock": ""
+      "cardStock": "",
+      "slab": {
+        "front": "assets/collectibles/ice/slabs/matthew-knies-signature-swatches-front.webp",
+        "back": "assets/collectibles/ice/slabs/matthew-knies-signature-swatches-back.webp",
+        "width": 1380,
+        "height": 1383
+      }
     },
     {
       "id": "matthew-schaefer-premieres-99074006",
@@ -2242,7 +2356,13 @@
         "Ice"
       ],
       "year": "2025-26",
-      "cardStock": ""
+      "cardStock": "",
+      "slab": {
+        "front": "assets/collectibles/ice/slabs/matthew-schaefer-premieres-front.webp",
+        "back": "assets/collectibles/ice/slabs/matthew-schaefer-premieres-back.webp",
+        "width": 1380,
+        "height": 1383
+      }
     },
     {
       "id": "ivan-demidov-tickle-the-twine-39057281",
@@ -2275,7 +2395,13 @@
         "Ice"
       ],
       "year": "2025-26",
-      "cardStock": ""
+      "cardStock": "",
+      "slab": {
+        "front": "assets/collectibles/ice/slabs/ivan-demidov-tickle-the-twine-front.webp",
+        "back": "assets/collectibles/ice/slabs/ivan-demidov-tickle-the-twine-back.webp",
+        "width": 1380,
+        "height": 1379
+      }
     },
     {
       "id": "cephalo-wellness-brand-identity-368510",
