@@ -338,6 +338,7 @@
   /* a plain, circle-free ampersand in every serif heading: only the & glyph comes from a classic serif */
   @font-face{ font-family:'AmpFix'; src:local('Georgia'),local('Times New Roman'),local('Times'); unicode-range:U+0026; }
   .amp{ font-family:Georgia,'Times New Roman',serif; font-weight:400; }
+  @media (min-width:561px){ .sp-title{ min-height:calc(2.3em + 2px); box-sizing:content-box; width:auto; } }
   .sp-desc{ margin:0 auto; font-size:var(--fs-body); line-height:1.6; color:var(--grey); max-width:24ch; }
   @media (max-width:1180px){
     .sp-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); row-gap:34px; }
@@ -753,12 +754,14 @@
   }
   @media (max-width:560px){
     /* phone: one big card, neighbours peek in from the edges, swipe (or tap a neighbour) to move */
-    .slab{ width:min(240px, 64vw); }
-    .vault-frame{ width:min(240px, 64vw); }
-    .slab.orientation-landscape{ width:min(300px, 78vw); }
-    .vault-frame.is-landscape{ width:min(300px, 78vw); }
+    .slab{ width:min(210px, 56vw); }
+    .vault-frame{ width:min(210px, 56vw); }
+    .slab.orientation-landscape{ width:min(262px, 68vw); }
+    .vault-frame.is-landscape{ width:min(262px, 68vw); }
     .slab-side.left, .slab-side.right{ --rot:0deg; filter:brightness(.7); }
-    #vaultStage .vault-arrow{ display:none; }
+    #vaultStage .vault-arrow.vault-arrow{ width:38px; height:38px; margin-top:-19px; border-width:1.5px; }
+    #vaultStage #vaultPrev.vault-arrow{ left:8px; } #vaultStage #vaultNext.vault-arrow{ right:8px; }
+    #vaultStage .vault-arrow.vault-arrow svg{ width:15px; height:15px; }
     .vault-arena{ padding:0; border-radius:10px; }
     .vault-bar{ padding:14px 14px; justify-content:center; }
     .vault-arena .vault-stage{ padding:2vh 3vw 1vh; }
@@ -963,6 +966,7 @@
   .sc-cover{ display:flex; flex-direction:column; justify-content:flex-start; align-self:start; width:100%; text-align:left; background:none; border:0; padding:0; color:inherit; cursor:pointer; font:inherit; }
   .sc-cover .face{ flex:none; width:100%; --tone:rgba(128,128,128,.14); position:relative; display:block; aspect-ratio:4/3; overflow:hidden; border-radius:3px; background:var(--tone); transition:background .5s var(--ease), box-shadow .6s var(--ease); }
   .sc-cover .face img{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; transition:transform 1s var(--ease); }
+  .sc-cover.zoom .face img{ object-fit:cover; object-position:50% 50%; }
   .sc-cover.contain .face img{ inset:9%; width:82%; height:82%; object-fit:contain; box-shadow:0 1px 2px rgba(0,0,0,.07), 0 18px 36px -14px rgba(0,0,0,.3); }
   .sc-cover .view{ position:absolute; right:12px; bottom:12px; font-size:11px; letter-spacing:.07em; text-transform:uppercase; padding:8px 13px; border-radius:99px;
     background:rgba(255,255,255,.92); color:#111; opacity:0; transform:translateY(6px); transition:opacity .35s var(--ease), transform .35s var(--ease); pointer-events:none; }
@@ -1140,6 +1144,7 @@
   .contact-side a{ color:var(--paper); border-bottom:1px solid var(--line-light); }
   .foot{ margin-top:9vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
     font-size:11px; color:var(--grey); flex-wrap:wrap; gap:10px; text-align:center; }
+  .foot, .foot span, .foot a{ text-transform:none; font-variant-caps:small-caps; letter-spacing:.04em; font-size:13px; }
 
   @media (max-width:860px){
     .about, .contact-grid{ grid-template-columns:1fr; }
@@ -1907,7 +1912,11 @@
       slab.classList.add('has-slab-img');
       // The render has transparent padding (shadow room) around the slab body. Size the image so the
       // BODY matches the frame width the CSS cards use, so image slabs sit at the same scale as the rest.
-      slab.style.width = (sl.width / (sl.width - 2 * SLAB_PAD.x) * 100) + '%';
+      // Size by the CARD's own orientation, not the collection's frame, so a portrait card in a mixed
+      // collection (Parkhurst) matches portrait cards elsewhere instead of inflating to the wide frame.
+      const cardLand = sl.width > 1300, frameLand = vaultFrame.classList.contains('is-landscape');
+      const orient = cardLand === frameLand ? 1 : (cardLand ? 440 / 340 : 340 / 440);
+      slab.style.width = (sl.width / (sl.width - 2 * SLAB_PAD.x) * 100 * orient) + '%';
       slab.style.maxWidth = 'none'; slab.style.flexShrink = '0';
       slab.style.aspectRatio = sl.width + ' / ' + sl.height;
       const px = v => (v / sl.width * 100) + '%', py = v => (v / sl.height * 100) + '%';
@@ -2336,6 +2345,15 @@
     }
     if (window.ResizeObserver) new ResizeObserver(layoutSides).observe(frameEl);
     window.addEventListener('resize', layoutSides);
+    // Generous hit area: a click on the empty stage to the left / right of the centre poster
+    // (including the faded neighbours' blurred edges and the strip beside the arrows) pages too.
+    const stageEl = prevBtn.parentElement;
+    if (stageEl) stageEl.addEventListener('click', (e) => {
+      if (e.target.closest('button, a, .poster-art, .poster-frame, .poster-side, .gallery-frame img, .gallery-frame .art-slot')) return;
+      if (posters.length < 2) return;
+      const r = stageEl.getBoundingClientRect();
+      (e.clientX < r.left + r.width / 2 ? prevBtn : nextBtn).click();
+    });
     sideEls[0].addEventListener('click', () => prevBtn.click());
     sideEls[1].addEventListener('click', () => nextBtn.click());
     sideEls.forEach(el => el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); } }));
@@ -2584,7 +2602,7 @@
       const g = document.createElement('div'); g.className = 'sc-covers'; g.style.setProperty('--cols', Math.min(3, list.length) === 2 ? 2 : 3);
       list.forEach((p, i) => {
         const c = p.cover || {}, b = document.createElement('button'); b.type = 'button';
-        b.className = 'sc-cover sc-rv ' + (c.fit === 'contain' ? 'contain' : 'cover'); b.style.setProperty('--i', i % 3);
+        b.className = 'sc-cover sc-rv ' + (c.fit === 'contain' ? 'contain' : 'cover'); if (/cephalo|vending/i.test((p.id||'')+' '+(p.title||'')+' '+((p.cover&&p.cover.src)||''))) b.classList.add('zoom'); b.style.setProperty('--i', i % 3);
         b.setAttribute('aria-label', 'Open project: ' + p.title);
         b.innerHTML = '<span class="face"></span><span class="meta"><span class="k mono">' + esc(p.kicker) + '</span><span class="t">' + esc(p.title) + '</span></span>';
         const face = b.querySelector('.face'), img = mk(c.src, p.title); img.loading = 'lazy';
