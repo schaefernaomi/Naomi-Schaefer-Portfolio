@@ -276,6 +276,8 @@
   }
   .hero-peek .chev{ width:7px; height:7px; border-right:1px solid var(--paper); border-bottom:1px solid var(--paper);
     transform:rotate(45deg); opacity:.55; }
+  .hero-peek, .hero-hint{ display:none; }
+  @media (max-width:700px){ .hero-hint{ display:flex; bottom:44px; } .hero-peek{ display:flex; } }
   @keyframes peekBounce{ 0%,100%{ transform:translateX(-50%) translateY(0); } 50%{ transform:translateX(-50%) translateY(4px); } }
 
 
@@ -660,6 +662,11 @@
   @media (hover:hover){ .view-all-link:hover{ color:#fff; background:var(--red); border-color:var(--red); transform:translateY(-2px);
     box-shadow:0 12px 26px -10px rgba(216,70,58,.6); } }
   .grid-panel{ display:none; }
+  .grid-float{ position:fixed; left:50%; bottom:22px; transform:translate(-50%,12px); z-index:91; padding:10px 20px;
+    border-radius:999px; border:1px solid var(--line-dark); background:var(--paper); color:var(--ink); font-size:11px;
+    letter-spacing:.08em; text-transform:uppercase; cursor:pointer; opacity:0; pointer-events:none; box-shadow:0 8px 24px rgba(0,0,0,.28);
+    transition:opacity .25s ease, transform .25s ease; }
+  .grid-float.show{ opacity:1; transform:translate(-50%,0); pointer-events:auto; }
   /* auto-fill always creates as many column tracks as fit the row, even empty ones — with
      only a handful of tiles (e.g. the last few in a set), those leftover empty tracks still
      claim their share of space, shoving the actual tiles over to the left instead of
@@ -699,7 +706,8 @@
   .vault-bar .vault-counter{ margin:0; text-align:right; white-space:nowrap; font-size:11px; color:rgba(255,255,255,.7); }
   .vault-arena .vault-stage{ padding:3vh 4vw 2vh; }
   /* Sits under the arena, on the page background (not inside the photo), so it's always readable. */
-  .vault-foot{ display:flex; align-items:center; justify-content:space-between; gap:10px 24px; flex-wrap:wrap;
+  .vault-hint-top{ margin:18px auto 0; padding:0; color:var(--grey); font-size:10.5px; }
+  .vault-foot{ display:flex; align-items:center; justify-content:center; gap:10px 24px; flex-wrap:wrap;
     padding:14px 4px 0; }
   .vault-foot .vault-hint, .vault-foot .view-all-link{ margin:0; }
   .vault-foot .vault-hint{ padding:0; color:var(--grey); font-size:10.5px; }
@@ -951,10 +959,10 @@
 
   /* cover grid */
   .sc-covers{ display:grid; grid-template-columns:repeat(var(--cols,3), minmax(0,1fr)); gap:clamp(26px,3vw,40px) clamp(16px,2vw,28px); }
-  #sc-motion .sc-covers{ max-width:1040px; margin-inline:auto; }
+  .sc-covers{ max-width:1090px; margin-inline:auto; }
   .sc-cover{ display:flex; flex-direction:column; justify-content:flex-start; align-self:start; width:100%; text-align:left; background:none; border:0; padding:0; color:inherit; cursor:pointer; font:inherit; }
-  .sc-cover .face{ flex:none; width:100%; --tone:rgba(128,128,128,.14); position:relative; display:block; aspect-ratio:16/10; overflow:hidden; border-radius:3px; background:var(--tone); transition:background .5s var(--ease), box-shadow .6s var(--ease); }
-  .sc-cover .face img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform 1s var(--ease); }
+  .sc-cover .face{ flex:none; width:100%; --tone:rgba(128,128,128,.14); position:relative; display:block; aspect-ratio:4/3; overflow:hidden; border-radius:3px; background:var(--tone); transition:background .5s var(--ease), box-shadow .6s var(--ease); }
+  .sc-cover .face img{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; transition:transform 1s var(--ease); }
   .sc-cover.contain .face img{ inset:9%; width:82%; height:82%; object-fit:contain; box-shadow:0 1px 2px rgba(0,0,0,.07), 0 18px 36px -14px rgba(0,0,0,.3); }
   .sc-cover .view{ position:absolute; right:12px; bottom:12px; font-size:11px; letter-spacing:.07em; text-transform:uppercase; padding:8px 13px; border-radius:99px;
     background:rgba(255,255,255,.92); color:#111; opacity:0; transform:translateY(6px); transition:opacity .35s var(--ease), transform .35s var(--ease); pointer-events:none; }
@@ -1075,8 +1083,8 @@
   .logo-mark img{ width:100%; height:100%; object-fit:contain; border-radius:50%; }
 
   /* About */
-  .about{ display:grid; grid-template-columns:.8fr 1.5fr; gap:6vw; }
-  .about-portrait{ aspect-ratio:4/5; border-radius:4px; overflow:hidden; margin-bottom:24px; }
+  .about{ display:grid; grid-template-columns:230px minmax(0,640px); justify-content:center; gap:56px; align-items:center; }
+  .about-portrait{ aspect-ratio:4/5; border-radius:4px; overflow:hidden; margin-bottom:0; }
   .about-label{ font-size:11px; color:var(--grey); }
   .about-text{ font-family:'AmpFix','Fraunces',serif; font-size:var(--fs-lede); line-height:1.6; font-weight:400;
     opacity:0; transform:translateY(20px); transition:all .9s var(--ease); }
@@ -1178,7 +1186,7 @@
 </div>
 
 <nav class="nav">
-  <div class="nav-mark"><span class="zh">薛雯</span><span class="en">Naomi Schaefer</span></div>
+  <div class="nav-mark" id="navMark" role="link" tabindex="0" aria-label="Back to top" style="cursor:pointer"><span class="zh">薛雯</span><span class="en">Naomi Schaefer</span></div>
   <div class="nav-links mono">
     <div class="nav-item has-dropdown">
       <span data-scroll-to="work">Work</span>
@@ -1226,6 +1234,7 @@
   <p class="hero-sub"><span class="hero-sub-word"><span class="cn-base">Graphic Designer</span><span class="cn-holo" aria-hidden="true">Graphic Designer</span></span></p>
   <p class="hero-focus mono"><span>Sports &amp; Entertainment</span><i aria-hidden="true">·</i><span>Campaigns</span><i aria-hidden="true">·</i><span>Motion</span></p>
   <p class="hero-statement">Designing across collectibles, print, campaigns, and digital media.</p>
+  <div class="hero-hint mono"><span class="dot"></span>Scroll</div>
   <div class="hero-peek"><span class="chev"></span></div>
 </section>
 
@@ -1251,12 +1260,14 @@
         <a class="sp-link" data-scroll-to="branding" role="link" tabindex="0" aria-label="Branding and Illustration: jump to this section">
           <div class="sp-top"><span class="sp-icon"><svg class="ico " viewBox="0 0 48 48" width="56" height="56" fill="none" aria-hidden="true" focusable="false"><g stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><circle cx="14.5" cy="14.5" r="8.5" fill="#e6e3dd"/><rect x="25" y="6" width="17" height="17" rx="1.5" fill="#e6e3dd"/><circle cx="33.5" cy="14.5" r="3.4" fill="var(--red)" stroke="none"/><path d="M6 42 23 42 14.5 25Z" fill="#e6e3dd"/><path d="M25 42V25A17 17 0 0 1 42 42Z" fill="#e6e3dd" stroke="var(--red)"/></g></svg></span><span class="sp-go" aria-hidden="true">&rarr;</span></div>
           <h3 class="sp-title">Branding <span class="amp">&amp;</span> Illustration</h3>
+          <p class="sp-desc">Logos, brand identities, and illustration.</p>
         </a>
       </li>
       <li class="sp-col">
         <a class="sp-link" data-scroll-to="motion" role="link" tabindex="0" aria-label="Motion and 3D: jump to this section">
           <div class="sp-top"><span class="sp-icon"><svg class="ico " viewBox="0 0 48 48" width="56" height="56" fill="none" aria-hidden="true" focusable="false"><g stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><path d="M3 12.5h42M3 35.5h42" stroke-dasharray="2 2.6"/><rect x="3" y="17" width="12" height="14" rx="1.5" fill="var(--paper)"/><rect x="18" y="17" width="12" height="14" rx="1.5" fill="var(--paper)"/><rect x="33" y="17" width="12" height="14" rx="1.5" fill="var(--paper)"/><circle cx="7.8" cy="26.5" r="2.6" fill="var(--red)" fill-opacity=".3" stroke="none"/><circle cx="24" cy="21.5" r="2.6" fill="var(--red)" fill-opacity=".65" stroke="none"/><circle cx="40.2" cy="26.5" r="2.6" fill="var(--red)" stroke="none"/></g></svg></span><span class="sp-go" aria-hidden="true">&rarr;</span></div>
           <h3 class="sp-title">Motion <span class="amp">&amp;</span> 3D</h3>
+          <p class="sp-desc">Storyboards, animation, and 3D design.</p>
         </a>
       </li>
     </ul>
@@ -1268,6 +1279,7 @@
     <div><h2 class="chapter-title holo-title"><span class="ct-base">Collectibles</span><span class="ct-holo" aria-hidden="true">Collectibles</span><span class="ct-sheen" aria-hidden="true">Collectibles</span></h2></div>
     <h3 class="chapter-sub">Trading Card Design</h3>
     <p class="chapter-desc sub-desc">Professional trading card designs for officially licensed sports and entertainment properties.</p>
+    <div class="vault-hint mono vault-hint-top">Click card to flip</div>
   </div>
 
   <div class="vault-arena" id="vaultArena">
@@ -1313,7 +1325,6 @@
   </div>
 
   <div class="vault-foot">
-    <div class="vault-hint mono">Click card to flip</div>
     <button class="view-all-link mono" id="vaultViewAllBtn">View all →</button>
   </div>
 
@@ -1604,12 +1615,29 @@
   function wireViewAll(btnEl, panelEl, getItems, aspectRatio, onSelect){
     let open = false;
     function refresh(){ if (open) renderGridPanel(panelEl, getItems(), aspectRatio, (i) => { onSelect(i); close(); }); }
-    function close(){ open = false; panelEl.classList.remove('open'); btnEl.textContent = 'View all →'; }
+    const fl = document.createElement('button');
+    fl.type = 'button'; fl.className = 'grid-float mono'; fl.textContent = 'Hide grid ←';
+    document.body.appendChild(fl);
+    function syncFloat(){
+      if (!open) { fl.classList.remove('show'); return; }
+      const b = btnEl.getBoundingClientRect(), pn = panelEl.getBoundingClientRect();
+      const vh = window.innerHeight; fl.classList.toggle('show', (b.bottom < 0 || b.top > vh) && pn.bottom > 160 && pn.top < vh - 160);
+    }
+    window.addEventListener('scroll', syncFloat, { passive:true });
+    window.addEventListener('resize', syncFloat);
+    function close(){ open = false; panelEl.classList.remove('open'); btnEl.textContent = 'View all →'; syncFloat(); }
     btnEl.addEventListener('click', () => {
       open = !open;
       panelEl.classList.toggle('open', open);
       btnEl.textContent = open ? 'Hide grid ←' : 'View all →';
       if (open) refresh();
+      syncFloat();
+    });
+    fl.addEventListener('click', () => {
+      close();
+      const r = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const tgt = (btnEl.compareDocumentPosition(panelEl) & 4) ? btnEl : (panelEl.closest('.vault-arena') || btnEl);
+      tgt.scrollIntoView({ behavior: r ? 'auto' : 'smooth', block: tgt === btnEl ? 'center' : 'start' });
     });
     return { refresh, close };
   }
@@ -1914,7 +1942,7 @@
       applySlabImages(card);
       if (!card.slab) applyCardAspect(artF.querySelector('img'));
       counter.textContent = c.cards.length + (c.cards.length === 1 ? ' card' : ' cards') + ' · ' + String(ki + 1).padStart(2, '0') + ' / ' + String(c.cards.length).padStart(2, '0');
-      const multi = c.cards.length > 1;
+      const multi = collections.reduce((a, x) => a + x.cards.length, 0) > 1;
       prevBtn.style.visibility = multi ? 'visible' : 'hidden';
       nextBtn.style.visibility = multi ? 'visible' : 'hidden';
       renderSides();
@@ -1924,13 +1952,26 @@
     // ---- 3-up neighbours ----
     const sideL = document.getElementById('slabSideL'), sideR = document.getElementById('slabSideR');
     const phoneMQ = window.matchMedia('(max-width:560px)');
+    // Paging runs straight through the collections (Ice -> PWHL -> Parkhurst -> Ice ...), like posters.
+    function neighbour(dir){
+      let i = ci, j = ki + dir;
+      if (j >= collections[i].cards.length) { i = (i + 1) % collections.length; j = 0; }
+      else if (j < 0) { i = (i - 1 + collections.length) % collections.length; j = collections[i].cards.length - 1; }
+      return { ci:i, ki:j, c:collections[i], card:collections[i].cards[j] };
+    }
+    function step(dir){
+      const nb = neighbour(dir), changed = nb.ci !== ci;
+      ci = nb.ci; ki = nb.ki; slab.classList.remove('flipped');
+      if (changed) renderTabs();
+      renderCard(); gridView.refresh();
+    }
     function renderSides(){
-      const c = collections[ci], n = c.cards.length;
+      const total = collections.reduce((a, x) => a + x.cards.length, 0);
       [[sideL,-1],[sideR,1]].forEach(([el,dir]) => {
-        const show = n > 1 && !(n === 2 && dir === -1);
+        const show = total > 1 && !(total === 2 && dir === -1);
         el.style.display = show ? '' : 'none';
         if (!show) return;
-        const card = c.cards[(ki + dir + n) % n];
+        const nb = neighbour(dir), c = nb.c, card = nb.card;
         el._sl = card.slab || null;
         el.classList.toggle('has-slab-img', !!card.slab);
         if (card.slab) el.querySelector('.ss-img').src = card.slab.front;
@@ -2001,14 +2042,8 @@
       if (Math.abs(dx) > 40) { suppressClick = true; setTimeout(() => { suppressClick = false; }, 350); (dx < 0 ? nextBtn : prevBtn).click(); }
     });
 
-    prevBtn.addEventListener('click', () => {
-      const n = collections[ci].cards.length;
-      ki = (ki - 1 + n) % n; slab.classList.remove('flipped'); renderCard(); gridView.refresh();
-    });
-    nextBtn.addEventListener('click', () => {
-      const n = collections[ci].cards.length;
-      ki = (ki + 1) % n; slab.classList.remove('flipped'); renderCard(); gridView.refresh();
-    });
+    prevBtn.addEventListener('click', () => step(-1));
+    nextBtn.addEventListener('click', () => step(1));
 
     // subtle tilt toward cursor — runs on whichever face is currently showing, front or
     // back, so flipping the card doesn't lose the effect. The CSS class rule handles the
@@ -2386,6 +2421,13 @@
       el.addEventListener('click', go);
       if (el.classList.contains('sp-link')) el.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
     });
+  })();
+
+  (function(){
+    const m = document.getElementById('navMark'); if (!m) return;
+    const go = () => window.scrollTo({ top:0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    m.addEventListener('click', go);
+    m.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' '){ e.preventDefault(); go(); } });
   })();
 
   // ---------- SHOWCASE: Branding & Illustration + Motion & 3D ----------
