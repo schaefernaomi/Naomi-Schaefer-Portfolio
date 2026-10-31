@@ -783,8 +783,12 @@
   .ss-img{ display:none; position:absolute; inset:0; width:100%; height:100%; user-select:none; -webkit-user-drag:none; pointer-events:none; }
   .slab-side.has-slab-img .ss-img{ display:block; }
   .slab-side.has-slab-img .slab-face, .slab-side.has-slab-img .slab-label{ visibility:hidden; }
-  .slab-side.has-slab-img{ filter:blur(1.5px) brightness(.55); opacity:1; }
-  .slab-side.has-slab-img:hover{ filter:blur(.6px) brightness(.9); }
+  /* The darken/blur goes on the flat <img> inside, NOT on the 3D-turned, floating wrapper: a filter on a
+     rotated, animated wrapper makes some GPUs paint the see-through part of the case as a black box. */
+  .slab-side.has-slab-img{ filter:none; opacity:1; }
+  .slab-side.has-slab-img .ss-img{ filter:blur(1.5px) brightness(.55); transition:filter .3s ease; }
+  .slab-side.has-slab-img:hover{ filter:none; }
+  .slab-side.has-slab-img:hover .ss-img{ filter:blur(.6px) brightness(.9); }
   .slab-side .slab-label{ pointer-events:none; }
   @keyframes slabBob{ 0%,100%{ translate:0 0; } 50%{ translate:0 -10px; } }
   .vault-frame .slab, .slab-side{ animation:slabBob 6s ease-in-out infinite; }
@@ -1805,8 +1809,8 @@
       cards.sort((a, b) => (a.orientation === 'landscape' ? 1 : 0) - (b.orientation === 'landscape' ? 1 : 0));
     });
     // Tab order + display names. Anything not listed keeps its data name and goes after these.
-    const COLLECTION_ORDER = ['Ice', 'PWHL', 'Parkhurst', 'UD1', 'UD2', 'UDExt', 'UDCent', 'UDEPack', 'UDMVP', 'AHL'];
-    const COLLECTION_LABELS = { 'Ice': 'UD ICE', 'UDExt': 'UD EXTENDED', 'UDCent': 'UD CENTENNIAL', 'UDEPack': 'UD E-PACK', 'UDMVP': 'UD MVP', 'AHL': 'UD AHL' };
+    const COLLECTION_ORDER = ['Ice', 'PWHL', 'Parkhurst', 'UD1', 'UD2', 'UDExt', 'UDCent', 'AHL'];
+    const COLLECTION_LABELS = { 'Ice': 'UD ICE', 'UDExt': 'UD EXTENDED', 'UDCent': 'UD CENTENNIAL', 'AHL': 'UD AHL' };
     const labelOf = (n) => COLLECTION_LABELS[n] || n;
     const collections = Object.keys(byCollection).map(name => ({ name, cards: byCollection[name] }))
       .sort((a, b) => {
@@ -1826,8 +1830,6 @@
       'UD2': 'assets/collectibles/ud2/arena-bg.jpg',
       'UDExt': 'assets/collectibles/ud-extended/arena-bg.jpg',
       'UDCent': 'assets/collectibles/ud-centennial/arena-bg.jpg',
-      'UDEPack': 'assets/collectibles/ud-epack/arena-bg.jpg',
-      'UDMVP': 'assets/collectibles/ud-mvp/arena-bg.jpg',
       'AHL': 'assets/collectibles/ahl/arena-bg.jpg',
     };
     const arenaEl = document.getElementById('vaultArena');
