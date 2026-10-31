@@ -822,44 +822,6 @@
       }
     },
     {
-      "id": "katy-knoll-postseason-standouts-deluxe-23401205",
-      "title": "Katy Knoll — Postseason Standouts Deluxe",
-      "category": "card",
-      "collection": "PWHL",
-      "sport": "Hockey",
-      "client": "Upper Deck",
-      "year": "2025-26",
-      "dimensions": "",
-      "description": "",
-      "cardNumber": "85",
-      "cardStock": "",
-      "tags": [
-        "hockey",
-        "PWHL"
-      ],
-      "featured": false,
-      "order": 8,
-      "displayTreatment": "standard",
-      "images": [
-        {
-          "src": "assets/collectibles/pwhl/katy-knoll-postseason-standouts-deluxe-front.jpg",
-          "role": "front",
-          "alt": "Katy Knoll — Postseason Standouts Deluxe, front"
-        },
-        {
-          "src": "assets/collectibles/pwhl/katy-knoll-postseason-standouts-deluxe-back.jpg",
-          "role": "back",
-          "alt": "Katy Knoll — Postseason Standouts Deluxe, back"
-        }
-      ],
-      "slab": {
-        "front": "assets/collectibles/pwhl/slabs/katy-knoll-postseason-standouts-deluxe-front.webp",
-        "back": "assets/collectibles/pwhl/slabs/katy-knoll-postseason-standouts-deluxe-back.webp",
-        "width": 1140,
-        "height": 1695
-      }
-    },
-    {
       "id": "maddie-rooney-postseason-standouts-ud-exclusives-23401206",
       "title": "Maddie Rooney — Postseason Standouts UD Exclusives",
       "category": "card",
@@ -876,7 +838,7 @@
         "PWHL"
       ],
       "featured": false,
-      "order": 9,
+      "order": 8,
       "displayTreatment": "foil",
       "images": [
         {
@@ -914,7 +876,7 @@
         "PWHL"
       ],
       "featured": false,
-      "order": 10,
+      "order": 9,
       "displayTreatment": "standard",
       "images": [
         {
@@ -952,7 +914,7 @@
         "PWHL"
       ],
       "featured": false,
-      "order": 11,
+      "order": 10,
       "displayTreatment": "standard",
       "images": [
         {
@@ -990,7 +952,7 @@
         "PWHL"
       ],
       "featured": false,
-      "order": 12,
+      "order": 11,
       "displayTreatment": "foil",
       "images": [
         {
@@ -1028,7 +990,7 @@
         "PWHL"
       ],
       "featured": false,
-      "order": 13,
+      "order": 12,
       "displayTreatment": "standard",
       "images": [
         {
@@ -3404,44 +3366,6 @@
       }
     },
     {
-      "id": "ud2-kirill-marchenko-glow-up-speckle",
-      "title": "Kirill Marchenko — Glow-Up Speckle",
-      "category": "card",
-      "collection": "UD2",
-      "client": "Upper Deck",
-      "year": "2025-26",
-      "dimensions": "",
-      "description": "",
-      "cardNumber": "GU-14",
-      "tags": [
-        "hockey",
-        "UD2"
-      ],
-      "featured": false,
-      "order": 5,
-      "images": [
-        {
-          "src": "assets/collectibles/ud2/kirill-marchenko-glow-up-speckle-front.jpg",
-          "role": "front",
-          "alt": "2025-26 Upper Deck Series 2 Glow-Up Speckle, Kirill Marchenko, front"
-        },
-        {
-          "src": "assets/collectibles/ud2/kirill-marchenko-glow-up-speckle-back.jpg",
-          "role": "back",
-          "alt": "2025-26 Upper Deck Series 2 Glow-Up Speckle, Kirill Marchenko, back"
-        }
-      ],
-      "displayTreatment": "standard",
-      "cardStock": "",
-      "sport": "Hockey",
-      "slab": {
-        "front": "assets/collectibles/ud2/slabs/kirill-marchenko-glow-up-speckle-front.webp",
-        "back": "assets/collectibles/ud2/slabs/kirill-marchenko-glow-up-speckle-back.webp",
-        "width": 1140,
-        "height": 1723
-      }
-    },
-    {
       "id": "ud2-charlie-lindgren-vibing",
       "title": "Charlie Lindgren — Vibing",
       "category": "card",
@@ -3456,7 +3380,7 @@
         "UD2"
       ],
       "featured": false,
-      "order": 6,
+      "order": 5,
       "images": [
         {
           "src": "assets/collectibles/ud2/charlie-lindgren-vibing-front.jpg",
@@ -3480,82 +3404,6 @@
       }
     },
     {
-      "id": "ud2-evan-rodrigues-glow-up-gold",
-      "title": "Evan Rodrigues — Glow-Up Gold",
-      "category": "card",
-      "collection": "UD2",
-      "client": "Upper Deck",
-      "year": "2025-26",
-      "dimensions": "",
-      "description": "",
-      "cardNumber": "GU-19",
-      "tags": [
-        "hockey",
-        "UD2"
-      ],
-      "featured": false,
-      "order": 7,
-      "images": [
-        {
-          "src": "assets/collectibles/ud2/evan-rodrigues-glow-up-gold-front.jpg",
-          "role": "front",
-          "alt": "2025-26 Upper Deck Series 2 Glow-Up Gold, Evan Rodrigues, front"
-        },
-        {
-          "src": "assets/collectibles/ud2/evan-rodrigues-glow-up-gold-back.jpg",
-          "role": "back",
-          "alt": "2025-26 Upper Deck Series 2 Glow-Up Gold, Evan Rodrigues, back"
-        }
-      ],
-      "displayTreatment": "standard",
-      "cardStock": "",
-      "sport": "Hockey",
-      "slab": {
-        "front": "assets/collectibles/ud2/slabs/evan-rodrigues-glow-up-gold-front.webp",
-        "back": "assets/collectibles/ud2/slabs/evan-rodrigues-glow-up-gold-back.webp",
-        "width": 1140,
-        "height": 1704
-      }
-    },
-    {
-      "id": "ud2-cole-perfetti-glow-up-gold",
-      "title": "Cole Perfetti — Glow-Up Gold",
-      "category": "card",
-      "collection": "UD2",
-      "client": "Upper Deck",
-      "year": "2025-26",
-      "dimensions": "",
-      "description": "",
-      "cardNumber": "GU-20",
-      "tags": [
-        "hockey",
-        "UD2"
-      ],
-      "featured": false,
-      "order": 8,
-      "images": [
-        {
-          "src": "assets/collectibles/ud2/cole-perfetti-glow-up-gold-front.jpg",
-          "role": "front",
-          "alt": "2025-26 Upper Deck Series 2 Glow-Up Gold, Cole Perfetti, front"
-        },
-        {
-          "src": "assets/collectibles/ud2/cole-perfetti-glow-up-gold-back.jpg",
-          "role": "back",
-          "alt": "2025-26 Upper Deck Series 2 Glow-Up Gold, Cole Perfetti, back"
-        }
-      ],
-      "displayTreatment": "standard",
-      "cardStock": "",
-      "sport": "Hockey",
-      "slab": {
-        "front": "assets/collectibles/ud2/slabs/cole-perfetti-glow-up-gold-front.webp",
-        "back": "assets/collectibles/ud2/slabs/cole-perfetti-glow-up-gold-back.webp",
-        "width": 1140,
-        "height": 1685
-      }
-    },
-    {
       "id": "ud2-ivan-demidov-nhl-firsts",
       "title": "Ivan Demidov — NHL Firsts",
       "category": "card",
@@ -3570,7 +3418,7 @@
         "UD2"
       ],
       "featured": false,
-      "order": 9,
+      "order": 6,
       "images": [
         {
           "src": "assets/collectibles/ud2/ivan-demidov-nhl-firsts-front.jpg",
@@ -3608,7 +3456,7 @@
         "UD2"
       ],
       "featured": false,
-      "order": 10,
+      "order": 7,
       "images": [
         {
           "src": "assets/collectibles/ud2/seth-jarvis-glow-up-gold-front.jpg",
@@ -3860,44 +3708,6 @@
       }
     },
     {
-      "id": "ud-extended-noah-ostlund-rookie-reflections",
-      "title": "Noah Ostlund — Rookie Reflections",
-      "category": "card",
-      "collection": "UDExt",
-      "client": "Upper Deck",
-      "year": "2025-26",
-      "dimensions": "",
-      "description": "",
-      "cardNumber": "RR-8",
-      "tags": [
-        "hockey",
-        "UDExt"
-      ],
-      "featured": false,
-      "order": 7,
-      "images": [
-        {
-          "src": "assets/collectibles/ud-extended/noah-ostlund-rookie-reflections-front.jpg",
-          "role": "front",
-          "alt": "2025-26 Upper Deck Extended Series Rookie Reflections, Noah Ostlund, front"
-        },
-        {
-          "src": "assets/collectibles/ud-extended/noah-ostlund-rookie-reflections-back.jpg",
-          "role": "back",
-          "alt": "2025-26 Upper Deck Extended Series Rookie Reflections, Noah Ostlund, back"
-        }
-      ],
-      "displayTreatment": "standard",
-      "cardStock": "",
-      "sport": "Hockey",
-      "slab": {
-        "front": "assets/collectibles/ud-extended/slabs/noah-ostlund-rookie-reflections-front.webp",
-        "back": "assets/collectibles/ud-extended/slabs/noah-ostlund-rookie-reflections-back.webp",
-        "width": 1140,
-        "height": 1708
-      }
-    },
-    {
       "id": "ud-centennial-marian-hossa-capturing-a-champion-auto",
       "title": "Marian Hossa — Capturing a Champion Auto",
       "category": "card",
@@ -3936,44 +3746,6 @@
       }
     },
     {
-      "id": "ud-centennial-sean-avery-hey-hey-hey-auto",
-      "title": "Sean Avery — Hey, Hey, Hey! Auto",
-      "category": "card",
-      "collection": "UDCent",
-      "client": "Upper Deck",
-      "year": "2025-26",
-      "dimensions": "",
-      "description": "",
-      "cardNumber": "HHH-24",
-      "tags": [
-        "hockey",
-        "UDCent"
-      ],
-      "featured": false,
-      "order": 2,
-      "images": [
-        {
-          "src": "assets/collectibles/ud-centennial/sean-avery-hey-hey-hey-auto-front.jpg",
-          "role": "front",
-          "alt": "2025-26 Upper Deck Centennial Hey, Hey, Hey! Auto, Sean Avery, front"
-        },
-        {
-          "src": "assets/collectibles/ud-centennial/sean-avery-hey-hey-hey-auto-back.jpg",
-          "role": "back",
-          "alt": "2025-26 Upper Deck Centennial Hey, Hey, Hey! Auto, Sean Avery, back"
-        }
-      ],
-      "displayTreatment": "standard",
-      "cardStock": "",
-      "sport": "Hockey",
-      "slab": {
-        "front": "assets/collectibles/ud-centennial/slabs/sean-avery-hey-hey-hey-auto-front.webp",
-        "back": "assets/collectibles/ud-centennial/slabs/sean-avery-hey-hey-hey-auto-back.webp",
-        "width": 1140,
-        "height": 1708
-      }
-    },
-    {
       "id": "ud-centennial-aaron-voros-hey-hey-hey-auto",
       "title": "Aaron Voros — Hey, Hey, Hey! Auto",
       "category": "card",
@@ -3988,7 +3760,7 @@
         "UDCent"
       ],
       "featured": false,
-      "order": 3,
+      "order": 2,
       "images": [
         {
           "src": "assets/collectibles/ud-centennial/aaron-voros-hey-hey-hey-auto-front.jpg",
@@ -4026,7 +3798,7 @@
         "UDCent"
       ],
       "featured": false,
-      "order": 4,
+      "order": 3,
       "images": [
         {
           "src": "assets/collectibles/ud-centennial/jeff-beukeboom-pictured-in-time-auto-front.jpg",
@@ -4064,7 +3836,7 @@
         "UDCent"
       ],
       "featured": false,
-      "order": 5,
+      "order": 4,
       "images": [
         {
           "src": "assets/collectibles/ud-centennial/darius-kasparaitis-broadway-bruisers-blue-front.jpg",
@@ -4102,7 +3874,7 @@
         "UDCent"
       ],
       "featured": false,
-      "order": 6,
+      "order": 5,
       "images": [
         {
           "src": "assets/collectibles/ud-centennial/aaron-voros-broadway-blue-signatures-front.jpg",
@@ -4126,44 +3898,6 @@
       }
     },
     {
-      "id": "ud-centennial-glenn-anderson-broadway-blue-signatures",
-      "title": "Glenn Anderson — Broadway Blue Signatures Auto",
-      "category": "card",
-      "collection": "UDCent",
-      "client": "Upper Deck",
-      "year": "2025-26",
-      "dimensions": "",
-      "description": "",
-      "cardNumber": "BBS-GA",
-      "tags": [
-        "hockey",
-        "UDCent"
-      ],
-      "featured": false,
-      "order": 7,
-      "images": [
-        {
-          "src": "assets/collectibles/ud-centennial/glenn-anderson-broadway-blue-signatures-front.jpg",
-          "role": "front",
-          "alt": "2025-26 Upper Deck Centennial Broadway Blue Signatures Auto, Glenn Anderson, front"
-        },
-        {
-          "src": "assets/collectibles/ud-centennial/glenn-anderson-broadway-blue-signatures-back.jpg",
-          "role": "back",
-          "alt": "2025-26 Upper Deck Centennial Broadway Blue Signatures Auto, Glenn Anderson, back"
-        }
-      ],
-      "displayTreatment": "standard",
-      "cardStock": "",
-      "sport": "Hockey",
-      "slab": {
-        "front": "assets/collectibles/ud-centennial/slabs/glenn-anderson-broadway-blue-signatures-front.webp",
-        "back": "assets/collectibles/ud-centennial/slabs/glenn-anderson-broadway-blue-signatures-back.webp",
-        "width": 1140,
-        "height": 1708
-      }
-    },
-    {
       "id": "ud-centennial-nick-fotiu-blue-seat-memories-auto",
       "title": "Nick Fotiu — Blue Seat Memories Auto",
       "category": "card",
@@ -4178,7 +3912,7 @@
         "UDCent"
       ],
       "featured": false,
-      "order": 8,
+      "order": 6,
       "images": [
         {
           "src": "assets/collectibles/ud-centennial/nick-fotiu-blue-seat-memories-auto-front.jpg",
@@ -4216,7 +3950,7 @@
         "UDCent"
       ],
       "featured": false,
-      "order": 9,
+      "order": 7,
       "images": [
         {
           "src": "assets/collectibles/ud-centennial/bobby-hull-retired-numbers-yellow-front.jpg",
@@ -4237,158 +3971,6 @@
         "back": "assets/collectibles/ud-centennial/slabs/bobby-hull-retired-numbers-yellow-back.webp",
         "width": 1140,
         "height": 1708
-      }
-    },
-    {
-      "id": "ud-epack-macklin-celebrini-rookie-standout",
-      "title": "Macklin Celebrini — Rookie Standout",
-      "category": "card",
-      "collection": "UDEPack",
-      "client": "Upper Deck",
-      "year": "2025-26",
-      "dimensions": "",
-      "description": "",
-      "cardNumber": "10",
-      "tags": [
-        "hockey",
-        "UDEPack"
-      ],
-      "featured": false,
-      "order": 1,
-      "images": [
-        {
-          "src": "assets/collectibles/ud-epack/macklin-celebrini-rookie-standout-front.jpg",
-          "role": "front",
-          "alt": "2025-26 Upper Deck E-Pack 10th Anniversary Rookie Standout, Macklin Celebrini, front"
-        },
-        {
-          "src": "assets/collectibles/ud-epack/macklin-celebrini-rookie-standout-back.jpg",
-          "role": "back",
-          "alt": "2025-26 Upper Deck E-Pack 10th Anniversary Rookie Standout, Macklin Celebrini, back"
-        }
-      ],
-      "displayTreatment": "standard",
-      "cardStock": "",
-      "sport": "Hockey",
-      "slab": {
-        "front": "assets/collectibles/ud-epack/slabs/macklin-celebrini-rookie-standout-front.webp",
-        "back": "assets/collectibles/ud-epack/slabs/macklin-celebrini-rookie-standout-back.webp",
-        "width": 1140,
-        "height": 1708
-      }
-    },
-    {
-      "id": "ud-mvp-macklin-celebrini-the-slot-gold",
-      "title": "Macklin Celebrini — The Slot Gold",
-      "category": "card",
-      "collection": "UDMVP",
-      "client": "Upper Deck",
-      "year": "2026-27",
-      "dimensions": "",
-      "description": "",
-      "cardNumber": "TS-2",
-      "tags": [
-        "hockey",
-        "UDMVP"
-      ],
-      "featured": false,
-      "order": 1,
-      "images": [
-        {
-          "src": "assets/collectibles/ud-mvp/macklin-celebrini-the-slot-gold-front.jpg",
-          "role": "front",
-          "alt": "2026-27 Upper Deck MVP The Slot Gold, Macklin Celebrini, front"
-        },
-        {
-          "src": "assets/collectibles/ud-mvp/macklin-celebrini-the-slot-gold-back.jpg",
-          "role": "back",
-          "alt": "2026-27 Upper Deck MVP The Slot Gold, Macklin Celebrini, back"
-        }
-      ],
-      "displayTreatment": "standard",
-      "cardStock": "",
-      "sport": "Hockey",
-      "slab": {
-        "front": "assets/collectibles/ud-mvp/slabs/macklin-celebrini-the-slot-gold-front.webp",
-        "back": "assets/collectibles/ud-mvp/slabs/macklin-celebrini-the-slot-gold-back.webp",
-        "width": 1380,
-        "height": 1364
-      }
-    },
-    {
-      "id": "ud-mvp-youppi-mascot-lenticular",
-      "title": "Youppi! — Mascot Lenticular",
-      "category": "card",
-      "collection": "UDMVP",
-      "client": "Upper Deck",
-      "year": "2026-27",
-      "dimensions": "",
-      "description": "",
-      "cardNumber": "ML-2",
-      "tags": [
-        "hockey",
-        "UDMVP"
-      ],
-      "featured": false,
-      "order": 2,
-      "images": [
-        {
-          "src": "assets/collectibles/ud-mvp/youppi-mascot-lenticular-front.jpg",
-          "role": "front",
-          "alt": "2026-27 Upper Deck MVP Mascot Lenticular, Youppi!, front"
-        },
-        {
-          "src": "assets/collectibles/ud-mvp/youppi-mascot-lenticular-back.jpg",
-          "role": "back",
-          "alt": "2026-27 Upper Deck MVP Mascot Lenticular, Youppi!, back"
-        }
-      ],
-      "displayTreatment": "standard",
-      "cardStock": "",
-      "sport": "Hockey",
-      "slab": {
-        "front": "assets/collectibles/ud-mvp/slabs/youppi-mascot-lenticular-front.webp",
-        "back": "assets/collectibles/ud-mvp/slabs/youppi-mascot-lenticular-back.webp",
-        "width": 1140,
-        "height": 1708
-      }
-    },
-    {
-      "id": "ud-mvp-romanov-schaefer-paired-up-gold",
-      "title": "Alexander Romanov & Matthew Schaefer — Paired Up Gold",
-      "category": "card",
-      "collection": "UDMVP",
-      "client": "Upper Deck",
-      "year": "2026-27",
-      "dimensions": "",
-      "description": "",
-      "cardNumber": "PU-12",
-      "tags": [
-        "hockey",
-        "UDMVP"
-      ],
-      "featured": false,
-      "order": 3,
-      "images": [
-        {
-          "src": "assets/collectibles/ud-mvp/romanov-schaefer-paired-up-gold-front.jpg",
-          "role": "front",
-          "alt": "2026-27 Upper Deck MVP Paired Up Gold, Alexander Romanov & Matthew Schaefer, front"
-        },
-        {
-          "src": "assets/collectibles/ud-mvp/romanov-schaefer-paired-up-gold-back.jpg",
-          "role": "back",
-          "alt": "2026-27 Upper Deck MVP Paired Up Gold, Alexander Romanov & Matthew Schaefer, back"
-        }
-      ],
-      "displayTreatment": "standard",
-      "cardStock": "",
-      "sport": "Hockey",
-      "slab": {
-        "front": "assets/collectibles/ud-mvp/slabs/romanov-schaefer-paired-up-gold-front.webp",
-        "back": "assets/collectibles/ud-mvp/slabs/romanov-schaefer-paired-up-gold-back.webp",
-        "width": 1380,
-        "height": 1364
       }
     },
     {
