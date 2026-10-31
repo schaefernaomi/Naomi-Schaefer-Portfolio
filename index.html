@@ -1805,8 +1805,8 @@
       cards.sort((a, b) => (a.orientation === 'landscape' ? 1 : 0) - (b.orientation === 'landscape' ? 1 : 0));
     });
     // Tab order + display names. Anything not listed keeps its data name and goes after these.
-    const COLLECTION_ORDER = ['Ice', 'PWHL', 'Parkhurst'];
-    const COLLECTION_LABELS = { 'Ice': 'UD ICE' };
+    const COLLECTION_ORDER = ['Ice', 'PWHL', 'Parkhurst', 'UD1', 'UD2', 'UDExt', 'UDCent', 'UDEPack', 'UDMVP', 'AHL'];
+    const COLLECTION_LABELS = { 'Ice': 'UD ICE', 'UDExt': 'UD EXTENDED', 'UDCent': 'UD CENTENNIAL', 'UDEPack': 'UD E-PACK', 'UDMVP': 'UD MVP', 'AHL': 'UD AHL' };
     const labelOf = (n) => COLLECTION_LABELS[n] || n;
     const collections = Object.keys(byCollection).map(name => ({ name, cards: byCollection[name] }))
       .sort((a, b) => {
@@ -1822,6 +1822,13 @@
       'PWHL': 'assets/collectibles/pwhl/arena-bg-purple.jpg',
       'Parkhurst': 'assets/collectibles/parkhurst/arena-bg.jpg',
       'Ice': 'assets/collectibles/ice/arena-bg.jpg',
+      'UD1': 'assets/collectibles/ud1/arena-bg.jpg',
+      'UD2': 'assets/collectibles/ud2/arena-bg.jpg',
+      'UDExt': 'assets/collectibles/ud-extended/arena-bg.jpg',
+      'UDCent': 'assets/collectibles/ud-centennial/arena-bg.jpg',
+      'UDEPack': 'assets/collectibles/ud-epack/arena-bg.jpg',
+      'UDMVP': 'assets/collectibles/ud-mvp/arena-bg.jpg',
+      'AHL': 'assets/collectibles/ahl/arena-bg.jpg',
     };
     const arenaEl = document.getElementById('vaultArena');
     function applyArenaBackground(collectionName){
