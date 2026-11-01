@@ -1203,9 +1203,18 @@
     // Tiny analytics layer. Every call is wrapped so a blocked / failed tracker can never affect the site.
     (function(){
       var sent = {}, inView = {}, timers = {};
-      function send(name, data){ try { if (window.umami && typeof window.umami.track === 'function') window.umami.track(name, data); } catch (e) {} }
-      // fire once per visit per key (stops repeat views of the same card / poster / project)
-      function once(key, name, data){ try { if (sent[key]) return; sent[key] = 1; send(name, data); } catch (e) {} }
+      // Hands an event to Umami. Returns true only if Umami was there to receive it (false when it's blocked, hasn't
+      // loaded yet, or the visitor opted out with ?notrack), so callers never mark an event as counted when it wasn't.
+      function isOff(){ try { return !!localStorage.getItem('umami.disabled'); } catch (e) { return false; } }
+      function send(name, data){
+        try {
+          if (isOff() || !window.umami || typeof window.umami.track !== 'function') return false;
+          window.umami.track(name, data); return true;
+        } catch (e) { return false; }
+      }
+      // fire once per visit per key (stops repeat views of the same card / poster / project); the key is only
+      // remembered after a successful hand-off, so an early or blocked attempt can still count later
+      function once(key, name, data){ try { if (sent[key]) return; if (send(name, data)) sent[key] = 1; } catch (e) {} }
       // "viewed" = still on it after `ms`, tab visible, and its section actually on screen. Re-arming cancels the
       // previous timer, so flicking quickly through cards counts nothing.
       function view(group, key, ms, ev){
@@ -1214,7 +1223,8 @@
           timers[group] = setTimeout(function(){ if (document.visibilityState === 'visible' && inView[group]) once(key, ev.n, ev.d); }, ms);
         } catch (e) {}
       }
-      // N ms of *visible* time with something open; pauses while the tab is hidden; returns a cancel function
+      // N ms of time with the browser tab *visible* while something is open (it does not check mouse movement or whether the
+      // item is scrolled into view); pauses while the tab is hidden; returns a cancel function
       function dwell(ms, cb){
         var t = null, acc = 0, t0 = 0, done = false;
         function stop(){ document.removeEventListener('visibilitychange', vis); }
@@ -1262,6 +1272,13 @@
           send('external-link', { destination: HOSTS[h] || h, location: where(a) });
         } catch (err) {}
       }
+      // Specialties cards: which service area people jump to (cards / posters / branding / motion)
+      var SPEC = { work:'cards', campaigns:'posters', branding:'branding', motion:'motion' };
+      function specClick(e){
+        try { var a = e.target && e.target.closest ? e.target.closest('.sp-link[data-scroll-to]') : null;
+          if (a) send('specialty-click', { section: SPEC[a.getAttribute('data-scroll-to')] || a.getAttribute('data-scroll-to') }); } catch (err) {}
+      }
+      document.addEventListener('click', specClick, true);
       document.addEventListener('click', linkClick, true);
       document.addEventListener('auxclick', linkClick, true);
     })();
@@ -1345,28 +1362,28 @@
     <div class="specialties-head"><h2 class="mono" id="specialtiesLabel">Specialties</h2></div>
     <ul class="sp-grid" role="list">
       <li class="sp-col">
-        <a class="sp-link" data-umami-event="specialty-click" data-umami-event-section="cards" data-scroll-to="work" role="link" tabindex="0" aria-label="Collectibles: jump to trading cards, posters, and print">
+        <a class="sp-link" data-scroll-to="work" role="link" tabindex="0" aria-label="Collectibles: jump to trading cards, posters, and print">
           <div class="sp-top"><span class="sp-icon"><svg class="ico " viewBox="0 0 48 48" width="56" height="56" fill="none" aria-hidden="true" focusable="false"><g stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><rect x="15.5" y="9" width="17" height="26" rx="2" fill="#e6e3dd" transform="rotate(-17 24 41)"/><rect x="15.5" y="9" width="17" height="26" rx="2" fill="#e6e3dd" transform="rotate(17 24 41)"/><rect x="15.5" y="9" width="17" height="26" rx="2" fill="var(--paper)" transform="rotate(0 24 41)"/><rect x="18.5" y="12.2" width="11" height="10" rx="1" fill="#e6e3dd"/><path d="M18.5 27h11" stroke="var(--red)" stroke-width="1.6" stroke-linecap="round"/><path d="M18.5 30.2h6" stroke-linecap="round"/></g></svg></span><span class="sp-go" aria-hidden="true">&rarr;</span></div>
           <h3 class="sp-title">Collectibles</h3>
           <p class="sp-desc">Trading cards, posters, and print.</p>
         </a>
       </li>
       <li class="sp-col">
-        <a class="sp-link" data-umami-event="specialty-click" data-umami-event-section="posters" data-scroll-to="campaigns" role="link" tabindex="0" aria-label="Campaigns and Promotional Design: jump to promotional graphics and key art">
+        <a class="sp-link" data-scroll-to="campaigns" role="link" tabindex="0" aria-label="Campaigns and Promotional Design: jump to promotional graphics and key art">
           <div class="sp-top"><span class="sp-icon"><svg class="ico " viewBox="0 0 48 48" width="56" height="56" fill="none" aria-hidden="true" focusable="false"><g stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><rect x="8" y="4.5" width="32" height="39" rx="1.5" stroke-width="1.7"/><rect x="12" y="8.5" width="24" height="31" fill="var(--paper)"/><rect x="14.5" y="11" width="19" height="20" fill="#e6e3dd"/><path d="M14.5 31 21 22.5 25 27 29 21.5 33.5 31Z" fill="var(--paper)"/><circle cx="28" cy="16.5" r="2.6" fill="var(--red)" stroke="none"/><path d="M15 35.5q2-3.4 4 0t4 0 4 0 4 0" stroke="var(--red)" stroke-width="1.5"/></g></svg></span><span class="sp-go" aria-hidden="true">&rarr;</span></div>
           <h3 class="sp-title">Campaigns <span class="amp">&amp;</span> Promotional Design</h3>
           <p class="sp-desc">Promotional graphics and key art.</p>
         </a>
       </li>
       <li class="sp-col">
-        <a class="sp-link" data-umami-event="specialty-click" data-umami-event-section="branding" data-scroll-to="branding" role="link" tabindex="0" aria-label="Branding and Illustration: jump to this section">
+        <a class="sp-link" data-scroll-to="branding" role="link" tabindex="0" aria-label="Branding and Illustration: jump to this section">
           <div class="sp-top"><span class="sp-icon"><svg class="ico " viewBox="0 0 48 48" width="56" height="56" fill="none" aria-hidden="true" focusable="false"><g stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><circle cx="14.5" cy="14.5" r="8.5" fill="#e6e3dd"/><rect x="25" y="6" width="17" height="17" rx="1.5" fill="#e6e3dd"/><circle cx="33.5" cy="14.5" r="3.4" fill="var(--red)" stroke="none"/><path d="M6 42 23 42 14.5 25Z" fill="#e6e3dd"/><path d="M25 42V25A17 17 0 0 1 42 42Z" fill="#e6e3dd" stroke="var(--red)"/></g></svg></span><span class="sp-go" aria-hidden="true">&rarr;</span></div>
           <h3 class="sp-title">Branding <span class="amp">&amp;</span> Illustration</h3>
           <p class="sp-desc">Logos, brand identities, and illustration.</p>
         </a>
       </li>
       <li class="sp-col">
-        <a class="sp-link" data-umami-event="specialty-click" data-umami-event-section="motion" data-scroll-to="motion" role="link" tabindex="0" aria-label="Motion and 3D: jump to this section">
+        <a class="sp-link" data-scroll-to="motion" role="link" tabindex="0" aria-label="Motion and 3D: jump to this section">
           <div class="sp-top"><span class="sp-icon"><svg class="ico " viewBox="0 0 48 48" width="56" height="56" fill="none" aria-hidden="true" focusable="false"><g stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><path d="M3 12.5h42M3 35.5h42" stroke-dasharray="2 2.6"/><rect x="3" y="17" width="12" height="14" rx="1.5" fill="var(--paper)"/><rect x="18" y="17" width="12" height="14" rx="1.5" fill="var(--paper)"/><rect x="33" y="17" width="12" height="14" rx="1.5" fill="var(--paper)"/><circle cx="7.8" cy="26.5" r="2.6" fill="var(--red)" fill-opacity=".3" stroke="none"/><circle cx="24" cy="21.5" r="2.6" fill="var(--red)" fill-opacity=".65" stroke="none"/><circle cx="40.2" cy="26.5" r="2.6" fill="var(--red)" stroke="none"/></g></svg></span><span class="sp-go" aria-hidden="true">&rarr;</span></div>
           <h3 class="sp-title">Motion <span class="amp">&amp;</span> 3D</h3>
           <p class="sp-desc">Storyboards, animation, and 3D design.</p>
@@ -1531,7 +1548,7 @@
     <button type="button" class="c-btn solid" data-open-contact aria-haspopup="dialog">Contact</button>
     <a class="c-btn" href="https://www.linkedin.com/in/naomi-schaefer/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span>LinkedIn</span></a>
   </div>
-  <div class="foot mono"><span>© 2026 Naomi Schaefer. naomischaefer.com. All rights reserved. Licensed images remain the property of their respective owners. Portfolio work may not be reproduced or used without permission.</span><span><a href="privacy-policy.html" style="color:inherit; text-decoration:underline; text-underline-offset:2px;">Privacy Policy</a></span></div>
+  <div class="foot mono"><span>© 2026 Naomi Schaefer. naomischaefer.com. All rights reserved. Licensed images remain the property of their respective owners. Portfolio work may not be reproduced or used without permission.</span><span><a href="privacy-policy.html" style="color:#a9a9a9; text-decoration:underline; text-underline-offset:2px; display:inline-block; padding:8px 6px; margin:-8px -6px;">Privacy Policy</a></span></div>
 </section>
 
 <div class="cp-scrim" id="cpScrim"></div>
@@ -2222,16 +2239,22 @@
       if (slabLabel) slabLabel.style.transform = 'rotateX(' + lastRx + 'deg) rotateY(' + (lastRy + flipOffset) + 'deg)';
     }
 
+    // One flip path for mouse, touch (which arrives as a click) and keyboard, so the tracking can't drift between them.
+    // Enter/Space call preventDefault, so a key press never also produces a click; the per-card dedupe covers the rest.
+    function flipCard(){
+      slab.classList.toggle('flipped');
+      const c0 = collections[ci], k0 = c0.cards[ki];
+      nsOnce('flip:' + k0.id, 'card-flip', cardProps(c0, k0));
+      applyFlipTransform();
+    }
     slab.addEventListener('click', () => {
       if (suppressClick) return;
-      slab.classList.toggle('flipped'); { const c0 = collections[ci], k0 = c0.cards[ki]; nsOnce('flip:' + k0.id, 'card-flip', cardProps(c0, k0)); }
-      applyFlipTransform();
+      flipCard();
     });
     slab.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' '){
         e.preventDefault();
-        slab.classList.toggle('flipped');
-        applyFlipTransform();
+        flipCard();
       }
     });
 
