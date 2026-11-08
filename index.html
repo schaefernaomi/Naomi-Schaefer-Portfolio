@@ -702,6 +702,24 @@
 
   /* ---- Card info under the card: dark smoked glass (matches the tab bar), centred.
           Card name, set name, then outlined chips for the card's features / stock. ---- */
+  /* Glow-in-the-dark cards: lights go down, the card art dims, and the baked glow image is added back as light */
+  .vault-arena::before{ transition:filter 1s ease; }
+  .vault-arena.glow-on::before{ filter:brightness(.3); }
+  .sl-glow{ position:absolute; overflow:hidden; pointer-events:none; border-radius:1.7% / 1.2%; }
+  .sl-glow .sl-dim{ position:absolute; inset:0; background:#000; opacity:0; transition:opacity 1s ease; }
+  .sl-glow .sl-lum{ position:absolute; inset:0; width:100%; height:100%; display:block; opacity:0; mix-blend-mode:screen; transition:opacity 1.6s ease .3s; }
+  .slab.glow-on .sl-dim{ opacity:.72; }
+  .slab.glow-on .sl-lum{ opacity:1; animation:nsAfterglow 14s ease-out .3s forwards; }
+  @keyframes nsAfterglow{ 0%{ opacity:1; } 100%{ opacity:.62; } }
+  .vault-glow{ position:relative; z-index:4; display:none; align-items:center; gap:8px; margin:-6px auto clamp(16px,3vh,26px); padding:9px 16px 9px 13px;
+    font:500 10.5px/1 'IBM Plex Mono',monospace; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.85);
+    background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.22); border-radius:999px; cursor:pointer; transition:all .35s ease; }
+  .vault-glow.show{ display:flex; }
+  .vault-glow svg{ width:15px; height:15px; }
+  .vault-glow:hover{ border-color:rgba(255,255,255,.5); }
+  .vault-glow[aria-pressed="true"]{ color:#8dffbf; border-color:#8dffbf; background:rgba(141,255,191,.09); box-shadow:0 0 16px rgba(141,255,191,.3), inset 0 0 8px rgba(141,255,191,.12); }
+  .vault-glow:focus-visible{ outline:2px solid #8dffbf; outline-offset:3px; }
+  @media (prefers-reduced-motion: reduce){ .slab.glow-on .sl-lum{ animation:none; } .sl-glow .sl-dim,.sl-glow .sl-lum,.vault-arena::before{ transition:none; } }
   .vault-caption{ position:relative; z-index:4; width:min(calc(100% - 32px),660px); margin:0 auto clamp(18px,3vh,30px);
     display:flex; flex-direction:column; align-items:center; text-align:center; gap:12px; padding:18px 24px 17px; border-radius:20px;
     color:#fff; background:rgba(14,14,16,.5); border:1px solid rgba(255,255,255,.16);
@@ -1460,6 +1478,8 @@
 
     <div class="vault-caption" id="vaultCaption" aria-live="polite"><div><h4 class="vc-name" id="vcName"></h4><div class="vc-set" id="vcSet"></div></div><div class="vc-chips" id="vcChips"></div></div>
 
+    <button type="button" class="vault-glow" id="vaultGlow" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><span id="vaultGlowTxt">Lights off</span></button>
+
     <div class="grid-panel" id="vaultGrid"></div>
   </div>
 
@@ -1925,6 +1945,7 @@
         id: p.id || '',
         cardName: p.cardName || '',
         specs: Array.isArray(p.specs) ? p.specs : null,
+        glow: (p.glow && p.glow.src && p.glow.w && p.glow.h) ? p.glow : null,
         stock: p.cardStock || '',
         tags: Array.isArray(p.tags) ? p.tags : [],
         num: p.cardNumber || '',
@@ -1946,7 +1967,7 @@
       cards.sort((a, b) => (a.orientation === 'landscape' ? 1 : 0) - (b.orientation === 'landscape' ? 1 : 0));
     });
     // Tab order + display names. Anything not listed keeps its data name and goes after these.
-    const COLLECTION_ORDER = ['Ice', 'PWHL', 'Parkhurst', 'UD1', 'UD2', 'UDExt', 'UDCent', 'AHL'];
+    const COLLECTION_ORDER = ['Parkhurst', 'PWHL', 'Ice', 'UD1', 'UD2', 'UDExt', 'UDCent', 'AHL'];
     const COLLECTION_LABELS = { 'Ice': 'UD ICE', 'UDExt': 'UD EXTENDED', 'UDCent': 'UD CENTENNIAL', 'AHL': 'UD AHL' };
     const labelOf = (n) => COLLECTION_LABELS[n] || n;
     const collections = Object.keys(byCollection).map(name => ({ name, cards: byCollection[name] }))
@@ -2071,9 +2092,11 @@
       const bodyW = sl.width - 2 * SLAB_PAD.x, bodyH = sl.height - 140;
       const mask = u => `-webkit-mask-image:url('${u}');mask-image:url('${u}')`;
       const alt = (card.title || '') + (card.num ? ' · ' + card.num : '');
+      const g = card.glow;
+      const glowHtml = g ? `<div class="sl-glow" style="left:${px(g.x)};top:${py(g.y)};width:${g.w / sl.width * 100}%;height:${g.h / sl.height * 100}%"><div class="sl-dim"></div><img class="sl-lum" src="${g.src}" alt="" draggable="false"></div>` : '';
       slImg.innerHTML =
         `<div class="sl-tilt" id="slTilt"><div class="sl-flip">` +
-          `<div class="sl-face f"><img src="${sl.front}" alt="${alt.replace(/"/g,'&quot;')}" draggable="false"><div class="sl-glare" style="${mask(sl.front)}"></div></div>` +
+          `<div class="sl-face f"><img src="${sl.front}" alt="${alt.replace(/"/g,'&quot;')}" draggable="false">${glowHtml}<div class="sl-glare" style="${mask(sl.front)}"></div></div>` +
           `<div class="sl-face b"><img src="${sl.back}" alt="" draggable="false"><div class="sl-glare" style="${mask(sl.back)}"></div></div>` +
           // four glass edge strips give the slab real thickness while it turns
           `<div class="sl-edge v" style="left:${px(SLAB_PAD.x)};top:${py(SLAB_PAD.t + SLAB_R)};height:${(bodyH - 2*SLAB_R) / sl.height * 100}%;width:var(--T);margin-left:calc(var(--T) / -2);transform:rotateY(90deg)"></div>` +
@@ -2124,6 +2147,15 @@
         capEl.classList.remove('swap');
       }, 140);
     }
+    const glowBtn = document.getElementById('vaultGlow'), glowTxt = document.getElementById('vaultGlowTxt');
+    function setGlow(on){
+      slab.classList.toggle('glow-on', on); arenaEl.classList.toggle('glow-on', on);
+      glowBtn.setAttribute('aria-pressed', String(on)); glowTxt.textContent = on ? 'Lights on' : 'Lights off';
+    }
+    glowBtn.addEventListener('click', () => {
+      const on = !slab.classList.contains('glow-on'); setGlow(on);
+      if (on) { const c0 = collections[ci], k0 = c0.cards[ki]; nsOnce('glow:' + k0.id, 'card-glow', cardProps(c0, k0)); }
+    });
     function renderCard(){
       const c = collections[ci], card = c.cards[ki];
       updateCaption(c, card);
@@ -2137,6 +2169,8 @@
       // so it stays fixed while paging through a collection (even a mixed-orientation one)
       // and only ever changes when you switch to a different collection.
       vaultFrame.classList.toggle('is-landscape', c.cards.some(cd => cd.orientation === 'landscape'));
+      setGlow(false);
+      glowBtn.classList.toggle('show', !!(card.slab && card.glow));
       applySlabImages(card);
       if (!card.slab) applyCardAspect(artF.querySelector('img'));
       counter.textContent = c.cards.length + (c.cards.length === 1 ? ' card' : ' cards') + ' · ' + String(ki + 1).padStart(2, '0') + ' / ' + String(c.cards.length).padStart(2, '0');
