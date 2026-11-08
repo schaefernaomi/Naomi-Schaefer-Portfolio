@@ -14,7 +14,7 @@
 <meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&text=%E8%96%9B%E9%9B%AF&display=swap" rel="stylesheet">
 <style>
   :root{
@@ -699,6 +699,22 @@
   .vault-bar{ display:flex; align-items:center; justify-content:space-between; gap:16px 24px; flex-wrap:wrap;
     padding:18px clamp(16px,3vw,36px); border-bottom:1px solid rgba(255,255,255,.1);
     background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,.18)); }
+
+  /* ---- Card info under the card: dark smoked glass (matches the tab bar), centred.
+          Card name, set name, then outlined chips for the card's features / stock. ---- */
+  .vault-caption{ position:relative; z-index:4; width:min(calc(100% - 32px),660px); margin:0 auto clamp(18px,3vh,30px);
+    display:flex; flex-direction:column; align-items:center; text-align:center; gap:12px; padding:18px 24px 17px; border-radius:20px;
+    color:#fff; background:rgba(14,14,16,.5); border:1px solid rgba(255,255,255,.16);
+    -webkit-backdrop-filter:blur(16px) saturate(1.3); backdrop-filter:blur(16px) saturate(1.3);
+    box-shadow:0 14px 34px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.1); transition:opacity .25s ease, transform .25s ease; }
+  .vault-caption.swap{ opacity:0; transform:translateY(4px); }
+  .vc-name{ font-family:'Fraunces',serif; font-weight:500; font-size:clamp(24px,2.6vw,30px); line-height:1.1; letter-spacing:-.01em; margin:0; }
+  .vc-set{ margin-top:7px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.7); }
+  .vc-chips{ display:flex; flex-wrap:wrap; justify-content:center; gap:5px; }
+  .vc-chips:empty{ display:none; }
+  .vc-chip{ font-family:'Inter',sans-serif; font-size:10.5px; line-height:1.2; letter-spacing:0; text-transform:none; padding:4px 10px; border-radius:999px;
+    border:1px solid rgba(255,255,255,.26); color:rgba(255,255,255,.9); background:rgba(255,255,255,.07); white-space:nowrap; }
+  @media (max-width:700px){ .vault-caption{ padding:15px 14px 14px; gap:10px; } }
   .vault-bar .vault-tabs{ margin:0; justify-content:flex-start; gap:6px; padding:4px; border-radius:999px;
     background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); }
   .vault-bar .vault-tab{ padding:8px 18px; font-size:11px; border-color:transparent; color:rgba(255,255,255,.72); }
@@ -1163,7 +1179,9 @@
   .contact-side a{ color:var(--paper); border-bottom:1px solid var(--line-light); }
   .foot{ margin-top:9vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
     font-size:11px; color:var(--grey); flex-wrap:wrap; gap:10px; text-align:center; }
-  .foot, .foot span, .foot a{ text-transform:none; font-variant-caps:small-caps; letter-spacing:.04em; font-size:13px; }
+  /* Montserrat has no true small caps (the browser faked them, which looked off), so the footer uses clean
+     uppercase set small with open letter-spacing: the same small-caps look, drawn properly. */
+  .foot, .foot span, .foot a{ font-family:'Montserrat','Inter',sans-serif; font-weight:400; text-transform:uppercase; font-variant-caps:normal; letter-spacing:.08em; font-size:10.5px; line-height:1.9; }
 
   @media (max-width:860px){
     .about, .contact-grid{ grid-template-columns:1fr; }
@@ -1439,6 +1457,8 @@
         <svg viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
     </div>
+
+    <div class="vault-caption" id="vaultCaption" aria-live="polite"><div><h4 class="vc-name" id="vcName"></h4><div class="vc-set" id="vcSet"></div></div><div class="vc-chips" id="vcChips"></div></div>
 
     <div class="grid-panel" id="vaultGrid"></div>
   </div>
@@ -1903,6 +1923,10 @@
       const back = p.images.find(i => i.role === 'back');
       byCollection[key].push({
         id: p.id || '',
+        cardName: p.cardName || '',
+        specs: Array.isArray(p.specs) ? p.specs : null,
+        stock: p.cardStock || '',
+        tags: Array.isArray(p.tags) ? p.tags : [],
         num: p.cardNumber || '',
         title: p.title || key,
         treatment: p.displayTreatment || 'standard',
@@ -2069,8 +2093,40 @@
       nsView('cards', 'card:' + card.id, 2500, { n:'card-view', d:cardProps(c, card) });
     }
     nsArm.cards = armCardView;
+    // ---- Card info (name, set, feature chips) ----
+    const capEl = document.getElementById('vaultCaption'), vcName = document.getElementById('vcName'), vcSet = document.getElementById('vcSet'), vcChips = document.getElementById('vcChips');
+    const PARALLEL_WORDS = /^(auto|autograph|speckle|lenticular|gold|red|blue|pink|yellow|purple|green|silver|black|orange)$/i;
+    function cardInfo(card){
+      const parts = String(card.title).split(' \u2014 '), rest = parts.slice(1).join(' ').trim();
+      // Card name = the insert name with trailing parallel words (Auto, Gold, Blue...) taken off
+      let words = (rest || parts[0]).split(/\s+/);
+      while (words.length > 1 && PARALLEL_WORDS.test(words[words.length - 1])) words.pop();
+      // Chips: the card's own "specs" list if it has one; otherwise a safe fallback taken from its title / tags
+      let chips = card.specs ? card.specs.slice() : [];
+      if (!card.specs) {
+        if (/\bauto\b/i.test(rest)) chips.push('Autograph');
+        if (/\bspeckle\b/i.test(rest)) chips.push('Speckle');
+        if (/\blenticular\b/i.test(rest)) chips.push('Lenticular');
+        const col = rest.match(/\b(gold|red|blue|pink|yellow|purple|green|silver|black|orange)\b\s*$/i); if (col) chips.push(col[1][0].toUpperCase() + col[1].slice(1).toLowerCase() + ' parallel');
+        if (card.tags.some(t => /^foil$/i.test(t))) chips.push('Foil');
+      }
+      if (!card.specs && card.stock) { const st = /stock/i.test(card.stock) ? card.stock : card.stock + ' cardstock'; if (!chips.some(c => c.toLowerCase().indexOf(String(card.stock).toLowerCase()) !== -1)) chips.push(st); }
+      return { name: card.cardName || words.join(' '), chips: chips };
+    }
+    let capTimer;
+    function updateCaption(c, card){
+      const info = cardInfo(card);
+      clearTimeout(capTimer); capEl.classList.add('swap');
+      capTimer = setTimeout(() => {
+        vcName.textContent = info.name; vcSet.textContent = labelOf(c.name);
+        vcChips.innerHTML = '';
+        info.chips.forEach(t => { const e = document.createElement('span'); e.className = 'vc-chip'; e.textContent = t; vcChips.appendChild(e); });
+        capEl.classList.remove('swap');
+      }, 140);
+    }
     function renderCard(){
       const c = collections[ci], card = c.cards[ki];
+      updateCaption(c, card);
       armCardView();
       applyArenaBackground(c.name);
       coll.textContent = labelOf(c.name); num.textContent = card.num;
