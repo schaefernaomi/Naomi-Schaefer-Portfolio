@@ -15,7 +15,7 @@
         "PWHL"
       ],
       "featured": true,
-      "order": 1,
+      "order": 5,
       "images": [
         {
           "src": "assets/collectibles/pwhl/2025-pwhl-spotlight-pink-rooney-front.jpg",
@@ -36,7 +36,13 @@
         "back": "assets/collectibles/pwhl/slabs/rooney-spotlight-pink-back.webp",
         "width": 1140,
         "height": 1726
-      }
+      },
+      "specs": [
+        "Deco foil",
+        "C2S",
+        "Coated cardstock",
+        "Parallel variations"
+      ]
     },
     {
       "id": "jesse-compher-dazzlers-pink-mtq1r0p2",
@@ -56,7 +62,7 @@
         "foil"
       ],
       "featured": false,
-      "order": 2,
+      "order": 1,
       "images": [
         {
           "src": "assets/collectibles/pwhl/jesse-compher-dazzlers-pink-front.jpg",
@@ -75,7 +81,12 @@
         "back": "assets/collectibles/pwhl/slabs/jesse-compher-dazzlers-pink-back.webp",
         "width": 1140,
         "height": 1726
-      }
+      },
+      "specs": [
+        "Foilboard",
+        "Coated cardstock",
+        "Parallel variations"
+      ]
     },
     {
       "id": "3d-room-design-689292",
@@ -632,44 +643,6 @@
       "archiveGroup": "illustrations-animation"
     },
     {
-      "id": "natalie-spooner-ud-portraits-23401200",
-      "title": "Natalie Spooner — UD Portraits",
-      "category": "card",
-      "collection": "PWHL",
-      "sport": "Hockey",
-      "client": "Upper Deck",
-      "year": "2024-25",
-      "dimensions": "",
-      "description": "",
-      "cardNumber": "UDP-17",
-      "cardStock": "",
-      "tags": [
-        "hockey",
-        "PWHL"
-      ],
-      "featured": false,
-      "order": 3,
-      "displayTreatment": "standard",
-      "images": [
-        {
-          "src": "assets/collectibles/pwhl/natalie-spooner-ud-portraits-front.jpg",
-          "role": "front",
-          "alt": "Natalie Spooner — UD Portraits, front"
-        },
-        {
-          "src": "assets/collectibles/pwhl/natalie-spooner-ud-portraits-back.jpg",
-          "role": "back",
-          "alt": "Natalie Spooner — UD Portraits, back"
-        }
-      ],
-      "slab": {
-        "front": "assets/collectibles/pwhl/slabs/natalie-spooner-ud-portraits-front.webp",
-        "back": "assets/collectibles/pwhl/slabs/natalie-spooner-ud-portraits-back.webp",
-        "width": 1140,
-        "height": 1713
-      }
-    },
-    {
       "id": "denisa-k-ov-dazzlers-purple-23401201",
       "title": "Denisa Křížová — Dazzlers Purple",
       "category": "card",
@@ -686,7 +659,7 @@
         "PWHL"
       ],
       "featured": false,
-      "order": 4,
+      "order": 2,
       "displayTreatment": "foil",
       "images": [
         {
@@ -705,7 +678,12 @@
         "back": "assets/collectibles/pwhl/slabs/denisa-krizova-dazzlers-purple-back.webp",
         "width": 1140,
         "height": 1687
-      }
+      },
+      "specs": [
+        "Foilboard",
+        "Coated cardstock",
+        "Parallel variations"
+      ]
     },
     {
       "id": "elaine-chuli-spotlight-b-w-gold-spectrum-23401202",
@@ -724,7 +702,7 @@
         "PWHL"
       ],
       "featured": false,
-      "order": 5,
+      "order": 7,
       "displayTreatment": "standard",
       "images": [
         {
@@ -743,7 +721,13 @@
         "back": "assets/collectibles/pwhl/slabs/elaine-chuli-spotlight-b-w-gold-spectrum-back.webp",
         "width": 1140,
         "height": 1695
-      }
+      },
+      "specs": [
+        "Deco foil",
+        "C2S",
+        "Coated cardstock",
+        "Parallel variations"
+      ]
     },
     {
       "id": "kati-tabin-dazzlers-blue-23401203",
@@ -762,7 +746,7 @@
         "PWHL"
       ],
       "featured": false,
-      "order": 6,
+      "order": 3,
       "displayTreatment": "foil",
       "images": [
         {
@@ -781,7 +765,12 @@
         "back": "assets/collectibles/pwhl/slabs/kati-tabin-dazzlers-blue-back.webp",
         "width": 1140,
         "height": 1698
-      }
+      },
+      "specs": [
+        "Foilboard",
+        "Coated cardstock",
+        "Parallel variations"
+      ]
     },
     {
       "id": "aerin-frankel-spotlight-pink-spectrum-23401204",
@@ -800,7 +789,7 @@
         "PWHL"
       ],
       "featured": false,
-      "order": 7,
+      "order": 6,
       "displayTreatment": "foil",
       "images": [
         {
@@ -819,7 +808,13 @@
         "back": "assets/collectibles/pwhl/slabs/aerin-frankel-spotlight-pink-spectrum-back.webp",
         "width": 1140,
         "height": 1695
-      }
+      },
+      "specs": [
+        "Deco foil",
+        "C2S",
+        "Coated cardstock",
+        "Parallel variations"
+      ]
     },
     {
       "id": "maddie-rooney-postseason-standouts-ud-exclusives-23401206",
@@ -838,7 +833,7 @@
         "PWHL"
       ],
       "featured": false,
-      "order": 8,
+      "order": 10,
       "displayTreatment": "foil",
       "images": [
         {
@@ -857,7 +852,8 @@
         "back": "assets/collectibles/pwhl/slabs/maddie-rooney-postseason-standouts-ud-exclusives-back.webp",
         "width": 1140,
         "height": 1707
-      }
+      },
+      "specs": []
     },
     {
       "id": "brianne-jenner-postseason-standouts-deluxe-23401207",
@@ -876,7 +872,7 @@
         "PWHL"
       ],
       "featured": false,
-      "order": 9,
+      "order": 11,
       "displayTreatment": "standard",
       "images": [
         {
@@ -895,7 +891,8 @@
         "back": "assets/collectibles/pwhl/slabs/brianne-jenner-postseason-standouts-deluxe-back.webp",
         "width": 1140,
         "height": 1698
-      }
+      },
+      "specs": []
     },
     {
       "id": "emily-clark-spotlight-b-w-gold-spectrum-23401208",
@@ -914,7 +911,7 @@
         "PWHL"
       ],
       "featured": false,
-      "order": 10,
+      "order": 8,
       "displayTreatment": "standard",
       "images": [
         {
@@ -933,7 +930,13 @@
         "back": "assets/collectibles/pwhl/slabs/emily-clark-spotlight-b-w-gold-spectrum-back.webp",
         "width": 1140,
         "height": 1705
-      }
+      },
+      "specs": [
+        "Deco foil",
+        "C2S",
+        "Coated cardstock",
+        "Parallel variations"
+      ]
     },
     {
       "id": "nicole-hensley-dazzlers-blue-23401209",
@@ -952,7 +955,7 @@
         "PWHL"
       ],
       "featured": false,
-      "order": 11,
+      "order": 4,
       "displayTreatment": "foil",
       "images": [
         {
@@ -971,7 +974,12 @@
         "back": "assets/collectibles/pwhl/slabs/nicole-hensley-dazzlers-blue-back.webp",
         "width": 1140,
         "height": 1705
-      }
+      },
+      "specs": [
+        "Foilboard",
+        "Coated cardstock",
+        "Parallel variations"
+      ]
     },
     {
       "id": "natalie-spooner-magnifique-23401210",
@@ -1009,7 +1017,8 @@
         "back": "assets/collectibles/pwhl/slabs/natalie-spooner-magnifique-back.webp",
         "width": 1140,
         "height": 1679
-      }
+      },
+      "specs": []
     },
     {
       "id": "ivan-demidov-art-deco-07753300",
@@ -1047,7 +1056,10 @@
         "back": "assets/collectibles/parkhurst/slabs/ivan-demidov-art-deco-back.webp",
         "width": 1140,
         "height": 1679
-      }
+      },
+      "specs": [
+        "Uncoated cardstock"
+      ]
     },
     {
       "id": "ivan-demidov-prominent-prospects-07753301",
@@ -1086,7 +1098,10 @@
         "back": "assets/collectibles/parkhurst/slabs/demidov-prominent-prospects-back.webp",
         "width": 1380,
         "height": 1380
-      }
+      },
+      "specs": [
+        "Uncoated cardstock"
+      ]
     },
     {
       "id": "connor-mcdavid-franchise-facts-07753302",
@@ -1124,7 +1139,10 @@
         "back": "assets/collectibles/parkhurst/slabs/connor-mcdavid-franchise-facts-back.webp",
         "width": 1140,
         "height": 1678
-      }
+      },
+      "specs": [
+        "Uncoated cardstock"
+      ]
     },
     {
       "id": "connor-mcdavid-take-it-outside-07753303",
@@ -1162,7 +1180,10 @@
         "back": "assets/collectibles/parkhurst/slabs/connor-mcdavid-take-it-outside-back.webp",
         "width": 1140,
         "height": 1678
-      }
+      },
+      "specs": [
+        "Uncoated cardstock"
+      ]
     },
     {
       "id": "kazuchika-okada-the-show",
@@ -2246,7 +2267,12 @@
         "back": "assets/collectibles/ice/slabs/connor-bedard-breaking-the-ice-back.webp",
         "width": 1380,
         "height": 1383
-      }
+      },
+      "specs": [
+        "Acetate substrate",
+        "Deco foil",
+        "Thick cardstock"
+      ]
     },
     {
       "id": "matthew-knies-signature-swatches-32611965",
@@ -2285,7 +2311,15 @@
         "back": "assets/collectibles/ice/slabs/matthew-knies-signature-swatches-back.webp",
         "width": 1380,
         "height": 1383
-      }
+      },
+      "specs": [
+        "Autograph",
+        "Memorabilia swatch",
+        "Deco foil",
+        "Acetate substrate",
+        "Die-cut window",
+        "Parallel variations"
+      ]
     },
     {
       "id": "matthew-schaefer-premieres-99074006",
@@ -2324,7 +2358,14 @@
         "back": "assets/collectibles/ice/slabs/matthew-schaefer-premieres-back.webp",
         "width": 1380,
         "height": 1383
-      }
+      },
+      "specs": [
+        "Autograph",
+        "Premium patch",
+        "Die-cut window",
+        "Acetate substrate",
+        "Parallel variations"
+      ]
     },
     {
       "id": "ivan-demidov-tickle-the-twine-39057281",
@@ -2363,7 +2404,11 @@
         "back": "assets/collectibles/ice/slabs/ivan-demidov-tickle-the-twine-back.webp",
         "width": 1380,
         "height": 1379
-      }
+      },
+      "specs": [
+        "Deco foil",
+        "Acetate substrate"
+      ]
     },
     {
       "id": "cephalo-wellness-brand-identity-368510",
@@ -3135,7 +3180,12 @@
         "back": "assets/collectibles/ud1/slabs/kirill-kaprizov-sizzle-reel-back.webp",
         "width": 1380,
         "height": 1364
-      }
+      },
+      "specs": [
+        "Deco foil",
+        "Coated cardstock",
+        "Parallel variations"
+      ]
     },
     {
       "id": "ud1-victor-eklund-debut-dates-speckle",
@@ -3173,7 +3223,13 @@
         "back": "assets/collectibles/ud1/slabs/victor-eklund-debut-dates-speckle-back.webp",
         "width": 1140,
         "height": 1708
-      }
+      },
+      "specs": [
+        "Foilboard",
+        "Deco foil",
+        "Coated cardstock",
+        "Parallel variations"
+      ]
     },
     {
       "id": "ud1-connor-mcdavid-fan-faves-speckle",
@@ -3211,7 +3267,12 @@
         "back": "assets/collectibles/ud1/slabs/connor-mcdavid-fan-faves-speckle-back.webp",
         "width": 1140,
         "height": 1708
-      }
+      },
+      "specs": [
+        "Foilboard",
+        "Coated cardstock",
+        "Parallel variations"
+      ]
     },
     {
       "id": "ud2-sidney-crosby-iykyk",
@@ -3249,7 +3310,11 @@
         "back": "assets/collectibles/ud2/slabs/sidney-crosby-iykyk-back.webp",
         "width": 1140,
         "height": 1708
-      }
+      },
+      "specs": [
+        "Coated cardstock",
+        "Parallel variations"
+      ]
     },
     {
       "id": "ud2-arber-xhekaj-boomtown-red",
@@ -3287,7 +3352,13 @@
         "back": "assets/collectibles/ud2/slabs/arber-xhekaj-boomtown-red-back.webp",
         "width": 1140,
         "height": 1708
-      }
+      },
+      "specs": [
+        "Foilboard",
+        "Coated cardstock",
+        "Parallel variations",
+        "Numbered"
+      ]
     },
     {
       "id": "ud2-colton-parayko-slaps-red",
@@ -3325,7 +3396,13 @@
         "back": "assets/collectibles/ud2/slabs/colton-parayko-slaps-red-back.webp",
         "width": 1380,
         "height": 1364
-      }
+      },
+      "specs": [
+        "Foilboard",
+        "Coated cardstock",
+        "Parallel variations",
+        "Numbered"
+      ]
     },
     {
       "id": "ud2-rickard-rakell-glow-up",
@@ -3363,7 +3440,12 @@
         "back": "assets/collectibles/ud2/slabs/rickard-rakell-glow-up-back.webp",
         "width": 1140,
         "height": 1708
-      }
+      },
+      "specs": [
+        "Foilboard",
+        "Coated cardstock",
+        "Parallel variations"
+      ]
     },
     {
       "id": "ud2-charlie-lindgren-vibing",
@@ -3401,7 +3483,12 @@
         "back": "assets/collectibles/ud2/slabs/charlie-lindgren-vibing-back.webp",
         "width": 1380,
         "height": 1364
-      }
+      },
+      "specs": [
+        "Foilboard",
+        "Coated cardstock",
+        "Parallel variations"
+      ]
     },
     {
       "id": "ud2-ivan-demidov-nhl-firsts",
@@ -3439,7 +3526,11 @@
         "back": "assets/collectibles/ud2/slabs/ivan-demidov-nhl-firsts-back.webp",
         "width": 1140,
         "height": 1708
-      }
+      },
+      "specs": [
+        "Deco foil",
+        "Coated cardstock"
+      ]
     },
     {
       "id": "ud2-seth-jarvis-glow-up-gold",
@@ -3477,7 +3568,12 @@
         "back": "assets/collectibles/ud2/slabs/seth-jarvis-glow-up-gold-back.webp",
         "width": 1140,
         "height": 1708
-      }
+      },
+      "specs": [
+        "Foilboard",
+        "Coated cardstock",
+        "Parallel variations"
+      ]
     },
     {
       "id": "ud-extended-matthew-schaefer-trilogy-rookie-premieres-level-1",
@@ -3515,7 +3611,13 @@
         "back": "assets/collectibles/ud-extended/slabs/matthew-schaefer-trilogy-rookie-premieres-level-1-back.webp",
         "width": 1140,
         "height": 1708
-      }
+      },
+      "specs": [
+        "Foilboard",
+        "Numbered to 999",
+        "Deco foil",
+        "Tiered design"
+      ]
     },
     {
       "id": "ud-extended-matthew-schaefer-trilogy-rookie-premieres-level-2",
@@ -3553,7 +3655,13 @@
         "back": "assets/collectibles/ud-extended/slabs/matthew-schaefer-trilogy-rookie-premieres-level-2-back.webp",
         "width": 1140,
         "height": 1708
-      }
+      },
+      "specs": [
+        "Numbered to 499",
+        "Foilboard",
+        "Deco foil",
+        "Tiered design"
+      ]
     },
     {
       "id": "ud-extended-matthew-schaefer-trilogy-rookie-premieres-level-3",
@@ -3591,7 +3699,13 @@
         "back": "assets/collectibles/ud-extended/slabs/matthew-schaefer-trilogy-rookie-premieres-level-3-back.webp",
         "width": 1140,
         "height": 1708
-      }
+      },
+      "specs": [
+        "Numbered to 99",
+        "Foilboard",
+        "Deco foil",
+        "Tiered design"
+      ]
     },
     {
       "id": "ud-extended-mitch-marner-all-world-team",
@@ -3629,7 +3743,11 @@
         "back": "assets/collectibles/ud-extended/slabs/mitch-marner-all-world-team-back.webp",
         "width": 1140,
         "height": 1708
-      }
+      },
+      "specs": [
+        "Foilboard",
+        "Coated cardstock"
+      ]
     },
     {
       "id": "ud-extended-matthew-schaefer-rookie-reflections",
@@ -3667,7 +3785,13 @@
         "back": "assets/collectibles/ud-extended/slabs/matthew-schaefer-rookie-reflections-back.webp",
         "width": 1140,
         "height": 1708
-      }
+      },
+      "specs": [
+        "Deco foil",
+        "Foilboard",
+        "Coated cardstock",
+        "Parallel variations"
+      ]
     },
     {
       "id": "ud-extended-matthew-schaefer-rookie-reflections-gold",
@@ -3705,7 +3829,14 @@
         "back": "assets/collectibles/ud-extended/slabs/matthew-schaefer-rookie-reflections-gold-back.webp",
         "width": 1140,
         "height": 1708
-      }
+      },
+      "specs": [
+        "Deco foil",
+        "Foilboard",
+        "Coated cardstock",
+        "Parallel variations",
+        "Numbered"
+      ]
     },
     {
       "id": "ud-centennial-marian-hossa-capturing-a-champion-auto",
@@ -3736,14 +3867,20 @@
         }
       ],
       "displayTreatment": "standard",
-      "cardStock": "",
+      "cardStock": "C2S",
       "sport": "Hockey",
       "slab": {
         "front": "assets/collectibles/ud-centennial/slabs/marian-hossa-capturing-a-champion-auto-front.webp",
         "back": "assets/collectibles/ud-centennial/slabs/marian-hossa-capturing-a-champion-auto-back.webp",
         "width": 1140,
         "height": 1708
-      }
+      },
+      "specs": [
+        "Deco foil",
+        "Autograph",
+        "Numbered",
+        "C2S cardstock"
+      ]
     },
     {
       "id": "ud-centennial-aaron-voros-hey-hey-hey-auto",
@@ -3781,7 +3918,11 @@
         "back": "assets/collectibles/ud-centennial/slabs/aaron-voros-hey-hey-hey-auto-back.webp",
         "width": 1140,
         "height": 1708
-      }
+      },
+      "specs": [
+        "Autograph",
+        "Parallel variations"
+      ]
     },
     {
       "id": "ud-centennial-jeff-beukeboom-pictured-in-time-auto",
@@ -3819,7 +3960,10 @@
         "back": "assets/collectibles/ud-centennial/slabs/jeff-beukeboom-pictured-in-time-auto-back.webp",
         "width": 1140,
         "height": 1708
-      }
+      },
+      "specs": [
+        "Autograph"
+      ]
     },
     {
       "id": "ud-centennial-darius-kasparaitis-broadway-bruisers-blue",
@@ -3857,7 +4001,10 @@
         "back": "assets/collectibles/ud-centennial/slabs/darius-kasparaitis-broadway-bruisers-blue-back.webp",
         "width": 1140,
         "height": 1708
-      }
+      },
+      "specs": [
+        "Parallel variations"
+      ]
     },
     {
       "id": "ud-centennial-aaron-voros-broadway-blue-signatures",
@@ -3895,7 +4042,10 @@
         "back": "assets/collectibles/ud-centennial/slabs/aaron-voros-broadway-blue-signatures-back.webp",
         "width": 1140,
         "height": 1708
-      }
+      },
+      "specs": [
+        "Autograph"
+      ]
     },
     {
       "id": "ud-centennial-nick-fotiu-blue-seat-memories-auto",
@@ -3933,7 +4083,13 @@
         "back": "assets/collectibles/ud-centennial/slabs/nick-fotiu-blue-seat-memories-auto-back.webp",
         "width": 1380,
         "height": 1364
-      }
+      },
+      "specs": [
+        "Autograph",
+        "Premium patch",
+        "Die-cut window",
+        "Parallel variations"
+      ]
     },
     {
       "id": "ud-centennial-bobby-hull-retired-numbers-yellow",
@@ -3971,7 +4127,10 @@
         "back": "assets/collectibles/ud-centennial/slabs/bobby-hull-retired-numbers-yellow-back.webp",
         "width": 1140,
         "height": 1708
-      }
+      },
+      "specs": [
+        "Parallel variations"
+      ]
     },
     {
       "id": "ice-matthew-schaefer-dry-ice",
@@ -4009,7 +4168,12 @@
         "back": "assets/collectibles/ice/slabs/matthew-schaefer-dry-ice-back.webp",
         "width": 1140,
         "height": 1708
-      }
+      },
+      "specs": [
+        "Frosted plexi substrate",
+        "Transparent substrate",
+        "Thick cardstock"
+      ]
     },
     {
       "id": "ahl-cole-guttman-auto-pink",
@@ -4047,7 +4211,12 @@
         "back": "assets/collectibles/ahl/slabs/cole-guttman-auto-pink-back.webp",
         "width": 1140,
         "height": 1708
-      }
+      },
+      "cardName": "Base Autograph",
+      "specs": [
+        "Autograph",
+        "Parallel variations"
+      ]
     },
     {
       "id": "ahl-dans-locmelis-star-rookies-auto-pink",
@@ -4085,7 +4254,11 @@
         "back": "assets/collectibles/ahl/slabs/dans-locmelis-star-rookies-auto-pink-back.webp",
         "width": 1380,
         "height": 1364
-      }
+      },
+      "specs": [
+        "Autograph",
+        "Parallel variations"
+      ]
     },
     {
       "id": "ahl-florian-xhekaj-impressive-debuts",
@@ -4123,7 +4296,8 @@
         "back": "assets/collectibles/ahl/slabs/florian-xhekaj-impressive-debuts-back.webp",
         "width": 1140,
         "height": 1708
-      }
+      },
+      "specs": []
     },
     {
       "id": "ahl-drew-commesso-tendys",
@@ -4161,7 +4335,8 @@
         "back": "assets/collectibles/ahl/slabs/drew-commesso-tendys-back.webp",
         "width": 1140,
         "height": 1708
-      }
+      },
+      "specs": []
     },
     {
       "id": "ahl-raphael-lavoie-squad-shades",
@@ -4199,7 +4374,51 @@
         "back": "assets/collectibles/ahl/slabs/raphael-lavoie-squad-shades-back.webp",
         "width": 1140,
         "height": 1708
-      }
+      },
+      "specs": []
+    },
+    {
+      "id": "pwhl-taylor-heise-ud-portraits",
+      "title": "Taylor Heise — UD Portraits",
+      "category": "card",
+      "collection": "PWHL",
+      "sport": "Hockey",
+      "client": "Upper Deck",
+      "year": "2025-26",
+      "dimensions": "",
+      "description": "",
+      "cardNumber": "UDP-8",
+      "cardStock": "",
+      "tags": [
+        "hockey",
+        "PWHL"
+      ],
+      "featured": false,
+      "order": 9,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/collectibles/pwhl/taylor-heise-ud-portraits-front.jpg",
+          "role": "front",
+          "alt": "2025-26 Upper Deck PWHL UD Portraits, Taylor Heise, front"
+        },
+        {
+          "src": "assets/collectibles/pwhl/taylor-heise-ud-portraits-back.jpg",
+          "role": "back",
+          "alt": "2025-26 Upper Deck PWHL UD Portraits, Taylor Heise, back"
+        }
+      ],
+      "slab": {
+        "front": "assets/collectibles/pwhl/slabs/taylor-heise-ud-portraits-front.webp",
+        "back": "assets/collectibles/pwhl/slabs/taylor-heise-ud-portraits-back.webp",
+        "width": 1140,
+        "height": 1708
+      },
+      "specs": [
+        "Foilboard",
+        "Coated cardstock",
+        "Parallel variations"
+      ]
     }
   ]
 }
