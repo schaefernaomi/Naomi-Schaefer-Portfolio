@@ -949,6 +949,17 @@
      a broken-icon box — but that leaves .poster-art with nothing inside to size itself off
      of, and it would otherwise collapse to nothing. This is that floor: a plain, evenly
      sized placeholder instead of a sliver of empty space in the gallery. */
+  /* 3D poster piece (data: model3d) — a live WebGL display with the flat image underneath as its layout box and fallback */
+  .poster-art.is-3d{ width:100%; }
+  .p3d{ position:relative; width:min(100%, calc(max(300px, min(74vh, calc(100dvh - 380px))) * 1.6)); aspect-ratio:16/10; touch-action:pan-y; cursor:grab; }
+  .p3d.dragging{ cursor:grabbing; }
+  .poster-art .p3d img.p3d-fb{ position:absolute; inset:0; width:100%; height:100%; max-width:none; max-height:none; object-fit:contain; box-shadow:none; border-radius:0; visibility:visible; }
+  .p3d.p3d-live img.p3d-fb{ visibility:hidden; }
+  .p3d canvas{ position:absolute; inset:0; width:100%; height:100%; display:block; }
+  .p3d-hint{ position:absolute; left:0; right:0; bottom:-26px; text-align:center; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.55); pointer-events:none; transition:opacity .6s; opacity:0; }
+  .p3d.p3d-live .p3d-hint{ opacity:1; } .p3d.p3d-used .p3d-hint, .p3d.p3d-flat .p3d-hint{ opacity:0; }
+  .gallery-frame .p3d{ pointer-events:auto; }
+  .gallery-frame:has(.poster-art.is-3d) .poster-sheen{ display:none; }
   .poster-art:empty{ width:min(420px,70vw); min-height:220px; background:#1c1c1e; border-radius:6px; }
   /* Real poster: the <img> itself sets the box size from its own intrinsic ratio — no
      forced aspect-ratio, so any poster dimensions (portrait, landscape, square) scale down
@@ -1928,6 +1939,7 @@
       let rafId = null, rx = 0, ry = 0;
       const paint = () => {
         rafId = null;
+        if (art.classList.contains('is-3d')) return;
         art.style.transform = `perspective(1200px) rotateX(${rx}deg) rotateY(${ry}deg) scale3d(1.02,1.02,1.02)`;
       };
       frame.addEventListener('mouseenter', () => {
@@ -2478,6 +2490,401 @@
   // Content now lives in data/portfolio.json — add posters via admin/index.html, not here.
   // Collections (NHL/PWHL/Tennis/etc.) are derived from whatever's actually in the data —
   // adding a new collection to a project's `collection` field is enough; no code change needed.
+  
+  // Lazy three.js loader for 3D poster pieces (only fetched the first time one is shown)
+  let _threeP = null;
+  function loadThree(){
+    if (window.THREE) return Promise.resolve();
+    if (_threeP) return _threeP;
+    _threeP = new Promise((res, rej) => {
+      const s = document.createElement('script');
+      s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+      s.onload = res; s.onerror = () => { _threeP = null; rej(new Error('three load failed')); };
+      document.head.appendChild(s);
+    });
+    return _threeP;
+  }
+  function mountCurveDisplay(stage, printUrl, onFail){
+    const useFallback = () => { if (onFail) onFail(); };
+    if (!window.THREE) { useFallback(); return null; }
+    let renderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    } catch (e) { useFallback(); return null; }
+  
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setClearColor(0x000000, 0);
+    renderer.outputEncoding = THREE.sRGBEncoding;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.05;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    stage.appendChild(renderer.domElement);
+  
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(28, 1.6, 0.1, 200);
+    const TARGET = new THREE.Vector3(0, 3.3, 0);
+    const NEED_W = 14.0, NEED_H = 9.4;
+    const PITCH0 = 0.20;
+  
+    // ---------- studio environment for reflections ----------
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    const env = new THREE.Scene();
+    env.add(new THREE.Mesh(new THREE.BoxGeometry(40, 30, 40), new THREE.MeshBasicMaterial({ color: 0x141518, side: THREE.BackSide })));
+    function softbox(w, h, x, y, z, lookY, intensity) {
+      const m = new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide });
+      m.color.setScalar(intensity);
+      const p = new THREE.Mesh(new THREE.PlaneGeometry(w, h), m);
+      p.position.set(x, y, z);
+      p.lookAt(0, lookY, 0);
+      env.add(p);
+    }
+    softbox(22, 10, 0, 15, -7, 0, 1.6);   // overhead, set further back so its reflection sits higher on the case, and kept dim
+    softbox(5, 14, -14, 6, 9, 4, 5.0);    // tall left strip: long highlight down the curved front
+    softbox(3, 12, 14, 5, 7, 4, 3.0);     // right strip
+    softbox(6, 8, -6, 6, 16, 4, 2.2);     // front-left window
+    scene.environment = pmrem.fromScene(env, 0.02).texture;
+  
+    // ---------- lights ----------
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x202226, 0.55));
+    const key = new THREE.DirectionalLight(0xffffff, 1.6);
+    key.position.set(-6, 14, 10);
+    key.castShadow = true;
+    key.shadow.mapSize.set(2048, 2048);
+    key.shadow.camera.left = -9; key.shadow.camera.right = 9;
+    key.shadow.camera.top = 10; key.shadow.camera.bottom = -4;
+    key.shadow.camera.near = 1; key.shadow.camera.far = 40;
+    key.shadow.bias = -0.0006;
+    key.shadow.radius = 5;
+    scene.add(key);
+    const rim = new THREE.DirectionalLight(0xffffff, 0.5);
+    rim.position.set(8, 6, -6);
+    scene.add(rim);
+  
+    // ---------- dimensions ----------
+    const HW = 5.0;          // half width of the case
+    const BASE_TOP = 0.28;   // thin black base, as on the real display
+    const TOP = 6.75;        // shorter case: a slim black band above the print
+    const BACK_Z = -2.0;     // outer back wall
+    const FRONT_Z = 1.95;    // outer front foot
+    const TOP_FRONT_Z = -1.4;  // short flat top; the front slopes all the way down (triangle-like side profile)
+    const T = 0.16;          // acrylic wall thickness
+  
+    // print sweep: back wall -> curve -> floor running forward
+    // the print curves down and runs forward along the floor to the front of the case
+    const P = { hw: 4.8, top: 6.3, floor: BASE_TOP + 0.05, back: -1.72, R: 2.2, front: 1.72 };
+    const arcCz = P.back + P.R, arcCy = P.floor + P.R;
+  
+    // ---------- floor: shadow catcher + soft contact ----------
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(40, 30), new THREE.ShadowMaterial({ opacity: 0.4 }));
+    floor.rotation.x = -Math.PI / 2;
+    floor.receiveShadow = true;
+    scene.add(floor);
+    (function contact() {
+      const c = document.createElement('canvas'); c.width = 256; c.height = 128;
+      const g = c.getContext('2d');
+      const grd = g.createRadialGradient(128, 64, 10, 128, 64, 128);
+      grd.addColorStop(0, 'rgba(0,0,0,0.8)'); grd.addColorStop(1, 'rgba(0,0,0,0)');
+      g.fillStyle = grd; g.fillRect(0, 0, 256, 128);
+      const m = new THREE.Mesh(new THREE.PlaneGeometry(13, 7), new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(c), transparent: true, depthWrite: false }));
+      m.rotation.x = -Math.PI / 2; m.position.set(0, 0.005, (FRONT_Z + BACK_Z) / 2);
+      scene.add(m);
+    })();
+  
+    // ---------- base (rounded edges catch highlights) + top rail ----------
+    const blackGloss = new THREE.MeshPhysicalMaterial({ color: 0x0b0b0c, roughness: 0.22, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.06 });
+    (function base() {
+      const w = HW * 2 + 0.24, d = (FRONT_Z - BACK_Z) + 0.24, r = 0.12;
+      const s = new THREE.Shape();
+      const x0 = -w / 2, y0 = -d / 2;
+      s.moveTo(x0 + r, y0);
+      s.lineTo(x0 + w - r, y0); s.quadraticCurveTo(x0 + w, y0, x0 + w, y0 + r);
+      s.lineTo(x0 + w, y0 + d - r); s.quadraticCurveTo(x0 + w, y0 + d, x0 + w - r, y0 + d);
+      s.lineTo(x0 + r, y0 + d); s.quadraticCurveTo(x0, y0 + d, x0, y0 + d - r);
+      s.lineTo(x0, y0 + r); s.quadraticCurveTo(x0, y0, x0 + r, y0);
+      const g = new THREE.ExtrudeGeometry(s, { depth: BASE_TOP - 0.06, bevelEnabled: true, bevelThickness: 0.03, bevelSize: 0.03, bevelSegments: 4, curveSegments: 8 });
+      // satin black so the front edge stays black instead of mirroring a light as a grey band
+      const m = new THREE.Mesh(g, new THREE.MeshPhysicalMaterial({ color: 0x080809, roughness: 0.42, metalness: 0, clearcoat: 0.5, clearcoatRoughness: 0.28, envMapIntensity: 0.6 }));
+      m.rotation.x = -Math.PI / 2;               // shape y -> world -z, extrusion -> world +y
+      m.position.set(0, 0.03, (FRONT_Z + BACK_Z) / 2);
+      m.castShadow = true; m.receiveShadow = true;
+      scene.add(m);
+    })();
+    // black backing panel behind the print, full height: shows as the black band above the print
+    const backing = new THREE.Mesh(
+      new THREE.BoxGeometry(HW * 2 - 2 * T, TOP - BASE_TOP - T, 0.05),
+      new THREE.MeshPhysicalMaterial({ color: 0x0a0a0b, roughness: 0.45, metalness: 0, clearcoat: 0.4, clearcoatRoughness: 0.3 })
+    );
+    backing.position.set(0, (BASE_TOP + TOP - T) / 2, BACK_Z + T + 0.03);
+    backing.receiveShadow = true;
+    scene.add(backing);
+  
+    // ---------- print sweep, textured by projecting the artwork from the starting view ----------
+    function printProfile() {
+      const pts = [];
+      const nf = 10;                                   // floor, front edge back to the curve
+      for (let i = 0; i <= nf; i++) pts.push([P.front + (arcCz - P.front) * (i / nf), P.floor]);
+      const na = 36;                                   // curve up to the back wall
+      for (let i = 1; i <= na; i++) {
+        const a = 1.5 * Math.PI - (i / na) * 0.5 * Math.PI;
+        pts.push([arcCz + P.R * Math.cos(a), arcCy + P.R * Math.sin(a)]);
+      }
+      const nw = 16;                                   // back wall up to the top
+      for (let i = 1; i <= nw; i++) pts.push([P.back, arcCy + (P.top - arcCy) * (i / nw)]);
+      return pts;
+    }
+    function sweep(profile, hw, cols) {
+      const pos = [], idx = [];
+      for (let j = 0; j < profile.length; j++) {
+        for (let i = 0; i <= cols; i++) pos.push(-hw + 2 * hw * (i / cols), profile[j][1], profile[j][0]);
+      }
+      const row = cols + 1;
+      for (let j = 0; j < profile.length - 1; j++) {
+        for (let i = 0; i < cols; i++) {
+          const a = j * row + i, b = a + 1, c = a + row, d = c + 1;
+          idx.push(a, d, b, a, c, d);
+        }
+      }
+      const g = new THREE.BufferGeometry();
+      g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+      g.setIndex(idx);
+      g.computeVertexNormals();
+      return g;
+    }
+    // the fixed "design" camera the artwork was laid out from
+    function frameDistance(cam) {
+      const vfov = THREE.MathUtils.degToRad(cam.fov);
+      const hfov = 2 * Math.atan(Math.tan(vfov / 2) * cam.aspect);
+      return Math.max(NEED_W / (2 * Math.tan(hfov / 2)), NEED_H / (2 * Math.tan(vfov / 2)));
+    }
+    function placeCamera(cam, yaw, pitch) {
+      const d = frameDistance(cam);
+      cam.position.set(
+        TARGET.x + d * Math.sin(yaw) * Math.cos(pitch),
+        TARGET.y + d * Math.sin(pitch),
+        TARGET.z + d * Math.cos(yaw) * Math.cos(pitch)
+      );
+      cam.lookAt(TARGET);
+      cam.updateMatrixWorld();
+    }
+    const designCam = new THREE.PerspectiveCamera(28, 1.6, 0.1, 200);
+    placeCamera(designCam, 0, PITCH0);
+    // screen -> artwork pixels (artwork is 2156 x 1434)
+    const IMG_W = 2156, IMG_H = 1434;
+    // horizontal scale widened slightly so the full artwork, including the corner logos, fits across the print
+    const SX = 1388.760 * 1.05, OX = 1078.0, SY = -831.632, OY = 678.976;
+  
+    const printGeo = sweep(printProfile(), P.hw, 64);
+    (function projectUVs() {
+      const pos = printGeo.attributes.position, uv = [];
+      const v = new THREE.Vector3();
+      for (let i = 0; i < pos.count; i++) {
+        v.fromBufferAttribute(pos, i).project(designCam);
+        const ix = SX * v.x + OX, iy = SY * v.y + OY;
+        uv.push(ix / IMG_W, 1 - iy / IMG_H);
+      }
+      printGeo.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
+    })();
+    // unlit and untoned, so the print shows exactly the artwork's colours
+    const printMat = new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide, toneMapped: false });
+    scene.add(new THREE.Mesh(printGeo, printMat));
+    // a shadow-only copy on top, so the ball and stand still cast real shadows onto the print
+    const printShadow = new THREE.Mesh(printGeo, new THREE.ShadowMaterial({ opacity: 0.32, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 }));
+    printShadow.receiveShadow = true;
+    scene.add(printShadow);
+    new THREE.TextureLoader().load(printUrl, t => {
+      t.encoding = THREE.sRGBEncoding;
+      t.anisotropy = renderer.capabilities.getMaxAnisotropy();
+      printMat.map = t; printMat.needsUpdate = true;
+      stage.classList.add('p3d-ready');
+    });
+  
+    // ---------- golf ball on a clear stand, resting on the curve ----------
+    function dimpleTexture() {
+      const W = 2048, H = 1024, c = document.createElement('canvas');
+      c.width = W; c.height = H;
+      const g = c.getContext('2d');
+      g.fillStyle = '#fff'; g.fillRect(0, 0, W, H);
+      const rows = 26;
+      for (let i = 0; i < rows; i++) {
+        const lat = -Math.PI / 2 + Math.PI * (i + 0.5) / rows;
+        const count = Math.max(3, Math.round(52 * Math.cos(lat)));
+        const y = (i + 0.5) / rows * H;
+        const rx = (W / count) * 0.46, ry = (H / rows) * 0.46;
+        for (let j = 0; j < count; j++) {
+          const x = ((j + (i % 2) * 0.5) / count) * W;
+          for (const dx of [0, -W, W]) {
+            g.save();
+            g.translate(x + dx, y);
+            g.scale(rx / ry, 1);
+            const grd = g.createRadialGradient(0, 0, 0, 0, 0, ry);
+            grd.addColorStop(0, '#6d6d6d'); grd.addColorStop(0.75, '#bdbdbd'); grd.addColorStop(1, '#ffffff');
+            g.fillStyle = grd;
+            g.beginPath(); g.arc(0, 0, ry, 0, Math.PI * 2); g.fill();
+            g.restore();
+          }
+        }
+      }
+      return new THREE.CanvasTexture(c);
+    }
+    // placed so that from the starting view it covers the ball in the artwork exactly
+    const BALL_R = 1.01;
+    const BALL = new THREE.Vector3(0.092, 1.627, 0.357);
+    const ball = new THREE.Mesh(
+      new THREE.SphereGeometry(BALL_R, 96, 64),
+      new THREE.MeshPhysicalMaterial({ color: 0xf6f7f8, roughness: 0.3, metalness: 0, clearcoat: 0.8, clearcoatRoughness: 0.15, bumpMap: dimpleTexture(), bumpScale: 0.012 })
+    );
+    ball.position.copy(BALL);
+    ball.rotation.y = 0.4;
+    ball.castShadow = true;
+    scene.add(ball);
+  
+    // ---------- acrylic ----------
+    // transmission keeps the plastic clear where nothing reflects, and lets reflections show at full strength
+    const clear = new THREE.MeshPhysicalMaterial({
+      color: 0xffffff, metalness: 0, roughness: 0.02,
+      transmission: 1, transparent: true, opacity: 1,
+      clearcoat: 1, clearcoatRoughness: 0.01,
+      reflectivity: 0.6, envMapIntensity: 2.6,
+      side: THREE.DoubleSide, depthWrite: false
+    });
+    // polished acrylic edges: brighter, faintly blue-green like real cast acrylic
+    const edge = new THREE.MeshPhysicalMaterial({
+      color: 0xd6ece9, metalness: 0, roughness: 0.08,
+      transparent: true, opacity: 0.62,
+      clearcoat: 1, clearcoatRoughness: 0.05,
+      envMapIntensity: 2.2, emissive: 0x1a2426,
+      side: THREE.DoubleSide, depthWrite: false
+    });
+  
+    // stand: short clear ring between the curve and the ball
+    (function stand() {
+      const top = BALL.y - Math.sqrt(BALL_R * BALL_R - 0.6 * 0.6);   // where a 0.6 ring meets the ball
+      const dz = arcCz - BALL.z;
+      const surf = BALL.z >= arcCz ? P.floor : arcCy - Math.sqrt(Math.max(0, P.R * P.R - dz * dz));
+      const h = Math.max(0.12, top - surf + 0.04);
+      const ring = new THREE.Mesh(new THREE.CylinderGeometry(0.6, 0.66, h, 48, 1, true), clear);
+      ring.position.set(BALL.x, surf - 0.04 + h / 2, BALL.z);
+      ring.castShadow = true;
+      scene.add(ring);
+      const lip = new THREE.Mesh(new THREE.TorusGeometry(0.6, 0.032, 10, 64), edge);
+      lip.rotation.x = Math.PI / 2;
+      lip.position.set(BALL.x, surf - 0.04 + h, BALL.z);
+      scene.add(lip);
+    })();
+  
+    // profile (z, y) of the shell, inset by d: back wall, top, curved front
+    function shellProfile(d) {
+      const pts = [[BACK_Z + d, BASE_TOP], [BACK_Z + d, TOP - d], [TOP_FRONT_Z, TOP - d]];
+      const n = 48, rz = FRONT_Z - TOP_FRONT_Z - d, ry = TOP - BASE_TOP - d;
+      for (let i = 1; i <= n; i++) {
+        const t = (i / n) * Math.PI / 2;
+        // superellipse (between a straight slope and a quarter circle) for the curve display silhouette
+        const e = 2 / 1.5;
+        pts.push([TOP_FRONT_Z + rz * Math.pow(Math.sin(t), e), BASE_TOP + ry * Math.pow(Math.cos(t), e)]);
+      }
+      return pts;
+    }
+    const outer = shellProfile(0);
+    const inner = shellProfile(T);
+    // shapes are drawn with x = -z so a +90deg turn about y lays the extrusion along world x
+    function shapeFrom(points) {
+      const s = new THREE.Shape();
+      s.moveTo(-points[0][0], points[0][1]);
+      for (let k = 1; k < points.length; k++) s.lineTo(-points[k][0], points[k][1]);
+      return s;
+    }
+    const band = shapeFrom(outer.concat(inner.slice().reverse()));
+    const sheet = new THREE.Mesh(new THREE.ExtrudeGeometry(band, { depth: 2 * HW - 2 * T, bevelEnabled: false, curveSegments: 1 }), [edge, clear]);
+    sheet.rotation.y = Math.PI / 2;
+    sheet.position.x = -HW + T;
+    sheet.renderOrder = 3;
+    scene.add(sheet);
+    const sideGeo = new THREE.ExtrudeGeometry(shapeFrom(outer), { depth: T, bevelEnabled: false, curveSegments: 1 });
+    for (const x0 of [-HW, HW - T]) {
+      const side = new THREE.Mesh(sideGeo, [clear, edge]);
+      side.rotation.y = Math.PI / 2;
+      side.position.x = x0;
+      side.renderOrder = 2;
+      scene.add(side);
+    }
+  
+    // ---------- camera control: drag (or hover on desktop) to turn, idle sway ----------
+    let yaw = 0.08, pitch = PITCH0, tYaw = 0.08, tPitch = PITCH0;
+    let dragging = false, lastX = 0, lastY = 0, lastInput = -1e9, hoverMode = false;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const YAW_MAX = 0.16, P_MIN = 0.12, P_MAX = 0.27;
+  
+    stage.addEventListener('pointerdown', e => {
+      dragging = true; lastX = e.clientX; lastY = e.clientY; lastInput = performance.now();
+      stage.classList.add('dragging');
+      try { stage.setPointerCapture(e.pointerId); } catch (_) {}
+    });
+    stage.addEventListener('pointermove', e => {
+      if (dragging) {
+        const dx = e.clientX - lastX, dy = e.clientY - lastY;
+        lastX = e.clientX; lastY = e.clientY;
+        tYaw = Math.max(-YAW_MAX, Math.min(YAW_MAX, tYaw - dx * 0.004));
+        tPitch = Math.max(P_MIN, Math.min(P_MAX, tPitch + dy * 0.003));
+        lastInput = performance.now();
+      } else if (e.pointerType === 'mouse') {
+        const r = stage.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+        tYaw = x * 0.32; tPitch = PITCH0 + y * 0.12;
+        hoverMode = true; lastInput = performance.now();
+      }
+    });
+    function endDrag() { dragging = false; stage.classList.remove('dragging'); }
+    stage.addEventListener('pointerup', endDrag);
+    stage.addEventListener('pointercancel', endDrag);
+    stage.addEventListener('pointerleave', () => { hoverMode = false; });
+  
+    function resize() {
+      const w = stage.clientWidth, h = stage.clientHeight;
+      if (!w || !h) return;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    }
+    let ro = null;
+    if (window.ResizeObserver) { ro = new ResizeObserver(resize); ro.observe(stage); }
+    window.addEventListener('resize', resize);
+    resize();
+  
+    const t0 = performance.now();
+    let raf = 0, alive = true, visible = true;
+    function tick() {
+      if (!alive) return;
+      raf = 0;
+      if (visible && !document.hidden) {
+        const now = performance.now();
+        const idle = !dragging && !hoverMode && now - lastInput > 2500;
+        if (idle && !reduce) {
+          const t = (now - t0) / 1000;
+          tYaw = 0.12 * Math.sin(t * 0.32);
+          tPitch = PITCH0 + 0.03 * Math.sin(t * 0.23 + 1.0);
+        }
+        const k = dragging ? 0.25 : 0.06;
+        yaw += (tYaw - yaw) * k;
+        pitch += (tPitch - pitch) * k;
+        placeCamera(camera, yaw, pitch);
+        renderer.render(scene, camera);
+      }
+      raf = requestAnimationFrame(tick);
+    }
+    // stop drawing while the display is off screen
+    let io = null;
+    if (window.IntersectionObserver) { io = new IntersectionObserver(es => { visible = es[0].isIntersecting; }); io.observe(stage); }
+    try { tick(); } catch (e) { console.error(e); alive = false; renderer.domElement.remove(); useFallback(); return null; }
+    return function dispose() {
+      alive = false; if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener('resize', resize);
+      if (ro) ro.disconnect(); if (io) io.disconnect();
+      try { scene.traverse(o => { if (o.geometry) o.geometry.dispose(); }); renderer.dispose(); if (renderer.forceContextLoss) renderer.forceContextLoss(); } catch (_) {}
+      if (renderer.domElement.parentNode) renderer.domElement.parentNode.removeChild(renderer.domElement);
+    };
+  }
+  
   fetchPortfolioData().then((projects) => {
     const allPosters = projects.filter(p => p.category === 'poster')
       .sort((a, b) => (a.order || 0) - (b.order || 0))
@@ -2490,6 +2897,7 @@
           collection: p.collection || '',
           treatment: p.displayTreatment || 'standard',
           frameColor: p.frameColor || '',
+          model3d: (p.model3d && p.model3d.print) ? p.model3d : null,
           id: p.id || '',
           imgSrc: img ? img.src : '',
           img: img ? imgTag(img.src, img.alt || p.title) : null,
@@ -2645,17 +3053,32 @@
       nsView('posters', 'poster:' + (p.id || p.title), 2500, { n:'poster-view', d:{ section:'posters', set:p.collection || 'ALL', project:p.title, project_id:p.id } });
     }
     nsArm.posters = armPosterView;
+    let cur3d = null, token3d = 0;
+    function start3d(p){
+      const my = ++token3d, host = document.getElementById('p3d');
+      if (!host) return;
+      loadThree().then(() => {
+        if (my !== token3d || !host.isConnected) return;
+        const dispose = mountCurveDisplay(host, p.model3d.print, () => host.classList.add('p3d-flat'));
+        if (dispose) { cur3d = dispose; host.classList.add('p3d-live'); }
+        else host.classList.add('p3d-flat');
+        host.addEventListener('pointerdown', () => host.classList.add('p3d-used'), { once:true });
+      }).catch(() => host.classList.add('p3d-flat'));
+    }
     function render(){
       const p = posters[pi];
       armPosterView();
       const isFramed = p.treatment === 'framed';
       const frameClass = 'poster-frame' + (p.frameColor === 'black' ? ' frame-black' : '');
-      const inner = p.img || '<div class="art-slot placeholder-fallback"><p class="slot-note mono">' + (p.note || 'Poster artwork') + '</p></div>';
+      if (cur3d) { cur3d(); cur3d = null; }
+      const inner = p.model3d ? '<div class="p3d" id="p3d"><img class="p3d-fb" src="' + p.imgSrc + '" alt="' + (p.title || '').replace(/"/g, '&quot;') + ', 3D curve display"><div class="p3d-hint mono">Drag to turn the display</div></div>' : (p.img || '<div class="art-slot placeholder-fallback"><p class="slot-note mono">' + (p.note || 'Poster artwork') + '</p></div>');
       // "framed" wraps the untouched artwork in a physical mat+frame; standard stays flat.
       // frameColor "black" swaps in a sleeker black-frame variant; anything else (or unset)
       // keeps the default warm wood-tone frame.
       artEl.innerHTML = isFramed ? '<div class="' + frameClass + '"><div class="poster-mat">' + inner + '</div><div class="poster-glass"></div></div>' : inner;
       artEl.classList.toggle('is-framed', isFramed);
+      artEl.classList.toggle('is-3d', !!p.model3d);
+      if (p.model3d) start3d(p);
       titleEl.textContent = p.title;
       metaEl.innerHTML = p.meta;
       const multi = posters.length > 1;
@@ -2676,7 +3099,7 @@
       requestAnimationFrame(() => { syncPosterSheen(); layoutSides(); });
     }
     let gTouchX = null;
-    frameEl.addEventListener('touchstart', (e) => { gTouchX = e.touches[0].clientX; }, { passive:true });
+    frameEl.addEventListener('touchstart', (e) => { gTouchX = (e.target.closest && e.target.closest('.p3d')) ? null : e.touches[0].clientX; }, { passive:true });
     frameEl.addEventListener('touchend', (e) => {
       if (gTouchX === null) return;
       const dx = e.changedTouches[0].clientX - gTouchX; gTouchX = null;

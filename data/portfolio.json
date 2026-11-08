@@ -1167,8 +1167,8 @@
       "collection": "Golf",
       "client": "Upper Deck Authenticated",
       "year": "2026",
-      "dimensions": "",
-      "description": "Tiger Woods, Jupiter Links GC — 2025 inaugural TGL season, match-used golf ball display.",
+      "dimensions": "10x8",
+      "description": "Tiger Woods, Jupiter Links GC — 2025 inaugural TGL season, match-used golf ball in a curve display.",
       "tags": [
         "golf",
         "print"
@@ -1177,14 +1177,18 @@
       "order": 60,
       "images": [
         {
-          "src": "assets/campaigns/golf/tiger-woods-jupiter-links.png",
+          "src": "assets/campaigns/golf/tiger-woods-jupiter-links-curve-display.webp",
           "role": "main",
-          "alt": "Tiger Woods — Jupiter Links GC, Upper Deck Authenticated print"
+          "alt": "Tiger Woods — Jupiter Links GC, TGL curve display with match-used golf ball, Upper Deck Authenticated"
         }
       ],
       "displayTreatment": "standard",
       "cardStock": "",
-      "sport": "Golf"
+      "sport": "Golf",
+      "model3d": {
+        "type": "curve-display",
+        "print": "assets/campaigns/golf/tiger-woods-jupiter-links-curve-print.webp"
+      }
     },
     {
       "id": "gabby-douglas-3x-gold-medal",
