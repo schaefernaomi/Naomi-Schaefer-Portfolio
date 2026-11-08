@@ -623,7 +623,7 @@
   .slab.has-slab-img::after{ display:none; }
   .sl-tilt, .sl-flip{ position:absolute; inset:0; -webkit-transform-style:preserve-3d; transform-style:preserve-3d; }
   .sl-tilt{ transition:transform .5s var(--ease); will-change:transform; }
-  .slab.is-tracking .sl-tilt{ transition:transform .12s linear; }
+  .slab.is-tracking .sl-tilt{ transition:transform .16s cubic-bezier(.2,.7,.3,1); }
   .sl-flip{ transition:transform .85s cubic-bezier(.22,.7,.2,1); }
   .slab.flipped .sl-flip{ -webkit-transform:rotateY(180deg); transform:rotateY(180deg); }
   .sl-face{ position:absolute; inset:0; -webkit-backface-visibility:hidden; backface-visibility:hidden; }
@@ -632,8 +632,8 @@
   .sl-face img{ display:block; width:100%; height:100%; user-select:none; -webkit-user-drag:none; }
   .sl-glare{ position:absolute; inset:0; opacity:0; transition:opacity .3s ease; mix-blend-mode:screen;
     -webkit-mask-size:100% 100%; mask-size:100% 100%; -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat;
-    background:radial-gradient(circle at var(--gx,30%) var(--gy,20%), rgba(255,255,255,.16), rgba(255,255,255,0) 52%); }
-  .sl-face.b .sl-glare{ background:radial-gradient(circle at var(--gxb,70%) var(--gy,20%), rgba(255,255,255,.16), rgba(255,255,255,0) 52%); }
+    background:radial-gradient(circle at var(--gx,30%) var(--gy,20%), rgba(255,255,255,.30), rgba(255,255,255,0) 58%); }
+  .sl-face.b .sl-glare{ background:radial-gradient(circle at var(--gxb,70%) var(--gy,20%), rgba(255,255,255,.30), rgba(255,255,255,0) 58%); }
   .slab:hover .sl-glare{ opacity:1; }
   .sl-edge{ position:absolute; }
   .sl-edge.v{ background:linear-gradient(90deg,rgba(255,255,255,.62) 0,rgba(255,255,255,.10) 16%,rgba(255,255,255,.75) 21%,rgba(170,185,205,.12) 44%,rgba(255,255,255,.40) 50%,rgba(170,185,205,.12) 56%,rgba(255,255,255,.75) 79%,rgba(255,255,255,.10) 84%,rgba(255,255,255,.62) 100%); }
@@ -724,6 +724,24 @@
     box-shadow:0 0 26px rgba(255,60,60,.7), 0 0 8px rgba(255,90,90,.6), 0 6px 18px rgba(0,0,0,.5), inset 0 0 14px rgba(255,60,60,.3); }
   .vault-glow:focus-visible{ outline:2px solid #ff8a8a; outline-offset:3px; }
   @media (prefers-reduced-motion: reduce){ .slab.glow-on .sl-lum{ animation:none; } .sl-glow .sl-dim,.sl-glow .sl-lum,.vault-arena::before{ transition:none; } }
+  /* Call-to-action cues: a small sonar target on the card until the first flip, and soft red ripples off the Glow button */
+  .sl-cta{ position:absolute; left:50%; top:62%; width:clamp(40px,14%,60px); aspect-ratio:1; transform:translate(-50%,-50%) translateZ(1px); pointer-events:none; opacity:.5; animation:nsCtaFade 5s ease-in-out infinite; }
+  .sl-cta i{ position:absolute; border-radius:50%; display:block; }
+  .sl-cta .sc-base{ inset:0; border:1px solid rgba(255,255,255,.3); background:rgba(255,255,255,.04); }
+  .sl-cta .sc-ring{ inset:0; border:1.5px solid #fff; opacity:0; filter:drop-shadow(0 0 3px rgba(0,0,0,.6)); animation:nsSonar 5s cubic-bezier(.2,.6,.3,1) infinite; }
+  .sl-cta .sc-ring.r2{ animation-delay:2.5s; }
+  .sl-cta .sc-mid{ inset:27%; border:2px solid #fff; filter:drop-shadow(0 0 3px rgba(0,0,0,.6)); animation:nsSonarBreath 5s ease-in-out infinite; }
+  .sl-cta .sc-dot{ inset:41%; background:#fff; box-shadow:0 0 0 1.5px rgba(0,0,0,.3), 0 0 8px rgba(255,255,255,.8); }
+  .vault-arena.flip-learned .sl-cta, .slab.flipped .sl-cta{ opacity:0; animation:none; }
+  .vault-arena.flip-learned .sl-cta i, .slab.flipped .sl-cta i{ animation-play-state:paused; }
+  @keyframes nsCtaFade{ 0%,100%{ opacity:.12; } 50%{ opacity:.5; } }
+  @keyframes nsSonar{ 0%{ transform:scale(.45); opacity:.85; } 80%,100%{ transform:scale(1.25); opacity:0; } }
+  @keyframes nsSonarBreath{ 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.06); } }
+  .vault-glow .rg{ display:none; position:absolute; inset:-1px; border-radius:999px; border:1px solid rgba(255,77,77,.5); opacity:0; pointer-events:none; }
+  .vault-glow:not([aria-pressed="true"]):not(.seen) .rg{ display:block; animation:nsBtnRipple 4s ease-out infinite; }
+  .vault-glow:not([aria-pressed="true"]):not(.seen) .rg.r2{ animation-delay:2s; }
+  @keyframes nsBtnRipple{ 0%{ transform:scale(1); opacity:.45; } 100%{ transform:scale(1.3,1.75); opacity:0; } }
+  @media (prefers-reduced-motion: reduce){ .sl-cta i,.vault-glow .rg{ animation:none !important; } .vault-glow .rg{ display:none !important; } }
   .vault-caption{ position:relative; z-index:4; width:min(calc(100% - 32px),500px); margin:0 auto clamp(18px,3vh,30px);
     display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px; padding:15px 20px 14px; border-radius:18px;
     color:#fff; background:rgba(14,14,16,.5); border:1px solid rgba(255,255,255,.16);
@@ -1480,7 +1498,7 @@
       </button>
     </div>
 
-    <button type="button" class="vault-glow" id="vaultGlow" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><span id="vaultGlowTxt">Glow in the dark</span></button>
+    <button type="button" class="vault-glow" id="vaultGlow" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><span class="rg"></span><span class="rg r2"></span><span id="vaultGlowTxt">Glow in the dark</span></button>
 
     <div class="vault-caption" id="vaultCaption" aria-live="polite"><div><h4 class="vc-name" id="vcName"></h4><div class="vc-set" id="vcSet"></div></div><div class="vc-chips" id="vcChips"></div></div>
 
@@ -2100,7 +2118,7 @@
       const glowHtml = g ? `<div class="sl-glow" style="left:${px(g.x)};top:${py(g.y)};width:${g.w / sl.width * 100}%;height:${g.h / sl.height * 100}%"><div class="sl-dim"></div><img class="sl-lum" src="${g.src}" alt="" draggable="false"></div>` : '';
       slImg.innerHTML =
         `<div class="sl-tilt" id="slTilt"><div class="sl-flip">` +
-          `<div class="sl-face f"><img src="${sl.front}" alt="${alt.replace(/"/g,'&quot;')}" draggable="false">${glowHtml}<div class="sl-glare" style="${mask(sl.front)}"></div></div>` +
+          `<div class="sl-face f"><img src="${sl.front}" alt="${alt.replace(/"/g,'&quot;')}" draggable="false">${glowHtml}<div class="sl-cta" aria-hidden="true"><i class="sc-base"></i><i class="sc-ring"></i><i class="sc-ring r2"></i><i class="sc-mid"></i><i class="sc-dot"></i></div><div class="sl-glare" style="${mask(sl.front)}"></div></div>` +
           `<div class="sl-face b"><img src="${sl.back}" alt="" draggable="false"><div class="sl-glare" style="${mask(sl.back)}"></div></div>` +
           // four glass edge strips give the slab real thickness while it turns
           `<div class="sl-edge v" style="left:${px(SLAB_PAD.x)};top:${py(SLAB_PAD.t + SLAB_R)};height:${(bodyH - 2*SLAB_R) / sl.height * 100}%;width:var(--T);margin-left:calc(var(--T) / -2);transform:rotateY(90deg)"></div>` +
@@ -2157,7 +2175,7 @@
       glowBtn.setAttribute('aria-pressed', String(on));
     }
     glowBtn.addEventListener('click', () => {
-      const on = !slab.classList.contains('glow-on'); setGlow(on);
+      const on = !slab.classList.contains('glow-on'); setGlow(on); glowBtn.classList.add('seen');
       if (on) { const c0 = collections[ci], k0 = c0.cards[ki]; nsOnce('glow:' + k0.id, 'card-glow', cardProps(c0, k0)); }
     });
     function renderCard(){
@@ -2325,7 +2343,7 @@
       if (!tiltEnabled) return; // CSS class rule alone handles the flip here
       if (slTilt && slab.classList.contains('has-slab-img')) {
         // image slab: tilt on its own wrapper; the flip itself is the CSS class on .sl-flip
-        slTilt.style.transform = 'rotateX(' + (lastRx * 0.9) + 'deg) rotateY(' + (lastRy * 1.2) + 'deg)';
+        slTilt.style.transform = 'rotateX(' + (lastRx * 2.3) + 'deg) rotateY(' + (lastRy * 2.7) + 'deg) scale(1.035)';
         return;
       }
       const flipOffset = slab.classList.contains('flipped') ? 180 : 0;
@@ -2336,7 +2354,7 @@
     // One flip path for mouse, touch (which arrives as a click) and keyboard, so the tracking can't drift between them.
     // Enter/Space call preventDefault, so a key press never also produces a click; the per-card dedupe covers the rest.
     function flipCard(){
-      slab.classList.toggle('flipped');
+      slab.classList.toggle('flipped'); arenaEl.classList.add('flip-learned');
       const c0 = collections[ci], k0 = c0.cards[ki];
       nsOnce('flip:' + k0.id, 'card-flip', cardProps(c0, k0));
       applyFlipTransform();
