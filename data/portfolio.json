@@ -4338,6 +4338,214 @@
         "cardW": 740,
         "cardH": 1036
       }
+    },
+    {
+      "id": "hideki-matsuyama-2021-major-champion",
+      "title": "Hideki Matsuyama — 2021 Major Champion",
+      "category": "poster",
+      "collection": "Golf",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Hideki Matsuyama, 2021 Major Champion.",
+      "tags": [
+        "golf",
+        "print"
+      ],
+      "featured": false,
+      "order": 63,
+      "images": [
+        {
+          "src": "assets/campaigns/golf/hideki-matsuyama-2021-major-champion.jpg",
+          "role": "main",
+          "alt": "Hideki Matsuyama — 2021 Major Champion, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Golf"
+    },
+    {
+      "id": "hideki-matsuyama-2021-major-champion-red",
+      "title": "Hideki Matsuyama — 2021 Major Champion Red",
+      "category": "poster",
+      "collection": "Golf",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Hideki Matsuyama, 2021 Major Champion — red edition.",
+      "tags": [
+        "golf",
+        "print"
+      ],
+      "featured": false,
+      "order": 64,
+      "images": [
+        {
+          "src": "assets/campaigns/golf/hideki-matsuyama-2021-major-champion-red.jpg",
+          "role": "main",
+          "alt": "Hideki Matsuyama — 2021 Major Champion Red, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Golf"
+    },
+    {
+      "id": "franz-wagner",
+      "title": "Franz Wagner",
+      "category": "poster",
+      "collection": "NBA",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Franz Wagner, Orlando Magic #22.",
+      "tags": [
+        "basketball",
+        "print"
+      ],
+      "featured": false,
+      "order": 73,
+      "images": [
+        {
+          "src": "assets/campaigns/nba/franz-wagner.jpg",
+          "role": "main",
+          "alt": "Franz Wagner, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Basketball"
+    },
+    {
+      "id": "franz-wagner-gold",
+      "title": "Franz Wagner — Gold",
+      "category": "poster",
+      "collection": "NBA",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Franz Wagner, Orlando Magic #22 — gold edition.",
+      "tags": [
+        "basketball",
+        "print"
+      ],
+      "featured": false,
+      "order": 74,
+      "images": [
+        {
+          "src": "assets/campaigns/nba/franz-wagner-gold.jpg",
+          "role": "main",
+          "alt": "Franz Wagner — Gold, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Basketball"
+    },
+    {
+      "id": "moses-moody-first-round-prize",
+      "title": "Moses Moody — First Round Prize",
+      "category": "poster",
+      "collection": "NBA",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "16x20",
+      "description": "Moses Moody, Golden State Warriors #4 — 2021 First Round Draft Pick.",
+      "tags": [
+        "basketball",
+        "print"
+      ],
+      "featured": false,
+      "order": 75,
+      "images": [
+        {
+          "src": "assets/campaigns/nba/moses-moody-first-round-prize-16x20.jpg",
+          "role": "main",
+          "alt": "Moses Moody — First Round Prize, Upper Deck Authenticated print, 16x20"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Basketball"
+    },
+    {
+      "id": "michael-misa-nhl-debut",
+      "title": "Michael Misa — NHL Debut",
+      "category": "poster",
+      "collection": "NHL",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "",
+      "description": "Michael Misa, San Jose Sharks #77 — NHL debut, October 14, 2025.",
+      "tags": [
+        "hockey",
+        "print"
+      ],
+      "featured": false,
+      "order": 54,
+      "images": [
+        {
+          "src": "assets/campaigns/nhl/michael-misa-nhl-debut.jpg",
+          "role": "main",
+          "alt": "Michael Misa — NHL Debut, Upper Deck Authenticated print"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Hockey"
+    },
+    {
+      "id": "matthew-schaefer-new-york-introduction",
+      "title": "Matthew Schaefer — New York Introduction",
+      "category": "poster",
+      "collection": "NHL",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "8x10",
+      "description": "Matthew Schaefer, New York Islanders #48 — New York Introduction.",
+      "tags": [
+        "hockey",
+        "print"
+      ],
+      "featured": false,
+      "order": 55,
+      "images": [
+        {
+          "src": "assets/campaigns/nhl/matthew-schaefer-new-york-introduction-8x10.jpg",
+          "role": "main",
+          "alt": "Matthew Schaefer — New York Introduction, Upper Deck Authenticated print, 8x10"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Hockey"
+    },
+    {
+      "id": "sebastian-aho-hartford-greens",
+      "title": "Sebastian Aho — Hartford Greens",
+      "category": "poster",
+      "collection": "NHL",
+      "client": "Upper Deck Authenticated",
+      "year": "2026",
+      "dimensions": "24x16",
+      "description": "Sebastian Aho, Carolina Hurricanes #20 — Hartford Whalers throwback Hartford Greens.",
+      "tags": [
+        "hockey",
+        "print"
+      ],
+      "featured": false,
+      "order": 56,
+      "images": [
+        {
+          "src": "assets/campaigns/nhl/sebastian-aho-hartford-greens-24x16.jpg",
+          "role": "main",
+          "alt": "Sebastian Aho — Hartford Greens, Upper Deck Authenticated print, 24x16"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Hockey"
     }
   ]
 }
