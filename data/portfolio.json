@@ -1,50 +1,6 @@
 {
   "projects": [
     {
-      "id": "pwhl-spotlight-pink-rooney",
-      "title": "Maddie Rooney — Spotlight Pink",
-      "category": "card",
-      "collection": "PWHL",
-      "client": "Upper Deck",
-      "year": "2025-26",
-      "dimensions": "",
-      "description": "",
-      "cardNumber": "S-24",
-      "tags": [
-        "hockey",
-        "PWHL"
-      ],
-      "featured": true,
-      "order": 5,
-      "images": [
-        {
-          "src": "assets/collectibles/pwhl/2025-pwhl-spotlight-pink-rooney-front.jpg",
-          "role": "front",
-          "alt": "2025-26 Upper Deck PWHL Spotlight Pink, Maddie Rooney, front"
-        },
-        {
-          "src": "assets/collectibles/pwhl/2025-pwhl-spotlight-pink-rooney-back.jpg",
-          "role": "back",
-          "alt": "2025-26 Upper Deck PWHL Spotlight Pink, Maddie Rooney, back"
-        }
-      ],
-      "displayTreatment": "standard",
-      "cardStock": "",
-      "sport": "Hockey",
-      "slab": {
-        "front": "assets/collectibles/pwhl/slabs/rooney-spotlight-pink-front.webp",
-        "back": "assets/collectibles/pwhl/slabs/rooney-spotlight-pink-back.webp",
-        "width": 1140,
-        "height": 1726
-      },
-      "specs": [
-        "Deco foil",
-        "C2S",
-        "Coated cardstock",
-        "Parallel variations"
-      ]
-    },
-    {
       "id": "jesse-compher-dazzlers-pink-mtq1r0p2",
       "title": "Jesse Compher — Dazzlers Pink",
       "category": "card",
@@ -62,7 +18,7 @@
         "foil"
       ],
       "featured": false,
-      "order": 1,
+      "order": 3,
       "images": [
         {
           "src": "assets/collectibles/pwhl/jesse-compher-dazzlers-pink-front.jpg",
@@ -659,7 +615,7 @@
         "PWHL"
       ],
       "featured": false,
-      "order": 2,
+      "order": 4,
       "displayTreatment": "foil",
       "images": [
         {
@@ -678,93 +634,6 @@
         "back": "assets/collectibles/pwhl/slabs/denisa-krizova-dazzlers-purple-back.webp",
         "width": 1140,
         "height": 1687
-      },
-      "specs": [
-        "Foilboard",
-        "Coated cardstock",
-        "Parallel variations"
-      ]
-    },
-    {
-      "id": "elaine-chuli-spotlight-b-w-gold-spectrum-23401202",
-      "title": "Elaine Chuli — Spotlight B&W Gold Spectrum",
-      "category": "card",
-      "collection": "PWHL",
-      "sport": "Hockey",
-      "client": "Upper Deck",
-      "year": "2025-26",
-      "dimensions": "",
-      "description": "",
-      "cardNumber": "S-10",
-      "cardStock": "",
-      "tags": [
-        "hockey",
-        "PWHL"
-      ],
-      "featured": false,
-      "order": 7,
-      "displayTreatment": "standard",
-      "images": [
-        {
-          "src": "assets/collectibles/pwhl/elaine-chuli-spotlight-b-w-gold-spectrum-front.jpg",
-          "role": "front",
-          "alt": "Elaine Chuli — Spotlight B&W Gold Spectrum, front"
-        },
-        {
-          "src": "assets/collectibles/pwhl/elaine-chuli-spotlight-b-w-gold-spectrum-back.jpg",
-          "role": "back",
-          "alt": "Elaine Chuli — Spotlight B&W Gold Spectrum, back"
-        }
-      ],
-      "slab": {
-        "front": "assets/collectibles/pwhl/slabs/elaine-chuli-spotlight-b-w-gold-spectrum-front.webp",
-        "back": "assets/collectibles/pwhl/slabs/elaine-chuli-spotlight-b-w-gold-spectrum-back.webp",
-        "width": 1140,
-        "height": 1695
-      },
-      "specs": [
-        "Deco foil",
-        "C2S",
-        "Coated cardstock",
-        "Parallel variations"
-      ]
-    },
-    {
-      "id": "kati-tabin-dazzlers-blue-23401203",
-      "title": "Kati Tabin — Dazzlers Blue",
-      "category": "card",
-      "collection": "PWHL",
-      "sport": "Hockey",
-      "client": "Upper Deck",
-      "year": "2025-26",
-      "dimensions": "",
-      "description": "",
-      "cardNumber": "DZ-15",
-      "cardStock": "",
-      "tags": [
-        "hockey",
-        "PWHL"
-      ],
-      "featured": false,
-      "order": 3,
-      "displayTreatment": "foil",
-      "images": [
-        {
-          "src": "assets/collectibles/pwhl/kati-tabin-dazzlers-blue-front.jpg",
-          "role": "front",
-          "alt": "Kati Tabin — Dazzlers Blue, front"
-        },
-        {
-          "src": "assets/collectibles/pwhl/kati-tabin-dazzlers-blue-back.jpg",
-          "role": "back",
-          "alt": "Kati Tabin — Dazzlers Blue, back"
-        }
-      ],
-      "slab": {
-        "front": "assets/collectibles/pwhl/slabs/kati-tabin-dazzlers-blue-front.webp",
-        "back": "assets/collectibles/pwhl/slabs/kati-tabin-dazzlers-blue-back.webp",
-        "width": 1140,
-        "height": 1698
       },
       "specs": [
         "Foilboard",
@@ -833,7 +702,7 @@
         "PWHL"
       ],
       "featured": false,
-      "order": 10,
+      "order": 8,
       "displayTreatment": "foil",
       "images": [
         {
@@ -872,7 +741,7 @@
         "PWHL"
       ],
       "featured": false,
-      "order": 11,
+      "order": 9,
       "displayTreatment": "standard",
       "images": [
         {
@@ -911,7 +780,7 @@
         "PWHL"
       ],
       "featured": false,
-      "order": 8,
+      "order": 7,
       "displayTreatment": "standard",
       "images": [
         {
@@ -955,7 +824,7 @@
         "PWHL"
       ],
       "featured": false,
-      "order": 4,
+      "order": 5,
       "displayTreatment": "foil",
       "images": [
         {
@@ -998,7 +867,7 @@
         "PWHL"
       ],
       "featured": false,
-      "order": 12,
+      "order": 2,
       "displayTreatment": "standard",
       "images": [
         {
@@ -1037,7 +906,7 @@
         "Parkhurst"
       ],
       "featured": false,
-      "order": 1,
+      "order": 2,
       "displayTreatment": "standard",
       "images": [
         {
@@ -1078,7 +947,7 @@
         "Parkhurst"
       ],
       "featured": false,
-      "order": 2,
+      "order": 3,
       "displayTreatment": "standard",
       "images": [
         {
@@ -1120,7 +989,7 @@
         "Parkhurst"
       ],
       "featured": false,
-      "order": 3,
+      "order": 4,
       "displayTreatment": "standard",
       "images": [
         {
@@ -1161,7 +1030,7 @@
         "Parkhurst"
       ],
       "featured": false,
-      "order": 4,
+      "order": 5,
       "displayTreatment": "standard",
       "images": [
         {
@@ -3375,7 +3244,7 @@
         "UD2"
       ],
       "featured": false,
-      "order": 3,
+      "order": 6,
       "images": [
         {
           "src": "assets/collectibles/ud2/colton-parayko-slaps-red-front.jpg",
@@ -3419,7 +3288,7 @@
         "UD2"
       ],
       "featured": false,
-      "order": 4,
+      "order": 3,
       "images": [
         {
           "src": "assets/collectibles/ud2/rickard-rakell-glow-up-front.jpg",
@@ -3462,7 +3331,7 @@
         "UD2"
       ],
       "featured": false,
-      "order": 5,
+      "order": 7,
       "images": [
         {
           "src": "assets/collectibles/ud2/charlie-lindgren-vibing-front.jpg",
@@ -3505,7 +3374,7 @@
         "UD2"
       ],
       "featured": false,
-      "order": 6,
+      "order": 5,
       "images": [
         {
           "src": "assets/collectibles/ud2/ivan-demidov-nhl-firsts-front.jpg",
@@ -3547,7 +3416,7 @@
         "UD2"
       ],
       "featured": false,
-      "order": 7,
+      "order": 4,
       "images": [
         {
           "src": "assets/collectibles/ud2/seth-jarvis-glow-up-gold-front.jpg",
@@ -3722,7 +3591,7 @@
         "UDExt"
       ],
       "featured": false,
-      "order": 4,
+      "order": 6,
       "images": [
         {
           "src": "assets/collectibles/ud-extended/mitch-marner-all-world-team-front.jpg",
@@ -3764,7 +3633,7 @@
         "UDExt"
       ],
       "featured": false,
-      "order": 5,
+      "order": 4,
       "images": [
         {
           "src": "assets/collectibles/ud-extended/matthew-schaefer-rookie-reflections-front.jpg",
@@ -3808,7 +3677,7 @@
         "UDExt"
       ],
       "featured": false,
-      "order": 6,
+      "order": 5,
       "images": [
         {
           "src": "assets/collectibles/ud-extended/matthew-schaefer-rookie-reflections-gold-front.jpg",
@@ -4394,7 +4263,7 @@
         "PWHL"
       ],
       "featured": false,
-      "order": 9,
+      "order": 1,
       "displayTreatment": "standard",
       "images": [
         {
@@ -4419,6 +4288,56 @@
         "Coated cardstock",
         "Parallel variations"
       ]
+    },
+    {
+      "id": "parkhurst-ryan-leonard-nuclear-fusion",
+      "title": "Ryan Leonard — Nuclear Fusion",
+      "category": "card",
+      "collection": "Parkhurst",
+      "sport": "Hockey",
+      "client": "Upper Deck",
+      "year": "2025-26",
+      "dimensions": "",
+      "description": "",
+      "cardNumber": "NF-6",
+      "cardStock": "",
+      "tags": [
+        "hockey",
+        "Parkhurst"
+      ],
+      "featured": false,
+      "order": 1,
+      "displayTreatment": "standard",
+      "images": [
+        {
+          "src": "assets/collectibles/parkhurst/ryan-leonard-nuclear-fusion-glow-front.jpg",
+          "role": "front",
+          "alt": "2025-26 Parkhurst Nuclear Fusion, Ryan Leonard, front"
+        },
+        {
+          "src": "assets/collectibles/parkhurst/ryan-leonard-nuclear-fusion-glow-back.jpg",
+          "role": "back",
+          "alt": "2025-26 Parkhurst Nuclear Fusion, Ryan Leonard, back"
+        }
+      ],
+      "slab": {
+        "front": "assets/collectibles/parkhurst/slabs/ryan-leonard-nuclear-fusion-glow-front.webp",
+        "back": "assets/collectibles/parkhurst/slabs/ryan-leonard-nuclear-fusion-glow-back.webp",
+        "width": 1140,
+        "height": 1708
+      },
+      "specs": [
+        "Glow-in-the-dark ink"
+      ],
+      "glow": {
+        "src": "assets/collectibles/parkhurst/ryan-leonard-nuclear-fusion-glow-glow.webp",
+        "x": 188,
+        "y": 396,
+        "w": 764,
+        "h": 1070,
+        "cardW": 740,
+        "cardH": 1036
+      }
     }
   ]
 }
