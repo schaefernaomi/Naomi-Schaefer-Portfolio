@@ -712,35 +712,42 @@
   .slab.glow-on .sl-lum{ opacity:1; animation:nsAfterglow 14s ease-out .3s forwards; }
   @keyframes nsAfterglow{ 0%{ opacity:1; } 100%{ opacity:.62; } }
   .vault-glow{ position:relative; z-index:4; display:none; align-items:center; gap:9px; margin:4px auto 16px; padding:10px 18px 10px 14px;
-    font:500 10.5px/1 'IBM Plex Mono',monospace; letter-spacing:.14em; text-transform:uppercase; color:#ff9a9a;
-    background:rgba(10,8,9,.78); border:1px solid rgba(255,77,77,.6); border-radius:999px; cursor:pointer;
+    font:500 10.5px/1 'IBM Plex Mono',monospace; letter-spacing:.14em; text-transform:uppercase; color:#ffb0b0;
+    background:rgba(24,6,8,.86); border:1.5px solid rgba(255,70,70,.95); border-radius:999px; cursor:pointer;
     -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
-    box-shadow:0 0 14px rgba(255,60,60,.35), 0 6px 18px rgba(0,0,0,.5), inset 0 0 8px rgba(255,60,60,.14);
+    box-shadow:0 0 22px rgba(255,50,50,.65), 0 0 6px rgba(255,80,80,.55), 0 6px 18px rgba(0,0,0,.5), inset 0 0 12px rgba(255,60,60,.3);
     transition:color .35s ease, border-color .35s ease, box-shadow .35s ease, background .35s ease; }
   .vault-glow.show{ display:flex; }
   .vault-glow svg{ width:15px; height:15px; }
-  .vault-glow:hover{ border-color:#ff6b6b; box-shadow:0 0 20px rgba(255,60,60,.5), 0 6px 18px rgba(0,0,0,.5), inset 0 0 10px rgba(255,60,60,.2); }
+  .vault-glow:hover{ border-color:#ff8080; box-shadow:0 0 30px rgba(255,50,50,.85), 0 0 8px rgba(255,90,90,.7), 0 6px 18px rgba(0,0,0,.5), inset 0 0 14px rgba(255,60,60,.38); }
   .vault-glow[aria-pressed="true"]{ color:#ffd0d0; border-color:#ff5a5a; background:rgba(60,8,10,.82);
-    box-shadow:0 0 26px rgba(255,60,60,.7), 0 0 8px rgba(255,90,90,.6), 0 6px 18px rgba(0,0,0,.5), inset 0 0 14px rgba(255,60,60,.3); }
+    box-shadow:0 0 34px rgba(255,50,50,.9), 0 0 10px rgba(255,90,90,.8), 0 6px 18px rgba(0,0,0,.5), inset 0 0 16px rgba(255,60,60,.4); }
   .vault-glow:focus-visible{ outline:2px solid #ff8a8a; outline-offset:3px; }
   @media (prefers-reduced-motion: reduce){ .slab.glow-on .sl-lum{ animation:none; } .sl-glow .sl-dim,.sl-glow .sl-lum,.vault-arena::before{ transition:none; } }
   /* Call-to-action cues: a small sonar target on the card until the first flip, and soft red ripples off the Glow button */
-  .sl-cta{ position:absolute; left:50%; top:62%; width:clamp(40px,14%,60px); aspect-ratio:1; transform:translate(-50%,-50%) translateZ(1px); pointer-events:none; opacity:.5; animation:nsCtaFade 5s ease-in-out infinite; }
+  /* The sonar sits on the middle of the card art and only appears once the viewer has lingered without flipping (class .cta-ready, set in JS). */
+  .sl-cta{ position:absolute; left:50%; top:54.5%; width:clamp(44px,15%,66px); aspect-ratio:1; transform:translate(-50%,-50%) translateZ(1px); pointer-events:none; opacity:0; }
   .sl-cta i{ position:absolute; border-radius:50%; display:block; }
-  .sl-cta .sc-base{ inset:0; border:1px solid rgba(255,255,255,.3); background:rgba(255,255,255,.04); }
-  .sl-cta .sc-ring{ inset:0; border:1.5px solid #fff; opacity:0; filter:drop-shadow(0 0 3px rgba(0,0,0,.6)); animation:nsSonar 5s cubic-bezier(.2,.6,.3,1) infinite; }
-  .sl-cta .sc-ring.r2{ animation-delay:2.5s; }
-  .sl-cta .sc-mid{ inset:27%; border:2px solid #fff; filter:drop-shadow(0 0 3px rgba(0,0,0,.6)); animation:nsSonarBreath 5s ease-in-out infinite; }
-  .sl-cta .sc-dot{ inset:41%; background:#fff; box-shadow:0 0 0 1.5px rgba(0,0,0,.3), 0 0 8px rgba(255,255,255,.8); }
-  .vault-arena.flip-learned .sl-cta, .slab.flipped .sl-cta{ opacity:0; animation:none; }
-  .vault-arena.flip-learned .sl-cta i, .slab.flipped .sl-cta i{ animation-play-state:paused; }
-  @keyframes nsCtaFade{ 0%,100%{ opacity:.12; } 50%{ opacity:.5; } }
-  @keyframes nsSonar{ 0%{ transform:scale(.45); opacity:.85; } 80%,100%{ transform:scale(1.25); opacity:0; } }
+  .sl-cta .sc-base{ inset:0; border:1.5px solid rgba(255,255,255,.6); background:rgba(255,255,255,.08); }
+  .sl-cta .sc-ring{ inset:0; border:2px solid #fff; opacity:0; filter:drop-shadow(0 0 3px rgba(0,0,0,.65)); }
+  .sl-cta .sc-mid{ inset:27%; border:2.5px solid #fff; filter:drop-shadow(0 0 3px rgba(0,0,0,.65)); }
+  .sl-cta .sc-dot{ inset:41%; background:#fff; box-shadow:0 0 0 1.5px rgba(0,0,0,.35), 0 0 10px rgba(255,255,255,.9); }
+  .slab.cta-ready .sl-cta{ animation:nsCtaIn 1.6s ease-out both, nsCtaFade 5s ease-in-out 1.6s infinite; }
+  .slab.cta-ready .sl-cta .sc-ring{ animation:nsSonar 5s cubic-bezier(.2,.6,.3,1) infinite; }
+  .slab.cta-ready .sl-cta .sc-ring.r2{ animation-delay:2.5s; }
+  .slab.cta-ready .sl-cta .sc-mid{ animation:nsSonarBreath 5s ease-in-out infinite; }
+  .vault-arena.flip-learned .sl-cta, .slab.flipped .sl-cta, .slab.no-flip .sl-cta{ opacity:0; animation:none; }
+  .vault-arena.flip-learned .sl-cta i, .slab.flipped .sl-cta i{ animation:none; }
+  @keyframes nsCtaIn{ 0%{ opacity:0; } 100%{ opacity:.45; } }
+  @keyframes nsCtaFade{ 0%,100%{ opacity:.45; } 50%{ opacity:.95; } }
+  @keyframes nsSonar{ 0%{ transform:scale(.45); opacity:1; } 80%,100%{ transform:scale(1.3); opacity:0; } }
   @keyframes nsSonarBreath{ 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.06); } }
-  .vault-glow .rg{ display:none; position:absolute; inset:-1px; border-radius:999px; border:1px solid rgba(255,77,77,.5); opacity:0; pointer-events:none; }
+  .slab.no-flip{ cursor:default; }
+  .sl-lent{ position:absolute; display:block; border-radius:3.2% / 2.3%; pointer-events:none; }
+  .vault-glow .rg{ display:none; position:absolute; inset:-1px; border-radius:999px; border:1.5px solid rgba(255,80,80,.9); opacity:0; pointer-events:none; }
   .vault-glow:not([aria-pressed="true"]):not(.seen) .rg{ display:block; animation:nsBtnRipple 4s ease-out infinite; }
   .vault-glow:not([aria-pressed="true"]):not(.seen) .rg.r2{ animation-delay:2s; }
-  @keyframes nsBtnRipple{ 0%{ transform:scale(1); opacity:.45; } 100%{ transform:scale(1.3,1.75); opacity:0; } }
+  @keyframes nsBtnRipple{ 0%{ transform:scale(1); opacity:.8; } 100%{ transform:scale(1.3,1.75); opacity:0; } }
   @media (prefers-reduced-motion: reduce){ .sl-cta i,.vault-glow .rg{ animation:none !important; } .vault-glow .rg{ display:none !important; } }
   .vault-caption{ position:relative; z-index:4; width:min(calc(100% - 32px),500px); margin:0 auto clamp(18px,3vh,30px);
     display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px; padding:15px 20px 14px; border-radius:18px;
@@ -879,7 +886,7 @@
 
 
   /* ---- 3-up posters: centre piece + two turned-in neighbours, same language as the cards ---- */
-  .gallery-stage{ position:relative; overflow-x:clip; padding:2.5vh 0; }
+  .gallery-stage{ position:relative; overflow-x:clip; padding:0; margin-top:clamp(6px,1.2vh,14px); }
   .gallery-body{ position:relative; -webkit-perspective:1700px; perspective:1700px; }
   .gallery-frame{ z-index:3; animation:slabBob 6s ease-in-out infinite; }
   /* The frame is as wide as the whole stage, so it used to sit on top of the neighbouring posters and
@@ -919,6 +926,8 @@
      The frame is sized by max-width/max-height with the poster keeping its own aspect-ratio,
      so it scales down proportionally at any viewport instead of stretching. */
   .gallery-body{ width:640px; max-width:92vw; flex-shrink:0; }
+  /* Big desktop screens: let the poster stage grow so wide pieces fill it instead of floating in empty space */
+  @media (min-width:1101px){ .gallery-body{ width:clamp(640px,50vw,980px); } .gallery-info{ width:clamp(640px,50vw,980px); } }
   /* Caption + counter used to live inside .gallery-body (a flex child of .gallery-stage,
      alongside the arrows), so the arrows — vertically centered on that whole flex item —
      ended up centered on frame+caption+counter together, sitting visibly below the
@@ -941,7 +950,8 @@
     .gallery-frame.is-wide .poster-frame{ width:100%; }
     .gallery-frame.is-wide .poster-mat{ width:100%; }
   }
-  .gallery-frame{ position:relative; width:100%; height:max(300px, min(74vh, calc(100dvh - 380px))); max-height:760px;
+  /* --gh is set in JS to hug the current poster's own proportions (so a wide piece doesn't sit in a tall empty box); this is the fallback */
+  .gallery-frame{ position:relative; width:100%; height:var(--gh, max(300px, min(74vh, calc(100dvh - 380px)))); max-height:760px; transition:height .4s var(--ease);
     display:flex; align-items:center; justify-content:center; }
   .poster-art{ position:relative; height:100%; max-width:100%; display:flex; align-items:center; justify-content:center;
     transition:transform .6s var(--ease); }
@@ -1023,11 +1033,12 @@
     box-shadow:0 50px 100px -24px rgba(0,0,0,.65), inset 0 0 0 1px rgba(255,255,255,.06); }
   @media (hover:hover){ .gallery-frame:hover .poster-glass{ opacity:1; } }
   @media (prefers-reduced-motion: reduce){ .poster-glass{ transition:none; } }
-  .poster-caption{ text-align:center; margin-top:4vh; }
+  .poster-caption{ text-align:center; margin-top:clamp(12px,2.2vh,24px); }
   .poster-caption .t{ font-family:'AmpFix','Fraunces',serif; font-size:19px; font-weight:500; }
   .poster-caption .m{ font-size:10px; color:var(--grey); margin-top:6px; }
-  .gallery-counter{ text-align:center; margin-top:2.5vh; font-family:'IBM Plex Mono',monospace; font-size:10px;
+  .gallery-counter{ text-align:center; margin-top:clamp(6px,1vh,12px); font-family:'IBM Plex Mono',monospace; font-size:10px;
     letter-spacing:.06em; color:var(--grey); }
+  #galleryViewAllBtn{ margin-top:clamp(14px,2.4vh,26px); }
   @media (max-width:860px){
     .gallery-stage{ gap:12px; }
     .gallery-frame{ height:58vh; }
@@ -1509,7 +1520,7 @@
       </button>
     </div>
 
-    <button type="button" class="vault-glow" id="vaultGlow" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><span class="rg"></span><span class="rg r2"></span><span id="vaultGlowTxt">Glow in the dark</span></button>
+    <button type="button" class="vault-glow" id="vaultGlow" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><span class="rg"></span><span class="rg r2"></span><span id="vaultGlowTxt">Glow</span></button>
 
     <div class="vault-caption" id="vaultCaption" aria-live="polite"><div><h4 class="vc-name" id="vcName"></h4><div class="vc-set" id="vcSet"></div></div><div class="vc-chips" id="vcChips"></div></div>
 
@@ -1986,7 +1997,8 @@
         title: p.title || key,
         treatment: p.displayTreatment || 'standard',
         orientation: p.orientation || 'portrait',
-        slab: (p.slab && p.slab.front && p.slab.back && p.slab.width && p.slab.height) ? p.slab : null,
+        slab: (p.slab && p.slab.front && p.slab.width && p.slab.height) ? p.slab : null,
+        lenticular: (p.lenticular && p.lenticular.frames && p.lenticular.frames.length === 3 && p.lenticular.top) ? p.lenticular : null,
         frontSrc: front ? front.src : '',
         front: front ? imgTag(front.src, front.alt || p.title) : '',
         back: back ? imgTag(back.src, back.alt || p.title) : '<p class="slot-note mono">No back image yet</p>',
@@ -2001,8 +2013,8 @@
       cards.sort((a, b) => (a.orientation === 'landscape' ? 1 : 0) - (b.orientation === 'landscape' ? 1 : 0));
     });
     // Tab order + display names. Anything not listed keeps its data name and goes after these.
-    const COLLECTION_ORDER = ['Parkhurst', 'PWHL', 'Ice', 'UD1', 'UD2', 'UDExt', 'UDCent', 'AHL'];
-    const COLLECTION_LABELS = { 'Ice': 'UD ICE', 'UDExt': 'UD EXTENDED', 'UDCent': 'UD CENTENNIAL', 'AHL': 'UD AHL' };
+    const COLLECTION_ORDER = ['Parkhurst', 'PWHL', 'UDMVP', 'Ice', 'UD1', 'UD2', 'UDExt', 'UDCent', 'AHL'];
+    const COLLECTION_LABELS = { 'UDMVP': 'UD MVP', 'Ice': 'UD ICE', 'UDExt': 'UD EXTENDED', 'UDCent': 'UD CENTENNIAL', 'AHL': 'UD AHL' };
     const labelOf = (n) => COLLECTION_LABELS[n] || n;
     const collections = Object.keys(byCollection).map(name => ({ name, cards: byCollection[name] }))
       .sort((a, b) => {
@@ -2017,6 +2029,7 @@
     const ARENA_BACKGROUNDS = {
       'PWHL': 'assets/collectibles/pwhl/arena-bg-purple.jpg',
       'Parkhurst': 'assets/collectibles/parkhurst/arena-bg.jpg',
+      'UDMVP': 'assets/collectibles/ud-mvp/arena-bg.jpg',
       'Ice': 'assets/collectibles/ice/arena-bg.jpg',
       'UD1': 'assets/collectibles/ud1/arena-bg.jpg',
       'UD2': 'assets/collectibles/ud2/arena-bg.jpg',
@@ -2105,11 +2118,77 @@
       if (slab.classList.contains('has-slab-img')) slab.style.setProperty('--T', (slab.offsetWidth * 0.05) + 'px');
     }
     let centreSl = null;
+    // ---- Lenticular card: three swirl frames are interlaced in thin lens strips and each strip picks its frame from the viewing angle.
+    // The title/frame/mascot layer ("top") sits over it, so the swirl moves behind. Driven by the cursor (or a slow sway on touch).
+    const lentCache = {};
+    function lentLoad(url){ return lentCache[url] || (lentCache[url] = new Promise(res => { const im = new Image(); im.onload = () => res(im); im.onerror = () => res(null); im.src = url; })); }
+    let lentRaf = 0, lentToken = 0, lentIO = null, lentCleanup = null;
+    function lentStop(){ lentToken++; if (lentCleanup) { lentCleanup(); lentCleanup = null; } cancelAnimationFrame(lentRaf); lentRaf = 0; if (lentIO) { lentIO.disconnect(); lentIO = null; } }
+    function lentStart(L){
+      const token = ++lentToken, cv = document.getElementById('slLent'); if (!cv) return;
+      Promise.all([...L.frames.map(lentLoad), lentLoad(L.top)]).then(imgs => {
+        if (token !== lentToken || imgs.some(i => !i)) return;   // card changed, or an image failed: the flat card underneath stays
+        const ctx = cv.getContext('2d'), SW = imgs[0].naturalWidth, SH = imgs[0].naturalHeight;
+        let W = 0, H = 0, M = 0, frames = [], topC = null, ribs = null, dpr = 1;
+        const off = (img, margin, k) => { const c = document.createElement('canvas'); c.width = W + margin * 2; c.height = H + margin * 2; const g = c.getContext('2d'); const w = W * k, h = H * k; g.drawImage(img, (c.width - w) / 2, (c.height - h) / 2, w, h); return c; };
+        function build(){
+          dpr = Math.min(window.devicePixelRatio || 1, 2);
+          W = Math.min(900, Math.round(cv.clientWidth * dpr)); if (!W) return false; H = Math.round(W * SH / SW);
+          cv.width = W; cv.height = H; M = Math.round(14 * dpr);
+          frames = [off(imgs[0], M, 1.04), off(imgs[1], M, 1.04), off(imgs[2], M, 1.04)]; topC = off(imgs[3], 0, 1);
+          const pitch = Math.max(3, Math.round(3 * dpr)), rc = document.createElement('canvas'); rc.width = pitch; rc.height = 4;
+          const rg = rc.getContext('2d'), gr = rg.createLinearGradient(0, 0, pitch, 0);
+          gr.addColorStop(0, 'rgba(255,255,255,0.16)'); gr.addColorStop(.35, 'rgba(255,255,255,0)'); gr.addColorStop(.75, 'rgba(0,0,0,0)'); gr.addColorStop(1, 'rgba(0,0,0,0.22)');
+          rg.fillStyle = gr; rg.fillRect(0, 0, pitch, 4); ribs = { pattern: ctx.createPattern(rc, 'repeat'), pitch };
+          return true;
+        }
+        const sm = t => { t = Math.max(0, Math.min(1, t)); return t * t * (3 - 2 * t); };
+        function draw(x, y){
+          if (!W) return;
+          ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = 1; ctx.clearRect(0, 0, W, H);
+          const sw = ribs.pitch, bx = -x * 9 * dpr, by = -y * 4 * dpr;
+          for (let sx = 0; sx < W; sx += sw) {
+            const v = x * 1.15 + (sx / W - .5) * .55 + y * .08, p = Math.max(0, Math.min(2, v + 1)), i = Math.min(1, Math.floor(p)), bl = sm(((p - i) - .32) / .36);
+            const srcX = sx + M - bx, srcY = M - by;
+            ctx.globalAlpha = 1; ctx.drawImage(frames[i], srcX, srcY, sw, H, sx, 0, sw, H);
+            if (bl > .001) { ctx.globalAlpha = bl; ctx.drawImage(frames[i + 1], srcX, srcY, sw, H, sx, 0, sw, H); }
+          }
+          ctx.globalAlpha = 1; ctx.drawImage(topC, 0, 0);
+          ctx.save(); ctx.translate((x * .5 * sw) % sw, 0); ctx.fillStyle = ribs.pattern; ctx.globalAlpha = .9; ctx.fillRect(-sw, 0, W + 2 * sw, H); ctx.restore();
+          const c = (1 - (x + 1) / 2) * W * 1.6 - W * .3, sh = ctx.createLinearGradient(c - W * .45, 0, c + W * .45, H * .25);
+          sh.addColorStop(0, 'rgba(255,60,170,0)'); sh.addColorStop(.3, 'rgba(255,60,170,0.10)'); sh.addColorStop(.45, 'rgba(255,210,70,0.13)'); sh.addColorStop(.6, 'rgba(70,255,200,0.10)'); sh.addColorStop(.75, 'rgba(90,140,255,0.08)'); sh.addColorStop(1, 'rgba(90,140,255,0)');
+          ctx.globalCompositeOperation = 'screen'; ctx.fillStyle = sh; ctx.fillRect(0, 0, W, H);
+          const gl = ctx.createRadialGradient((x + 1) / 2 * W, (y + 1) / 2 * H * .7, 0, (x + 1) / 2 * W, (y + 1) / 2 * H * .7, W * .75);
+          gl.addColorStop(0, 'rgba(255,255,255,0.16)'); gl.addColorStop(1, 'rgba(255,255,255,0)'); ctx.fillStyle = gl; ctx.fillRect(0, 0, W, H);
+          ctx.globalCompositeOperation = 'source-over';
+        }
+        if (!build()) return;
+        if (prefersReducedMotion) { draw(.2, -.1); return; }
+        let cx = .2, cy = -.1, tx = .2, ty = -.1, hover = false, lastIn = -1e9, last = '', onScreen = true;
+        const t0 = performance.now();
+        const mm = e => { const r = cv.getBoundingClientRect(); tx = Math.max(-1, Math.min(1, ((e.clientX - r.left) / r.width - .5) * 2.2)); ty = Math.max(-1, Math.min(1, ((e.clientY - r.top) / r.height - .5) * 2.2)); hover = true; lastIn = performance.now(); };
+        const ml = () => { hover = false; };
+        slab.addEventListener('mousemove', mm); slab.addEventListener('mouseleave', ml);
+        lentCleanup = () => { slab.removeEventListener('mousemove', mm); slab.removeEventListener('mouseleave', ml); };
+        lentIO = new IntersectionObserver(en => { onScreen = en[0].isIntersecting; }, { threshold: 0 }); lentIO.observe(cv);
+        const tick = () => {
+          if (token !== lentToken) return;
+          if (onScreen && !document.hidden) {
+            const now = performance.now();
+            if (!hover && now - lastIn > 2500) { const t = (now - t0) / 1000; tx = .9 * Math.sin(t * .5); ty = .25 * Math.sin(t * .33 + 1.2); }
+            const k = hover ? .14 : .05; cx += (tx - cx) * k; cy += (ty - cy) * k;
+            const key = cx.toFixed(3) + ',' + cy.toFixed(3); if (key !== last) { draw(cx, cy); last = key; }
+          }
+          lentRaf = requestAnimationFrame(tick);
+        };
+        lentRaf = requestAnimationFrame(tick);
+      });
+    }
     function applySlabImages(card){
       const sl = card.slab; centreSl = sl || null;
       if (!sl) {
         slab.classList.remove('has-slab-img');
-        slab.style.width = ''; slab.style.maxWidth = ''; slab.style.flexShrink = ''; slImg.innerHTML = ''; slTilt = null;
+        slab.style.width = ''; slab.style.maxWidth = ''; slab.style.flexShrink = ''; slImg.innerHTML = ''; slTilt = null; slab.classList.remove('no-flip'); lentStop();
         return;
       }
       slab.classList.add('has-slab-img');
@@ -2128,10 +2207,13 @@
       const alt = (card.title || '') + (card.num ? ' · ' + card.num : '');
       const g = card.glow;
       const glowHtml = g ? `<div class="sl-glow" style="left:${px(g.x)};top:${py(g.y)};width:${g.w / sl.width * 100}%;height:${g.h / sl.height * 100}%"><div class="sl-dim"></div><img class="sl-lum" src="${g.src}" alt="" draggable="false"></div>` : '';
+      const L = card.lenticular;
+      const lentHtml = L ? `<canvas class="sl-lent" id="slLent" style="left:${px(L.x)};top:${py(L.y)};width:${L.w / sl.width * 100}%;height:${L.h / sl.height * 100}%" aria-hidden="true"></canvas>` : '';
+      slab.classList.toggle('no-flip', !sl.back);
       slImg.innerHTML =
         `<div class="sl-tilt" id="slTilt"><div class="sl-flip">` +
-          `<div class="sl-face f"><img src="${sl.front}" alt="${alt.replace(/"/g,'&quot;')}" draggable="false">${glowHtml}<div class="sl-cta" aria-hidden="true"><i class="sc-base"></i><i class="sc-ring"></i><i class="sc-ring r2"></i><i class="sc-mid"></i><i class="sc-dot"></i></div><div class="sl-glare" style="${mask(sl.front)}"></div></div>` +
-          `<div class="sl-face b"><img src="${sl.back}" alt="" draggable="false"><div class="sl-glare" style="${mask(sl.back)}"></div></div>` +
+          `<div class="sl-face f"><img src="${sl.front}" alt="${alt.replace(/"/g,'&quot;')}" draggable="false">${glowHtml}${lentHtml}${sl.back ? '<div class="sl-cta" aria-hidden="true"><i class="sc-base"></i><i class="sc-ring"></i><i class="sc-ring r2"></i><i class="sc-mid"></i><i class="sc-dot"></i></div>' : ''}<div class="sl-glare" style="${mask(sl.front)}"></div></div>` +
+          (sl.back ? `<div class="sl-face b"><img src="${sl.back}" alt="" draggable="false"><div class="sl-glare" style="${mask(sl.back)}"></div></div>` : '') +
           // four glass edge strips give the slab real thickness while it turns
           `<div class="sl-edge v" style="left:${px(SLAB_PAD.x)};top:${py(SLAB_PAD.t + SLAB_R)};height:${(bodyH - 2*SLAB_R) / sl.height * 100}%;width:var(--T);margin-left:calc(var(--T) / -2);transform:rotateY(90deg)"></div>` +
           `<div class="sl-edge v" style="left:${px(SLAB_PAD.x + bodyW)};top:${py(SLAB_PAD.t + SLAB_R)};height:${(bodyH - 2*SLAB_R) / sl.height * 100}%;width:var(--T);margin-left:calc(var(--T) / -2);transform:rotateY(90deg)"></div>` +
@@ -2140,6 +2222,7 @@
         `</div></div>`;
       slTilt = document.getElementById('slTilt');
       updateSlabThickness();
+      lentStop(); if (L) lentStart(L);
     }
 
 
@@ -2190,6 +2273,13 @@
       const on = !slab.classList.contains('glow-on'); setGlow(on); glowBtn.classList.add('seen');
       if (on) { const c0 = collections[ci], k0 = c0.cards[ki]; nsOnce('glow:' + k0.id, 'card-glow', cardProps(c0, k0)); }
     });
+    // Sonar prompt on the card: shown only after the viewer has sat on a card for a while without flipping it.
+    let ctaTimer = 0;
+    function ctaArm(){
+      clearTimeout(ctaTimer); slab.classList.remove('cta-ready');
+      if (arenaEl.classList.contains('flip-learned')) return;
+      ctaTimer = setTimeout(() => { if (!slab.classList.contains('flipped') && !slab.classList.contains('no-flip') && !arenaEl.classList.contains('flip-learned')) slab.classList.add('cta-ready'); }, 6000);
+    }
     function renderCard(){
       const c = collections[ci], card = c.cards[ki];
       updateCaption(c, card);
@@ -2204,6 +2294,7 @@
       // and only ever changes when you switch to a different collection.
       vaultFrame.classList.toggle('is-landscape', c.cards.some(cd => cd.orientation === 'landscape'));
       setGlow(false);
+      ctaArm();
       glowBtn.classList.toggle('show', !!(card.slab && card.glow));
       applySlabImages(card);
       if (!card.slab) applyCardAspect(artF.querySelector('img'));
@@ -2366,7 +2457,8 @@
     // One flip path for mouse, touch (which arrives as a click) and keyboard, so the tracking can't drift between them.
     // Enter/Space call preventDefault, so a key press never also produces a click; the per-card dedupe covers the rest.
     function flipCard(){
-      slab.classList.toggle('flipped'); arenaEl.classList.add('flip-learned');
+      if (slab.classList.contains('no-flip')) return;
+      slab.classList.toggle('flipped'); arenaEl.classList.add('flip-learned'); slab.classList.remove('cta-ready');
       const c0 = collections[ci], k0 = c0.cards[ki];
       nsOnce('flip:' + k0.id, 'card-flip', cardProps(c0, k0));
       applyFlipTransform();
@@ -3042,11 +3134,22 @@
     // wide banner pieces (e.g. 46x20 "The Show") get the full phone width instead of a thumbnail
     function markWide(){
       const im = artEl.querySelector('img');
-      const apply = () => frameEl.classList.toggle('is-wide', !!(im && im.naturalWidth && im.naturalWidth / im.naturalHeight > 1.7));
+      const apply = () => { frameEl.classList.toggle('is-wide', !!(im && im.naturalWidth && im.naturalWidth / im.naturalHeight > 1.7)); fitFrame(); };
       frameEl.classList.remove('is-wide');
-      if (!im) return;
+      if (!im) { fitFrame(); return; }
       if (im.complete) apply(); else im.addEventListener('load', () => { apply(); syncPosterSheen(); layoutSides(); }, { once:true });
     }
+    // Size the poster stage to the current poster's shape (desktop/tablet): the frame is as tall as the poster needs, up to the usual cap.
+    function fitFrame(){
+      const im = artEl.querySelector('img');
+      if (phoneMQ.matches || !im || !im.naturalWidth) { frameEl.style.removeProperty('--gh'); return; }
+      const ar = im.naturalWidth / im.naturalHeight, bw = bodyEl.clientWidth;
+      const cap = Math.min(760, Math.max(300, Math.min(window.innerHeight * .74, window.innerHeight - 380)));
+      const e = artEl.querySelector('.poster-frame') ? 30 : 0;      // frame + mat add a little on every side
+      const h = Math.max(260, Math.min(cap, (bw - e) / ar + e));
+      frameEl.style.setProperty('--gh', Math.round(h) + 'px');
+    }
+    window.addEventListener('resize', () => requestAnimationFrame(fitFrame), { passive:true });
 
     function armPosterView(){
       const p = posters[pi]; if (!p) return;

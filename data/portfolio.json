@@ -4550,6 +4550,133 @@
       "displayTreatment": "standard",
       "cardStock": "",
       "sport": "Hockey"
+    },
+    {
+      "id": "ud-mvp-macklin-celebrini-the-slot-gold",
+      "title": "Macklin Celebrini — The Slot Gold",
+      "category": "card",
+      "collection": "UDMVP",
+      "client": "Upper Deck",
+      "year": "2026-27",
+      "dimensions": "",
+      "description": "",
+      "cardNumber": "TS-2",
+      "tags": [
+        "hockey",
+        "UDMVP"
+      ],
+      "featured": false,
+      "order": 2,
+      "images": [
+        {
+          "src": "assets/collectibles/ud-mvp/macklin-celebrini-the-slot-gold-front.jpg",
+          "role": "front",
+          "alt": "2026-27 Upper Deck MVP The Slot Gold, Macklin Celebrini, front"
+        },
+        {
+          "src": "assets/collectibles/ud-mvp/macklin-celebrini-the-slot-gold-back.jpg",
+          "role": "back",
+          "alt": "2026-27 Upper Deck MVP The Slot Gold, Macklin Celebrini, back"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Hockey",
+      "slab": {
+        "front": "assets/collectibles/ud-mvp/slabs/macklin-celebrini-the-slot-gold-front.webp",
+        "back": "assets/collectibles/ud-mvp/slabs/macklin-celebrini-the-slot-gold-back.webp",
+        "width": 1380,
+        "height": 1364
+      },
+      "specs": []
+    },
+    {
+      "id": "ud-mvp-romanov-schaefer-paired-up-gold",
+      "title": "Alexander Romanov & Matthew Schaefer — Paired Up Gold",
+      "category": "card",
+      "collection": "UDMVP",
+      "client": "Upper Deck",
+      "year": "2026-27",
+      "dimensions": "",
+      "description": "",
+      "cardNumber": "PU-12",
+      "tags": [
+        "hockey",
+        "UDMVP"
+      ],
+      "featured": false,
+      "order": 3,
+      "images": [
+        {
+          "src": "assets/collectibles/ud-mvp/romanov-schaefer-paired-up-gold-front.jpg",
+          "role": "front",
+          "alt": "2026-27 Upper Deck MVP Paired Up Gold, Alexander Romanov & Matthew Schaefer, front"
+        },
+        {
+          "src": "assets/collectibles/ud-mvp/romanov-schaefer-paired-up-gold-back.jpg",
+          "role": "back",
+          "alt": "2026-27 Upper Deck MVP Paired Up Gold, Alexander Romanov & Matthew Schaefer, back"
+        }
+      ],
+      "displayTreatment": "standard",
+      "cardStock": "",
+      "sport": "Hockey",
+      "slab": {
+        "front": "assets/collectibles/ud-mvp/slabs/romanov-schaefer-paired-up-gold-front.webp",
+        "back": "assets/collectibles/ud-mvp/slabs/romanov-schaefer-paired-up-gold-back.webp",
+        "width": 1380,
+        "height": 1364
+      },
+      "specs": []
+    },
+    {
+      "id": "ud-mvp-gritty-mascot-lenticular",
+      "title": "Gritty — Mascot Lenticular",
+      "category": "card",
+      "collection": "UDMVP",
+      "sport": "Hockey",
+      "client": "Upper Deck",
+      "year": "2026-27",
+      "dimensions": "",
+      "description": "",
+      "cardNumber": "",
+      "cardStock": "",
+      "tags": [
+        "hockey",
+        "UDMVP"
+      ],
+      "featured": false,
+      "order": 1,
+      "displayTreatment": "standard",
+      "specs": [
+        "Lenticular",
+        "Ultra-rare case hit"
+      ],
+      "images": [
+        {
+          "src": "assets/collectibles/ud-mvp/gritty-mascot-lenticular-front.jpg",
+          "role": "front",
+          "alt": "2026-27 Upper Deck MVP Mascot Lenticular, Gritty, front"
+        }
+      ],
+      "slab": {
+        "front": "assets/collectibles/ud-mvp/slabs/gritty-mascot-lenticular-front.webp",
+        "width": 1140,
+        "height": 1708
+      },
+      "lenticular": {
+        "frames": [
+          "assets/collectibles/ud-mvp/gritty-lenticular/frameA.webp",
+          "assets/collectibles/ud-mvp/gritty-lenticular/frameB.webp",
+          "assets/collectibles/ud-mvp/gritty-lenticular/frameC.webp"
+        ],
+        "top": "assets/collectibles/ud-mvp/gritty-lenticular/top.webp",
+        "x": 188,
+        "y": 396,
+        "w": 764,
+        "h": 1070
+      },
+      "cardName": "Mascot Lenticular"
     }
   ]
 }
