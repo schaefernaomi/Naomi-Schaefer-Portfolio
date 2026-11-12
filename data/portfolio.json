@@ -1110,13 +1110,13 @@
     },
     {
       "id": "collin-morikawa-team-usa",
-      "title": "Collin Morikawa — Team USA",
+      "title": "Collin Morikawa — Tee to Trophy",
       "category": "poster",
       "collection": "Golf",
       "client": "Upper Deck Authenticated",
       "year": "2026",
-      "dimensions": "",
-      "description": "Collin Morikawa representing Team USA.",
+      "dimensions": "16x20",
+      "description": "Collin Morikawa autographed, \"Tee to Trophy\".",
       "tags": [
         "golf",
         "print"
@@ -1127,7 +1127,7 @@
         {
           "src": "assets/campaigns/golf/collin-morikawa-team-usa.jpg",
           "role": "main",
-          "alt": "Collin Morikawa — Team USA, Upper Deck Authenticated print"
+          "alt": "Collin Morikawa — Tee to Trophy, Upper Deck Authenticated print"
         }
       ],
       "displayTreatment": "standard",
@@ -1192,13 +1192,13 @@
     },
     {
       "id": "gabby-douglas-3x-gold-medal",
-      "title": "Gabby Douglas — 3x Gold Medal Winner",
+      "title": "Gabby Douglas — Gabby For Gold",
       "category": "poster",
       "collection": "Gymnastics",
       "client": "Upper Deck Authenticated",
       "year": "2026",
-      "dimensions": "",
-      "description": "Gabby Douglas, 3x Gold Medal Winner — 2012 Team, 2012 All Around, 2016 Team.",
+      "dimensions": "20x24 Metallic Paper",
+      "description": "Gabby Douglas autographed and inscribed, \"Gabby For Gold\", on metallic paper.",
       "tags": [
         "gymnastics",
         "print"
@@ -1209,7 +1209,7 @@
         {
           "src": "assets/campaigns/gymnastics/gabby-douglas-3x-gold-medal.jpg",
           "role": "main",
-          "alt": "Gabby Douglas — 3x Gold Medal Winner, Upper Deck Authenticated print"
+          "alt": "Gabby Douglas — Gabby For Gold, Upper Deck Authenticated print"
         }
       ],
       "displayTreatment": "standard",
@@ -1244,13 +1244,13 @@
     },
     {
       "id": "gabby-douglas-the-show",
-      "title": "Gabby Douglas — The Show",
+      "title": "Gabby Douglas — Grand Gymnast",
       "category": "poster",
       "collection": "Gymnastics",
       "client": "Upper Deck Authenticated",
       "year": "2026",
-      "dimensions": "",
-      "description": "Gabby Douglas, signature piece for the 'The Show' series.",
+      "dimensions": "46x20",
+      "description": "Gabby Douglas autographed, \"Grand Gymnast\" — The Show series.",
       "tags": [
         "gymnastics",
         "print"
@@ -1261,7 +1261,7 @@
         {
           "src": "assets/campaigns/gymnastics/gabby-douglas-the-show.jpg",
           "role": "main",
-          "alt": "Gabby Douglas — The Show, Upper Deck Authenticated print"
+          "alt": "Gabby Douglas — Grand Gymnast, Upper Deck Authenticated print"
         }
       ],
       "displayTreatment": "framed",
@@ -1324,13 +1324,13 @@
     },
     {
       "id": "corey-heim-anduril-250",
-      "title": "Corey Heim — Anduril 250",
+      "title": "Corey Heim — Making Waves",
       "category": "poster",
       "collection": "NASCAR",
       "client": "Upper Deck Authenticated",
       "year": "2026",
-      "dimensions": "",
-      "description": "Corey Heim, Anduril 250 — San Diego, CA.",
+      "dimensions": "8x10",
+      "description": "Corey Heim autographed, \"Making Waves\".",
       "tags": [
         "nascar",
         "print"
@@ -1341,7 +1341,7 @@
         {
           "src": "assets/campaigns/nascar/corey-heim-anduril-250.jpg",
           "role": "main",
-          "alt": "Corey Heim — Anduril 250, Upper Deck Authenticated print"
+          "alt": "Corey Heim — Making Waves, Upper Deck Authenticated print"
         }
       ],
       "displayTreatment": "standard",
@@ -1377,13 +1377,13 @@
     },
     {
       "id": "taylor-heise-minnesota",
-      "title": "Taylor Heise — Minnesota",
+      "title": "Taylor Heise — North Star",
       "category": "poster",
       "collection": "PWHL",
       "client": "Upper Deck Authenticated",
       "year": "2026",
-      "dimensions": "",
-      "description": "Taylor Heise, Minnesota PWHL, #27.",
+      "dimensions": "16x20",
+      "description": "Taylor Heise autographed, \"North Star\".",
       "tags": [
         "pwhl",
         "print"
@@ -1394,7 +1394,7 @@
         {
           "src": "assets/campaigns/pwhl/taylor-heise-minnesota.jpg",
           "role": "main",
-          "alt": "Taylor Heise — Minnesota, Upper Deck Authenticated print"
+          "alt": "Taylor Heise — North Star, Upper Deck Authenticated print"
         }
       ],
       "displayTreatment": "standard",
@@ -1403,13 +1403,13 @@
     },
     {
       "id": "taylor-heise-2024-playoff-mvp",
-      "title": "Taylor Heise — 2024 Playoff MVP",
+      "title": "Taylor Heise — 2024 Ilana Kloss Winner",
       "category": "poster",
       "collection": "PWHL",
       "client": "Upper Deck Authenticated",
       "year": "2026",
-      "dimensions": "",
-      "description": "Taylor Heise, 2024 Ilana Kloss PWHL Playoff MVP.",
+      "dimensions": "24x16",
+      "description": "Taylor Heise autographed, \"2024 Ilana Kloss Winner\".",
       "tags": [
         "pwhl",
         "print"
@@ -1420,7 +1420,7 @@
         {
           "src": "assets/campaigns/pwhl/taylor-heise-2024-playoff-mvp.jpg",
           "role": "main",
-          "alt": "Taylor Heise — 2024 Playoff MVP, Upper Deck Authenticated print"
+          "alt": "Taylor Heise — 2024 Ilana Kloss Winner, Upper Deck Authenticated print"
         }
       ],
       "displayTreatment": "standard",
@@ -1429,13 +1429,13 @@
     },
     {
       "id": "alex-morgan-trinity-rodman",
-      "title": "Alex Morgan & Trinity Rodman",
+      "title": "Trinity Rodman & Alex Morgan — American Glory",
       "category": "poster",
       "collection": "Soccer",
       "client": "Upper Deck Authenticated",
       "year": "2026",
-      "dimensions": "",
-      "description": "Alex Morgan and Trinity Rodman, USWNT.",
+      "dimensions": "20x24",
+      "description": "Trinity Rodman and Alex Morgan autographed, \"American Glory\".",
       "tags": [
         "soccer",
         "print"
@@ -1446,7 +1446,7 @@
         {
           "src": "assets/campaigns/soccer/alex-morgan-trinity-rodman.jpg",
           "role": "main",
-          "alt": "Alex Morgan & Trinity Rodman, Upper Deck Authenticated print"
+          "alt": "Trinity Rodman & Alex Morgan — American Glory, Upper Deck Authenticated print"
         }
       ],
       "displayTreatment": "standard",
@@ -1481,13 +1481,13 @@
     },
     {
       "id": "trinity-rodman-gold",
-      "title": "Trinity Rodman — Gold",
+      "title": "Trinity Rodman — Rising to the Top",
       "category": "poster",
       "collection": "Soccer",
       "client": "Upper Deck Authenticated",
       "year": "2026",
-      "dimensions": "",
-      "description": "Trinity Rodman, 2024 Gold — Paris.",
+      "dimensions": "20x16",
+      "description": "Trinity Rodman autographed, \"Rising to the Top\".",
       "tags": [
         "soccer",
         "print"
@@ -1498,7 +1498,7 @@
         {
           "src": "assets/campaigns/soccer/trinity-rodman-gold.jpg",
           "role": "main",
-          "alt": "Trinity Rodman — Gold, Upper Deck Authenticated print"
+          "alt": "Trinity Rodman — Rising to the Top, Upper Deck Authenticated print"
         }
       ],
       "displayTreatment": "standard",
@@ -1507,13 +1507,13 @@
     },
     {
       "id": "andre-agassi",
-      "title": "Agassi",
+      "title": "Andre Agassi — Agassi the Animated",
       "category": "poster",
       "collection": "Tennis",
       "client": "Upper Deck Authenticated",
       "year": "2026",
-      "dimensions": "",
-      "description": "Andre Agassi, limited edition 01/50.",
+      "dimensions": "20x24 Metallic Paper",
+      "description": "Andre Agassi autographed, \"Agassi the Animated\" — limited edition 01/50, on metallic paper.",
       "tags": [
         "tennis",
         "print"
@@ -1524,7 +1524,7 @@
         {
           "src": "assets/campaigns/tennis/andre-agassi.jpg",
           "role": "main",
-          "alt": "Agassi, Upper Deck Authenticated print"
+          "alt": "Andre Agassi — Agassi the Animated, Upper Deck Authenticated print"
         }
       ],
       "displayTreatment": "standard",
@@ -1533,13 +1533,13 @@
     },
     {
       "id": "chris-evert-3x-wimbledon-champion",
-      "title": "Chris Evert — 3x Wimbledon Champion",
+      "title": "Chris Evert — Tennis Royalty",
       "category": "poster",
       "collection": "Tennis",
       "client": "Upper Deck Authenticated",
       "year": "2026",
-      "dimensions": "",
-      "description": "Chris Evert, 3x Wimbledon Champion — 1974, 1976, 1981.",
+      "dimensions": "20x16 Watercolor Paper",
+      "description": "Chris Evert autographed and inscribed, \"Tennis Royalty\", on watercolor paper.",
       "tags": [
         "tennis",
         "print"
@@ -1550,7 +1550,7 @@
         {
           "src": "assets/campaigns/tennis/chris-evert-3x-wimbledon-champion.jpg",
           "role": "main",
-          "alt": "Chris Evert — 3x Wimbledon Champion, Upper Deck Authenticated print"
+          "alt": "Chris Evert — Tennis Royalty, Upper Deck Authenticated print"
         }
       ],
       "displayTreatment": "standard",
@@ -1559,13 +1559,13 @@
     },
     {
       "id": "iga-swiatek",
-      "title": "Iga Świątek",
+      "title": "Iga Świątek — Conquering the Clay",
       "category": "poster",
       "collection": "Tennis",
       "client": "Upper Deck Authenticated",
       "year": "2026",
-      "dimensions": "",
-      "description": "Iga Świątek.",
+      "dimensions": "16x20 Framed",
+      "description": "Iga Świątek framed and autographed, \"Conquering the Clay\".",
       "tags": [
         "tennis",
         "print"
@@ -1576,7 +1576,7 @@
         {
           "src": "assets/campaigns/tennis/iga-swiatek.jpg",
           "role": "main",
-          "alt": "Iga Świątek, Upper Deck Authenticated print"
+          "alt": "Iga Świątek — Conquering the Clay, Upper Deck Authenticated print"
         }
       ],
       "displayTreatment": "standard",
@@ -1585,13 +1585,13 @@
     },
     {
       "id": "steffi-graf-6x-roland-garros-champion",
-      "title": "Steffi Graf — 6x Roland Garros Champion",
+      "title": "Steffi Graf — Master of Clay",
       "category": "poster",
       "collection": "Tennis",
       "client": "Upper Deck Authenticated",
       "year": "2026",
-      "dimensions": "",
-      "description": "Steffi Graf, 6x Roland Garros Champion.",
+      "dimensions": "20x24",
+      "description": "Steffi Graf autographed, \"Master of Clay\".",
       "tags": [
         "tennis",
         "print"
@@ -1602,7 +1602,7 @@
         {
           "src": "assets/campaigns/tennis/steffi-graf-6x-roland-garros-champion.jpg",
           "role": "main",
-          "alt": "Steffi Graf — 6x Roland Garros Champion, Upper Deck Authenticated print"
+          "alt": "Steffi Graf — Master of Clay, Upper Deck Authenticated print"
         }
       ],
       "displayTreatment": "standard",
@@ -1611,13 +1611,13 @@
     },
     {
       "id": "sampras-vs-agassi",
-      "title": "Sampras vs. Agassi",
+      "title": "Andre Agassi & Pete Sampras — Legend vs Legend",
       "category": "poster",
       "collection": "Tennis",
       "client": "Upper Deck Authenticated",
       "year": "2026",
-      "dimensions": "",
-      "description": "Pete Sampras and Andre Agassi, limited edition 01/75.",
+      "dimensions": "20x30 Watercolor Paper",
+      "description": "Andre Agassi and Pete Sampras autographed, \"Legend vs Legend\" — limited edition 01/75, on watercolor paper.",
       "tags": [
         "tennis",
         "print"
@@ -1628,7 +1628,7 @@
         {
           "src": "assets/campaigns/tennis/sampras-vs-agassi.jpg",
           "role": "main",
-          "alt": "Sampras vs. Agassi, Upper Deck Authenticated print"
+          "alt": "Andre Agassi & Pete Sampras — Legend vs Legend, Upper Deck Authenticated print"
         }
       ],
       "displayTreatment": "standard",
@@ -1637,13 +1637,13 @@
     },
     {
       "id": "andy-roddick",
-      "title": "Andy Roddick",
+      "title": "Andy Roddick — Ace Rod",
       "category": "poster",
       "collection": "Tennis",
       "client": "Upper Deck Authenticated",
       "year": "2026",
-      "dimensions": "",
-      "description": "Andy Roddick.",
+      "dimensions": "20x24",
+      "description": "Andy Roddick autographed, \"Ace Rod\".",
       "tags": [
         "tennis",
         "print"
@@ -1654,7 +1654,7 @@
         {
           "src": "assets/campaigns/tennis/andy-roddick.jpg",
           "role": "main",
-          "alt": "Andy Roddick, Upper Deck Authenticated print"
+          "alt": "Andy Roddick — Ace Rod, Upper Deck Authenticated print"
         }
       ],
       "displayTreatment": "standard",
@@ -1663,13 +1663,13 @@
     },
     {
       "id": "sampras-agassi-early-years",
-      "title": "Sampras & Agassi — Early Years",
+      "title": "Pete Sampras — Pistol Pete",
       "category": "poster",
       "collection": "Tennis",
       "client": "Upper Deck Authenticated",
       "year": "2026",
-      "dimensions": "",
-      "description": "Pete Sampras and Andre Agassi, early years, limited edition.",
+      "dimensions": "20x24",
+      "description": "Pete Sampras autographed, \"Pistol Pete\".",
       "tags": [
         "tennis",
         "print"
@@ -1680,7 +1680,7 @@
         {
           "src": "assets/campaigns/tennis/sampras-agassi-early-years.jpg",
           "role": "main",
-          "alt": "Sampras & Agassi — Early Years, Upper Deck Authenticated print"
+          "alt": "Pete Sampras — Pistol Pete, Upper Deck Authenticated print"
         }
       ],
       "displayTreatment": "standard",
@@ -1689,13 +1689,13 @@
     },
     {
       "id": "agassi-profile",
-      "title": "Agassi — Profile",
+      "title": "Andre Agassi — The Las Vegas Kid",
       "category": "poster",
       "collection": "Tennis",
       "client": "Upper Deck Authenticated",
       "year": "2026",
-      "dimensions": "",
-      "description": "Andre Agassi, profile study.",
+      "dimensions": "20x24",
+      "description": "Andre Agassi autographed and inscribed, \"The Las Vegas Kid\".",
       "tags": [
         "tennis",
         "print"
@@ -1706,7 +1706,7 @@
         {
           "src": "assets/campaigns/tennis/agassi-profile.jpg",
           "role": "main",
-          "alt": "Agassi — Profile, Upper Deck Authenticated print"
+          "alt": "Andre Agassi — The Las Vegas Kid, Upper Deck Authenticated print"
         }
       ],
       "displayTreatment": "standard",
@@ -2027,13 +2027,13 @@
     },
     {
       "id": "sebastian-aho-hyva-hurrikaanit",
-      "title": "Sebastian Aho — Hyvä Hurrikaanit",
+      "title": "Sebastian Aho — Impactful Presence",
       "category": "poster",
       "collection": "NHL",
       "client": "Upper Deck Authenticated",
       "year": "2026",
-      "dimensions": "",
-      "description": "Sebastian Aho, Hyvä Hurrikaanit — edition 3/20.",
+      "dimensions": "20x16",
+      "description": "Sebastian Aho autographed, \"Impactful Presence\".",
       "tags": [
         "hockey",
         "print"
@@ -2044,7 +2044,7 @@
         {
           "src": "assets/campaigns/nhl/sebastian-aho-hyva-hurrikaanit.jpg",
           "role": "main",
-          "alt": "Sebastian Aho — Hyvä Hurrikaanit, Upper Deck Authenticated print"
+          "alt": "Sebastian Aho — Impactful Presence, Upper Deck Authenticated print"
         }
       ],
       "displayTreatment": "standard",
@@ -2079,13 +2079,13 @@
     },
     {
       "id": "commanding-presence",
-      "title": "Commanding Presence",
+      "title": "Yaroslav Askarov — Commanding Presence",
       "category": "poster",
       "collection": "NHL",
       "client": "Upper Deck Authenticated",
       "year": "2026",
-      "dimensions": "",
-      "description": "Commanding Presence — goaltender triptych.",
+      "dimensions": "26x12",
+      "description": "Yaroslav Askarov autographed, \"Commanding Presence\".",
       "tags": [
         "hockey",
         "print"
@@ -2096,7 +2096,7 @@
         {
           "src": "assets/campaigns/nhl/commanding-presence.jpg",
           "role": "main",
-          "alt": "Commanding Presence, Upper Deck Authenticated print"
+          "alt": "Yaroslav Askarov — Commanding Presence, Upper Deck Authenticated print"
         }
       ],
       "displayTreatment": "standard",
@@ -4345,13 +4345,13 @@
     },
     {
       "id": "hideki-matsuyama-2021-major-champion",
-      "title": "Hideki Matsuyama — 2021 Major Champion",
+      "title": "Hideki Matsuyama — Mastering The Competition (Blue)",
       "category": "poster",
       "collection": "Golf",
       "client": "Upper Deck Authenticated",
       "year": "2026",
-      "dimensions": "",
-      "description": "Hideki Matsuyama, 2021 Major Champion.",
+      "dimensions": "16x20",
+      "description": "Hideki Matsuyama autographed, \"Mastering The Competition\" — blue edition.",
       "tags": [
         "golf",
         "print"
@@ -4362,7 +4362,7 @@
         {
           "src": "assets/campaigns/golf/hideki-matsuyama-2021-major-champion.jpg",
           "role": "main",
-          "alt": "Hideki Matsuyama — 2021 Major Champion, Upper Deck Authenticated print"
+          "alt": "Hideki Matsuyama — Mastering The Competition (Blue), Upper Deck Authenticated print"
         }
       ],
       "displayTreatment": "standard",
@@ -4371,13 +4371,13 @@
     },
     {
       "id": "hideki-matsuyama-2021-major-champion-red",
-      "title": "Hideki Matsuyama — 2021 Major Champion Red",
+      "title": "Hideki Matsuyama — Mastering The Competition (Red)",
       "category": "poster",
       "collection": "Golf",
       "client": "Upper Deck Authenticated",
       "year": "2026",
-      "dimensions": "",
-      "description": "Hideki Matsuyama, 2021 Major Champion — red edition.",
+      "dimensions": "16x20 Watercolor Paper",
+      "description": "Hideki Matsuyama autographed, \"Mastering The Competition\" — red edition, on watercolor paper.",
       "tags": [
         "golf",
         "print"
@@ -4388,7 +4388,7 @@
         {
           "src": "assets/campaigns/golf/hideki-matsuyama-2021-major-champion-red.jpg",
           "role": "main",
-          "alt": "Hideki Matsuyama — 2021 Major Champion Red, Upper Deck Authenticated print"
+          "alt": "Hideki Matsuyama — Mastering The Competition (Red), Upper Deck Authenticated print"
         }
       ],
       "displayTreatment": "standard",
@@ -4588,7 +4588,9 @@
         "width": 1380,
         "height": 1364
       },
-      "specs": []
+      "specs": [
+        "Rainbow foilboard"
+      ]
     },
     {
       "id": "ud-mvp-romanov-schaefer-paired-up-gold",
@@ -4627,7 +4629,9 @@
         "width": 1380,
         "height": 1364
       },
-      "specs": []
+      "specs": [
+        "Rainbow foilboard"
+      ]
     },
     {
       "id": "ud-mvp-gritty-mascot-lenticular",

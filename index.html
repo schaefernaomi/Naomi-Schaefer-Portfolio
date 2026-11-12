@@ -744,11 +744,30 @@
   @keyframes nsSonarBreath{ 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.06); } }
   .slab.no-flip{ cursor:default; }
   .sl-lent{ position:absolute; display:block; border-radius:3.2% / 2.3%; pointer-events:none; }
+  /* While a lenticular card is live, its tilt is set every frame — keep the easing short so it follows the slider. */
+  .slab.lent-live .sl-tilt{ transition:transform .12s linear; }
+  .vault-lent{ position:relative; z-index:4; display:none; width:fit-content; align-items:center; gap:10px; margin:4px auto 16px; padding:8px 16px 8px 14px;
+    font:500 10.5px/1 'IBM Plex Mono',monospace; letter-spacing:.14em; text-transform:uppercase; color:#fff;
+    background:rgba(14,14,16,.72); border:1.5px solid rgba(255,255,255,.55); border-radius:999px;
+    -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+    box-shadow:0 0 20px rgba(140,200,255,.35), 0 6px 18px rgba(0,0,0,.5), inset 0 0 12px rgba(255,255,255,.08); }
+  .vault-lent.show{ display:flex; }
+  .vault-lent svg{ width:15px; height:15px; flex-shrink:0; }
+  .vault-lent input{ -webkit-appearance:none; appearance:none; width:clamp(120px,32vw,170px); height:28px; margin:0; background:transparent; cursor:grab; touch-action:none; }
+  .vault-lent input:active{ cursor:grabbing; }
+  .vault-lent input::-webkit-slider-runnable-track{ height:4px; border-radius:4px; background:linear-gradient(90deg,#ff4fb0,#ffd24a,#4fffc8,#5a8cff); }
+  .vault-lent input::-moz-range-track{ height:4px; border-radius:4px; background:linear-gradient(90deg,#ff4fb0,#ffd24a,#4fffc8,#5a8cff); }
+  .vault-lent input::-webkit-slider-thumb{ -webkit-appearance:none; width:22px; height:22px; margin-top:-9px; border-radius:50%; background:#fff; border:none; box-shadow:0 0 0 1px rgba(0,0,0,.25), 0 2px 8px rgba(0,0,0,.5); }
+  .vault-lent input::-moz-range-thumb{ width:22px; height:22px; border-radius:50%; background:#fff; border:none; box-shadow:0 0 0 1px rgba(0,0,0,.25), 0 2px 8px rgba(0,0,0,.5); }
+  .vault-lent input:focus-visible{ outline:2px solid #9fd0ff; outline-offset:2px; border-radius:6px; }
+  .vault-lent .rg{ display:none; position:absolute; inset:-1px; border-radius:999px; border:1.5px solid rgba(190,225,255,.9); opacity:0; pointer-events:none; }
+  .vault-lent:not(.seen) .rg{ display:block; animation:nsBtnRipple 4s ease-out infinite; }
+  .vault-lent:not(.seen) .rg.r2{ animation-delay:2s; }
   .vault-glow .rg{ display:none; position:absolute; inset:-1px; border-radius:999px; border:1.5px solid rgba(255,80,80,.9); opacity:0; pointer-events:none; }
   .vault-glow:not([aria-pressed="true"]):not(.seen) .rg{ display:block; animation:nsBtnRipple 4s ease-out infinite; }
   .vault-glow:not([aria-pressed="true"]):not(.seen) .rg.r2{ animation-delay:2s; }
   @keyframes nsBtnRipple{ 0%{ transform:scale(1); opacity:.8; } 100%{ transform:scale(1.3,1.75); opacity:0; } }
-  @media (prefers-reduced-motion: reduce){ .sl-cta i,.vault-glow .rg{ animation:none !important; } .vault-glow .rg{ display:none !important; } }
+  @media (prefers-reduced-motion: reduce){ .sl-cta i,.vault-glow .rg,.vault-lent .rg{ animation:none !important; } .vault-glow .rg,.vault-lent .rg{ display:none !important; } }
   .vault-caption{ position:relative; z-index:4; width:min(calc(100% - 32px),500px); margin:0 auto clamp(18px,3vh,30px);
     display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px; padding:15px 20px 14px; border-radius:18px;
     color:#fff; background:rgba(14,14,16,.5); border:1px solid rgba(255,255,255,.16);
@@ -1168,13 +1187,13 @@
      for a seamless loop, so adding/removing a logo later only ever means editing one list. */
   .marquee-wrap{ position:relative; overflow:hidden; padding:8vh 0;
     border-top:1px solid var(--line-dark); border-bottom:1px solid var(--line-dark); }
+  /* Moved by JS (pixel-exact, enough copies to cover any screen width) — the old CSS
+     -50% loop left an empty gap on screens wider than one logo set, then jumped back. */
   .marquee-track{ display:flex; align-items:center; gap:0; width:max-content; will-change:transform;
-    animation:marqueeScroll 32s linear infinite; }
+    transform:translate3d(0,0,0); backface-visibility:hidden; }
   .marquee-fade{ position:absolute; top:0; bottom:0; width:14vw; max-width:180px; z-index:2; pointer-events:none; }
   .marquee-fade.left{ left:0; background:linear-gradient(to right, var(--paper), transparent); }
   .marquee-fade.right{ right:0; background:linear-gradient(to left, var(--paper), transparent); }
-  @keyframes marqueeScroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
-  @media (prefers-reduced-motion: reduce){ .marquee-track{ animation:none; } }
 
   .brand-item{ display:flex; flex-direction:column; align-items:center; gap:10px; flex-shrink:0; margin-right:56px; }
   .logo-mark{ width:76px; height:76px; border-radius:50%;
@@ -1521,6 +1540,8 @@
     </div>
 
     <button type="button" class="vault-glow" id="vaultGlow" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><span class="rg"></span><span class="rg r2"></span><span id="vaultGlowTxt">Glow</span></button>
+    <!-- Lenticular cards: a tilt slider. Drag it to turn the card and watch the lens layers swap; it also follows the card's idle sway. -->
+    <div class="vault-lent" id="vaultLent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 7 3 12l5 5M16 7l5 5-5 5"/></svg><span class="vl-txt" aria-hidden="true">Tilt</span><input type="range" id="vaultLentRange" min="-100" max="100" step="1" value="20" aria-label="Tilt the lenticular card"><span class="rg"></span><span class="rg r2"></span></div>
 
     <div class="vault-caption" id="vaultCaption" aria-live="polite"><div><h4 class="vc-name" id="vcName"></h4><div class="vc-set" id="vcSet"></div></div><div class="vc-chips" id="vcChips"></div></div>
 
@@ -2122,8 +2143,18 @@
     // The title/frame/mascot layer ("top") sits over it, so the swirl moves behind. Driven by the cursor (or a slow sway on touch).
     const lentCache = {};
     function lentLoad(url){ return lentCache[url] || (lentCache[url] = new Promise(res => { const im = new Image(); im.onload = () => res(im); im.onerror = () => res(null); im.src = url; })); }
-    let lentRaf = 0, lentToken = 0, lentIO = null, lentCleanup = null;
-    function lentStop(){ lentToken++; if (lentCleanup) { lentCleanup(); lentCleanup = null; } cancelAnimationFrame(lentRaf); lentRaf = 0; if (lentIO) { lentIO.disconnect(); lentIO = null; } }
+    let lentRaf = 0, lentToken = 0, lentIO = null, lentCleanup = null, lentApi = null;
+    const lentBox = document.getElementById('vaultLent'), lentRange = document.getElementById('vaultLentRange');
+    let lentDragging = false;
+    function lentStop(){ lentToken++; lentApi = null; slab.classList.remove('lent-live'); if (lentCleanup) { lentCleanup(); lentCleanup = null; } cancelAnimationFrame(lentRaf); lentRaf = 0; if (lentIO) { lentIO.disconnect(); lentIO = null; } }
+    // Slider -> lenticular angle. Pointer/touch on the slider never reaches the card's swipe handler (it sits outside the stage).
+    if (lentRange) {
+      const fromSlider = () => { lentBox.classList.add('seen'); if (lentApi) lentApi.set(lentRange.value / 100); };
+      lentRange.addEventListener('input', fromSlider);
+      const down = () => { lentDragging = true; fromSlider(); }, up = () => { lentDragging = false; if (lentApi) lentApi.set(lentRange.value / 100); };
+      lentRange.addEventListener('pointerdown', down); lentRange.addEventListener('touchstart', down, { passive:true });
+      ['pointerup','pointercancel','touchend','change','blur'].forEach(ev => lentRange.addEventListener(ev, up));
+    }
     function lentStart(L){
       const token = ++lentToken, cv = document.getElementById('slLent'); if (!cv) return;
       Promise.all([...L.frames.map(lentLoad), lentLoad(L.top)]).then(imgs => {
@@ -2163,9 +2194,12 @@
           ctx.globalCompositeOperation = 'source-over';
         }
         if (!build()) return;
-        if (prefersReducedMotion) { draw(.2, -.1); return; }
-        let cx = .2, cy = -.1, tx = .2, ty = -.1, hover = false, lastIn = -1e9, last = '', onScreen = true;
+        // Reduced motion: no idle sway, but the slider (and cursor) still work — that motion is the viewer's own.
+        let cx = .2, cy = -.1, tx = .2, ty = -.1, hover = false, lastIn = -1e9, holdUntil = 0, fast = false, last = '', onScreen = true, lastSlider = 20;
         const t0 = performance.now();
+        draw(cx, cy);
+        slab.classList.add('lent-live');
+        lentApi = { set(v){ tx = Math.max(-1, Math.min(1, v)); ty = 0; fast = true; holdUntil = performance.now() + 5000; } };
         const mm = e => { const r = cv.getBoundingClientRect(); tx = Math.max(-1, Math.min(1, ((e.clientX - r.left) / r.width - .5) * 2.2)); ty = Math.max(-1, Math.min(1, ((e.clientY - r.top) / r.height - .5) * 2.2)); hover = true; lastIn = performance.now(); };
         const ml = () => { hover = false; };
         slab.addEventListener('mousemove', mm); slab.addEventListener('mouseleave', ml);
@@ -2175,9 +2209,17 @@
           if (token !== lentToken) return;
           if (onScreen && !document.hidden) {
             const now = performance.now();
-            if (!hover && now - lastIn > 2500) { const t = (now - t0) / 1000; tx = .9 * Math.sin(t * .5); ty = .25 * Math.sin(t * .33 + 1.2); }
-            const k = hover ? .14 : .05; cx += (tx - cx) * k; cy += (ty - cy) * k;
-            const key = cx.toFixed(3) + ',' + cy.toFixed(3); if (key !== last) { draw(cx, cy); last = key; }
+            const idle = !hover && !lentDragging && now - lastIn > 2500 && now > holdUntil;
+            if (idle && !prefersReducedMotion) { fast = false; const t = (now - t0) / 1000; tx = .9 * Math.sin(t * .5); ty = .25 * Math.sin(t * .33 + 1.2); }
+            const k = hover ? .14 : (fast ? .2 : .05); cx += (tx - cx) * k; cy += (ty - cy) * k;
+            const key = cx.toFixed(3) + ',' + cy.toFixed(3);
+            if (key !== last) {
+              draw(cx, cy); last = key;
+              // Without a cursor on the card, turn the whole slab with the lens angle so it reads as a card being tilted.
+              if (!hover && slTilt && !prefersReducedMotion) slTilt.style.transform = 'rotateX(' + (-cy * 4).toFixed(2) + 'deg) rotateY(' + (cx * 13).toFixed(2) + 'deg)';
+              // The slider handle follows the sway, so it's obvious the two are linked.
+              if (lentRange && !lentDragging) { const v = Math.round(cx * 100); if (v !== lastSlider) { lentRange.value = v; lastSlider = v; } }
+            }
           }
           lentRaf = requestAnimationFrame(tick);
         };
@@ -2296,6 +2338,7 @@
       setGlow(false);
       ctaArm();
       glowBtn.classList.toggle('show', !!(card.slab && card.glow));
+      if (lentBox) lentBox.classList.toggle('show', !!(card.slab && card.lenticular));
       applySlabImages(card);
       if (!card.slab) applyCardAspect(artF.querySelector('img'));
       counter.textContent = c.cards.length + (c.cards.length === 1 ? ' card' : ' cards') + ' · ' + String(ki + 1).padStart(2, '0') + ' / ' + String(c.cards.length).padStart(2, '0');
@@ -2572,10 +2615,42 @@
 
   // ---------- Brand marquee — clone the track once for a seamless infinite loop.
   // It keeps scrolling at all times (no pause on hover). ----------
+  // Copies the logo set as many times as needed to fill the screen plus one extra set,
+  // then slides by exactly one set width (measured in pixels) and wraps — no gap, no jump.
   (function(){
     const track = document.getElementById('brandTrack');
     if (!track) return;
-    track.innerHTML += track.innerHTML; // duplicate once -> CSS anim runs 0% to -50% seamlessly
+    const wrap = track.parentElement;
+    const original = track.innerHTML.replace(/ loading="lazy"/g, ''); // clones must be ready before they scroll in
+    const SPEED = 54; // px per second (same pace as before: one 13-logo set every ~32s)
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let setW = 0, x = 0, last = 0, raf = 0, visible = true;
+    function build(){
+      track.innerHTML = original;
+      setW = track.scrollWidth;              // one full set, including each logo's right margin
+      if (!setW) return;
+      const copies = Math.max(2, Math.ceil(wrap.clientWidth / setW) + 1);
+      track.innerHTML = original.repeat(copies);
+      x = x % setW;
+      paint();
+    }
+    function paint(){ track.style.transform = 'translate3d(' + (-x).toFixed(2) + 'px,0,0)'; }
+    function tick(t){
+      raf = 0;
+      if (!visible || reduce.matches || document.hidden) { last = 0; return; }
+      if (last) { x = (x + SPEED * Math.min(0.05, (t - last) / 1000)) % setW; paint(); }
+      last = t;
+      raf = requestAnimationFrame(tick);
+    }
+    function start(){ if (!raf && setW) { last = 0; raf = requestAnimationFrame(tick); } }
+    build(); start();
+    let rt = 0;
+    window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { build(); start(); }, 150); }, { passive:true });
+    document.addEventListener('visibilitychange', start);
+    if (reduce.addEventListener) reduce.addEventListener('change', start);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(es => { visible = es[0].isIntersecting; start(); }).observe(wrap);
+    }
   })();
 
   // ---------- CAMPAIGNS GALLERY ----------
