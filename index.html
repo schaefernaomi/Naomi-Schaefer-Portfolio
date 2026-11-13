@@ -1113,6 +1113,27 @@
   @media (hover:hover){ .gallery-frame:hover .poster-glass{ opacity:1; } }
   @media (prefers-reduced-motion: reduce){ .poster-glass{ transition:none; } }
   .poster-caption{ text-align:center; margin-top:clamp(12px,2.2vh,24px); }
+  /* auto-cycling posters: counter + progress line + pause/play */
+  .gallery-counter-row{ display:flex; align-items:center; justify-content:center; gap:12px; margin-top:clamp(6px,1vh,12px); }
+  .gallery-counter-row .gallery-counter{ margin-top:0; }
+  .gal-auto{ display:flex; align-items:center; gap:8px; }
+  .gal-auto[hidden]{ display:none; }
+  .ga-bar{ position:relative; width:56px; height:2px; border-radius:2px; background:rgba(255,255,255,.22); overflow:hidden; }
+  .ga-bar i{ position:absolute; inset:0; background:#fff; transform-origin:0 50%; transform:scaleX(0); }
+  .ga-btn{ display:grid; place-items:center; width:26px; height:26px; padding:0; border:1px solid rgba(255,255,255,.35); border-radius:50%;
+    background:transparent; color:#fff; cursor:pointer; transition:border-color .2s, background .2s; }
+  .ga-btn:hover{ border-color:#fff; background:rgba(255,255,255,.08); }
+  .ga-btn:focus-visible{ outline:2px solid var(--red); outline-offset:2px; }
+  .ga-btn svg{ width:10px; height:10px; fill:currentColor; }
+  .ga-btn .ga-play{ display:none; } .ga-btn[aria-pressed="true"] .ga-play{ display:block; } .ga-btn[aria-pressed="true"] .ga-pause{ display:none; }
+  /* gentle crossfade used only by the auto-cycle */
+  #galleryArt, .poster-caption, .gallery-body .poster-side{ transition:opacity .38s var(--ease); }
+  /* while cycling, the title keeps a two-line slot so one- vs two-line titles don't nudge the page */
+  @media (max-width:700px){
+    #campaigns.ga-on .poster-caption .t{ min-height:2.6em; display:flex; align-items:center; justify-content:center; }
+    #campaigns.ga-on .poster-caption .m{ min-height:2.4em; display:flex; align-items:flex-start; justify-content:center; }
+  }
+  .gallery-stage.ga-fading #galleryArt, .gallery-stage.ga-fading .poster-side, #campaigns.ga-fading-cap .poster-caption{ opacity:0; }
   .poster-caption .t{ font-family:'AmpFix','Fraunces',serif; font-size:19px; font-weight:500; }
   /* Size line and counter: white and a step up so they read easily, still clearly smaller than the 19px title */
   .poster-caption .m{ font-size:13px; letter-spacing:.04em; color:#fff; opacity:.92; margin-top:7px; }
@@ -1666,7 +1687,17 @@
   </div>
   <div class="gallery-info">
     <div class="poster-caption"><div class="t" id="galleryTitle">Upper Deck All-Star Weekend</div><div class="m mono" id="galleryMeta">Campaign — Key Art &amp; Promotional Poster</div></div>
-    <div class="gallery-counter mono" id="galleryCounter">01 / 01</div>
+    <div class="gallery-counter-row">
+      <div class="gallery-counter mono" id="galleryCounter">01 / 01</div>
+      <!-- Slideshow controls: shown only while the posters cycle on their own; gone once the viewer takes over -->
+      <div class="gal-auto" id="galAuto" hidden>
+        <span class="ga-bar" aria-hidden="true"><i id="galAutoBar"></i></span>
+        <button type="button" class="ga-btn" id="galAutoBtn" aria-label="Pause slideshow" aria-pressed="false">
+          <svg class="ga-pause" viewBox="0 0 12 12" aria-hidden="true"><rect x="2.5" y="2" width="2.4" height="8" rx=".6"/><rect x="7.1" y="2" width="2.4" height="8" rx=".6"/></svg>
+          <svg class="ga-play" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 2.2v7.6L10 6z"/></svg>
+        </button>
+      </div>
+    </div>
   </div>
   <div style="text-align:center;">
     <button class="view-all-link mono" id="galleryViewAllBtn">View all →</button>
@@ -3288,7 +3319,7 @@
       const ar = im.naturalWidth / im.naturalHeight, bw = bodyEl.clientWidth;
       const cap = Math.min(760, Math.max(300, Math.min(window.innerHeight * .74, window.innerHeight - 380)));
       const e = artEl.querySelector('.poster-frame') ? 30 : 0;      // frame + mat add a little on every side
-      const h = Math.max(260, Math.min(cap, (bw - e) / ar + e));
+      const h = autoOn ? cap : Math.max(260, Math.min(cap, (bw - e) / ar + e));   // slideshow: one steady height, so the page below doesn't jump
       frameEl.style.setProperty('--gh', Math.round(h) + 'px');
     }
     window.addEventListener('resize', () => requestAnimationFrame(fitFrame), { passive:true });
@@ -3310,9 +3341,10 @@
         host.addEventListener('pointerdown', () => host.classList.add('p3d-used'), { once:true });
       }).catch(() => host.classList.add('p3d-flat'));
     }
+    let autoOn = false;                       // true while the slideshow is driving
     function render(){
       const p = posters[pi];
-      armPosterView();
+      if (!autoOn) armPosterView();             // don't log "views" for posters the slideshow flips past
       const isFramed = p.treatment === 'framed';
       const frameClass = 'poster-frame' + (p.frameColor === 'black' ? ' frame-black' : '');
       if (cur3d) { cur3d(); cur3d = null; }
@@ -3352,6 +3384,69 @@
     });
     prevBtn.addEventListener('click', () => { pi = (pi - 1 + posters.length) % posters.length; render(); gridView.refresh(); });
     nextBtn.addEventListener('click', () => { pi = (pi + 1) % posters.length; render(); gridView.refresh(); });
+
+    // ---- Slideshow: posters cycle on their own until the viewer takes over ----
+    // Starts counting only while the stage is on screen; pauses on mouse hover, when scrolled away or the
+    // tab is hidden, and via the pause button. Any arrow / swipe / tab / poster / keyboard use ends it for good.
+    (function(){
+      const box = document.getElementById('galAuto'), bar = document.getElementById('galAutoBar'), btn = document.getElementById('galAutoBtn');
+      const section = document.getElementById('campaigns'), stage = document.getElementById('galleryStage');
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if (!box || !section || !stage || reduce.matches) return;
+      const DUR = 5200, DUR_3D = 8500, FADE = 380;
+      let elapsed = 0, last = 0, raf = 0, onScreen = false, hover = false, userPaused = false, fading = false;
+      autoOn = true;
+      const dur = () => (posters[pi] && posters[pi].model3d) ? DUR_3D : DUR;
+      function show(){ box.hidden = posters.length < 2; section.classList.add('ga-on'); fitFrame(); }
+      function paused(){ return !onScreen || hover || userPaused || fading || document.hidden; }
+      function tick(t){
+        raf = 0; if (!autoOn) return;
+        if (paused()) { last = 0; return; }
+        if (last) elapsed += Math.min(100, t - last);
+        last = t;
+        bar.style.transform = 'scaleX(' + Math.min(1, elapsed / dur()).toFixed(4) + ')';
+        if (elapsed >= dur()) { advance(); return; }
+        raf = requestAnimationFrame(tick);
+      }
+      function kick(){ if (autoOn && !raf && !paused()) { last = 0; raf = requestAnimationFrame(tick); } }
+      function advance(){
+        if (posters.length < 2) return;
+        fading = true; stage.classList.add('ga-fading'); section.classList.add('ga-fading-cap');
+        setTimeout(() => {
+          if (!autoOn) { fading = false; return; }
+          pi = (pi + 1) % posters.length; render(); gridView.refresh();
+          elapsed = 0; bar.style.transform = 'scaleX(0)';
+          requestAnimationFrame(() => { stage.classList.remove('ga-fading'); section.classList.remove('ga-fading-cap'); });
+          setTimeout(() => { fading = false; kick(); }, FADE);
+        }, FADE);
+      }
+      function stop(){
+        if (!autoOn) return;
+        autoOn = false; cancelAnimationFrame(raf); raf = 0; fading = false;
+        stage.classList.remove('ga-fading'); section.classList.remove('ga-fading-cap');
+        box.hidden = true; section.classList.remove('ga-on'); fitFrame(); armPosterView();
+      }
+      // the viewer takes over
+      prevBtn.addEventListener('click', stop); nextBtn.addEventListener('click', stop);
+      tabsEl.addEventListener('click', stop);
+      // taps/clicks (not scroll gestures — a finger scrolling past on a phone must not end it); swipes arrive as arrow clicks
+      section.addEventListener('click', (e) => { if (!e.target.closest('#galAuto')) stop(); }, true);
+      section.addEventListener('keydown', (e) => { if (!e.target.closest('#galAuto')) stop(); }, true);
+      frameEl.addEventListener('pointerdown', (e) => { if (e.target.closest('.p3d')) stop(); });   // grabbing the 3D display
+      // temporary pauses
+      frameEl.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') { hover = true; } });
+      frameEl.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') { hover = false; kick(); } });
+      document.addEventListener('visibilitychange', kick);
+      btn.addEventListener('click', () => {
+        userPaused = !userPaused;
+        btn.setAttribute('aria-pressed', String(userPaused));
+        btn.setAttribute('aria-label', userPaused ? 'Play slideshow' : 'Pause slideshow');
+        kick();
+      });
+      if ('IntersectionObserver' in window) new IntersectionObserver(es => { onScreen = es[0].isIntersecting; kick(); }, { threshold:.45 }).observe(frameEl);
+      else { onScreen = true; }
+      show(); kick();
+    })();
 
     // "View all" grid — shows every poster in the currently active collection filter;
     // clicking a tile jumps the single-piece browser to that poster (framed/standard intact).
