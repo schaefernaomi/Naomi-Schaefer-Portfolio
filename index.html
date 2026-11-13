@@ -362,6 +362,59 @@
     .sp-title{ margin-bottom:4px; }
   }
   @media (prefers-reduced-motion: reduce){ .sp-col{ transform:none; transition:opacity .4s ease; } }
+  /* ---- Specialties: floating pieces (replaced the icons). Pure CSS 3D; no filters on 3D layers (Safari/iOS). ---- */
+  .spf{ position:relative; display:flex; align-items:center; justify-content:center; width:min(240px,100%); height:250px; margin:0 auto; }
+  .spf-bob{ display:block; animation:spfBob 6s ease-in-out infinite; }
+  .spf-shadow{ position:absolute; left:50%; bottom:4px; width:150px; height:18px; margin-left:-75px; border-radius:50%;
+    background:radial-gradient(closest-side,rgba(0,0,0,.2),rgba(0,0,0,0)); animation:spfShd 6s ease-in-out infinite; }
+  .sp-col:nth-child(2) .spf-bob,.sp-col:nth-child(2) .spf-shadow{ animation-delay:-1.5s; }
+  .sp-col:nth-child(3) .spf-bob,.sp-col:nth-child(3) .spf-shadow{ animation-delay:-3s; }
+  .sp-col:nth-child(4) .spf-bob,.sp-col:nth-child(4) .spf-shadow{ animation-delay:-4.5s; }
+  @keyframes spfBob{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-9px); } }
+  @keyframes spfShd{ 0%,100%{ transform:scaleX(1); opacity:.95; } 50%{ transform:scaleX(.8); opacity:.55; } }
+  @keyframes spfSpin{ from{ transform:rotateY(0deg); } to{ transform:rotateY(360deg); } }
+  @keyframes spfSway{ 0%,100%{ transform:rotateX(4deg) rotateY(-11deg); } 50%{ transform:rotateX(4deg) rotateY(11deg); } }
+  @keyframes spfGlare{ 0%,100%{ background-position:100% 0; } 50%{ background-position:0% 0; } }
+  @keyframes spfSheen{ 0%,100%{ background-position:-140% 0; } 50%{ background-position:240% 0; } }
+  .spf-p3{ display:block; perspective:900px; }
+  .spf-d3{ position:relative; display:block; transform-style:preserve-3d; }
+  .spf i,.spf b{ display:block; }
+  .spf-face{ position:absolute; left:0; top:0; width:100%; height:100%; backface-visibility:hidden; -webkit-backface-visibility:hidden; }
+  /* collectibles: slab turns slowly, continuously */
+  .spf-card .spf-d3{ width:146px; height:222px; animation:spfSpin 14s linear infinite; }
+  .spf-edge{ position:absolute; inset:3px; border-radius:12px; background:#d6dbe0; }
+  /* campaigns: framed poster with depth, gentle side-to-side turn; shadow stays on the floor */
+  .spf-post .spf-p3{ perspective:1400px; }
+  .spf-post .spf-d3{ width:206px; height:170px; animation:spfSway 9s cubic-bezier(.45,0,.55,1) infinite; }
+  .spf-pedge{ position:absolute; inset:0; border-radius:3px; background:#17130e; }
+  .spf-frame{ position:absolute; inset:0; padding:7px; box-sizing:border-box; border-radius:3px; transform:translateZ(4px);
+    background:linear-gradient(150deg,#3a332c,#18150f 60%,#241f18); backface-visibility:hidden; -webkit-backface-visibility:hidden; outline:1px solid transparent; }
+  .spf-mat{ position:relative; display:block; width:100%; height:100%; box-sizing:border-box; padding:9px; background:#eeece6; box-shadow:inset 0 0 6px rgba(0,0,0,.18); }
+  .spf-mat img{ display:block; width:100%; height:100%; box-shadow:0 1px 4px rgba(0,0,0,.3); }
+  .spf-glare{ position:absolute; inset:0; pointer-events:none; background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.22) 45%,transparent 60%) no-repeat;
+    background-size:220% 100%; animation:spfGlare 9s cubic-bezier(.45,0,.55,1) infinite; }
+  .spf-back{ position:absolute; inset:0; border-radius:3px; background:#1d1913; transform:rotateY(180deg) translateZ(4px); backface-visibility:hidden; -webkit-backface-visibility:hidden; }
+  .spf-post .spf-shadow{ width:190px; margin-left:-95px; }
+  /* branding: Cephalo emblem suspended in a clear glass pill */
+  .spf-glass .spf-d3{ width:124px; height:214px; animation:spfSpin 16s linear infinite; }
+  .spf-glass .spf-emb{ left:17px; top:21px; width:90px; height:172px; }
+  .spf-gedge{ position:absolute; inset:0; border-radius:999px; box-sizing:border-box; border:1px solid rgba(255,255,255,.75); box-shadow:0 0 0 .6px rgba(60,100,112,.2); }
+  .spf-gface{ position:absolute; inset:0; border-radius:999px; overflow:hidden; backface-visibility:hidden; -webkit-backface-visibility:hidden;
+    background:linear-gradient(118deg,rgba(255,255,255,.55) 0%,rgba(255,255,255,.1) 16%,rgba(255,255,255,0) 30%,rgba(255,255,255,0) 82%,rgba(255,255,255,.28) 100%);
+    box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.95), inset 0 0 0 3px rgba(80,120,132,.1), inset 0 0 14px rgba(255,255,255,.28); }
+  .spf-sheen{ position:absolute; inset:0; background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.55) 48%,transparent 58%) no-repeat; background-size:60% 100%; animation:spfSheen 8s ease-in-out infinite; }
+  .spf-glass .spf-shadow{ width:120px; margin-left:-60px; background:radial-gradient(closest-side,rgba(40,80,90,.22),rgba(0,0,0,0)); }
+  /* motion & 3D: room loop (from Naomi's Spline recording) */
+  .spf-room img{ display:block; width:min(244px,100%); height:auto; }
+  .spf-room .spf-shadow{ width:170px; margin-left:-85px; }
+  /* off screen: pause (JS adds .spf-paused) */
+  .specialties.spf-paused .spf *{ animation-play-state:paused !important; }
+  @media (max-width:560px){
+    .sp-link{ grid-template-columns:104px 1fr 20px; column-gap:14px; align-items:center; }
+    .sp-icon{ position:relative; width:104px; height:112px; }
+    .sp-icon .spf{ position:absolute; left:50%; top:50%; width:240px; margin:-125px 0 0 -120px; transform:scale(.44); }
+  }
+  @media (prefers-reduced-motion:reduce){ .spf *{ animation:none !important; } }
 
   /* ---------- CHAPTER ---------- */
   .chapter{ position:relative; padding:9vh 5vw 7vh; scroll-margin-top:80px; }
@@ -1463,28 +1516,28 @@
     <ul class="sp-grid" role="list">
       <li class="sp-col">
         <a class="sp-link" data-scroll-to="work" role="link" tabindex="0" aria-label="Collectibles: jump to trading cards, posters, and print">
-          <div class="sp-top"><span class="sp-icon"><svg class="ico " viewBox="0 0 48 48" width="56" height="56" fill="none" aria-hidden="true" focusable="false"><g stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><rect x="15.5" y="9" width="17" height="26" rx="2" fill="#e6e3dd" transform="rotate(-17 24 41)"/><rect x="15.5" y="9" width="17" height="26" rx="2" fill="#e6e3dd" transform="rotate(17 24 41)"/><rect x="15.5" y="9" width="17" height="26" rx="2" fill="var(--paper)" transform="rotate(0 24 41)"/><rect x="18.5" y="12.2" width="11" height="10" rx="1" fill="#e6e3dd"/><path d="M18.5 27h11" stroke="var(--red)" stroke-width="1.6" stroke-linecap="round"/><path d="M18.5 30.2h6" stroke-linecap="round"/></g></svg></span><span class="sp-go" aria-hidden="true">&rarr;</span></div>
+          <div class="sp-top"><span class="sp-icon"><span class="spf spf-card" aria-hidden="true"><span class="spf-shadow"></span><span class="spf-bob"><span class="spf-p3"><span class="spf-d3"><i class="spf-edge" style="transform:translateZ(-3.15px)"></i><i class="spf-edge" style="transform:translateZ(-2.45px)"></i><i class="spf-edge" style="transform:translateZ(-1.75px)"></i><i class="spf-edge" style="transform:translateZ(-1.05px)"></i><i class="spf-edge" style="transform:translateZ(-0.35px)"></i><i class="spf-edge" style="transform:translateZ(0.35px)"></i><i class="spf-edge" style="transform:translateZ(1.05px)"></i><i class="spf-edge" style="transform:translateZ(1.75px)"></i><i class="spf-edge" style="transform:translateZ(2.45px)"></i><i class="spf-edge" style="transform:translateZ(3.15px)"></i><img class="spf-face" src="assets/specialties/nf6-front.webp" alt="" width="146" height="222" decoding="async" style="transform:translateZ(3.6px)"><img class="spf-face" src="assets/specialties/nf6-back.webp" alt="" width="146" height="222" decoding="async" style="transform:rotateY(180deg) translateZ(3.6px)"></span></span></span></span></span><span class="sp-go" aria-hidden="true">&rarr;</span></div>
           <h3 class="sp-title">Collectibles</h3>
           <p class="sp-desc">Trading cards, posters, and print.</p>
         </a>
       </li>
       <li class="sp-col">
         <a class="sp-link" data-scroll-to="campaigns" role="link" tabindex="0" aria-label="Campaigns and Promotional Design: jump to promotional graphics and key art">
-          <div class="sp-top"><span class="sp-icon"><svg class="ico " viewBox="0 0 48 48" width="56" height="56" fill="none" aria-hidden="true" focusable="false"><g stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><rect x="8" y="4.5" width="32" height="39" rx="1.5" stroke-width="1.7"/><rect x="12" y="8.5" width="24" height="31" fill="var(--paper)"/><rect x="14.5" y="11" width="19" height="20" fill="#e6e3dd"/><path d="M14.5 31 21 22.5 25 27 29 21.5 33.5 31Z" fill="var(--paper)"/><circle cx="28" cy="16.5" r="2.6" fill="var(--red)" stroke="none"/><path d="M15 35.5q2-3.4 4 0t4 0 4 0 4 0" stroke="var(--red)" stroke-width="1.5"/></g></svg></span><span class="sp-go" aria-hidden="true">&rarr;</span></div>
+          <div class="sp-top"><span class="sp-icon"><span class="spf spf-post" aria-hidden="true"><span class="spf-shadow"></span><span class="spf-bob"><span class="spf-p3"><span class="spf-d3"><i class="spf-pedge" style="transform:translateZ(-3.00px)"></i><i class="spf-pedge" style="transform:translateZ(-2.00px)"></i><i class="spf-pedge" style="transform:translateZ(-1.00px)"></i><i class="spf-pedge" style="transform:translateZ(0.00px)"></i><i class="spf-pedge" style="transform:translateZ(1.00px)"></i><i class="spf-pedge" style="transform:translateZ(2.00px)"></i><i class="spf-pedge" style="transform:translateZ(3.00px)"></i><span class="spf-frame"><span class="spf-mat"><img src="assets/specialties/space-jam.jpg" alt="" width="172" height="138" decoding="async"><b class="spf-glare"></b></span></span><i class="spf-back"></i></span></span></span></span></span><span class="sp-go" aria-hidden="true">&rarr;</span></div>
           <h3 class="sp-title">Campaigns <span class="amp">&amp;</span> Promotional Design</h3>
           <p class="sp-desc">Promotional graphics and key art.</p>
         </a>
       </li>
       <li class="sp-col">
         <a class="sp-link" data-scroll-to="branding" role="link" tabindex="0" aria-label="Branding and Illustration: jump to this section">
-          <div class="sp-top"><span class="sp-icon"><svg class="ico " viewBox="0 0 48 48" width="56" height="56" fill="none" aria-hidden="true" focusable="false"><g stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><circle cx="14.5" cy="14.5" r="8.5" fill="#e6e3dd"/><rect x="25" y="6" width="17" height="17" rx="1.5" fill="#e6e3dd"/><circle cx="33.5" cy="14.5" r="3.4" fill="var(--red)" stroke="none"/><path d="M6 42 23 42 14.5 25Z" fill="#e6e3dd"/><path d="M25 42V25A17 17 0 0 1 42 42Z" fill="#e6e3dd" stroke="var(--red)"/></g></svg></span><span class="sp-go" aria-hidden="true">&rarr;</span></div>
+          <div class="sp-top"><span class="sp-icon"><span class="spf spf-glass" aria-hidden="true"><span class="spf-shadow"></span><span class="spf-bob"><span class="spf-p3"><span class="spf-d3"><i class="spf-gedge" style="transform:translateZ(-10.21px)"></i><i class="spf-gedge" style="transform:translateZ(-8.64px)"></i><i class="spf-gedge" style="transform:translateZ(-7.07px)"></i><i class="spf-gedge" style="transform:translateZ(-5.50px)"></i><i class="spf-gedge" style="transform:translateZ(-3.93px)"></i><i class="spf-gedge" style="transform:translateZ(-2.36px)"></i><i class="spf-gedge" style="transform:translateZ(-0.79px)"></i><i class="spf-gedge" style="transform:translateZ(0.79px)"></i><i class="spf-gedge" style="transform:translateZ(2.36px)"></i><i class="spf-gedge" style="transform:translateZ(3.93px)"></i><i class="spf-gedge" style="transform:translateZ(5.50px)"></i><i class="spf-gedge" style="transform:translateZ(7.07px)"></i><i class="spf-gedge" style="transform:translateZ(8.64px)"></i><i class="spf-gedge" style="transform:translateZ(10.21px)"></i><img class="spf-face spf-emb" src="assets/specialties/cephalo-front.webp" alt="" width="90" height="172" decoding="async" style="transform:translateZ(1.2px)"><img class="spf-face spf-emb" src="assets/specialties/cephalo-back.webp" alt="" width="90" height="172" decoding="async" style="transform:rotateY(180deg) translateZ(1.2px)"><i class="spf-gface" style="transform:translateZ(11px)"><b class="spf-sheen"></b></i><i class="spf-gface" style="transform:rotateY(180deg) translateZ(11px)"><b class="spf-sheen"></b></i></span></span></span></span></span><span class="sp-go" aria-hidden="true">&rarr;</span></div>
           <h3 class="sp-title">Branding <span class="amp">&amp;</span> Illustration</h3>
           <p class="sp-desc">Logos, brand identities, and illustration.</p>
         </a>
       </li>
       <li class="sp-col">
         <a class="sp-link" data-scroll-to="motion" role="link" tabindex="0" aria-label="Motion and 3D: jump to this section">
-          <div class="sp-top"><span class="sp-icon"><svg class="ico " viewBox="0 0 48 48" width="56" height="56" fill="none" aria-hidden="true" focusable="false"><g stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><path d="M3 12.5h42M3 35.5h42" stroke-dasharray="2 2.6"/><rect x="3" y="17" width="12" height="14" rx="1.5" fill="var(--paper)"/><rect x="18" y="17" width="12" height="14" rx="1.5" fill="var(--paper)"/><rect x="33" y="17" width="12" height="14" rx="1.5" fill="var(--paper)"/><circle cx="7.8" cy="26.5" r="2.6" fill="var(--red)" fill-opacity=".3" stroke="none"/><circle cx="24" cy="21.5" r="2.6" fill="var(--red)" fill-opacity=".65" stroke="none"/><circle cx="40.2" cy="26.5" r="2.6" fill="var(--red)" stroke="none"/></g></svg></span><span class="sp-go" aria-hidden="true">&rarr;</span></div>
+          <div class="sp-top"><span class="sp-icon"><span class="spf spf-room" aria-hidden="true"><span class="spf-shadow"></span><span class="spf-bob"><img src="assets/specialties/room.webp" alt="" width="244" height="244" decoding="async"></span></span></span><span class="sp-go" aria-hidden="true">&rarr;</span></div>
           <h3 class="sp-title">Motion <span class="amp">&amp;</span> 3D</h3>
           <p class="sp-desc">Storyboards, animation, and 3D design.</p>
         </a>
@@ -2555,6 +2608,12 @@
     renderCard();
   });
 
+  // Specialties floating pieces: only animate while the section is on screen (saves battery on phones)
+  (function(){
+    const sec = document.getElementById('specialties');
+    if (!sec || !('IntersectionObserver' in window)) return;
+    new IntersectionObserver(es => { sec.classList.toggle('spf-paused', !es[0].isIntersecting); }, { rootMargin:'120px 0px' }).observe(sec);
+  })();
   const revealTargets = document.querySelectorAll('.chapter-head, .about-text, .sp-col');
   const io = new IntersectionObserver((entries) => {
     entries.forEach(en => { if (en.isIntersecting) en.target.classList.add('is-visible'); });
