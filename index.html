@@ -152,6 +152,13 @@
   @media (max-width:640px){
     .hero{ justify-content:center; padding-top:0; padding-bottom:8vh; }
   }
+  /* Desktop/tablet: the hero no longer fills the whole window. It is only as tall as the name,
+     subtitle and tagline plus balanced padding, so Specialties sits right under the name instead
+     of below a screen's worth of empty space on big monitors. (Phones keep the full-height hero.) */
+  @media (min-width:701px){
+    .hero{ height:auto; min-height:0; padding-top:calc(68px + clamp(40px,8vh,110px)); padding-bottom:clamp(40px,6vh,84px); }
+    .specialties{ padding-top:clamp(16px,3vh,40px); }
+  }
   .hero-name{ position:relative; z-index:2; cursor:default; }
   .hero-name .line{ display:block; font-family:'AmpFix','Fraunces',serif; font-weight:500; font-size:clamp(64px,15vw,190px);
     line-height:.92; letter-spacing:-.01em; position:relative; color:var(--ink); }
