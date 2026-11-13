@@ -1127,7 +1127,7 @@
   .ga-btn svg{ width:10px; height:10px; fill:currentColor; }
   .ga-btn .ga-play{ display:none; } .ga-btn[aria-pressed="true"] .ga-play{ display:block; } .ga-btn[aria-pressed="true"] .ga-pause{ display:none; }
   /* gentle crossfade used only by the auto-cycle */
-  #galleryArt, .poster-caption, .gallery-body .poster-side{ transition:opacity .38s var(--ease); }
+  #galleryArt, .poster-caption, .gallery-body .poster-side{ transition:opacity .22s var(--ease); }
   /* while cycling, the title keeps a two-line slot so one- vs two-line titles don't nudge the page */
   @media (max-width:700px){
     #campaigns.ga-on .poster-caption .t{ min-height:2.6em; display:flex; align-items:center; justify-content:center; }
@@ -3393,7 +3393,7 @@
       const section = document.getElementById('campaigns'), stage = document.getElementById('galleryStage');
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
       if (!box || !section || !stage || reduce.matches) return;
-      const DUR = 5200, DUR_3D = 8500, FADE = 380;
+      const DUR = 2000, DUR_3D = 3500, FADE = 220;   // each poster stays 2s (the 3D display a little longer), quick crossfade
       let elapsed = 0, last = 0, raf = 0, onScreen = false, hover = false, userPaused = false, fading = false;
       autoOn = true;
       const dur = () => (posters[pi] && posters[pi].model3d) ? DUR_3D : DUR;
