@@ -1054,9 +1054,10 @@
   @media (prefers-reduced-motion: reduce){ .poster-glass{ transition:none; } }
   .poster-caption{ text-align:center; margin-top:clamp(12px,2.2vh,24px); }
   .poster-caption .t{ font-family:'AmpFix','Fraunces',serif; font-size:19px; font-weight:500; }
-  .poster-caption .m{ font-size:10px; color:var(--grey); margin-top:6px; }
-  .gallery-counter{ text-align:center; margin-top:clamp(6px,1vh,12px); font-family:'IBM Plex Mono',monospace; font-size:10px;
-    letter-spacing:.06em; color:var(--grey); }
+  /* Size line and counter: white and a step up so they read easily, still clearly smaller than the 19px title */
+  .poster-caption .m{ font-size:13px; letter-spacing:.04em; color:#fff; opacity:.92; margin-top:7px; }
+  .gallery-counter{ text-align:center; margin-top:clamp(6px,1vh,12px); font-family:'IBM Plex Mono',monospace; font-size:12px;
+    letter-spacing:.08em; color:#fff; opacity:.8; }
   #galleryViewAllBtn{ margin-top:clamp(14px,2.4vh,26px); }
   @media (max-width:860px){
     .gallery-stage{ gap:12px; }

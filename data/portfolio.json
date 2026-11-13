@@ -1564,8 +1564,8 @@
       "collection": "Tennis",
       "client": "Upper Deck Authenticated",
       "year": "2026",
-      "dimensions": "16x20 Framed",
-      "description": "Iga Świątek framed and autographed, \"Conquering the Clay\".",
+      "dimensions": "16x20",
+      "description": "Iga Świątek autographed, \"Conquering the Clay\".",
       "tags": [
         "tennis",
         "print"
@@ -4397,13 +4397,13 @@
     },
     {
       "id": "franz-wagner",
-      "title": "Franz Wagner",
+      "title": "Franz Wagner — Beginning of an Era",
       "category": "poster",
       "collection": "NBA",
       "client": "Upper Deck Authenticated",
       "year": "2026",
-      "dimensions": "",
-      "description": "Franz Wagner, Orlando Magic #22.",
+      "dimensions": "20x16",
+      "description": "Franz Wagner autographed, \"Beginning of an Era\".",
       "tags": [
         "basketball",
         "print"
@@ -4414,7 +4414,7 @@
         {
           "src": "assets/campaigns/nba/franz-wagner.jpg",
           "role": "main",
-          "alt": "Franz Wagner, Upper Deck Authenticated print"
+          "alt": "Franz Wagner — Beginning of an Era, Upper Deck Authenticated print"
         }
       ],
       "displayTreatment": "standard",
@@ -4423,13 +4423,13 @@
     },
     {
       "id": "franz-wagner-gold",
-      "title": "Franz Wagner — Gold",
+      "title": "Franz Wagner — Beginning of an Era (Gold)",
       "category": "poster",
       "collection": "NBA",
       "client": "Upper Deck Authenticated",
       "year": "2026",
-      "dimensions": "",
-      "description": "Franz Wagner, Orlando Magic #22 — gold edition.",
+      "dimensions": "20x16",
+      "description": "Franz Wagner autographed, \"Beginning of an Era\" — gold edition.",
       "tags": [
         "basketball",
         "print"
@@ -4440,7 +4440,7 @@
         {
           "src": "assets/campaigns/nba/franz-wagner-gold.jpg",
           "role": "main",
-          "alt": "Franz Wagner — Gold, Upper Deck Authenticated print"
+          "alt": "Franz Wagner — Beginning of an Era (Gold), Upper Deck Authenticated print"
         }
       ],
       "displayTreatment": "standard",
@@ -4480,8 +4480,8 @@
       "collection": "NHL",
       "client": "Upper Deck Authenticated",
       "year": "2026",
-      "dimensions": "",
-      "description": "Michael Misa, San Jose Sharks #77 — NHL debut, October 14, 2025.",
+      "dimensions": "14x11",
+      "description": "Michael Misa autographed, \"NHL Debut\".",
       "tags": [
         "hockey",
         "print"
@@ -4643,7 +4643,7 @@
       "year": "2026-27",
       "dimensions": "",
       "description": "",
-      "cardNumber": "",
+      "cardNumber": "ML-1",
       "cardStock": "",
       "tags": [
         "hockey",
@@ -4660,7 +4660,7 @@
         {
           "src": "assets/collectibles/ud-mvp/gritty-mascot-lenticular-front.jpg",
           "role": "front",
-          "alt": "2026-27 Upper Deck MVP Mascot Lenticular, Gritty, front"
+          "alt": "2026-27 Upper Deck MVP Mascot Lenticular, Gritty, ML-1, front"
         }
       ],
       "slab": {
