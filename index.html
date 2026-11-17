@@ -1133,6 +1133,14 @@
   }
   .ga-ghost{ position:absolute; pointer-events:none; z-index:1; }
   #galleryArt{ z-index:2; }   /* incoming poster passes over the outgoing one */
+  /* iPhone Safari: give the moving pieces their own layers up front, so the first frame of a slide isn't painted blank */
+  #campaigns.ga-on #galleryArt, #campaigns.ga-on .poster-side, .ga-ghost{ will-change:transform, opacity; -webkit-backface-visibility:hidden; backface-visibility:hidden; }
+  @media (max-width:700px){
+    /* phones: no blur filter on the side previews (Safari blanks filtered 3D layers for a frame when they change);
+       a dark veil gives the same "in the background" look */
+    .poster-side, .poster-side:hover, .poster-side:focus-visible{ filter:none; }
+    .poster-side::after{ content:''; position:absolute; inset:0; background:rgba(8,8,9,.48); border-radius:2px; pointer-events:none; }
+  }
   .poster-caption .t{ font-family:'AmpFix','Fraunces',serif; font-size:19px; font-weight:500; }
   /* Size line and counter: white and a step up so they read easily, still clearly smaller than the 19px title */
   .poster-caption .m{ font-size:13px; letter-spacing:.04em; color:#fff; opacity:.92; margin-top:7px; }
@@ -3422,6 +3430,15 @@
         }
         return decoded[src];
       }
+      function useDecoded(container, p){
+        const d = decoded[srcOf(p)], fresh = container.querySelector('img');
+        if (!d || !d.img || !fresh || !d.img.complete || fresh === d.img) return;
+        const im = d.img;
+        if (im.isConnected) return;                                  // already shown somewhere else on the page
+        Array.from(im.attributes).forEach(a => { if (a.name !== 'src') im.removeAttribute(a.name); });
+        Array.from(fresh.attributes).forEach(a => { if (a.name !== 'src' && a.name !== 'loading') im.setAttribute(a.name, a.value); });
+        fresh.replaceWith(im);
+      }
       function prefetchAhead(){ const n = posters.length; for (let k = 1; k <= 3; k++) decode(srcOf(posters[(pi + k) % n])); }
       async function advance(){
         if (posters.length < 2) return;
@@ -3432,12 +3449,18 @@
         if (!autoOn) { fading = false; return; }
         const ease = 'cubic-bezier(.65,0,.35,1)';
         const ox = Math.abs(parseFloat(sideEls[1].style.getPropertyValue('--ox'))) || bodyEl.clientWidth * .62;
-        ghost = artEl.cloneNode(true);
-        ghost.removeAttribute('id'); ghost.classList.add('ga-ghost');
+        // outgoing: MOVE the poster's existing (already painted) nodes into the sliding layer — a copy would be a new
+        // <img> that Safari may paint blank for a frame
+        ghost = document.createElement('div');
+        ghost.className = artEl.className + ' ga-ghost';
         ghost.style.left = artEl.offsetLeft + 'px'; ghost.style.top = artEl.offsetTop + 'px';
         ghost.style.width = artEl.offsetWidth + 'px'; ghost.style.height = artEl.offsetHeight + 'px';
+        while (artEl.firstChild) ghost.appendChild(artEl.firstChild);
         frameEl.appendChild(ghost);
         pi = (pi + 1) % n; render(); gridView.refresh();
+        // incoming centre + new right preview: swap in the very <img> objects that were decoded ahead of time
+        useDecoded(artEl, posters[pi]);
+        if (sideEls[1].style.display !== 'none') { useDecoded(sideEls[1], posters[(pi + 1) % n]); layoutSides(); }
         elapsed = 0; bar.style.transform = 'scaleX(0)';
         const opts = { duration:SLIDE, easing:ease };
         // incoming: starts at the right preview's spot, already visible (it *is* that preview), grows to centre
