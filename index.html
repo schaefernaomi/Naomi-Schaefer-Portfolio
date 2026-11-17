@@ -3408,12 +3408,28 @@
         raf = requestAnimationFrame(tick);
       }
       function kick(){ if (autoOn && !raf && !paused()) { last = 0; raf = requestAnimationFrame(tick); } }
-      // Next poster slides in from the right (from about where its blurred preview sits) while the current one
-      // slides out to the left; the side previews ease back in as it settles. Web Animations, so it doesn't fight
-      // the poster's own hover transitions.
-      function advance(){
+      // Next poster slides in from the right (from where its blurred preview sits) while the current one slides out
+      // to the left and becomes the left preview. Nothing is swapped until the incoming images are fully decoded,
+      // so there is no empty frame ("blink"); the side previews move with the slide instead of fading.
+      const srcOf = (p) => p ? (p.imgSrc || ((p.img || '').match(/src="([^"]+)"/) || [])[1] || '') : '';
+      const decoded = {};
+      function decode(src){
+        if (!src) return Promise.resolve();
+        if (!decoded[src]) {
+          const im = new Image(); im.decoding = 'async'; im.src = src;
+          decoded[src] = (im.decode ? im.decode() : new Promise(r => { im.onload = im.onerror = r; })).catch(() => {});
+          decoded[src].img = im;   // keep a reference so the decoded bitmap stays cached
+        }
+        return decoded[src];
+      }
+      function prefetchAhead(){ const n = posters.length; for (let k = 1; k <= 3; k++) decode(srcOf(posters[(pi + k) % n])); }
+      async function advance(){
         if (posters.length < 2) return;
         fading = true;
+        const n = posters.length;
+        const ready = Promise.all([decode(srcOf(posters[(pi + 1) % n])), decode(srcOf(posters[(pi + 2) % n]))]);
+        await Promise.race([ready, new Promise(r => setTimeout(r, 1500))]);
+        if (!autoOn) { fading = false; return; }
         const ease = 'cubic-bezier(.65,0,.35,1)';
         const ox = Math.abs(parseFloat(sideEls[1].style.getPropertyValue('--ox'))) || bodyEl.clientWidth * .62;
         ghost = artEl.cloneNode(true);
@@ -3421,14 +3437,23 @@
         ghost.style.left = artEl.offsetLeft + 'px'; ghost.style.top = artEl.offsetTop + 'px';
         ghost.style.width = artEl.offsetWidth + 'px'; ghost.style.height = artEl.offsetHeight + 'px';
         frameEl.appendChild(ghost);
-        pi = (pi + 1) % posters.length; render(); gridView.refresh();
+        pi = (pi + 1) % n; render(); gridView.refresh();
         elapsed = 0; bar.style.transform = 'scaleX(0)';
-        artEl.animate([{ transform:'translateX(' + ox + 'px) scale(.8)', opacity:.4 }, { transform:'none', opacity:1 }], { duration:SLIDE, easing:ease });
-        ghost.animate([{ transform:'none', opacity:1 }, { transform:'translateX(' + (-ox) + 'px) scale(.8)', opacity:0 }], { duration:SLIDE, easing:ease, fill:'forwards' });
-        sideEls.forEach(el => el.animate([{ opacity:0 }, { opacity:0, offset:.55 }, { opacity:1 }], { duration:SLIDE + 250, easing:'ease-out' }));
+        const opts = { duration:SLIDE, easing:ease };
+        // incoming: starts at the right preview's spot, already visible (it *is* that preview), grows to centre
+        artEl.animate([{ transform:'translateX(' + ox + 'px) scale(.78)', opacity:.7 }, { transform:'none', opacity:1 }], opts);
+        // outgoing: glides to the left preview's spot and hands over to it in the last third
+        ghost.animate([{ transform:'none', opacity:1, offset:0 }, { transform:'translateX(' + (-ox * .8) + 'px) scale(.82)', opacity:1, offset:.7 },
+                       { transform:'translateX(' + (-ox) + 'px) scale(.78)', opacity:0, offset:1 }], Object.assign({ fill:'forwards' }, opts));
+        // left preview (now the old poster): hidden until the outgoing poster arrives, then cross-fades in
+        if (sideEls[0].style.display !== 'none')
+          sideEls[0].animate([{ opacity:0 }, { opacity:0, offset:.65 }, { opacity:1 }], opts);
+        // right preview (a new poster): glides in from beyond the edge
+        if (sideEls[1].style.display !== 'none')
+          sideEls[1].animate([{ translate:(ox * .7) + 'px 0', opacity:0 }, { translate:'0 0', opacity:1 }], opts);
         const cap = document.querySelector('#campaigns .poster-caption');
         if (cap) cap.animate([{ opacity:0, transform:'translateX(18px)' }, { opacity:1, transform:'none' }], { duration:SLIDE * .8, easing:ease });
-        setTimeout(() => { if (ghost) { ghost.remove(); ghost = null; } fading = false; syncPosterSheen(); kick(); }, SLIDE + 20);
+        setTimeout(() => { if (ghost) { ghost.remove(); ghost = null; } fading = false; syncPosterSheen(); prefetchAhead(); kick(); }, SLIDE + 20);
       }
       function stop(){
         if (!autoOn) return;
@@ -3455,7 +3480,7 @@
       });
       if ('IntersectionObserver' in window) new IntersectionObserver(es => { onScreen = es[0].isIntersecting; kick(); }, { threshold:.3 }).observe(frameEl);
       else { onScreen = true; }
-      show(); kick();
+      show(); prefetchAhead(); kick();
     })();
 
     // "View all" grid — shows every poster in the currently active collection filter;
