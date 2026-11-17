@@ -3449,14 +3449,25 @@
         if (!autoOn) { fading = false; return; }
         const ease = 'cubic-bezier(.65,0,.35,1)';
         const ox = Math.abs(parseFloat(sideEls[1].style.getPropertyValue('--ox'))) || bodyEl.clientWidth * .62;
-        // outgoing: MOVE the poster's existing (already painted) nodes into the sliding layer — a copy would be a new
-        // <img> that Safari may paint blank for a frame
+        // outgoing: a copy of the current poster, built BEFORE anything changes and left sitting under the real one
+        // until Safari has drawn it (it can take a couple of frames to draw a new layer — that was the blink).
+        // Every piece is locked at its current pixel size so it can't collapse when the poster area switches to the
+        // next poster's settings (wide posters collapsed into a tiny box on iPhone).
+        const pick = (root) => [root.querySelector('.poster-frame'), root.querySelector('.poster-mat'), ...root.querySelectorAll('img')].filter(Boolean);
+        const sizes = pick(artEl).map(el => [el.offsetWidth, el.offsetHeight]);
         ghost = document.createElement('div');
-        ghost.className = artEl.className + ' ga-ghost';
+        ghost.className = 'poster-art ga-ghost';
         ghost.style.left = artEl.offsetLeft + 'px'; ghost.style.top = artEl.offsetTop + 'px';
         ghost.style.width = artEl.offsetWidth + 'px'; ghost.style.height = artEl.offsetHeight + 'px';
-        while (artEl.firstChild) ghost.appendChild(artEl.firstChild);
-        frameEl.appendChild(ghost);
+        ghost.style.display = 'flex'; ghost.style.alignItems = 'center'; ghost.style.justifyContent = 'center';
+        Array.from(artEl.childNodes).forEach(c => ghost.appendChild(c.cloneNode(true)));
+        ghost.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+        pick(ghost).forEach((el, k) => { const sz = sizes[k]; if (sz && sz[0] && sz[1]) { el.style.width = sz[0] + 'px'; el.style.height = sz[1] + 'px'; el.style.maxWidth = 'none'; el.style.maxHeight = 'none'; el.style.flex = 'none'; } });
+        frameEl.appendChild(ghost);                                    // z-index below the real poster: hidden for now
+        const gImgs = Array.from(ghost.querySelectorAll('img'));
+        await Promise.race([Promise.all(gImgs.map(im => im.decode ? im.decode().catch(() => {}) : null)), new Promise(r => setTimeout(r, 500))]);
+        await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(() => requestAnimationFrame(r))));
+        if (!autoOn) { if (ghost) { ghost.remove(); ghost = null; } fading = false; return; }
         pi = (pi + 1) % n; render(); gridView.refresh();
         // incoming centre + new right preview: swap in the very <img> objects that were decoded ahead of time
         useDecoded(artEl, posters[pi]);
@@ -3475,7 +3486,7 @@
         if (sideEls[1].style.display !== 'none')
           sideEls[1].animate([{ translate:(ox * .7) + 'px 0', opacity:0 }, { translate:'0 0', opacity:1 }], opts);
         const cap = document.querySelector('#campaigns .poster-caption');
-        if (cap) cap.animate([{ opacity:0, transform:'translateX(18px)' }, { opacity:1, transform:'none' }], { duration:SLIDE * .8, easing:ease });
+        if (cap) cap.animate([{ opacity:.35, transform:'translateX(14px)' }, { opacity:1, transform:'none' }], { duration:SLIDE * .7, easing:'ease-out' });
         setTimeout(() => { if (ghost) { ghost.remove(); ghost = null; } fading = false; syncPosterSheen(); prefetchAhead(); kick(); }, SLIDE + 20);
       }
       function stop(){
